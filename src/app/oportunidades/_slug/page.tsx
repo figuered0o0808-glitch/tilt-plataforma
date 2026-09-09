@@ -3,7 +3,6 @@ import type { CSSProperties, ReactNode } from 'react';
 import { notFound } from 'next/navigation';
 
 import { Avatar } from '@/components/Avatar';
-import { BlocoAutonomia } from '@/components/BlocoAutonomia';
 import { CabecalhoPagina } from '@/components/CabecalhoPagina';
 import { corDoTema } from '@/components/Chip';
 import { Faixas } from '@/components/Faixas';
@@ -117,7 +116,6 @@ export default async function PaginaEdital({ params }: { params: Promise<{ slug:
                 </div>
               </Secao>
 
-              <BlocoAutonomia />
 
               <Secao id="escopo" titulo={t.editais.secoes.escopo}>
                 <div className="cartao">

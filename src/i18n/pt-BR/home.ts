@@ -17,8 +17,8 @@ export const home = {
   entrarNota: 'O cadastro é gratuito e não exige número mínimo de seguidores.',
 
   /* Caminho de entrada enquanto nada foi publicado. */
-  inicioAcao: 'Como o programa funciona',
-  inicioAcaoAreas: 'Ver as duas áreas',
+  inicioAcao: 'Ver oportunidades',
+  inicioAcaoAreas: 'Ver a biblioteca',
   inicioNota: 'Nenhuma chamada aberta.',
 
   areasTitulo: 'Duas áreas',
@@ -54,28 +54,6 @@ export const home = {
     'Cada chamada publica critérios de seleção, composição da banca e cronograma antes de receber inscrições.',
   chamadasAcao: 'Ver todas as chamadas',
   rotuloProponente: 'Proponente',
-
-  desenhoTitulo: 'O desenho do programa',
-  desenhoTexto: 'Valem para toda chamada, e vão escritas por extenso em cada uma.',
-  desenho: [
-    {
-      rotulo: 'Autonomia editorial',
-      texto:
-        'Não há aprovação prévia de roteiro, corte ou publicação. A titularidade da propriedade intelectual permanece com quem cria.',
-    },
-    {
-      rotulo: 'Critérios e banca',
-      texto:
-        'Os critérios de seleção, os pesos de cada um e os nomes de quem avalia são publicados antes da abertura das inscrições.',
-    },
-    {
-      rotulo: 'Resultado público',
-      texto:
-        'A chamada encerrada publica a relação integral de projetos apoiados, com nomes e valores, e a fundamentação da banca.',
-    },
-  ],
-  desenhoLinkChamada: 'Ver uma chamada por dentro',
-  desenhoLinkResultado: 'Ver um resultado publicado',
 
   recursosTitulo: 'Biblioteca',
   recursosTexto:

@@ -16,7 +16,6 @@ export const editais = {
   semChamadaTitulo: 'Ainda não há chamada aberta',
   semChamadaTexto:
     'A primeira chamada será publicada nesta página, com o texto integral, os critérios de seleção, a banca e o prazo de inscrição. O resultado fica publicado na página da chamada, com a relação de apoiados e os valores.',
-  autonomiaEscopo: 'Estas condições valem em qualquer chamada do programa.',
   prepararTitulo: 'O que você pode adiantar',
   prepararItens: [
     'Título e descrição do projeto, com a abordagem e a quantidade de peças',

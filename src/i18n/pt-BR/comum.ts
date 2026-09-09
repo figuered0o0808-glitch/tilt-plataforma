@@ -54,11 +54,6 @@ export const comum = {
     opcional: 'opcional',
     nenhumResultado: 'Nenhum resultado',
   },
-  autonomia: {
-    titulo: 'Autonomia editorial',
-    texto:
-      'Sem aprovação prévia de roteiro, corte ou publicação. A titularidade da propriedade intelectual permanece com o criador. O apoio é declarado publicamente pelo criador na própria publicação. Não há impulsionamento pago pelo programa, exclusividade nem restrição às demais atividades do criador. Condições do apoio: legalidade, sinalização publicitária conforme o CONAR e vedação de uso do material em propaganda eleitoral ou em coordenação com partido ou campanha.',
-  },
   rodape: {
     descricao:
       'Plataforma da INDICA e da TILT. Financiamento a projetos autorais e formação para criadores, e materiais técnicos abertos para criadores e organizações. Piloto no Brasil.',

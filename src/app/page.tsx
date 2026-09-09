@@ -6,6 +6,7 @@ import { Entrada } from '@/app/_Entrada';
 import { Botao } from '@/components/Botao';
 import { Chip, Chips } from '@/components/Chip';
 import { Ilustracao } from '@/components/Ilustracao';
+import { LogoTilt } from '@/components/LogoTilt';
 import { Selo } from '@/components/Selo';
 import { PROGRAM_TAGLINE } from '@/config/program';
 import { t } from '@/i18n/strings';
@@ -97,26 +98,35 @@ export default function Home() {
 
   return (
     <>
-      <section className="hero">
-        <div className="container">
-          <div className="hero__grade">
-            <div>
-              <p className="olho">{PROGRAM_TAGLINE}</p>
-              <h1 className="hero__frase">{t.home.frase}</h1>
-              <p className="texto-guia">{t.home.apresentacao}</p>
-              <Entrada temConteudo={temConteudo} />
-            </div>
-            <div style={{ display: 'flex', justifyContent: 'center' }}>
-              <Ilustracao nome="hero" largura={420} className="ilustracao--suave" />
-            </div>
-          </div>
+      <section className="hero" style={{ position: 'relative', overflow: 'hidden' }}>
+        <div
+          className="malha"
+          aria-hidden="true"
+          style={{
+            position: 'absolute',
+            inset: 0,
+            color: 'rgba(0, 0, 0, 0.16)',
+            maskImage: 'linear-gradient(to bottom, #000 0%, transparent 78%)',
+            WebkitMaskImage: 'linear-gradient(to bottom, #000 0%, transparent 78%)',
+          }}
+        />
+        <div className="container" style={{ position: 'relative' }}>
+          <p className="olho">{PROGRAM_TAGLINE}</p>
+          <h1 className="hero__frase" style={{ maxWidth: '18ch' }}>
+            {t.home.frase}
+          </h1>
+          <p className="texto-guia">{t.home.apresentacao}</p>
+          <Entrada temConteudo={temConteudo} />
         </div>
       </section>
 
       {temConteudo ? null : (
-        <section className="secao" id="areas" style={{ scrollMarginTop: 88 }}>
+        <section className="secao" id="areas">
           <div className="container">
-            <h2 style={{ marginBottom: 28 }}>{t.home.areasTitulo}</h2>
+            <div className="secao__marca">
+              <span className="secao__indice">02</span>
+              <h2>{t.home.areasTitulo}</h2>
+            </div>
 
             <div className="grade--2">
               {t.home.areas.map((area, indice) => (
@@ -187,46 +197,6 @@ export default function Home() {
       ) : null}
 
 
-      <section className="secao secao--alta secao--preto" id="desenho" style={{ scrollMarginTop: 88 }}>
-        <div className="container">
-          <div style={{ maxWidth: '42rem', marginBottom: 30 }}>
-            <h2 style={{ marginBottom: 10 }}>{t.home.desenhoTitulo}</h2>
-            <p className="texto-guia">{t.home.desenhoTexto}</p>
-          </div>
-
-          <div>
-            {t.home.desenho.map((item) => (
-              <div className="registro" key={item.rotulo}>
-                <p className="registro__rotulo">{item.rotulo}</p>
-                <p style={{ margin: 0 }}>{item.texto}</p>
-              </div>
-            ))}
-          </div>
-
-          {chamadaDestaque || chamadaComResultado ? (
-            <div className="linha" style={{ gap: 16, marginTop: 30 }}>
-              {chamadaDestaque ? (
-                <Botao
-                  href={`/oportunidades/${chamadaDestaque.slug}`}
-                  variante="secundario"
-                  tamanho="pequeno"
-                >
-                  {t.home.desenhoLinkChamada}
-                </Botao>
-              ) : null}
-              {chamadaComResultado ? (
-                <Botao
-                  href={`/oportunidades/${chamadaComResultado.slug}`}
-                  variante="discreto"
-                  tamanho="pequeno"
-                >
-                  {t.home.desenhoLinkResultado}
-                </Botao>
-              ) : null}
-            </div>
-          ) : null}
-        </div>
-      </section>
 
       {temRecursos ? (
         <section className="secao secao--branco">
@@ -296,6 +266,30 @@ export default function Home() {
         </section>
       ) : null}
 
-          </>
+            <section
+        className="secao secao--alta secao--preto"
+        style={{ position: 'relative', overflow: 'hidden' }}
+      >
+        <div
+          className="malha malha--densa"
+          aria-hidden="true"
+          style={{ position: 'absolute', inset: 0, color: 'rgba(255, 255, 255, 0.22)' }}
+        />
+        <div className="container" style={{ position: 'relative' }}>
+          <LogoTilt altura={34} />
+          <p
+            style={{
+              margin: '26px 0 0',
+              fontSize: 'clamp(1.8rem, 1rem + 2.6vw, 3.2rem)',
+              lineHeight: 1.06,
+              letterSpacing: '-0.02em',
+              maxWidth: '16ch',
+            }}
+          >
+            {PROGRAM_TAGLINE}
+          </p>
+        </div>
+      </section>
+    </>
   );
 }

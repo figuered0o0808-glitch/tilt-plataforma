@@ -4,7 +4,7 @@ import { t } from '@/i18n/strings';
 
 /**
  * Conteudo da aba enquanto nenhuma chamada esta publicada: a situacao, as
- * condicoes de autonomia editorial que ja valem e o que da para preparar antes.
+ * e o que da para preparar antes de a primeira chamada abrir.
  */
 export function SemChamadas() {
   return (
@@ -21,17 +21,6 @@ export function SemChamadas() {
         </div>
       </div>
 
-      <section className="secao secao--preto">
-        <div className="container-estreito">
-          <h2 style={{ marginBottom: 18 }}>{t.comum.autonomia.titulo}</h2>
-          <p style={{ margin: 0, fontSize: '1.06rem', lineHeight: 1.6 }}>
-            {t.comum.autonomia.texto}
-          </p>
-          <p className="texto-pequeno" style={{ margin: '16px 0 0' }}>
-            {t.editais.autonomiaEscopo}
-          </p>
-        </div>
-      </section>
 
       <div className="secao">
         <div className="container-estreito">

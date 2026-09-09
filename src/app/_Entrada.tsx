@@ -5,8 +5,7 @@
  *
  * Com chamada, curso ou material publicado, o caminho principal e o cadastro
  * (ou a area de trabalho, para quem ja tem). Enquanto nada foi publicado nao ha
- * a que se candidatar, entao os botoes levam ao que a pagina de fato tem: o
- * desenho do programa e as duas areas do site.
+ * a que se candidatar, entao os botoes levam direto as duas areas do site.
  */
 
 import { Botao } from '@/components/Botao';
@@ -21,8 +20,8 @@ export function Entrada({ temConteudo }: { temConteudo: boolean }) {
     return (
       <div className="pilha" style={{ gap: 14, marginTop: 30, alignItems: 'flex-start' }}>
         <div className="linha" style={{ gap: 18 }}>
-          <Botao href="#desenho">{t.home.inicioAcao}</Botao>
-          <Botao href="#areas" variante="discreto">
+          <Botao href="/oportunidades">{t.home.inicioAcao}</Botao>
+          <Botao href="/biblioteca" variante="discreto">
             {t.home.inicioAcaoAreas}
           </Botao>
         </div>
