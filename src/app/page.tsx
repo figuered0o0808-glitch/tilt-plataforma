@@ -45,7 +45,7 @@ function CartaoChamada({ chamada }: { chamada: Call }) {
         </div>
         <div>
           <dt>{prazoRotulo(chamada)}</dt>
-          <dd>{dataCurta(chamada.inscricoesAte)}</dd>
+          <dd>{chamada.inscricoesAte ? dataCurta(chamada.inscricoesAte) : t.home.prazoADefinir}</dd>
         </div>
       </dl>
 
@@ -174,13 +174,9 @@ export default function Home() {
               className="linha linha--fim"
               style={{ alignItems: 'flex-end', gap: 20, marginBottom: 28 }}
             >
-              <div style={{ maxWidth: '42rem' }}>
-                <h2 style={{ marginBottom: 10 }}>
-                  {abertas.length > 0 ? t.home.chamadasTitulo : t.home.chamadasTituloSemAbertas}
-                </h2>
-                <p className="texto-secundario" style={{ margin: 0 }}>
-                  {t.home.chamadasTexto}
-                </p>
+              <div className="secao__marca" style={{ flex: 1, marginBottom: 0, borderBottom: 0 }}>
+                <span className="secao__indice">01</span>
+                <h2>{abertas.length > 0 ? t.home.chamadasTitulo : t.home.chamadasTituloSemAbertas}</h2>
               </div>
               <Botao href="/oportunidades" variante="secundario" tamanho="pequeno">
                 {t.home.chamadasAcao}

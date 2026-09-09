@@ -1,1 +1,51 @@
-[]
+[
+  {
+    "slug": "modelo-economico-redes-algoritmicas",
+    "titulo": "Um modelo econômico para o mercado de conteúdo em redes sociais algorítmicas",
+    "trilha": "organizacoes",
+    "autoria": [
+      "Francisco Figueiredo",
+      "Lauanny Brandão",
+      "Pedro Bordinhão"
+    ],
+    "organizacao": "INDICA",
+    "tema": "Economia da atenção",
+    "palavrasChave": [
+      "Economia da atenção",
+      "Redes sociais algorítmicas",
+      "Timing",
+      "Saturação cumulativa",
+      "Alocação intertemporal",
+      "Tempo de reação"
+    ],
+    "resumo": "Propõe um modelo econômico para interpretar por que conteúdos parecidos têm desempenhos muito diferentes conforme o momento em que entram em circulação. Trata a atenção como recurso escasso e o conteúdo como unidade de oferta que disputa frações dela.",
+    "formato": "Artigo acadêmico",
+    "atualizadoEm": "2026-07-02",
+    "secoes": [
+      {
+        "titulo": "Do que trata",
+        "paragrafos": [
+          "O modelo articula assunto, formato e emissor como eixos da demanda, com pesos que variam ao longo da curva. Distingue demanda latente de demanda realizada e oferta publicada de oferta ativa, e mostra que a saturação vem do estoque cumulativo de conteúdo em circulação algorítmica, não apenas do fluxo de novas publicações.",
+          "A partir da primeira e da segunda derivadas da curva de demanda, deriva a condição de fechamento da janela ótima de publicação: a igualdade entre as taxas de crescimento proporcionais da demanda latente e da oferta ativa."
+        ]
+      },
+      {
+        "titulo": "Por que interessa a quem contrata",
+        "paragrafos": [
+          "O artigo decompõe o tempo de reação em tempo de decisão e tempo de produção, e mostra que encurtar o intervalo depende de antecipar a decisão, não a produção. É uma conclusão operacional para quem planeja campanha.",
+          "Argumenta ainda que campanhas que pagam por peça contratada devem maximizar o alcance médio por peça, e não o alcance agregado do tema, o que desloca o momento ideal de publicação para antes do pico de visibilidade pública."
+        ]
+      }
+    ],
+    "arquivos": [
+      {
+        "idioma": "Português",
+        "arquivo": "/materiais/modelo-economico-redes-algoritmicas-pt.pdf"
+      },
+      {
+        "idioma": "English",
+        "arquivo": "/materiais/modelo-economico-redes-algoritmicas-en.pdf"
+      }
+    ]
+  }
+]

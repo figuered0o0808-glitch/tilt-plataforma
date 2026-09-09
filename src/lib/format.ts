@@ -62,3 +62,9 @@ export function proximoId(prefixo: string, existentes: { id: string }[]): string
   const proximo = (numeros.length ? Math.max(...numeros) : 0) + 1;
   return `${prefixo}-${String(proximo).padStart(3, '0')}`;
 }
+
+/** Caminho de um arquivo em /public, com o prefixo que o GitHub Pages exige. */
+export function arquivoPublico(caminho: string): string {
+  const base = process.env.BASE_PATH ?? '';
+  return `${base}${caminho}`;
+}

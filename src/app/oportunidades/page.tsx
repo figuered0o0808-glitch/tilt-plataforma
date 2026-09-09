@@ -17,6 +17,9 @@ const PESO_STATUS: Record<StatusEdital, number> = {
   encerrada: 2,
 };
 
+/** Chamada sem calendario fechado nao tem data para comparar: vai para o fim. */
+const SEM_PRAZO = { crescente: '9999-12-31', decrescente: '0000-01-01' };
+
 /**
  * Abertas primeiro, com o prazo mais proximo no topo. Depois as chamadas em
  * avaliacao e as encerradas, da mais recente para a mais antiga.
@@ -25,8 +28,12 @@ function ordenar(lista: Call[]): Call[] {
   return [...lista].sort((a, b) => {
     const porStatus = PESO_STATUS[a.status] - PESO_STATUS[b.status];
     if (porStatus !== 0) return porStatus;
-    if (a.status === 'aberta') return a.inscricoesAte.localeCompare(b.inscricoesAte);
-    return b.inscricoesAte.localeCompare(a.inscricoesAte);
+    if (a.status === 'aberta') {
+      const { crescente } = SEM_PRAZO;
+      return (a.inscricoesAte ?? crescente).localeCompare(b.inscricoesAte ?? crescente);
+    }
+    const { decrescente } = SEM_PRAZO;
+    return (b.inscricoesAte ?? decrescente).localeCompare(a.inscricoesAte ?? decrescente);
   });
 }
 
@@ -51,7 +58,6 @@ export default function PaginaEditais() {
       estreito={estreito}
       olho={t.editais.listaOlho}
       titulo={t.editais.listaTitulo}
-      descricao={t.editais.listaDescricao}
     />
   );
 
@@ -71,34 +77,46 @@ export default function PaginaEditais() {
     <>
       {cabecalho(false)}
 
-      <section className="secao secao--curta secao--branco" style={{ marginTop: 48 }}>
-        <div className="container">
-          <h2 className="sr-only">{t.editais.resumoTitulo}</h2>
-          <dl
-            className="definicoes"
-            style={{ gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', margin: 0, gap: 28 }}
-          >
-            <div>
-              <dt>{t.editais.resumoAbertas}</dt>
-              <dd>
-                <span className="numero-grande">{numero(resumo.abertas)}</span>
-              </dd>
-            </div>
-            <div>
-              <dt>{t.editais.resumoRecursos}</dt>
-              <dd>
-                <span className="numero-grande">{moeda(resumo.recursos)}</span>
-              </dd>
-            </div>
-            <div>
-              <dt>{t.editais.resumoApoiados}</dt>
-              <dd>
-                <span className="numero-grande">{numero(resumo.apoiados)}</span>
-              </dd>
-            </div>
-          </dl>
-        </div>
-      </section>
+      {/*
+        Com uma unica chamada publicada os numeros do ciclo repetem o que o
+        cartao ja diz. O resumo entra quando ha mais de uma chamada.
+      */}
+      {lista.length > 1 ? (
+        <section className="secao secao--curta secao--branco" style={{ marginTop: 48 }}>
+          <div className="container">
+            <h2 className="sr-only">{t.editais.resumoTitulo}</h2>
+            <dl
+              className="definicoes"
+              style={{
+                gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))',
+                margin: 0,
+                gap: 28,
+              }}
+            >
+              <div>
+                <dt>{t.editais.resumoAbertas}</dt>
+                <dd>
+                  <span className="numero-grande">{numero(resumo.abertas)}</span>
+                </dd>
+              </div>
+              <div>
+                <dt>{t.editais.resumoRecursos}</dt>
+                <dd>
+                  <span className="numero-grande">{moeda(resumo.recursos)}</span>
+                </dd>
+              </div>
+              {resumo.apoiados > 0 ? (
+                <div>
+                  <dt>{t.editais.resumoApoiados}</dt>
+                  <dd>
+                    <span className="numero-grande">{numero(resumo.apoiados)}</span>
+                  </dd>
+                </div>
+              ) : null}
+            </dl>
+          </div>
+        </section>
+      ) : null}
 
       <div className="secao">
         <div className="container">

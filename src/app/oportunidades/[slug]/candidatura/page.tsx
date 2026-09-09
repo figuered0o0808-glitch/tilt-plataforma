@@ -5,7 +5,8 @@ import { CabecalhoPagina } from '@/components/CabecalhoPagina';
 import { Chip } from '@/components/Chip';
 import { t } from '@/i18n/strings';
 import { editais, editalPorSlug } from '@/lib/data';
-import { data } from '@/lib/format';
+
+import { prazoEmLinha } from '../../_prazo';
 
 import { FormularioCandidatura, type EditalResumo } from './_FormularioCandidatura';
 
@@ -45,17 +46,12 @@ export default async function PaginaCandidatura({
 
   return (
     <>
-      <CabecalhoPagina
-        estreito
-        olho={t.fluxos.candidatura.titulo}
-        titulo={edital.titulo}
-        descricao={edital.resumo}
-      />
+      <CabecalhoPagina estreito olho={t.fluxos.candidatura.titulo} titulo={edital.titulo} />
 
       <div className="secao secao--curta" style={{ paddingBottom: 0 }}>
         <div className="container-estreito">
           <div className="chips">
-            <Chip vazado>{`${t.comum.rotulos.inscricoesAte} ${data(edital.inscricoesAte)}`}</Chip>
+            <Chip vazado>{prazoEmLinha(edital)}</Chip>
           </div>
         </div>
       </div>

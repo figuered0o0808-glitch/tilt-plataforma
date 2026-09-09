@@ -196,9 +196,6 @@ export function FormularioCandidatura({ edital }: { edital: EditalResumo }) {
             <Ilustracao nome="enviado" largura={180} />
           </div>
           <h2 style={{ textAlign: 'center', margin: 0 }}>{tc.confirmacao.titulo}</h2>
-          <p className="cartao__texto" style={{ textAlign: 'center' }}>
-            {tc.confirmacao.descricao}
-          </p>
 
           <p className="rotulo rotulo--forte" style={{ margin: '10px 0 0' }}>
             {tc.confirmacao.resumoTitulo}

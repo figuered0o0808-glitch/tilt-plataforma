@@ -3,25 +3,15 @@ export const aprendizado = {
   indice: {
     olho: 'Biblioteca',
     titulo: 'Formação e materiais',
-    descricao: 'Cursos gratuitos para criadores e materiais técnicos em licença aberta.',
-    /* Sai da pagina assim que o primeiro curso ou material for publicado. */
-    estado: 'Nenhum curso ou material publicado até agora.',
-    areas: [
-      {
-        titulo: 'Cursos',
-        href: '/biblioteca/cursos',
-        texto: 'Formação em turmas, com data de início.',
-        acao: 'Ver os cursos',
-        marca: 'var(--menta)',
-      },
-      {
-        titulo: 'Materiais técnicos',
-        href: '/biblioteca/materiais',
-        texto: 'Textos curtos para consulta, em duas trilhas.',
-        acao: 'Ver os materiais',
-        marca: 'var(--azul)',
-      },
-    ],
+    /* So na etiqueta <meta>: a pagina nao repete o titulo em subtitulo. */
+    descricao: 'Materiais técnicos para criadores e organizações, e cursos para criadores.',
+    materiaisTitulo: 'Materiais técnicos',
+    materiaisAcao: 'Ver os materiais',
+    cursosTitulo: 'Cursos',
+    cursosVazio: 'Nenhum curso publicado.',
+    /* Sem turma publicada, o que a pagina de cursos tem sao as condicoes. */
+    cursosAcaoVazio: 'Condições de inscrição',
+    cursosAcao: 'Ver os cursos',
     abertura: [
       {
         rotulo: 'Acesso',
@@ -29,11 +19,7 @@ export const aprendizado = {
       },
       {
         rotulo: 'Custo',
-        texto: 'Sem taxa de inscrição e sem custo de material.',
-      },
-      {
-        rotulo: 'Para quem',
-        texto: 'Criadores de pequeno porte, sem número mínimo de seguidores.',
+        texto: 'Sem taxa de inscrição.',
       },
     ],
   },
@@ -72,7 +58,8 @@ export const aprendizado = {
   materiais: {
     olho: 'Biblioteca',
     titulo: 'Materiais técnicos',
-    descricao: 'Guias e notas técnicas em licença aberta.',
+    /* So na etiqueta <meta>. */
+    descricao: 'Materiais técnicos para criadores e organizações.',
     trilha: 'Trilha',
     trilhaCriadores: 'Para criadores',
     trilhaOrganizacoes: 'Para organizações',
@@ -80,16 +67,17 @@ export const aprendizado = {
       'Produção, sinalização do apoio na publicação e preparo de propostas para as chamadas.',
     trilhaOrganizacoesNota:
       'Descrever uma demanda sem interferir na edição, contratar com regras claras e avaliar o resultado.',
-    notaOrganizacoes: 'Organizações não fazem cadastro e não têm área na plataforma.',
+    autoria: 'Autoria',
+    organizacao: 'Organização',
+    tema: 'Tema',
+    palavrasChave: 'Palavras-chave',
     formato: 'Formato',
     tempoLeitura: 'Leitura',
     atualizadoEm: 'Atualizado em',
-    licencaSelo: 'Licença aberta',
-    licencaTitulo: 'Uso dos materiais',
+    arquivosTitulo: 'Texto completo',
+    arquivoTipo: 'PDF',
+    /* Selo e nota so aparecem quando o material declara licenca. */
     licencaNota: 'Uso e adaptação permitidos com atribuição.',
-    licencaTexto:
-      'Você pode copiar, adaptar e usar os textos em oficina, aula ou publicação própria, desde que cite a origem.',
-    resumoTitulo: 'Resumo',
     voltarTrilha: 'Voltar para a trilha',
     leiaTambem: 'Leia também',
     vazioTitulo: 'Nenhum material publicado',

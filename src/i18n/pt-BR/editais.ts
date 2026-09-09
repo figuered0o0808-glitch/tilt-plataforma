@@ -5,7 +5,6 @@
 export const editais = {
   listaOlho: 'Financiamento a projetos autorais',
   listaTitulo: 'Oportunidades',
-  listaDescricao: 'Chamadas públicas para projetos propostos e conduzidos por criadores.',
 
   resumoTitulo: 'Situação do ciclo',
   resumoAbertas: 'Chamadas com inscrições abertas',
@@ -42,25 +41,29 @@ export const editais = {
   voltarLista: 'Ver todas as chamadas',
   verResultado: 'Ver o resultado',
 
+  /* Chamada com calendario ainda em aberto: nenhuma data e escrita. */
+  prazoADefinir: 'Prazo a definir',
+  semPrazo: 'A definir',
+
   secoes: {
     apresentacao: 'Apresentação',
     escopo: 'O que é apoiado',
     naoApoiado: 'O que não é apoiado',
     criterios: 'Critérios de seleção',
-    banca: 'Composição da banca',
-    distribuicao: 'Distribuição prevista dos apoios',
+    banca: 'Banca',
+    distribuicao: 'Distribuição dos apoios',
     cronograma: 'Cronograma',
     faq: 'Perguntas frequentes',
     resultado: 'Resultado',
   },
 
-  criteriosNota: 'Os critérios e os pesos não mudam durante a chamada.',
+  /* Chamada que ordena os criterios em vez de atribuir peso numerico. */
+  criteriosOrdem: 'Os critérios estão listados em ordem de peso.',
   pesoRotulo: 'Peso',
   somaPesos: 'Soma dos pesos',
   perguntaRotulo: 'Pergunta',
-  bancaNota: 'A banca é publicada antes da abertura das inscrições.',
-  distribuicaoNota:
-    'A distribuição final depende das propostas recebidas e da decisão da banca.',
+  bancaSemComposicao:
+    'A banca reúne integrantes da INDICA, um representante do financiador e criadores convidados. A composição é publicada antes do fim das inscrições.',
   distribuicaoColunas: {
     faixa: 'Faixa de apoio',
     quantidade: 'Projetos previstos',

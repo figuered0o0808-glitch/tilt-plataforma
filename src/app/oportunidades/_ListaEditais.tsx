@@ -125,9 +125,17 @@ export function ListaEditais({ editais }: { editais: Call[] }) {
 
   /*
    * Sem nenhuma chamada publicada nao ha o que filtrar nem contar: a pagina
-   * mostra o bloco SemChamadas no lugar desta lista.
+   * mostra o bloco SemChamadas no lugar desta lista. Com uma unica chamada,
+   * filtro e contagem tambem nao acrescentam nada.
    */
   if (editais.length === 0) return null;
+  if (editais.length === 1) {
+    return (
+      <div className="grade--2">
+        <CartaoEdital edital={editais[0]} />
+      </div>
+    );
+  }
 
   return (
     <>

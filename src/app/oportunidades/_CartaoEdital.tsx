@@ -6,15 +6,14 @@ import { t } from '@/i18n/strings';
 import { dataCurta, moeda } from '@/lib/format';
 import type { Call } from '@/lib/types';
 
-/** Prazo mostrado no rodape do cartao, coerente com a situacao da chamada. */
-function prazo(edital: Call): string {
-  if (edital.status === 'aberta') {
-    return `${t.comum.rotulos.inscricoesAte} ${dataCurta(edital.inscricoesAte)}`;
-  }
+import { prazoEmLinha } from './_prazo';
+
+/** Data mostrada no rodape do cartao, coerente com a situacao da chamada. */
+function rodape(edital: Call): string {
   if (edital.status === 'encerrada' && edital.resultado) {
     return `${t.editais.resultadoPublicadoEm} ${dataCurta(edital.resultado.publicadoEm)}`;
   }
-  return `${t.editais.inscricoesEncerradasEm} ${dataCurta(edital.inscricoesAte)}`;
+  return prazoEmLinha(edital, true);
 }
 
 export function CartaoEdital({ edital }: { edital: Call }) {
@@ -54,7 +53,7 @@ export function CartaoEdital({ edital }: { edital: Call }) {
       </dl>
 
       <div className="cartao__rodape">
-        <span>{prazo(edital)}</span>
+        <span>{rodape(edital)}</span>
         <span className="link-seta">{t.comum.acoes.verEdital}</span>
       </div>
     </Link>

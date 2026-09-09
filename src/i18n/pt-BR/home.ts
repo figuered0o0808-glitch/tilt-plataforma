@@ -50,9 +50,9 @@ export const home = {
 
   chamadasTitulo: 'Aberto agora',
   chamadasTituloSemAbertas: 'Chamadas do programa',
-  chamadasTexto:
-    'Cada chamada publica critérios de seleção, composição da banca e cronograma antes de receber inscrições.',
+
   chamadasAcao: 'Ver todas as chamadas',
+  prazoADefinir: 'A definir',
   rotuloProponente: 'Proponente',
 
   recursosTitulo: 'Biblioteca',

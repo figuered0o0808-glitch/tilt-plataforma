@@ -1,7 +1,6 @@
 import Link from 'next/link';
 
 import { Chip, type CorChip } from '@/components/Chip';
-import { Selo } from '@/components/Selo';
 import { t } from '@/i18n/strings';
 import type { Article, Trilha } from '@/lib/types';
 
@@ -23,7 +22,8 @@ export function marcaDaTrilha(trilha: Trilha): string {
 }
 
 /**
- * Cartao de material. Sem hooks: serve a lista de materiais e a sugestao de
+ * Cartao de material: quem publica, quem assina, sobre o que e em que formato.
+ * Sem hooks: serve a lista de materiais, o indice da Biblioteca e a sugestao de
  * leitura ao pe de cada texto.
  */
 export function CartaoMaterial({
@@ -37,23 +37,22 @@ export function CartaoMaterial({
     <Link href={`/biblioteca/materiais/${material.slug}`} className="cartao">
       <div className="linha linha--fim">
         <span className="olho" style={{ margin: 0 }}>
-          {material.formato}
+          {material.organizacao}
         </span>
-        <Selo status="licenca" rotulo={t.aprendizado.materiais.licencaSelo} />
+        {mostrarTrilha ? (
+          <Chip cor={corDaTrilha(material.trilha)}>{rotuloTrilha(material.trilha)}</Chip>
+        ) : null}
       </div>
       <p className="cartao__titulo">{material.titulo}</p>
+      <p className="texto-pequeno" style={{ margin: 0 }}>
+        {material.autoria.join(', ')}
+      </p>
       <p className="cartao__texto">{material.resumo}</p>
-      {mostrarTrilha ? (
-        <div className="chips">
-          <Chip cor={corDaTrilha(material.trilha)}>
-            {`${t.aprendizado.materiais.trilha}: ${rotuloTrilha(material.trilha)}`}
-          </Chip>
-        </div>
-      ) : null}
+      <div className="chips">
+        <Chip vazado>{material.tema}</Chip>
+      </div>
       <div className="cartao__rodape">
-        <span>
-          {t.aprendizado.materiais.tempoLeitura}: {material.tempoLeitura}
-        </span>
+        <span>{material.formato}</span>
         <span className="link-seta">{t.comum.acoes.lerMaterial}</span>
       </div>
     </Link>

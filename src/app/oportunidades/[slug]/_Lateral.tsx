@@ -6,6 +6,8 @@ import { data } from '@/lib/format';
 import type { Call } from '@/lib/types';
 import { useApp } from '@/state/AppState';
 
+import { prazoDaChamada } from '../_prazo';
+
 const tc = t.fluxos.candidatura;
 
 /** Etapa de divulgacao do resultado, quando existe no cronograma da chamada. */
@@ -29,9 +31,12 @@ function ancoras(edital: Call): { id: string; rotulo: string }[] {
     { id: 'criterios', rotulo: t.editais.secoes.criterios },
     { id: 'banca', rotulo: t.editais.secoes.banca },
     { id: 'distribuicao', rotulo: t.editais.secoes.distribuicao },
-    { id: 'cronograma', rotulo: t.editais.secoes.cronograma },
-    { id: 'faq', rotulo: t.editais.secoes.faq },
   );
+  /* A pagina so publica cronograma quando ha etapas. */
+  if (edital.cronograma.length > 0) {
+    itens.push({ id: 'cronograma', rotulo: t.editais.secoes.cronograma });
+  }
+  itens.push({ id: 'faq', rotulo: t.editais.secoes.faq });
   return itens;
 }
 
@@ -50,6 +55,7 @@ function Data({ rotulo, valor }: { rotulo: string; valor: string }) {
 export function Lateral({ edital }: { edital: Call }) {
   const { cadastrado } = useApp();
   const previsao = previsaoDoResultado(edital);
+  const prazo = prazoDaChamada(edital);
 
   return (
     <aside className="lateral">
@@ -60,20 +66,15 @@ export function Lateral({ edital }: { edital: Call }) {
 
         {edital.status === 'aberta' ? (
           <>
-            <Data rotulo={t.comum.rotulos.inscricoesAte} valor={data(edital.inscricoesAte)} />
+            <Data rotulo={prazo.rotulo} valor={prazo.valor} />
             {cadastrado ? (
               <Botao href={`/oportunidades/${edital.slug}/candidatura`} largo>
                 {t.comum.acoes.candidatarProjeto}
               </Botao>
             ) : (
-              <>
-                <Botao href="/cadastro" largo>
-                  {tc.cadastro.acao}
-                </Botao>
-                <p className="texto-mini" style={{ margin: 0 }}>
-                  {tc.cadastro.nota}
-                </p>
-              </>
+              <Botao href="/cadastro" largo>
+                {tc.cadastro.acao}
+              </Botao>
             )}
           </>
         ) : null}

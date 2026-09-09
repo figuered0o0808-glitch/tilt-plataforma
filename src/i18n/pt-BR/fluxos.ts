@@ -8,10 +8,8 @@ export const fluxos = {
     obrigatorios: 'Todos os campos desta etapa são obrigatórios.',
     cadastro: {
       titulo: 'Cadastro necessário',
-      texto:
-        'A leitura da chamada, dos critérios, da banca e dos resultados continua aberta a qualquer visitante, sem cadastro.',
+      texto: 'A leitura da chamada continua aberta sem cadastro.',
       acao: 'Fazer cadastro',
-      nota: 'O envio de candidatura exige cadastro.',
     },
     proponente: {
       titulo: 'Dados do proponente',
@@ -79,7 +77,6 @@ export const fluxos = {
     ],
     confirmacao: {
       titulo: 'Candidatura enviada',
-      descricao: 'A proposta entrou na fila de avaliação da banca.',
       acao: 'Ir para o painel',
       secundaria: 'Ver outras oportunidades',
       resumoTitulo: 'Comprovante do envio',
@@ -89,8 +86,7 @@ export const fluxos = {
       valor: 'Valor solicitado',
       enviadaEm: 'Enviada em',
       situacao: 'Situação',
-      proximoPasso:
-        'A banca publica o resultado no cronograma da chamada. Propostas não selecionadas recebem devolutiva escrita.',
+      proximoPasso: 'O resultado é publicado na página da chamada.',
     },
   },
 } as const;

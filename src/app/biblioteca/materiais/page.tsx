@@ -4,7 +4,6 @@ import { Botao } from '@/components/Botao';
 import { CabecalhoPagina } from '@/components/CabecalhoPagina';
 import { EstadoVazio } from '@/components/EstadoVazio';
 import { Ilustracao } from '@/components/Ilustracao';
-import { Selo } from '@/components/Selo';
 import { t } from '@/i18n/strings';
 import { materiais } from '@/lib/data';
 
@@ -17,9 +16,9 @@ export const metadata: Metadata = {
 };
 
 /**
- * Biblioteca de materiais tecnicos. As duas trilhas abrem a pagina e as
- * condicoes de uso fecham: sao as duas coisas que valem antes do primeiro
- * texto sair.
+ * Biblioteca de materiais tecnicos. O que esta publicado abre a pagina; as duas
+ * trilhas vem depois, como leitura do conjunto e como ancora do pe de cada
+ * material.
  */
 export default function MateriaisPage() {
   return (
@@ -27,14 +26,11 @@ export default function MateriaisPage() {
       <CabecalhoPagina
         olho={t.aprendizado.materiais.olho}
         titulo={t.aprendizado.materiais.titulo}
-        descricao={t.aprendizado.materiais.descricao}
         acoes={<Ilustracao nome="lista" largura={104} />}
       />
 
       <div className="secao">
         <div className="container pilha--g">
-          <Trilhas />
-
           {materiais.length === 0 ? (
             <EstadoVazio
               titulo={t.aprendizado.materiais.vazioTitulo}
@@ -52,22 +48,10 @@ export default function MateriaisPage() {
               ))}
             </div>
           )}
+
+          <Trilhas />
         </div>
       </div>
-
-      <section className="secao secao--preto">
-        <div className="container">
-          <div className="linha linha--fim" style={{ alignItems: 'flex-end', gap: 24 }}>
-            <div style={{ maxWidth: '56ch' }}>
-              <p className="olho" style={{ marginBottom: 10 }}>
-                {t.aprendizado.materiais.licencaTitulo}
-              </p>
-              <p style={{ margin: 0 }}>{t.aprendizado.materiais.licencaTexto}</p>
-            </div>
-            <Selo status="licenca" rotulo={t.aprendizado.materiais.licencaSelo} />
-          </div>
-        </div>
-      </section>
     </>
   );
 }

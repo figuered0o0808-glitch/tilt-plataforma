@@ -11,6 +11,8 @@ import { t } from '@/i18n/strings';
 import { editais, editalPorSlug } from '@/lib/data';
 import { data, moeda } from '@/lib/format';
 
+import { prazoDaChamada } from '../_prazo';
+
 import { Faq } from './_Faq';
 import { Lateral } from './_Lateral';
 import { Resultado } from './_Resultado';
@@ -53,9 +55,15 @@ export default async function PaginaEdital({ params }: { params: Promise<{ slug:
   const edital = editalPorSlug(slug);
   if (!edital) notFound();
 
-  const somaPesos = edital.criterios.reduce((soma, criterio) => soma + criterio.peso, 0);
-  const rotuloPrazo =
-    edital.status === 'aberta' ? t.comum.rotulos.inscricoesAte : t.editais.inscricoesEncerradasEm;
+  /*
+   * Ha chamada que atribui peso numerico a cada criterio e ha chamada que so
+   * ordena os criterios por peso. Sem peso em todos, a pagina numera a ordem.
+   */
+  const pesos = edital.criterios.map((criterio) => criterio.peso);
+  const comPeso = pesos.length > 0 && pesos.every((peso) => typeof peso === 'number');
+  const somaPesos = pesos.reduce<number>((soma, peso) => soma + (peso ?? 0), 0);
+
+  const prazo = prazoDaChamada(edital);
   const temObservacao = edital.distribuicao.some((faixa) => Boolean(faixa.observacao));
 
   return (
@@ -91,8 +99,8 @@ export default async function PaginaEdital({ params }: { params: Promise<{ slug:
               <dd>{`${moeda(edital.faixaApoio.min)} a ${moeda(edital.faixaApoio.max)}`}</dd>
             </div>
             <div>
-              <dt>{rotuloPrazo}</dt>
-              <dd>{data(edital.inscricoesAte)}</dd>
+              <dt>{prazo.rotulo}</dt>
+              <dd>{prazo.valor}</dd>
             </div>
           </dl>
         </div>
@@ -115,7 +123,6 @@ export default async function PaginaEdital({ params }: { params: Promise<{ slug:
                   ))}
                 </div>
               </Secao>
-
 
               <Secao id="escopo" titulo={t.editais.secoes.escopo}>
                 <div className="cartao">
@@ -141,11 +148,18 @@ export default async function PaginaEdital({ params }: { params: Promise<{ slug:
               </Secao>
 
               <Secao id="criterios" titulo={t.editais.secoes.criterios}>
+                {comPeso ? null : (
+                  <p className="nota" style={{ marginBottom: 22 }}>
+                    {t.editais.criteriosOrdem}
+                  </p>
+                )}
                 <div>
-                  {edital.criterios.map((criterio) => (
+                  {edital.criterios.map((criterio, indice) => (
                     <Registro
                       key={criterio.titulo}
-                      rotulo={`${t.editais.pesoRotulo} ${criterio.peso}`}
+                      rotulo={
+                        comPeso ? `${t.editais.pesoRotulo} ${criterio.peso}` : `${indice + 1}º`
+                      }
                     >
                       <h3 style={{ margin: '0 0 6px', fontSize: '1.08rem' }}>{criterio.titulo}</h3>
                       <p className="texto-pequeno" style={{ margin: 0, maxWidth: '62ch' }}>
@@ -153,35 +167,38 @@ export default async function PaginaEdital({ params }: { params: Promise<{ slug:
                       </p>
                     </Registro>
                   ))}
-                  <Registro rotulo={t.editais.somaPesos}>
-                    <p style={{ margin: 0 }}>{somaPesos}</p>
-                  </Registro>
+                  {comPeso ? (
+                    <Registro rotulo={t.editais.somaPesos}>
+                      <p style={{ margin: 0 }}>{somaPesos}</p>
+                    </Registro>
+                  ) : null}
                 </div>
-                <p className="nota" style={{ marginTop: 22 }}>
-                  {t.editais.criteriosNota}
-                </p>
               </Secao>
 
               <Secao id="banca" titulo={t.editais.secoes.banca}>
-                <div className="grade--2">
-                  {edital.banca.map((membro) => (
-                    <div className="cartao cartao--compacto" key={membro.nome}>
-                      <div className="linha" style={{ gap: 12, flexWrap: 'nowrap' }}>
-                        <Avatar nome={membro.nome} cor={corDoTema(membro.nome)} />
-                        <div>
-                          <p style={{ margin: 0 }}>{membro.nome}</p>
-                          <p className="texto-mini" style={{ margin: 0 }}>
-                            {membro.afiliacao}
-                          </p>
+                {edital.banca.length > 0 ? (
+                  <div className="grade--2">
+                    {edital.banca.map((membro) => (
+                      <div className="cartao cartao--compacto" key={membro.nome}>
+                        <div className="linha" style={{ gap: 12, flexWrap: 'nowrap' }}>
+                          <Avatar nome={membro.nome} cor={corDoTema(membro.nome)} />
+                          <div>
+                            <p style={{ margin: 0 }}>{membro.nome}</p>
+                            <p className="texto-mini" style={{ margin: 0 }}>
+                              {membro.afiliacao}
+                            </p>
+                          </div>
                         </div>
+                        <p className="cartao__texto">{membro.minibio}</p>
                       </div>
-                      <p className="cartao__texto">{membro.minibio}</p>
-                    </div>
-                  ))}
-                </div>
-                <p className="nota" style={{ marginTop: 22 }}>
-                  {t.editais.bancaNota}
-                </p>
+                    ))}
+                  </div>
+                ) : (
+                  /* Composicao ainda nao publicada: vale a regra, nao uma grade vazia. */
+                  <p className="nota" style={{ margin: 0, maxWidth: '62ch' }}>
+                    {t.editais.bancaSemComposicao}
+                  </p>
+                )}
               </Secao>
 
               <Secao id="distribuicao" titulo={t.editais.secoes.distribuicao}>
@@ -207,20 +224,20 @@ export default async function PaginaEdital({ params }: { params: Promise<{ slug:
                     </tbody>
                   </table>
                 </div>
-                <p className="nota" style={{ marginTop: 22 }}>
-                  {t.editais.distribuicaoNota}
-                </p>
               </Secao>
 
-              <Secao id="cronograma" titulo={t.editais.secoes.cronograma}>
-                <div>
-                  {edital.cronograma.map((etapa) => (
-                    <Registro key={etapa.etapa} rotulo={data(etapa.data)}>
-                      <p style={{ margin: 0 }}>{etapa.etapa}</p>
-                    </Registro>
-                  ))}
-                </div>
-              </Secao>
+              {/* Cronograma so entra depois de fechado: sem etapas, sem secao. */}
+              {edital.cronograma.length > 0 ? (
+                <Secao id="cronograma" titulo={t.editais.secoes.cronograma}>
+                  <div>
+                    {edital.cronograma.map((etapa) => (
+                      <Registro key={etapa.etapa} rotulo={data(etapa.data)}>
+                        <p style={{ margin: 0 }}>{etapa.etapa}</p>
+                      </Registro>
+                    ))}
+                  </div>
+                </Secao>
+              ) : null}
 
               <Secao id="faq" titulo={t.editais.secoes.faq}>
                 <Faq itens={edital.faq} />

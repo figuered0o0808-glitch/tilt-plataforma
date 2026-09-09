@@ -12,7 +12,8 @@ export type TipoEdital =
 
 export interface CriterioSelecao {
   titulo: string;
-  peso: number;
+  /** Ausente quando a chamada ordena os criterios sem atribuir peso numerico. */
+  peso?: number;
   descricao: string;
 }
 
@@ -68,7 +69,8 @@ export interface Call {
   distribuicao: FaixaDistribuicao[];
   valorTotal: number;
   faixaApoio: { min: number; max: number };
-  inscricoesAte: string;
+  /** Nulo enquanto o calendario da chamada nao esta fechado. */
+  inscricoesAte: string | null;
   cronograma: EtapaCronograma[];
   faq: PerguntaFrequente[];
   resultado: ResultadoEdital | null;
@@ -100,16 +102,29 @@ export interface SecaoArtigo {
   paragrafos: string[];
 }
 
+export interface ArquivoMaterial {
+  idioma: string;
+  arquivo: string;
+  paginas?: number;
+}
+
 export interface Article {
   slug: string;
   titulo: string;
   trilha: Trilha;
+  /** Quem assina. Varias organizacoes publicam na mesma biblioteca. */
+  autoria: string[];
+  organizacao: string;
+  /** Tematica geral, usada como filtro e como chip. */
+  tema: string;
+  palavrasChave: string[];
   resumo: string;
-  tempoLeitura: string;
   formato: string;
+  tempoLeitura?: string;
   atualizadoEm: string;
   secoes: SecaoArtigo[];
-  licenca: string;
+  arquivos: ArquivoMaterial[];
+  licenca?: string;
 }
 
 export type StatusCandidatura =
