@@ -5,9 +5,10 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "start": "npx serve out",
+    "start": "npx serve docs",
     "lint": "next lint",
-    "typecheck": "tsc --noEmit"
+    "typecheck": "tsc --noEmit",
+    "publicar": "next build && rm -rf docs && mv out docs && touch docs/.nojekyll"
   },
   "dependencies": {
     "next": "15.5.4",

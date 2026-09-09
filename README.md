@@ -39,14 +39,28 @@ npm start
 
 ## Deploy
 
-**Vercel.** Importe o repositório. O framework é detectado sozinho e nenhuma configuração é
-necessária. O comando de build é `npm run build`.
+O site está no **GitHub Pages**, servido da pasta `docs/` do branch `main`.
 
-**Netlify.** Importe o repositório. O arquivo `netlify.toml` na raiz já define o comando de
-build (`npm run build`) e a pasta publicada (`out`).
+Para publicar uma alteração:
 
-Como a exportação é estática, qualquer hospedagem de arquivos serve: basta publicar o
-conteúdo de `out/`.
+```
+npm run publicar
+git add -A && git commit -m "..." && git push
+```
+
+O comando `publicar` gera o site estático e o coloca em `docs/`, com o arquivo `.nojekyll`
+que o Pages exige para servir a pasta `_next`.
+
+**Domínio próprio.** Sem domínio, o Pages serve em um subcaminho, e por isso o
+`next.config.mjs` usa `basePath`. Ao apontar um domínio para o repositório, gere o site sem
+caminho base e adicione o arquivo `CNAME`:
+
+```
+BASE_PATH= npm run publicar && echo seudominio.com > docs/CNAME
+```
+
+**Alternativas.** Como a exportação é estática, o repositório também funciona sem
+configuração na Vercel e na Netlify (o `netlify.toml` já está pronto).
 
 ## Onde mexer
 
