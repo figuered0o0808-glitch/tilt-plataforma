@@ -46,8 +46,9 @@ function resumoDoCiclo(lista: Call[]) {
 export default function PaginaEditais() {
   const lista = ordenar(editais);
 
-  const cabecalho = (
+  const cabecalho = (estreito: boolean) => (
     <CabecalhoPagina
+      estreito={estreito}
       olho={t.editais.listaOlho}
       titulo={t.editais.listaTitulo}
       descricao={t.editais.listaDescricao}
@@ -58,7 +59,7 @@ export default function PaginaEditais() {
   if (lista.length === 0) {
     return (
       <>
-        {cabecalho}
+        {cabecalho(true)}
         <SemChamadas />
       </>
     );
@@ -68,9 +69,9 @@ export default function PaginaEditais() {
 
   return (
     <>
-      {cabecalho}
+      {cabecalho(false)}
 
-      <section className="secao secao--curta secao--menta" style={{ marginTop: 48 }}>
+      <section className="secao secao--curta secao--branco" style={{ marginTop: 48 }}>
         <div className="container">
           <h2 className="sr-only">{t.editais.resumoTitulo}</h2>
           <dl

@@ -1,9 +1,10 @@
+import type { CSSProperties } from 'react';
+
 import Link from 'next/link';
 
 import { Entrada } from '@/app/_Entrada';
 import { Botao } from '@/components/Botao';
 import { Chip, Chips } from '@/components/Chip';
-import { Faixas } from '@/components/Faixas';
 import { Ilustracao } from '@/components/Ilustracao';
 import { Selo } from '@/components/Selo';
 import { PROGRAM_TAGLINE } from '@/config/program';
@@ -113,19 +114,20 @@ export default function Home() {
       </section>
 
       {temConteudo ? null : (
-        <section className="secao secao--menta" id="areas" style={{ scrollMarginTop: 88 }}>
+        <section className="secao" id="areas" style={{ scrollMarginTop: 88 }}>
           <div className="container">
-            <div style={{ maxWidth: '42rem', marginBottom: 28 }}>
-              <h2 style={{ marginBottom: 10 }}>{t.home.areasTitulo}</h2>
-              <p className="texto-secundario" style={{ margin: 0 }}>
-                {t.home.areasTexto}
-              </p>
-            </div>
+            <h2 style={{ marginBottom: 28 }}>{t.home.areasTitulo}</h2>
 
             <div className="grade--2">
-              {t.home.areas.map((area) => (
-                <Link key={area.href} href={area.href} className="cartao">
-                  <Ilustracao nome={area.desenho} largura={76} />
+              {t.home.areas.map((area, indice) => (
+                <Link
+                  key={area.href}
+                  href={area.href}
+                  className="cartao cartao--marcado"
+                  style={
+                    { '--marca': indice === 0 ? 'var(--menta)' : 'var(--azul)' } as CSSProperties
+                  }
+                >
                   <h3 className="cartao__titulo">{area.titulo}</h3>
                   <p className="cartao__texto">{area.texto}</p>
                   <div className="cartao__rodape">
@@ -139,7 +141,7 @@ export default function Home() {
       )}
 
       {numeros.length > 0 ? (
-        <section className="secao secao--curta secao--menta">
+        <section className="secao secao--curta secao--branco">
           <div className="container">
             <dl className={`${gradeDe(numeros.length)} definicoes`} style={{ gap: 24, margin: 0 }}>
               {numeros.map((item) => (
@@ -184,9 +186,8 @@ export default function Home() {
         </section>
       ) : null}
 
-      <Faixas altura="alta" />
 
-      <section className="secao secao--azul" id="desenho" style={{ scrollMarginTop: 88 }}>
+      <section className="secao secao--alta secao--preto" id="desenho" style={{ scrollMarginTop: 88 }}>
         <div className="container">
           <div style={{ maxWidth: '42rem', marginBottom: 30 }}>
             <h2 style={{ marginBottom: 10 }}>{t.home.desenhoTitulo}</h2>
@@ -228,7 +229,7 @@ export default function Home() {
       </section>
 
       {temRecursos ? (
-        <section className="secao secao--amarelo">
+        <section className="secao secao--branco">
           <div className="container">
             <div
               className="linha linha--fim"
@@ -295,16 +296,6 @@ export default function Home() {
         </section>
       ) : null}
 
-      {temConteudo ? null : (
-        <section className="secao secao--amarelo">
-          <div className="container">
-            <div style={{ maxWidth: '46rem' }}>
-              <p className="olho">{t.home.estadoOlho}</p>
-              <p className="texto-guia">{t.home.estadoTexto}</p>
-            </div>
-          </div>
-        </section>
-      )}
-    </>
+          </>
   );
 }

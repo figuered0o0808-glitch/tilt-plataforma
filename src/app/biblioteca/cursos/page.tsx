@@ -14,9 +14,8 @@ export const metadata: Metadata = {
 };
 
 /**
- * Catalogo de cursos. Sem turma publicada, a pagina entrega o estado vazio e,
- * logo abaixo, as condicoes que ja valem para a primeira turma: quem chega
- * antes da abertura sai sabendo como a inscricao funciona.
+ * Catalogo de cursos. Sem turma publicada, restam as condicoes que ja valem
+ * para a primeira: quem chega antes da abertura sai sabendo como e a inscricao.
  */
 export default function CursosPage() {
   return (
@@ -28,11 +27,10 @@ export default function CursosPage() {
       />
 
       <div className="secao">
-        <div className="container pilha--g">
+        <div className="container">
           {cursos.length === 0 ? (
             <EstadoVazio
               titulo={t.aprendizado.cursos.vazioTitulo}
-              descricao={t.aprendizado.cursos.vazioDescricao}
               desenho="pasta"
               acao={
                 <Botao href="/" variante="secundario" tamanho="pequeno">
@@ -69,21 +67,19 @@ export default function CursosPage() {
         </div>
       </div>
 
-      <div className="secao secao--curta secao--amarelo">
+      <section className="secao secao--preto">
         <div className="container pilha">
           <h2 style={{ margin: 0 }}>{t.aprendizado.cursos.condicoesTitulo}</h2>
-          <div className="grade--3">
+          <div>
             {t.aprendizado.cursos.condicoes.map((condicao) => (
-              <div key={condicao.rotulo} className="pilha--p">
-                <p className="olho" style={{ margin: 0 }}>
-                  {condicao.rotulo}
-                </p>
-                <p className="cartao__texto">{condicao.texto}</p>
+              <div key={condicao.rotulo} className="registro">
+                <p className="registro__rotulo">{condicao.rotulo}</p>
+                <p style={{ margin: 0 }}>{condicao.texto}</p>
               </div>
             ))}
           </div>
         </div>
-      </div>
+      </section>
     </>
   );
 }

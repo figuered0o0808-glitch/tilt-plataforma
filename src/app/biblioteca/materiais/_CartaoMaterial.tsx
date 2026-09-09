@@ -17,9 +17,14 @@ function corDaTrilha(trilha: Trilha): CorChip {
   return trilha === 'criadores' ? 'menta' : 'azul';
 }
 
+/** A mesma cor da trilha, para a regua fina no alto de um cartao. */
+export function marcaDaTrilha(trilha: Trilha): string {
+  return `var(--${corDaTrilha(trilha)})`;
+}
+
 /**
- * Cartao de artigo. Sem hooks: serve a pagina indice da Biblioteca, a lista de
- * materiais e a sugestao de leitura ao pe de cada artigo.
+ * Cartao de material. Sem hooks: serve a lista de materiais e a sugestao de
+ * leitura ao pe de cada texto.
  */
 export function CartaoMaterial({
   material,

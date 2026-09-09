@@ -7,23 +7,21 @@ export const fluxos = {
     corrigir: 'Corrigir',
     obrigatorios: 'Todos os campos desta etapa são obrigatórios.',
     cadastro: {
-      olho: 'Acesso',
       titulo: 'Cadastro necessário',
       texto:
-        'O envio de candidatura exige cadastro. A leitura da chamada, dos critérios, da banca e dos resultados continua aberta a qualquer visitante, sem cadastro.',
+        'A leitura da chamada, dos critérios, da banca e dos resultados continua aberta a qualquer visitante, sem cadastro.',
       acao: 'Fazer cadastro',
       nota: 'O envio de candidatura exige cadastro.',
     },
     proponente: {
       titulo: 'Dados do proponente',
-      intro: 'Quem assina a proposta e responde pela execução. Pessoa física ou pessoa jurídica.',
+      intro: 'Quem assina a proposta e responde pela execução.',
       nome: 'Nome completo ou razão social',
       documento: 'CPF ou CNPJ',
       cidade: 'Cidade',
       uf: 'UF',
       email: 'E-mail para contato',
       exemplos: {
-        nome: 'Nome de quem propõe',
         documento: 'Apenas números',
         cidade: 'Cidade de residência ou sede',
         email: 'nome@dominio.com.br',
@@ -31,10 +29,10 @@ export const fluxos = {
     },
     projeto: {
       titulo: 'O projeto',
-      intro: 'O que você quer produzir com o apoio, quanto custa e como o conteúdo chega ao público.',
       nome: 'Título do projeto',
       descricao: 'Descrição',
-      descricaoAjuda: 'O que você quer produzir, com que abordagem e por quê.',
+      descricaoAjuda:
+        'O que você quer produzir, com que abordagem, quantas peças e por que a pauta importa agora.',
       formato: 'Formato',
       valor: 'Valor solicitado',
       justificativa: 'Justificativa do valor',
@@ -43,23 +41,15 @@ export const fluxos = {
       alcanceAjuda: 'Estimativa por peça ou pelo conjunto, com a base do cálculo.',
       distribuicao: 'Plano de distribuição',
       distribuicaoAjuda: 'Onde o conteúdo é publicado, em que ordem e com que periodicidade.',
-      anexo: 'Anexo de apoio',
-      anexoAjuda:
-        'Opcional. Um arquivo com portfólio, roteiro ou planilha de custos. O anexo complementa a descrição do projeto e não substitui os campos acima.',
       exemplos: {
-        nome: 'Nome curto do projeto',
-        descricao: 'Formato, abordagem, quantidade de peças e por que a pauta importa agora',
         valor: 'Somente números, em reais',
         justificativa: 'Produção, edição, deslocamento, cachê de participação',
-        alcance: 'Número estimado e como você chegou nele',
-        distribuicao: 'Canais, calendário de publicação e formatos derivados',
       },
       faixaAjuda: 'Faixa de apoio desta chamada:',
     },
     revisao: {
       titulo: 'Revisão e envio',
-      descricao:
-        'Confira os dados antes de enviar. Depois do envio a proposta aparece no seu painel.',
+      descricao: 'Depois do envio a proposta aparece no seu painel.',
     },
     erros: {
       obrigatorio: 'Campo obrigatório.',
@@ -89,8 +79,7 @@ export const fluxos = {
     ],
     confirmacao: {
       titulo: 'Candidatura enviada',
-      descricao:
-        'A proposta entrou na fila de avaliação da banca. Você acompanha a situação pelo seu painel.',
+      descricao: 'A proposta entrou na fila de avaliação da banca.',
       acao: 'Ir para o painel',
       secundaria: 'Ver outras oportunidades',
       resumoTitulo: 'Comprovante do envio',

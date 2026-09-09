@@ -17,9 +17,9 @@ export const metadata: Metadata = {
 };
 
 /**
- * Biblioteca de materiais tecnicos. Sem texto publicado, a pagina descreve as
- * duas trilhas, que sao a porta de entrada das organizacoes, e diz o que cada
- * material vai trazer quando o primeiro sair.
+ * Biblioteca de materiais tecnicos. As duas trilhas abrem a pagina e as
+ * condicoes de uso fecham: sao as duas coisas que valem antes do primeiro
+ * texto sair.
  */
 export default function MateriaisPage() {
   return (
@@ -33,15 +33,11 @@ export default function MateriaisPage() {
 
       <div className="secao">
         <div className="container pilha--g">
-          <div className="pilha">
-            <h2 style={{ margin: 0 }}>{t.aprendizado.materiais.trilhasTitulo}</h2>
-            <Trilhas />
-          </div>
+          <Trilhas />
 
           {materiais.length === 0 ? (
             <EstadoVazio
               titulo={t.aprendizado.materiais.vazioTitulo}
-              descricao={t.aprendizado.materiais.vazioDescricao}
               desenho="pasta"
               acao={
                 <Botao href="/" variante="secundario" tamanho="pequeno">
@@ -59,23 +55,19 @@ export default function MateriaisPage() {
         </div>
       </div>
 
-      <div className="secao secao--curta secao--azul">
+      <section className="secao secao--preto">
         <div className="container">
-          <div className="grade--lateral" style={{ gap: 32, alignItems: 'center' }}>
-            <div className="pilha--p">
-              <p className="olho" style={{ margin: 0 }}>
+          <div className="linha linha--fim" style={{ alignItems: 'flex-end', gap: 24 }}>
+            <div style={{ maxWidth: '56ch' }}>
+              <p className="olho" style={{ marginBottom: 10 }}>
                 {t.aprendizado.materiais.licencaTitulo}
               </p>
-              <p style={{ margin: 0, maxWidth: '56ch' }}>
-                {t.aprendizado.materiais.licencaTexto}
-              </p>
+              <p style={{ margin: 0 }}>{t.aprendizado.materiais.licencaTexto}</p>
             </div>
-            <div className="linha">
-              <Selo status="licenca" rotulo={t.aprendizado.materiais.licencaSelo} />
-            </div>
+            <Selo status="licenca" rotulo={t.aprendizado.materiais.licencaSelo} />
           </div>
         </div>
-      </div>
+      </section>
     </>
   );
 }

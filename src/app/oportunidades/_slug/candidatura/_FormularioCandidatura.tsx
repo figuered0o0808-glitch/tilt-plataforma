@@ -176,9 +176,6 @@ export function FormularioCandidatura({ edital }: { edital: EditalResumo }) {
   if (!cadastrado && !enviada) {
     return (
       <section className="cartao" style={{ gap: 16 }}>
-        <p className="olho" style={{ margin: 0 }}>
-          {tc.cadastro.olho}
-        </p>
         <h2 className="cartao__titulo">{tc.cadastro.titulo}</h2>
         <p className="cartao__texto">{tc.cadastro.texto}</p>
         <div className="linha" style={{ marginTop: 4 }}>
@@ -247,7 +244,6 @@ export function FormularioCandidatura({ edital }: { edital: EditalResumo }) {
             <CampoTexto
               id="nome"
               rotulo={tc.proponente.nome}
-              placeholder={tc.proponente.exemplos.nome}
               value={dados.nome}
               erro={erros.nome}
               autoComplete="off"
@@ -301,17 +297,11 @@ export function FormularioCandidatura({ edital }: { edital: EditalResumo }) {
 
         {passo === 1 ? (
           <section className="pilha">
-            <div className="pilha--p">
-              <h2 style={{ margin: 0 }}>{tc.projeto.titulo}</h2>
-              <p className="texto-secundario texto-pequeno" style={{ margin: 0 }}>
-                {tc.projeto.intro}
-              </p>
-            </div>
+            <h2 style={{ margin: 0 }}>{tc.projeto.titulo}</h2>
 
             <CampoTexto
               id="projeto"
               rotulo={tc.projeto.nome}
-              placeholder={tc.projeto.exemplos.nome}
               value={dados.projeto}
               erro={erros.projeto}
               autoComplete="off"
@@ -322,7 +312,6 @@ export function FormularioCandidatura({ edital }: { edital: EditalResumo }) {
               id="descricao"
               rotulo={tc.projeto.descricao}
               ajuda={tc.projeto.descricaoAjuda}
-              placeholder={tc.projeto.exemplos.descricao}
               rows={5}
               value={dados.descricao}
               erro={erros.descricao}
@@ -368,7 +357,6 @@ export function FormularioCandidatura({ edital }: { edital: EditalResumo }) {
               id="alcance"
               rotulo={tc.projeto.alcance}
               ajuda={tc.projeto.alcanceAjuda}
-              placeholder={tc.projeto.exemplos.alcance}
               value={dados.alcance}
               erro={erros.alcance}
               autoComplete="off"
@@ -379,7 +367,6 @@ export function FormularioCandidatura({ edital }: { edital: EditalResumo }) {
               id="distribuicao"
               rotulo={tc.projeto.distribuicao}
               ajuda={tc.projeto.distribuicaoAjuda}
-              placeholder={tc.projeto.exemplos.distribuicao}
               rows={3}
               value={dados.distribuicao}
               erro={erros.distribuicao}

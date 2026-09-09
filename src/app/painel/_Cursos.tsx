@@ -64,7 +64,6 @@ export function Cursos({ linhas }: { linhas: CursoDoPainel[] }) {
       <EstadoVazio
         desenho="lista"
         titulo={s.cursosVazio}
-        descricao={s.cursosVazioTexto}
         acao={
           <Botao href="/biblioteca" variante="secundario" tamanho="pequeno">
             {s.verBiblioteca}

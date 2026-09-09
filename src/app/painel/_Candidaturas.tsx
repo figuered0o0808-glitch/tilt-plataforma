@@ -22,7 +22,6 @@ export function Candidaturas({ candidaturas }: { candidaturas: Candidatura[] }) 
       <EstadoVazio
         desenho="pasta"
         titulo={s.candidaturasVazio}
-        descricao={s.candidaturasVazioTexto}
         acao={
           <Botao href="/oportunidades" variante="secundario" tamanho="pequeno">
             {s.verOportunidades}

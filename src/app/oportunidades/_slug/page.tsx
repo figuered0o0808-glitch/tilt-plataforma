@@ -1,5 +1,5 @@
 import type { Metadata } from 'next';
-import type { ReactNode } from 'react';
+import type { CSSProperties, ReactNode } from 'react';
 import { notFound } from 'next/navigation';
 
 import { Avatar } from '@/components/Avatar';
@@ -130,7 +130,10 @@ export default async function PaginaEdital({ params }: { params: Promise<{ slug:
               </Secao>
 
               <Secao id="nao-apoiado" titulo={t.editais.secoes.naoApoiado}>
-                <div className="cartao cartao--rosa">
+                <div
+                  className="cartao cartao--marcado"
+                  style={{ '--marca': 'var(--rosa)' } as CSSProperties}
+                >
                   <ul style={{ margin: 0 }}>
                     {edital.naoApoiado.map((item) => (
                       <li key={item}>{item}</li>

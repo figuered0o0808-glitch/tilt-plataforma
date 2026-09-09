@@ -7,11 +7,14 @@
  * Tres estados, nesta ordem:
  *
  * 1. Cadastro fechado (`cadastroAberto()` falso, que e o estado de hoje):
- *    nao existe cadastro possivel nem dado para mostrar, entao a pagina
- *    explica o que vai aparecer aqui e quando. Sem tabela, sem indicador.
+ *    nao existe cadastro possivel nem dado para mostrar. A pagina fica em
+ *    duas linhas e dois links. Sem tabela, sem indicador.
  * 2. Cadastro aberto e visitante sem cadastro: convite.
  * 3. Cadastro aberto e pessoa cadastrada: o painel propriamente dito, que
  *    volta inteiro assim que houver conteudo publicado.
+ *
+ * O painel nao esta na navegacao e so e alcancado por link direto, o que
+ * basta enquanto ele nao tem o que mostrar.
  */
 
 import { useMemo } from 'react';
@@ -28,7 +31,7 @@ import { ResumoPainel, SecaoPainel } from './_PainelUI';
 
 const s = t.paineis;
 
-/** Estado de hoje: o acompanhamento abre junto com o cadastro. */
+/** Estado de hoje: o painel abre junto com o cadastro. */
 function PainelFechado() {
   const f = s.fechado;
 
@@ -36,23 +39,14 @@ function PainelFechado() {
     <>
       <CabecalhoPagina estreito olho={s.olho} titulo={f.titulo} descricao={f.descricao} />
 
-      <div className="secao">
+      <div className="secao secao--curta">
         <div className="container-estreito">
-          <div>
-            {f.itens.map((item) => (
-              <div className="registro" key={item.rotulo}>
-                <p className="registro__rotulo">{item.rotulo}</p>
-                <p style={{ margin: 0 }}>{item.texto}</p>
-              </div>
-            ))}
-          </div>
-
-          <div className="linha" style={{ marginTop: 28 }}>
-            <Botao href="/cadastro" variante="secundario">
-              {s.verCadastro}
-            </Botao>
+          <div className="linha">
             <Botao href="/oportunidades" variante="secundario">
               {s.verOportunidades}
+            </Botao>
+            <Botao href="/biblioteca" variante="secundario">
+              {s.verBiblioteca}
             </Botao>
           </div>
         </div>
@@ -74,9 +68,6 @@ function Convite() {
             {s.olho}
           </p>
           <h1 style={{ margin: 0, maxWidth: '20ch' }}>{s.convite.titulo}</h1>
-          <p className="texto-guia" style={{ margin: 0 }}>
-            {s.convite.texto}
-          </p>
           <div className="linha" style={{ justifyContent: 'center', marginTop: 6 }}>
             <Botao href="/cadastro">{s.convite.acao}</Botao>
             <Botao href="/oportunidades" variante="secundario">
@@ -118,7 +109,6 @@ export function Painel() {
       <CabecalhoPagina
         olho={s.olho}
         titulo={nome || s.titulo}
-        descricao={s.descricao}
         acoes={
           <Botao href="/oportunidades" variante="secundario">
             {s.verOportunidades}
@@ -141,18 +131,13 @@ export function Painel() {
         </div>
       ) : null}
 
-      <SecaoPainel
-        id="candidaturas"
-        titulo={s.candidaturasTitulo}
-        descricao={candidaturas.length > 0 ? s.candidaturasDescricao : undefined}
-      >
+      <SecaoPainel id="candidaturas" titulo={s.candidaturasTitulo}>
         <Candidaturas candidaturas={candidaturas} />
       </SecaoPainel>
 
       <SecaoPainel
         id="cursos"
         titulo={s.cursosTitulo}
-        descricao={linhasCursos.length > 0 ? s.cursosDescricao : undefined}
         fundo
         acoes={
           linhasCursos.length > 0 ? (

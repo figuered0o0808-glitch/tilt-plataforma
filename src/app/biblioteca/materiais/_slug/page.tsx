@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import type { CSSProperties } from 'react';
 import { notFound } from 'next/navigation';
 
 import { Botao } from '@/components/Botao';
@@ -8,7 +9,7 @@ import { t } from '@/i18n/strings';
 import { materiais, materiaisDaTrilha, materialPorSlug } from '@/lib/data';
 import { data } from '@/lib/format';
 
-import { CartaoMaterial, rotuloTrilha } from '../_CartaoMaterial';
+import { CartaoMaterial, marcaDaTrilha, rotuloTrilha } from '../_CartaoMaterial';
 
 export function generateStaticParams() {
   return materiais.map((material) => ({ slug: material.slug }));
@@ -51,9 +52,14 @@ export default async function MaterialPage({
 
       <div className="secao secao--curta">
         <div className="container-estreito pilha--g">
-          <div className="destaque">
-            <p className="destaque__titulo">{t.aprendizado.materiais.resumoTitulo}</p>
-            <p className="destaque__texto">{material.resumo}</p>
+          <div
+            className="cartao cartao--marcado"
+            style={{ '--marca': marcaDaTrilha(material.trilha) } as CSSProperties}
+          >
+            <p className="olho" style={{ margin: 0 }}>
+              {t.aprendizado.materiais.resumoTitulo}
+            </p>
+            <p style={{ margin: 0 }}>{material.resumo}</p>
           </div>
 
           <dl className="definicoes definicoes--2">
@@ -68,10 +74,6 @@ export default async function MaterialPage({
             <div>
               <dt>{t.aprendizado.materiais.atualizadoEm}</dt>
               <dd>{data(material.atualizadoEm)}</dd>
-            </div>
-            <div>
-              <dt>{t.aprendizado.materiais.licenca}</dt>
-              <dd>{material.licenca}</dd>
             </div>
           </dl>
 
@@ -90,7 +92,7 @@ export default async function MaterialPage({
             className="cartao cartao--compacto"
             style={{ flexDirection: 'row', alignItems: 'center', gap: 14 }}
           >
-            <Selo status="licenca" rotulo={t.aprendizado.materiais.licencaSelo} />
+            <Selo status="licenca" rotulo={material.licenca} />
             <p className="texto-pequeno texto-secundario" style={{ margin: 0 }}>
               {t.aprendizado.materiais.licencaNota}
             </p>
@@ -109,16 +111,11 @@ export default async function MaterialPage({
       </div>
 
       {sugestao ? (
-        <div className="secao secao--curta secao--azul">
+        <div className="secao secao--curta">
           <div className="container-estreito pilha">
-            <div>
-              <p className="olho" style={{ margin: 0 }}>
-                {t.aprendizado.materiais.leiaTambem}
-              </p>
-              <p className="texto-secundario texto-pequeno" style={{ margin: 0 }}>
-                {trilha}
-              </p>
-            </div>
+            <p className="olho" style={{ margin: 0 }}>
+              {t.aprendizado.materiais.leiaTambem}
+            </p>
             <CartaoMaterial material={sugestao} />
           </div>
         </div>

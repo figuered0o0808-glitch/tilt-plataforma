@@ -6,7 +6,7 @@
 export const PROGRAM_NAME = 'TILT';
 
 /** Expansao do nome: T.I.L.T. */
-export const PROGRAM_TAGLINE = 'The influencers lab for tomorrow';
+export const PROGRAM_TAGLINE = 'The influencer lab for tomorrow';
 
 /** Organizacoes executoras. */
 export const EXECUTORAS = {

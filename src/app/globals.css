@@ -117,7 +117,23 @@ img, svg { max-width: 100%; }
 .secao--rosa { background: var(--rosa); }
 .secao--branco { background: var(--branco); }
 .secao--preto { background: var(--preto); color: var(--branco); }
-.secao--preto h1, .secao--preto h2, .secao--preto h3 { color: var(--branco); }
+.secao--preto h1,
+.secao--preto h2,
+.secao--preto h3,
+.secao--preto h4,
+.secao--preto a { color: var(--branco); }
+.secao--preto .olho,
+.secao--preto .rotulo,
+.secao--preto .registro__rotulo { color: rgba(255, 255, 255, 0.6); }
+.secao--preto .texto-guia,
+.secao--preto .texto-pequeno,
+.secao--preto .texto-secundario { color: rgba(255, 255, 255, 0.82); }
+.secao--preto .registro { border-color: rgba(255, 255, 255, 0.22); }
+.secao--preto .registro:last-child { border-bottom-color: rgba(255, 255, 255, 0.22); }
+.secao--preto .btn { border-color: var(--branco); color: var(--branco); }
+.secao--preto .btn:hover:not(:disabled) { background: var(--branco); color: var(--preto); }
+.secao--preto .btn--primario { background: var(--branco); color: var(--preto); }
+.secao--preto .btn--primario:hover:not(:disabled) { background: transparent; color: var(--branco); }
 
 .pilha { display: flex; flex-direction: column; gap: 16px; }
 .pilha--g { display: flex; flex-direction: column; gap: 32px; }
@@ -250,6 +266,18 @@ img, svg { max-width: 100%; }
 .cartao--amarelo { background: var(--amarelo); }
 .cartao--rosa { background: var(--rosa); }
 .cartao--areia { background: var(--areia); }
+
+/* Cor entra como marca curta no alto do cartao, nao como fundo. */
+.cartao--marcado { position: relative; overflow: hidden; padding-top: 30px; }
+.cartao--marcado::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 6px;
+  background: var(--marca, var(--menta));
+}
 
 a.cartao { color: inherit; text-decoration: none; }
 a.cartao:hover { background: var(--areia); }

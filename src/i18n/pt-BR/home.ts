@@ -8,7 +8,7 @@
 export const home = {
   frase: 'Um laboratório de criadores para o interesse público.',
   apresentacao:
-    'O programa financia projetos autorais de criadores de conteúdo em ciência, clima, meio ambiente, saúde pública e democracia, sem aprovação prévia de roteiro ou de publicação. A formação é a outra metade do trabalho: cursos gratuitos e materiais de consulta em licença aberta. Piloto no Brasil.',
+    'Dinheiro para o criador produzir o projeto que ele mesmo propôs, sem aprovação de roteiro. Mais cursos gratuitos e material técnico aberto. Ciência, clima, meio ambiente, saúde pública e democracia. Piloto no Brasil.',
 
   /* Caminho de entrada quando já existe conteúdo publicado. */
   entrarPrincipal: 'Criar cadastro',
@@ -19,17 +19,16 @@ export const home = {
   /* Caminho de entrada enquanto nada foi publicado. */
   inicioAcao: 'Como o programa funciona',
   inicioAcaoAreas: 'Ver as duas áreas',
-  inicioNota: 'Nenhuma chamada está aberta neste momento.',
+  inicioNota: 'Nenhuma chamada aberta.',
 
-  areasTitulo: 'As duas áreas do site',
-  areasTexto: 'Tudo o que o programa publicar aparece em uma destas duas áreas.',
+  areasTitulo: 'Duas áreas',
   areas: [
     {
       titulo: 'Oportunidades',
       href: '/oportunidades',
       desenho: 'edital',
       texto:
-        'É aqui que ficam as chamadas de financiamento a projetos autorais, cada uma com critérios de seleção, composição da banca, cronograma e valores. A primeira ainda não foi publicada.',
+        'Chamadas de financiamento. Cada uma traz critérios, banca, cronograma e valores.',
       acao: 'Abrir oportunidades',
     },
     {
@@ -37,14 +36,10 @@ export const home = {
       href: '/biblioteca',
       desenho: 'material',
       texto:
-        'É aqui que ficam os cursos gratuitos e os materiais de consulta em licença aberta, para criadores e para organizações que trabalham com essas pautas. Os primeiros ainda não foram publicados.',
+        'Cursos gratuitos e material técnico em licença aberta, em duas trilhas: criadores e organizações.',
       acao: 'Abrir a biblioteca',
     },
   ],
-
-  estadoOlho: 'Estado atual',
-  estadoTexto:
-    'O primeiro ciclo de chamadas ainda não abriu, e não há data anunciada. As três regras acima já valem e ficam publicadas aqui desde agora. A primeira chamada será publicada em Oportunidades, e os primeiros cursos e materiais na Biblioteca.',
 
   numeros: {
     recursos: 'Em chamadas abertas',
@@ -61,8 +56,7 @@ export const home = {
   rotuloProponente: 'Proponente',
 
   desenhoTitulo: 'O desenho do programa',
-  desenhoTexto:
-    'Três regras valem para todas as chamadas e estão escritas por extenso na página de cada uma.',
+  desenhoTexto: 'Valem para toda chamada, e vão escritas por extenso em cada uma.',
   desenho: [
     {
       rotulo: 'Autonomia editorial',

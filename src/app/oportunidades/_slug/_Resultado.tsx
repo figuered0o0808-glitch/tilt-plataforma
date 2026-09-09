@@ -2,24 +2,32 @@ import { t } from '@/i18n/strings';
 import { data, moeda, numero } from '@/lib/format';
 import type { ResultadoEdital } from '@/lib/types';
 
+/** Par de numero do resultado. As cores vao inline por causa do fundo preto. */
+function Numero({ rotulo, valor }: { rotulo: string; valor: string }) {
+  return (
+    <div>
+      <dt style={{ color: 'rgba(255, 255, 255, 0.6)' }}>{rotulo}</dt>
+      <dd style={{ color: 'var(--branco)' }}>
+        <span className="numero-grande">{valor}</span>
+      </dd>
+    </div>
+  );
+}
+
 /**
- * Bloco de transparencia do resultado, em faixa de cor chapada no topo da
- * pagina da chamada encerrada, antes de qualquer outra secao, com a relacao
- * integral de apoiados, projetos e valores.
+ * Bloco de transparencia do resultado, ancorado em preto no topo da pagina da
+ * chamada encerrada, com a relacao integral de apoiados, projetos e valores.
  */
 export function Resultado({ resultado }: { resultado: ResultadoEdital }) {
   const total = resultado.apoiados.reduce((soma, apoiado) => soma + apoiado.valor, 0);
 
   return (
-    <section id="resultado" className="secao secao--azul" style={{ scrollMarginTop: 84 }}>
+    <section id="resultado" className="secao secao--preto" style={{ scrollMarginTop: 84 }}>
       <div className="container">
-        <p className="olho" style={{ color: 'var(--preto)' }}>
-          {t.editais.resultadoOlho}
-        </p>
         <div className="linha linha--fim" style={{ alignItems: 'flex-end', gap: 24 }}>
           <h2 style={{ margin: 0 }}>{t.editais.secoes.resultado}</h2>
           <p className="texto-pequeno" style={{ margin: 0 }}>
-            {`${t.editais.resultadoPublicadoEm} ${data(resultado.publicadoEm)}`}
+            {`${t.editais.publicadoEm} ${data(resultado.publicadoEm)}`}
           </p>
         </div>
 
@@ -38,24 +46,15 @@ export function Resultado({ resultado }: { resultado: ResultadoEdital }) {
             gap: 24,
           }}
         >
-          <div>
-            <dt>{t.editais.inscricoesRecebidas}</dt>
-            <dd>
-              <span className="numero-grande">{numero(resultado.inscricoesRecebidas)}</span>
-            </dd>
-          </div>
-          <div>
-            <dt>{t.editais.projetosApoiados}</dt>
-            <dd>
-              <span className="numero-grande">{numero(resultado.apoiados.length)}</span>
-            </dd>
-          </div>
-          <div>
-            <dt>{t.editais.totalApoiado}</dt>
-            <dd>
-              <span className="numero-grande">{moeda(total)}</span>
-            </dd>
-          </div>
+          <Numero
+            rotulo={t.editais.inscricoesRecebidas}
+            valor={numero(resultado.inscricoesRecebidas)}
+          />
+          <Numero
+            rotulo={t.editais.projetosApoiados}
+            valor={numero(resultado.apoiados.length)}
+          />
+          <Numero rotulo={t.editais.totalApoiado} valor={moeda(total)} />
         </dl>
 
         <h3 style={{ marginBottom: 14 }}>{t.editais.resultadoTabelaTitulo}</h3>
@@ -93,10 +92,6 @@ export function Resultado({ resultado }: { resultado: ResultadoEdital }) {
             </tfoot>
           </table>
         </div>
-
-        <p className="nota" style={{ marginTop: 20 }}>
-          {t.editais.resultadoNota}
-        </p>
       </div>
     </section>
   );

@@ -131,10 +131,6 @@ export function ListaEditais({ editais }: { editais: Call[] }) {
 
   return (
     <>
-      <p className="nota" style={{ maxWidth: '68ch', marginBottom: 30 }}>
-        {t.editais.tiposExplicacao}
-      </p>
-
       <section aria-label={t.editais.filtrosTitulo}>
         <LinhaFiltro
           rotulo={t.editais.filtroStatus}
@@ -170,7 +166,6 @@ export function ListaEditais({ editais }: { editais: Call[] }) {
       {filtrados.length === 0 ? (
         <EstadoVazio
           titulo={t.editais.vazioTitulo}
-          descricao={t.editais.vazioDescricao}
           desenho="busca"
           acao={
             <Botao variante="secundario" tamanho="pequeno" onClick={limpar}>

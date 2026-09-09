@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import type { CSSProperties } from 'react';
 import { notFound } from 'next/navigation';
 
 import { Botao } from '@/components/Botao';
@@ -52,7 +53,6 @@ export default async function CursoPage({
         <div className="container grade--lateral">
           <div className="pilha--g">
             <div className="prosa">
-              <h2 style={{ marginTop: 0 }}>{t.aprendizado.cursos.sobreTitulo}</h2>
               {curso.descricao.map((paragrafo) => (
                 <p key={paragrafo}>{paragrafo}</p>
               ))}
@@ -110,14 +110,13 @@ export default async function CursoPage({
                   <dt>{t.aprendizado.cursos.proximaTurma}</dt>
                   <dd>{data(curso.proximaTurma)}</dd>
                 </div>
-                <div>
-                  <dt>{t.aprendizado.cursos.modulos}</dt>
-                  <dd>{curso.modulos.length}</dd>
-                </div>
               </dl>
             </div>
 
-            <div className="cartao cartao--amarelo">
+            <div
+              className="cartao cartao--marcado"
+              style={{ '--marca': 'var(--menta)' } as CSSProperties}
+            >
               <p className="olho" style={{ margin: 0 }}>
                 {t.aprendizado.cursos.inscricaoTitulo}
               </p>

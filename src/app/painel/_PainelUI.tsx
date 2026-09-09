@@ -8,18 +8,16 @@
 
 import type { ReactNode } from 'react';
 
-/** Secao do painel: titulo, linha de apoio, acoes a direita e conteudo. */
+/** Secao do painel: titulo, acoes a direita e conteudo. */
 export function SecaoPainel({
   id,
   titulo,
-  descricao,
   acoes,
   fundo,
   children,
 }: {
   id: string;
   titulo: string;
-  descricao?: string;
   acoes?: ReactNode;
   fundo?: boolean;
   children: ReactNode;
@@ -28,14 +26,7 @@ export function SecaoPainel({
     <section id={id} className={fundo ? 'secao secao--fundo' : 'secao'}>
       <div className="container">
         <div className="linha linha--fim" style={{ alignItems: 'flex-end', marginBottom: 22 }}>
-          <div style={{ maxWidth: '54rem' }}>
-            <h2 style={{ margin: 0 }}>{titulo}</h2>
-            {descricao ? (
-              <p className="texto-pequeno" style={{ margin: '8px 0 0' }}>
-                {descricao}
-              </p>
-            ) : null}
-          </div>
+          <h2 style={{ margin: 0 }}>{titulo}</h2>
           {acoes ? <div className="linha">{acoes}</div> : null}
         </div>
         {children}

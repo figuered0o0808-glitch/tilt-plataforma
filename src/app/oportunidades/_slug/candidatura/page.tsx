@@ -5,7 +5,7 @@ import { CabecalhoPagina } from '@/components/CabecalhoPagina';
 import { Chip } from '@/components/Chip';
 import { t } from '@/i18n/strings';
 import { editais, editalPorSlug } from '@/lib/data';
-import { data, moeda } from '@/lib/format';
+import { data } from '@/lib/format';
 
 import { FormularioCandidatura, type EditalResumo } from './_FormularioCandidatura';
 
@@ -55,11 +55,7 @@ export default async function PaginaCandidatura({
       <div className="secao secao--curta" style={{ paddingBottom: 0 }}>
         <div className="container-estreito">
           <div className="chips">
-            <Chip vazado>
-              {`${t.comum.rotulos.apoio}: ${moeda(edital.faixaApoio.min)} a ${moeda(edital.faixaApoio.max)}`}
-            </Chip>
             <Chip vazado>{`${t.comum.rotulos.inscricoesAte} ${data(edital.inscricoesAte)}`}</Chip>
-            <Chip vazado>{t.comum.tiposEdital[edital.tipo]}</Chip>
           </div>
         </div>
       </div>
