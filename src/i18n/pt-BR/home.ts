@@ -8,7 +8,7 @@
 export const home = {
   frase: 'Um laboratório de criadores para o interesse público.',
   apresentacao:
-    'Dinheiro para o criador produzir o projeto que ele mesmo propôs, sem aprovação de roteiro. Mais cursos gratuitos e material técnico aberto. Ciência, clima, meio ambiente, saúde pública e democracia. Piloto no Brasil.',
+    'O programa financia projetos de criadores de conteúdo sobre ciência, clima, meio ambiente, saúde pública e democracia. A proposta é do criador, e a decisão editorial também.',
 
   /* Caminho de entrada quando já existe conteúdo publicado. */
   entrarPrincipal: 'Criar cadastro',
