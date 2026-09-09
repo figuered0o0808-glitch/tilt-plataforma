@@ -1,0 +1,143 @@
+/** Tipos do conteudo publicado em /data. Contrato unico da aplicacao. */
+
+export type Regiao = 'Norte' | 'Nordeste' | 'Centro-Oeste' | 'Sudeste' | 'Sul';
+
+export type StatusEdital = 'aberta' | 'em-avaliacao' | 'encerrada';
+
+export type TipoEdital =
+  | 'tema-amplo'
+  | 'macrotema'
+  | 'pauta-especifica'
+  | 'edital-organizacao';
+
+export interface CriterioSelecao {
+  titulo: string;
+  peso: number;
+  descricao: string;
+}
+
+export interface MembroBanca {
+  nome: string;
+  afiliacao: string;
+  minibio: string;
+}
+
+export interface FaixaDistribuicao {
+  faixa: string;
+  quantidade: string;
+  observacao?: string;
+}
+
+export interface EtapaCronograma {
+  etapa: string;
+  data: string;
+}
+
+export interface PerguntaFrequente {
+  pergunta: string;
+  resposta: string;
+}
+
+export interface Apoiado {
+  nome: string;
+  projeto: string;
+  formato: string;
+  uf: string;
+  valor: number;
+}
+
+export interface ResultadoEdital {
+  fundamentacao: string;
+  publicadoEm: string;
+  inscricoesRecebidas: number;
+  apoiados: Apoiado[];
+}
+
+export interface Call {
+  slug: string;
+  titulo: string;
+  status: StatusEdital;
+  tipo: TipoEdital;
+  resumo: string;
+  proponente: string | null;
+  apresentacao: string[];
+  escopo: string[];
+  naoApoiado: string[];
+  criterios: CriterioSelecao[];
+  banca: MembroBanca[];
+  distribuicao: FaixaDistribuicao[];
+  valorTotal: number;
+  faixaApoio: { min: number; max: number };
+  inscricoesAte: string;
+  cronograma: EtapaCronograma[];
+  faq: PerguntaFrequente[];
+  resultado: ResultadoEdital | null;
+}
+
+export interface ModuloCurso {
+  numero: number;
+  titulo: string;
+  descricao: string;
+}
+
+export interface Course {
+  slug: string;
+  titulo: string;
+  status: 'aberto' | 'em-breve';
+  resumo: string;
+  descricao: string[];
+  paraQuem: string[];
+  modulos: ModuloCurso[];
+  duracao: string;
+  formato: string;
+  proximaTurma: string;
+}
+
+export type Trilha = 'criadores' | 'organizacoes';
+
+export interface SecaoArtigo {
+  titulo: string;
+  paragrafos: string[];
+}
+
+export interface Article {
+  slug: string;
+  titulo: string;
+  trilha: Trilha;
+  resumo: string;
+  tempoLeitura: string;
+  formato: string;
+  atualizadoEm: string;
+  secoes: SecaoArtigo[];
+  licenca: string;
+}
+
+export type StatusCandidatura =
+  | 'em-avaliacao'
+  | 'aprovada'
+  | 'nao-selecionada'
+  | 'enviada';
+
+export interface Candidatura {
+  id: string;
+  editalSlug: string;
+  editalTitulo: string;
+  projeto: string;
+  formato: string;
+  valorSolicitado: number;
+  enviadaEm: string;
+  status: StatusCandidatura;
+}
+
+export interface CursoDoCriador {
+  cursoSlug: string;
+  titulo: string;
+  status: 'inscrito' | 'em-andamento' | 'concluido';
+  progresso: number;
+}
+
+export interface PanelData {
+  candidaturas: Candidatura[];
+  cursos: CursoDoCriador[];
+}
+
