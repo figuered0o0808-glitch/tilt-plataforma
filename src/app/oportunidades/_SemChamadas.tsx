@@ -3,8 +3,8 @@ import type { CSSProperties } from 'react';
 import { t } from '@/i18n/strings';
 
 /**
- * Conteudo da aba enquanto nenhuma chamada esta publicada: a situacao, as
- * e o que da para preparar antes de a primeira chamada abrir.
+ * Conteudo da aba enquanto nenhuma chamada esta publicada: a situacao e o que
+ * da para preparar antes de a primeira chamada abrir.
  */
 export function SemChamadas() {
   return (

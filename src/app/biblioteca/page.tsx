@@ -28,9 +28,9 @@ export default function BibliotecaPage() {
         <div className="container pilha--g">
           {materiais.length > 0 ? (
             <div className="pilha">
-              <p className="olho" style={{ margin: 0 }}>
+              <h2 className="olho" style={{ margin: 0 }}>
                 {indice.materiaisTitulo}
-              </p>
+              </h2>
               <div className="grade--2">
                 {materiais.map((material) => (
                   <CartaoMaterial key={material.slug} material={material} mostrarTrilha />
@@ -54,9 +54,9 @@ export default function BibliotecaPage() {
             }}
           >
             <div className="pilha--p">
-              <p className="rotulo rotulo--forte" style={{ margin: 0 }}>
+              <h2 className="rotulo rotulo--forte" style={{ margin: 0 }}>
                 {indice.cursosTitulo}
-              </p>
+              </h2>
               {cursos.length === 0 ? (
                 <p style={{ margin: 0 }}>{indice.cursosVazio}</p>
               ) : null}

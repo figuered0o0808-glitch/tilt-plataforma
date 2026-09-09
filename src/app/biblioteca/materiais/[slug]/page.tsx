@@ -116,9 +116,9 @@ export default async function MaterialPage({
 
           {material.arquivos.length > 0 ? (
             <div className="cartao cartao--compacto">
-              <p className="rotulo rotulo--forte" style={{ margin: 0 }}>
+              <h2 className="rotulo rotulo--forte" style={{ margin: 0 }}>
                 {r.arquivosTitulo}
-              </p>
+              </h2>
               <div className="linha">
                 {material.arquivos.map((arquivo) => (
                   <a
@@ -151,7 +151,7 @@ export default async function MaterialPage({
               variante="discreto"
               tamanho="pequeno"
             >
-              {r.voltarTrilha}: {trilha}
+              {r.voltarTrilha}
             </Botao>
           </div>
         </div>
