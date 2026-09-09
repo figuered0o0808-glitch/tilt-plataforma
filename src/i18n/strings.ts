@@ -5,13 +5,13 @@
  * troque as importacoes abaixo. Nenhum texto de interface deve ser escrito
  * direto nos componentes de controle (botoes, rotulos, abas, estados).
  */
-import { comum } from '@/i18n/pt-BR/comum';
-import { home } from '@/i18n/pt-BR/home';
-import { editais } from '@/i18n/pt-BR/editais';
-import { aprendizado } from '@/i18n/pt-BR/aprendizado';
-import { paineis } from '@/i18n/pt-BR/paineis';
-import { fluxos } from '@/i18n/pt-BR/fluxos';
-import { cadastro } from '@/i18n/pt-BR/cadastro';
+import { comum } from '@/i18n/pt/comum';
+import { home } from '@/i18n/pt/home';
+import { editais } from '@/i18n/pt/editais';
+import { aprendizado } from '@/i18n/pt/aprendizado';
+import { paineis } from '@/i18n/pt/paineis';
+import { fluxos } from '@/i18n/pt/fluxos';
+import { cadastro } from '@/i18n/pt/cadastro';
 
 export const t = {
   comum,

@@ -27,7 +27,9 @@ function ancoras(edital: Call): { id: string; rotulo: string }[] {
   itens.push(
     { id: 'apresentacao', rotulo: t.editais.secoes.apresentacao },
     { id: 'escopo', rotulo: t.editais.secoes.escopo },
-    { id: 'nao-apoiado', rotulo: t.editais.secoes.naoApoiado },
+    ...(edital.naoApoiado.length > 0
+      ? [{ id: 'nao-apoiado', rotulo: t.editais.secoes.naoApoiado }]
+      : []),
     { id: 'criterios', rotulo: t.editais.secoes.criterios },
     { id: 'banca', rotulo: t.editais.secoes.banca },
     { id: 'distribuicao', rotulo: t.editais.secoes.distribuicao },

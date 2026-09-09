@@ -4,7 +4,7 @@
     "titulo": "Chamada de Campanha nº 01: o custo dos veículos elétricos no Brasil",
     "status": "aberta",
     "tipo": "pauta-especifica",
-    "resumo": "Financia de 3 a 10 projetos autorais de criadores que gerem conversa pública sobre o custo dos veículos elétricos no Brasil e levem suas audiências ao canal de participação da campanha.",
+    "resumo": "Financia de 3 a 10 projetos autorais sobre o custo dos veículos elétricos no Brasil. Aberta a criadores, coletivos e agências de comunicação.",
     "proponente": "INDICA",
     "apresentacao": [
       "Em vez de contratar um único influenciador para estrelar a campanha, esta chamada compra capacidade de criação de vários criadores ao mesmo tempo. Cada projeto selecionado cumpre o objetivo da campanha pela estratégia, pelo formato e pela narrativa de quem o propôs.",
@@ -14,16 +14,11 @@
     "escopo": [
       "Projetos autorais que gerem conversa pública sobre o custo dos veículos elétricos no Brasil.",
       "Projetos que direcionem a audiência ao canal de participação da campanha.",
-      "Criadores pessoa física ou pessoa jurídica, e pequenos coletivos, de qualquer tamanho de audiência.",
-      "Qualquer nicho: a elegibilidade é do projeto, não do assunto habitual do canal.",
+      "Criadores pessoa física ou pessoa jurídica, pequenos coletivos e agências de comunicação.",
+      "Qualquer tamanho de audiência e qualquer nicho: a elegibilidade é do projeto, não do assunto habitual do canal.",
       "Propostas por escrito ou em vídeo, com orçamento detalhado por item."
     ],
-    "naoApoiado": [
-      "Peça com roteiro fechado por terceiro: o que se contrata é o projeto que o criador propôs.",
-      "Uso eleitoral do material ou tratamento partidário da política pública.",
-      "Conteúdo sem sinalização publicitária desde a primeira publicação.",
-      "Proposta que omita relação comercial dos últimos 24 meses com os setores automotivo, de combustíveis e de energia."
-    ],
+    "naoApoiado": [],
     "criterios": [
       {
         "titulo": "Qualidade do projeto",
@@ -65,7 +60,7 @@
     "faq": [
       {
         "pergunta": "Quem pode se inscrever?",
-        "resposta": "Criadores pessoa física ou pessoa jurídica e pequenos coletivos, de qualquer tamanho de audiência e de qualquer nicho. A elegibilidade é do projeto."
+        "resposta": "Criadores pessoa física ou jurídica, pequenos coletivos e agências de comunicação, de qualquer tamanho de audiência e de qualquer nicho. A elegibilidade é do projeto."
       },
       {
         "pergunta": "O programa aprova roteiro ou corte?",

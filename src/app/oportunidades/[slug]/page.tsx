@@ -134,6 +134,7 @@ export default async function PaginaEdital({ params }: { params: Promise<{ slug:
                 </div>
               </Secao>
 
+              {edital.naoApoiado.length > 0 ? (
               <Secao id="nao-apoiado" titulo={t.editais.secoes.naoApoiado}>
                 <div
                   className="cartao cartao--marcado"
@@ -146,6 +147,7 @@ export default async function PaginaEdital({ params }: { params: Promise<{ slug:
                   </ul>
                 </div>
               </Secao>
+              ) : null}
 
               <Secao id="criterios" titulo={t.editais.secoes.criterios}>
                 {comPeso ? null : (
