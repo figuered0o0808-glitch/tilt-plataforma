@@ -5,7 +5,6 @@ import { notFound } from 'next/navigation';
 import { Botao } from '@/components/Botao';
 import { CabecalhoPagina } from '@/components/CabecalhoPagina';
 import { EstadoVazio } from '@/components/EstadoVazio';
-import { Ilustracao } from '@/components/Ilustracao';
 import { ehIdioma } from '@/i18n/idiomas';
 import { textos } from '@/i18n/strings';
 import { conteudo } from '@/lib/data';
@@ -46,7 +45,6 @@ export default async function MateriaisPage({
       <CabecalhoPagina
         olho={t.aprendizado.materiais.olho}
         titulo={t.aprendizado.materiais.titulo}
-        acoes={<Ilustracao nome="lista" largura={104} />}
       />
 
       <div className="secao">

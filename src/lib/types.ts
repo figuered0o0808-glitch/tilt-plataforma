@@ -174,5 +174,7 @@ export interface PerfilCadastro {
   email: string;
   cidade: string;
   uf: string;
+  /** Nichos em que a pessoa atua. Varios, porque quase ninguem faz um so. */
+  nichos: string[];
   redes: RedeDoCriador[];
 }

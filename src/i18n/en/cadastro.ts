@@ -29,6 +29,33 @@ export const cadastro = {
     uf: 'State',
   },
 
+  nichos: {
+    titulo: 'Your niches',
+    ajuda: 'Select every one you publish in. Your niche does not limit the topics you can propose.',
+    lista: [
+      'Comedy',
+      'Beauty',
+      'Games',
+      'Sports',
+      'Music',
+      'Fashion',
+      'Food',
+      'Travel',
+      'Science',
+      'Health',
+      'Education',
+      'Politics',
+      'Economy',
+      'Technology',
+      'Environment',
+      'Culture',
+      'Parenting and family',
+      'Lifestyle',
+      'Law',
+      'Career',
+    ] as readonly string[],
+  },
+
   redes: {
     titulo: 'Your channels',
     ajuda: 'Where you publish and how large the audience is on each one.',

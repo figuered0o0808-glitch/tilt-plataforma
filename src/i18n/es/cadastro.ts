@@ -28,6 +28,33 @@ export const cadastro = {
     uf: 'UF',
   },
 
+  nichos: {
+    titulo: 'Nichos en los que actúas',
+    ajuda: 'Selecciona todos en los que publicas. El nicho no limita los temas que puedes proponer.',
+    lista: [
+      'Humor',
+      'Belleza',
+      'Videojuegos',
+      'Deporte',
+      'Música',
+      'Moda',
+      'Cocina',
+      'Viajes',
+      'Ciencia',
+      'Salud',
+      'Educación',
+      'Política',
+      'Economía',
+      'Tecnología',
+      'Medio ambiente',
+      'Cultura',
+      'Maternidad y familia',
+      'Estilo de vida',
+      'Derecho',
+      'Carrera',
+    ] as readonly string[],
+  },
+
   redes: {
     titulo: 'Tus redes',
     ajuda: 'Dónde publicas y qué tamaño tiene la audiencia en cada una.',

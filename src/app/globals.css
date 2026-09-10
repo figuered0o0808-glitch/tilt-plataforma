@@ -599,7 +599,7 @@ select {
 /* Cartao de publicacao: capa a esquerda, ficha a direita. */
 .publicacao {
   display: grid;
-  grid-template-columns: 210px minmax(0, 1fr);
+  grid-template-columns: 148px minmax(0, 1fr);
   gap: 0;
   align-items: stretch;
   padding: 0;
@@ -613,8 +613,8 @@ select {
 .publicacao__ficha {
   display: flex;
   flex-direction: column;
-  gap: 10px;
-  padding: 24px 26px;
+  gap: 9px;
+  padding: 20px 22px;
   min-width: 0;
 }
 .publicacao__marca {
@@ -637,7 +637,7 @@ select {
   position: relative;
   display: flex;
   align-items: flex-end;
-  padding: 18px;
+  padding: 14px;
   overflow: hidden;
 }
 .capa__malha {
@@ -650,16 +650,36 @@ select {
 .capa__titulo {
   position: relative;
   font-family: var(--serif);
-  font-size: 1.05rem;
-  line-height: 1.15;
+  font-size: 0.9rem;
+  line-height: 1.18;
   color: var(--preto);
 }
 
 @media (max-width: 760px) {
   .publicacao { grid-template-columns: minmax(0, 1fr); }
   .publicacao__capa { border-right: 0; border-bottom: 1px solid var(--preto); }
-  .capa { aspect-ratio: 16 / 9 !important; }
+  .capa { aspect-ratio: 21 / 9 !important; }
 }
+
+/* Nichos: selecao multipla em pilulas, sem lista comprida de caixas. */
+.nichos { display: flex; flex-wrap: wrap; gap: 8px; }
+.nicho {
+  font-family: var(--mono);
+  font-size: 0.6875rem;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  line-height: 1;
+  padding: 9px 13px;
+  border: 1px solid var(--preto);
+  border-radius: 2px;
+  background: var(--branco);
+  color: var(--preto);
+  cursor: pointer;
+  user-select: none;
+}
+.nicho:hover { background: var(--areia); }
+.nicho--marcado { background: var(--preto); color: var(--branco); }
+.nicho:focus-within { outline: 2px solid var(--preto); outline-offset: 2px; }
 
 /* Linha de rede no cadastro: plataforma, perfil e seguidores lado a lado. */
 .rede-linha {

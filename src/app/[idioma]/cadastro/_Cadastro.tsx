@@ -112,6 +112,13 @@ function CadastroFormulario({ idioma }: { idioma: Idioma }) {
   const [email, setEmail] = useState('');
   const [cidade, setCidade] = useState('');
   const [uf, setUf] = useState('');
+  const [nichos, setNichos] = useState<string[]>([]);
+
+  function alternarNicho(nicho: string) {
+    setNichos((atuais) =>
+      atuais.includes(nicho) ? atuais.filter((n) => n !== nicho) : [...atuais, nicho],
+    );
+  }
 
   /* O peso do cadastro esta aqui: onde a pessoa publica e para quantos. */
   const [redes, setRedes] = useState<RedeDoCriador[]>([
@@ -139,6 +146,7 @@ function CadastroFormulario({ idioma }: { idioma: Idioma }) {
       email,
       cidade,
       uf,
+      nichos,
       redes: redes.filter((rede) => rede.plataforma && rede.perfil),
     });
     setEnviado(true);
@@ -227,6 +235,46 @@ function CadastroFormulario({ idioma }: { idioma: Idioma }) {
                     required
                   />
                 </div>
+                <fieldset
+                  style={{
+                    border: 0,
+                    padding: 0,
+                    margin: '10px 0 0',
+                    display: 'flex',
+                    flexDirection: 'column',
+                    gap: 10,
+                  }}
+                >
+                  <legend style={{ padding: 0 }}>
+                    <span className="campo__rotulo">{tc.nichos.titulo}</span>
+                  </legend>
+                  <p className="campo__ajuda" style={{ marginTop: -4 }}>
+                    {tc.nichos.ajuda}
+                  </p>
+                  <div className="nichos">
+                    {tc.nichos.lista.map((nicho, indice) => {
+                      const marcado = nichos.includes(nicho);
+                      const id = `nicho-${indice}`;
+                      return (
+                        <label
+                          key={nicho}
+                          htmlFor={id}
+                          className={`nicho${marcado ? ' nicho--marcado' : ''}`}
+                        >
+                          <input
+                            id={id}
+                            type="checkbox"
+                            className="sr-only"
+                            checked={marcado}
+                            onChange={() => alternarNicho(nicho)}
+                          />
+                          {nicho}
+                        </label>
+                      );
+                    })}
+                  </div>
+                </fieldset>
+
                 <fieldset
                   style={{
                     border: 0,
