@@ -16,6 +16,8 @@
 
 import { useEffect, useRef, useState, type CSSProperties } from 'react';
 
+import type { RedeDoCriador } from '@/lib/types';
+
 import { Botao } from '@/components/Botao';
 import { CabecalhoPagina } from '@/components/CabecalhoPagina';
 import { CampoSelecao, CampoTexto } from '@/components/Campo';
@@ -110,11 +112,35 @@ function CadastroFormulario({ idioma }: { idioma: Idioma }) {
   const [email, setEmail] = useState('');
   const [cidade, setCidade] = useState('');
   const [uf, setUf] = useState('');
-  const [nicho, setNicho] = useState('');
+
+  /* O peso do cadastro esta aqui: onde a pessoa publica e para quantos. */
+  const [redes, setRedes] = useState<RedeDoCriador[]>([
+    { plataforma: '', perfil: '', seguidores: '' },
+  ]);
+
+  function alterarRede(indice: number, campo: keyof RedeDoCriador, valor: string) {
+    setRedes((atuais) =>
+      atuais.map((rede, i) => (i === indice ? { ...rede, [campo]: valor } : rede)),
+    );
+  }
+
+  function acrescentarRede() {
+    setRedes((atuais) => [...atuais, { plataforma: '', perfil: '', seguidores: '' }]);
+  }
+
+  function removerRede(indice: number) {
+    setRedes((atuais) => atuais.filter((_, i) => i !== indice));
+  }
 
   function enviar(evento: React.FormEvent) {
     evento.preventDefault();
-    cadastrar(nome);
+    cadastrar({
+      nome,
+      email,
+      cidade,
+      uf,
+      redes: redes.filter((rede) => rede.plataforma && rede.perfil),
+    });
     setEnviado(true);
   }
 
@@ -201,14 +227,77 @@ function CadastroFormulario({ idioma }: { idioma: Idioma }) {
                     required
                   />
                 </div>
-                <CampoTexto idioma={idioma}
-                  id="cadastro-nicho"
-                  rotulo={tc.campos.nicho}
-                  value={nicho}
-                  onChange={(evento) => setNicho(evento.target.value)}
-                  autoComplete="off"
-                  required
-                />
+                <fieldset
+                  style={{
+                    border: 0,
+                    padding: 0,
+                    margin: '10px 0 0',
+                    display: 'flex',
+                    flexDirection: 'column',
+                    gap: 14,
+                  }}
+                >
+                  <legend style={{ padding: 0 }}>
+                    <span className="campo__rotulo">{tc.redes.titulo}</span>
+                  </legend>
+                  <p className="campo__ajuda" style={{ marginTop: -6 }}>
+                    {tc.redes.ajuda}
+                  </p>
+
+                  {redes.map((rede, indice) => (
+                    <div key={indice} className="rede-linha">
+                      <CampoSelecao
+                        idioma={idioma}
+                        id={`rede-plataforma-${indice}`}
+                        rotulo={tc.redes.plataforma}
+                        vazio={tc.redes.escolhaPlataforma}
+                        opcoes={tc.redes.plataformas.map((nome) => ({
+                          valor: nome,
+                          rotulo: nome,
+                        }))}
+                        value={rede.plataforma}
+                        onChange={(evento) => alterarRede(indice, 'plataforma', evento.target.value)}
+                        required={indice === 0}
+                      />
+                      <CampoTexto
+                        idioma={idioma}
+                        id={`rede-perfil-${indice}`}
+                        rotulo={tc.redes.perfil}
+                        placeholder={tc.redes.perfilExemplo}
+                        value={rede.perfil}
+                        onChange={(evento) => alterarRede(indice, 'perfil', evento.target.value)}
+                        autoComplete="off"
+                        required={indice === 0}
+                      />
+                      <CampoTexto
+                        idioma={idioma}
+                        id={`rede-seguidores-${indice}`}
+                        rotulo={tc.redes.seguidores}
+                        placeholder={tc.redes.seguidoresExemplo}
+                        inputMode="numeric"
+                        value={rede.seguidores}
+                        onChange={(evento) =>
+                          alterarRede(indice, 'seguidores', evento.target.value.replace(/\D/g, ''))
+                        }
+                        autoComplete="off"
+                      />
+                      {redes.length > 1 ? (
+                        <button
+                          type="button"
+                          className="btn btn--discreto btn--pequeno rede-linha__remover"
+                          onClick={() => removerRede(indice)}
+                        >
+                          {tc.redes.remover}
+                        </button>
+                      ) : null}
+                    </div>
+                  ))}
+
+                  <Botao variante="secundario" tamanho="pequeno" onClick={acrescentarRede}>
+                    {tc.redes.acrescentar}
+                  </Botao>
+                </fieldset>
+
                 <Botao type="submit" largo>
                   {tc.acao}
                 </Botao>

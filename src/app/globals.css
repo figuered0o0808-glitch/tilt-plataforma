@@ -594,6 +594,21 @@ select {
 .caixa-selecao { display: inline-flex; gap: 10px; align-items: center; font-size: 0.98rem; cursor: pointer; }
 .caixa-selecao input { accent-color: var(--preto); }
 
+/* Linha de rede no cadastro: plataforma, perfil e seguidores lado a lado. */
+.rede-linha {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.3fr) minmax(0, 0.9fr);
+  gap: 12px;
+  align-items: start;
+  padding-bottom: 14px;
+  border-bottom: 1px solid var(--linha);
+}
+.rede-linha__remover { grid-column: 1 / -1; justify-self: start; }
+
+@media (max-width: 640px) {
+  .rede-linha { grid-template-columns: minmax(0, 1fr); }
+}
+
 /* ---------- Passos ---------- */
 
 .passos { display: flex; gap: 0; list-style: none; padding: 0; margin: 0 0 34px; border-bottom: 1px solid var(--linha); flex-wrap: wrap; }

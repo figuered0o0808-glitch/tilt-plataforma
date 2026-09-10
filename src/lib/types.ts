@@ -156,3 +156,19 @@ export interface PanelData {
   cursos: CursoDoCriador[];
 }
 
+
+/** Uma rede declarada no cadastro. */
+export interface RedeDoCriador {
+  plataforma: string;
+  perfil: string;
+  seguidores: string;
+}
+
+/** O que o cadastro coleta. Curto de proposito: o peso esta nas redes. */
+export interface PerfilCadastro {
+  nome: string;
+  email: string;
+  cidade: string;
+  uf: string;
+  redes: RedeDoCriador[];
+}

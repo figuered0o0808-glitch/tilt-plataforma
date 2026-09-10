@@ -21,11 +21,12 @@ import {
 
 import { DATA_REFERENCIA, STORAGE_KEY } from '@/config/program';
 import { proximoId } from '@/lib/format';
-import type { Candidatura } from '@/lib/types';
+import type { Candidatura, PerfilCadastro } from '@/lib/types';
 
 interface Estado {
   cadastrado: boolean;
   nome: string;
+  perfil: PerfilCadastro | null;
   candidaturas: Candidatura[];
   cursosInscritos: string[];
 }
@@ -34,6 +35,7 @@ function estadoInicial(): Estado {
   return {
     cadastrado: false,
     nome: '',
+    perfil: null,
     candidaturas: [],
     cursosInscritos: [],
   };
@@ -49,7 +51,7 @@ export interface NovaCandidatura {
 
 interface ContextoApp extends Estado {
   hidratado: boolean;
-  cadastrar: (nome: string) => void;
+  cadastrar: (perfil: PerfilCadastro) => void;
   enviarCandidatura: (dados: NovaCandidatura) => Candidatura;
   inscreverCurso: (slug: string) => void;
   estaInscrito: (slug: string) => boolean;
@@ -91,8 +93,13 @@ export function AppProvider({ children }: { children: ReactNode }) {
     if (hidratado) gravar(estado);
   }, [estado, hidratado]);
 
-  const cadastrar = useCallback((nome: string) => {
-    setEstado((atual) => ({ ...atual, cadastrado: true, nome: nome.trim() }));
+  const cadastrar = useCallback((perfil: PerfilCadastro) => {
+    setEstado((atual) => ({
+      ...atual,
+      cadastrado: true,
+      nome: perfil.nome.trim(),
+      perfil,
+    }));
   }, []);
 
   const enviarCandidatura = useCallback(
