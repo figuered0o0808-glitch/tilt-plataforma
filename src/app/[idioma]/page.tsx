@@ -12,7 +12,7 @@ import { PROGRAM_TAGLINE } from '@/config/program';
 import { ehIdioma, type Idioma } from '@/i18n/idiomas';
 import { textos } from '@/i18n/strings';
 import { conteudo } from '@/lib/data';
-import { dataCurta, moeda, numero } from '@/lib/format';
+import { arquivoPublico, dataCurta, moeda, numero } from '@/lib/format';
 import { rota } from '@/lib/rotas';
 import type { Call } from '@/lib/types';
 
@@ -29,9 +29,19 @@ function CartaoChamada({ idioma, chamada }: { idioma: Idioma; chamada: Call }) {
 
   return (
     <Link href={rota(idioma, `oportunidades/${chamada.slug}`)} className="cartao">
-      <div className="linha" style={{ gap: 8 }}>
-        <Selo idioma={idioma} status={chamada.status} />
-        <Chip vazado>{t.comum.tiposEdital[chamada.tipo]}</Chip>
+      <div className="linha linha--fim" style={{ gap: 12 }}>
+        <div className="linha" style={{ gap: 8 }}>
+          <Selo idioma={idioma} status={chamada.status} />
+          <Chip vazado>{t.comum.tiposEdital[chamada.tipo]}</Chip>
+        </div>
+        {chamada.logoOrganizacao ? (
+          // eslint-disable-next-line @next/next/no-img-element
+          <img
+            src={arquivoPublico(chamada.logoOrganizacao)}
+            alt={chamada.organizacao ?? ''}
+            style={{ height: 16, width: 'auto', display: 'block', flex: 'none' }}
+          />
+        ) : null}
       </div>
 
       <div>

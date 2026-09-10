@@ -4,7 +4,7 @@ import { Chip } from '@/components/Chip';
 import { Selo } from '@/components/Selo';
 import type { Idioma } from '@/i18n/idiomas';
 import { textos } from '@/i18n/strings';
-import { dataCurta, moeda } from '@/lib/format';
+import { arquivoPublico, dataCurta, moeda } from '@/lib/format';
 import { rota } from '@/lib/rotas';
 import type { Call } from '@/lib/types';
 
@@ -24,9 +24,19 @@ export function CartaoEdital({ idioma, edital }: { idioma: Idioma; edital: Call 
 
   return (
     <Link href={rota(idioma, `oportunidades/${edital.slug}`)} className="cartao">
-      <div className="linha" style={{ gap: 8 }}>
-        <Selo idioma={idioma} status={edital.status} />
-        <Chip vazado>{t.comum.tiposEdital[edital.tipo]}</Chip>
+      <div className="linha linha--fim" style={{ gap: 12 }}>
+        <div className="linha" style={{ gap: 8 }}>
+          <Selo idioma={idioma} status={edital.status} />
+          <Chip vazado>{t.comum.tiposEdital[edital.tipo]}</Chip>
+        </div>
+        {edital.logoOrganizacao ? (
+          // eslint-disable-next-line @next/next/no-img-element
+          <img
+            src={arquivoPublico(edital.logoOrganizacao)}
+            alt={edital.organizacao ?? ''}
+            style={{ height: 16, width: 'auto', display: 'block', flex: 'none' }}
+          />
+        ) : null}
       </div>
 
       <div>
