@@ -14,7 +14,7 @@ import { prazoEmLinha } from './_prazo';
 function rodape(idioma: Idioma, edital: Call): string {
   if (edital.status === 'encerrada' && edital.resultado) {
     const t = textos(idioma);
-    return `${t.editais.resultadoPublicadoEm} ${dataCurta(edital.resultado.publicadoEm)}`;
+    return `${t.editais.resultadoPublicadoEm} ${dataCurta(edital.resultado.publicadoEm, idioma)}`;
   }
   return prazoEmLinha(idioma, edital, true);
 }
@@ -66,14 +66,14 @@ export function CartaoEdital({ idioma, edital }: { idioma: Idioma; edital: Call 
       >
         <div>
           <dt>{t.comum.rotulos.valorTotal}</dt>
-          <dd>{moeda(edital.valorTotal)}</dd>
+          <dd>{moeda(edital.valorTotal, idioma)}</dd>
         </div>
         <div>
           <dt>{t.comum.rotulos.apoio}</dt>
           <dd>
-            {`${moeda(edital.faixaApoio.min)} ${t.editais.faixaSeparador} ${moeda(
-              edital.faixaApoio.max,
-            )}`}
+            {`${moeda(edital.faixaApoio.min, idioma)} ${t.editais.faixaSeparador} ${moeda(
+              edital.faixaApoio.max, idioma
+)}`}
           </dd>
         </div>
       </dl>

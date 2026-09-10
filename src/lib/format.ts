@@ -1,13 +1,35 @@
-/** Formatadores. Deterministas: nada depende do relogio nem do fuso. */
+/**
+ * Formatadores. Deterministas: nada depende do relogio nem do fuso.
+ *
+ * TODOS RECEBEM IDIOMA, e o padrao e portugues para nao quebrar quem ainda nao
+ * passa. O motivo e um erro que estava no ar: numero em portugues dentro das
+ * paginas em ingles. "R$ 10.000" formatado em pt-BR e lido por quem fala ingles
+ * como dez reais, nao dez mil, porque em ingles o ponto e separador decimal. O
+ * mesmo texto trazia "14 de outubro de 2026" numa pagina em espanhol.
+ *
+ * Quem chama de dentro de uma tela por idioma DEVE passar o idioma. Se aparecer
+ * numero ou data em portugues numa pagina em ingles, e uma chamada sem idioma.
+ */
 
-const MESES = [
-  'janeiro', 'fevereiro', 'março', 'abril', 'maio', 'junho',
-  'julho', 'agosto', 'setembro', 'outubro', 'novembro', 'dezembro',
-];
+import type { Idioma } from '@/i18n/idiomas';
+import { textos } from '@/i18n/strings';
 
-/** 42000 -> "R$ 42.000" */
-export function moeda(valor: number): string {
-  return new Intl.NumberFormat('pt-BR', {
+/**
+ * Locale de numero por idioma.
+ *
+ * Espanhol usa pt-BR de proposito. Os separadores sao os mesmos (ponto para
+ * milhar), e o locale 'es' com moeda BRL escreve "10.000 BRL", trocando o
+ * simbolo por codigo. Para um programa brasileiro lido em espanhol, "R$ 10.000"
+ * diz mais do que "10.000 BRL", e os separadores continuam certos.
+ */
+const LOCALE_DE_MOEDA: Record<Idioma, string> = { pt: 'pt-BR', en: 'en', es: 'pt-BR' };
+
+/** Para numero puro cada idioma usa o proprio locale: todos acertam. */
+const LOCALE_DE_NUMERO: Record<Idioma, string> = { pt: 'pt-BR', en: 'en', es: 'es' };
+
+/** 42000 -> "R$ 42.000" em portugues, "R$42,000" em ingles */
+export function moeda(valor: number, idioma: Idioma = 'pt'): string {
+  return new Intl.NumberFormat(LOCALE_DE_MOEDA[idioma], {
     style: 'currency',
     currency: 'BRL',
     maximumFractionDigits: 0,
@@ -27,23 +49,39 @@ export function seguidores(total: number): string {
   return numero(total);
 }
 
-/** 1250000 -> "1.250.000" */
-export function numero(valor: number): string {
-  return new Intl.NumberFormat('pt-BR').format(valor);
+/** 1250000 -> "1.250.000" em portugues, "1,250,000" em ingles */
+export function numero(valor: number, idioma: Idioma = 'pt'): string {
+  return new Intl.NumberFormat(LOCALE_DE_NUMERO[idioma]).format(valor);
 }
 
-/** "2026-03-12" -> "12 de março de 2026" */
-export function data(iso: string): string {
+/*
+ * Mes e modelo de data vem de i18n, do namespace de aprendizado, onde a
+ * biblioteca ja os mantinha nos tres idiomas. Ficam la, e nao duplicados aqui,
+ * porque duas listas de meses divergem no dia em que alguem corrige uma so.
+ */
+function calendario(idioma: Idioma) {
+  return textos(idioma).aprendizado.materiais;
+}
+
+/** "2026-03-12" -> "12 de março de 2026" | "March 12, 2026" */
+export function data(iso: string, idioma: Idioma = 'pt'): string {
   const [ano, mes, dia] = iso.split('-').map(Number);
   if (!ano || !mes || !dia) return iso;
-  return `${dia} de ${MESES[mes - 1]} de ${ano}`;
+  const { meses, dataModelo } = calendario(idioma);
+  return dataModelo
+    .replace('{dia}', String(dia))
+    .replace('{mes}', meses[mes - 1])
+    .replace('{ano}', String(ano));
 }
 
-/** "2026-03-12" -> "12/03/2026" */
-export function dataCurta(iso: string): string {
+/** "2026-03-12" -> "12/03/2026" | "03/12/2026" em ingles */
+export function dataCurta(iso: string, idioma: Idioma = 'pt'): string {
   const [ano, mes, dia] = iso.split('-');
   if (!ano || !mes || !dia) return iso;
-  return `${dia}/${mes}/${ano}`;
+  return calendario(idioma)
+    .dataCurtaModelo.replace('{dia}', dia)
+    .replace('{mes}', mes)
+    .replace('{ano}', ano);
 }
 
 /** Iniciais para avatares: "Ana Beatriz Quirino" -> "AQ" */

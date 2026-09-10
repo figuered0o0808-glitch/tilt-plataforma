@@ -86,7 +86,7 @@ export function Lateral({ idioma, edital }: { idioma: Idioma; edital: Call }) {
               {t.editais.emAvaliacaoAviso}
             </p>
             {previsao ? (
-              <Data rotulo={t.editais.resultadoPrevistoPara} valor={data(previsao)} />
+              <Data rotulo={t.editais.resultadoPrevistoPara} valor={data(previsao, idioma)} />
             ) : null}
             <Botao href={rota(idioma, 'oportunidades')} variante="secundario" largo>
               {t.editais.voltarLista}
@@ -103,7 +103,7 @@ export function Lateral({ idioma, edital }: { idioma: Idioma; edital: Call }) {
               <>
                 <Data
                   rotulo={t.editais.resultadoPublicadoEm}
-                  valor={data(edital.resultado.publicadoEm)}
+                  valor={data(edital.resultado.publicadoEm, idioma)}
                 />
                 <Botao href="#resultado" largo>
                   {t.editais.verResultado}

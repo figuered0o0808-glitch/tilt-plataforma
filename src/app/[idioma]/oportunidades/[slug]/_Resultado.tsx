@@ -34,7 +34,7 @@ export function Resultado({
         <div className="linha linha--fim" style={{ alignItems: 'flex-end', gap: 24 }}>
           <h2 style={{ margin: 0 }}>{t.editais.secoes.resultado}</h2>
           <p className="texto-pequeno" style={{ margin: 0 }}>
-            {`${t.editais.publicadoEm} ${data(resultado.publicadoEm)}`}
+            {`${t.editais.publicadoEm} ${data(resultado.publicadoEm, idioma)}`}
           </p>
         </div>
 
@@ -55,11 +55,11 @@ export function Resultado({
         >
           <Numero
             rotulo={t.editais.inscricoesRecebidas}
-            valor={numero(resultado.inscricoesRecebidas)}
+            valor={numero(resultado.inscricoesRecebidas, idioma)}
           />
           <Numero
             rotulo={t.editais.projetosApoiados}
-            valor={numero(resultado.apoiados.length)}
+            valor={numero(resultado.apoiados.length, idioma)}
           />
         </dl>
 

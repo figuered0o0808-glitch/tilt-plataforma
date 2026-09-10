@@ -65,13 +65,13 @@ export default async function Home({ params }: { params: Promise<{ idioma: strin
 
   const indicadores: (Indicador | null)[] = [
     !chamadaUnica && totalAberto > 0
-      ? { rotulo: t.home.numeros.recursos, valor: moeda(totalAberto) }
+      ? { rotulo: t.home.numeros.recursos, valor: moeda(totalAberto, idioma) }
       : null,
     !chamadaUnica && abertas.length > 0
-      ? { rotulo: t.home.numeros.chamadas, valor: numero(abertas.length) }
+      ? { rotulo: t.home.numeros.chamadas, valor: numero(abertas.length, idioma) }
       : null,
-    temCursos ? { rotulo: t.home.numeros.cursos, valor: numero(cursos.length) } : null,
-    temMateriais ? { rotulo: t.home.numeros.materiais, valor: numero(materiais.length) } : null,
+    temCursos ? { rotulo: t.home.numeros.cursos, valor: numero(cursos.length, idioma) } : null,
+    temMateriais ? { rotulo: t.home.numeros.materiais, valor: numero(materiais.length, idioma) } : null,
   ];
   /* Numero solto nao e faixa de numeros: quem o tem e o cartao que o explica. */
   const numeros = indicadores.filter((item): item is Indicador => item !== null);
@@ -221,7 +221,7 @@ export default async function Home({ params }: { params: Promise<{ idioma: strin
                     </div>
                   </dl>
                   <div className="cartao__rodape">
-                    <span>{`${numero(curso.modulos.length)} ${
+                    <span>{`${numero(curso.modulos.length, idioma)} ${
                       curso.modulos.length === 1 ? t.home.cursoModuloUm : t.home.cursoModulos
                     }`}</span>
                     <span className="link-seta">{t.comum.acoes.verCurso}</span>
@@ -235,7 +235,7 @@ export default async function Home({ params }: { params: Promise<{ idioma: strin
                     <Chip vazado>{t.home.materiaisOlho}</Chip>
                   </div>
                   <h3 className="cartao__titulo">
-                    {`${numero(materiais.length)} ${
+                    {`${numero(materiais.length, idioma)} ${
                       materiais.length === 1 ? t.home.materialContagemUm : t.home.materiaisContagem
                     }`}
                   </h3>

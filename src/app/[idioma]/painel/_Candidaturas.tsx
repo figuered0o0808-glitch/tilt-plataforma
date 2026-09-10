@@ -68,15 +68,15 @@ function SemCandidatura({ idioma, abertas }: { idioma: Idioma; abertas: Call[] }
             <div>
               <dt>{t.comum.rotulos.apoio}</dt>
               <dd>
-                {`${moeda(edital.faixaApoio.min)} ${t.editais.faixaSeparador} ${moeda(
-                  edital.faixaApoio.max,
-                )}`}
+                {`${moeda(edital.faixaApoio.min, idioma)} ${t.editais.faixaSeparador} ${moeda(
+                  edital.faixaApoio.max, idioma
+)}`}
               </dd>
             </div>
             <div>
               <dt>{t.comum.rotulos.prazo}</dt>
               <dd>
-                {edital.inscricoesAte ? dataCurta(edital.inscricoesAte) : t.editais.semPrazo}
+                {edital.inscricoesAte ? dataCurta(edital.inscricoesAte, idioma) : t.editais.semPrazo}
               </dd>
             </div>
           </dl>
@@ -146,8 +146,8 @@ export function Candidaturas({
                 </span>
                 <span className="texto-mini">{candidatura.formato}</span>
               </td>
-              <td className="num">{moeda(candidatura.valorSolicitado)}</td>
-              <td>{dataCurta(candidatura.enviadaEm)}</td>
+              <td className="num">{moeda(candidatura.valorSolicitado, idioma)}</td>
+              <td>{dataCurta(candidatura.enviadaEm, idioma)}</td>
               <td>
                 <Selo idioma={idioma} status={candidatura.status} />
               </td>
@@ -158,7 +158,7 @@ export function Candidaturas({
           <tfoot>
             <tr>
               <td colSpan={2}>{s.totalSolicitado}</td>
-              <td className="num">{moeda(total)}</td>
+              <td className="num">{moeda(total, idioma)}</td>
               <td colSpan={2} />
             </tr>
           </tfoot>

@@ -597,7 +597,30 @@ a.cartao:hover .cartao__titulo { text-decoration: underline; text-underline-offs
 
 /* ---------- Tabelas ---------- */
 
-.tabela-rolagem { overflow-x: auto; border: 1px solid var(--preto); border-radius: 2px; background: var(--branco); }
+/*
+ * A tabela e mais larga que o quadro no telefone (min-width de 580px contra
+ * ~337px de largura util em 375), e no macOS e no iOS a barra de rolagem so
+ * aparece durante o gesto: a tabela terminava rente a borda do cartao e parecia
+ * completa, com uma coluna inteira escondida. As duas tampas brancas sao
+ * `local` e andam com o conteudo; as duas sombras sao `scroll` e ficam presas
+ * ao quadro. O efeito e que a sombra so existe do lado que ainda tem coluna por
+ * ver, e some sozinha ao chegar na ponta.
+ */
+.tabela-rolagem {
+  overflow-x: auto;
+  border: 1px solid var(--preto);
+  border-radius: 2px;
+  background-color: var(--branco);
+  background-image:
+    linear-gradient(to right, var(--branco), rgba(255, 255, 255, 0)),
+    linear-gradient(to left, var(--branco), rgba(255, 255, 255, 0)),
+    linear-gradient(to right, rgba(0, 0, 0, 0.26), rgba(0, 0, 0, 0)),
+    linear-gradient(to left, rgba(0, 0, 0, 0.26), rgba(0, 0, 0, 0));
+  background-position: left center, right center, left center, right center;
+  background-repeat: no-repeat;
+  background-size: 26px 100%, 26px 100%, 12px 100%, 12px 100%;
+  background-attachment: local, local, scroll, scroll;
+}
 .tabela { font-size: var(--texto-g); min-width: 580px; }
 .tabela th {
   text-align: left;

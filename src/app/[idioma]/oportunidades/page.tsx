@@ -113,20 +113,20 @@ export default async function PaginaEditais({
               <div>
                 <dt>{t.editais.resumoAbertas}</dt>
                 <dd>
-                  <span className="numero-grande">{numero(resumo.abertas)}</span>
+                  <span className="numero-grande">{numero(resumo.abertas, idioma)}</span>
                 </dd>
               </div>
               <div>
                 <dt>{t.editais.resumoRecursos}</dt>
                 <dd>
-                  <span className="numero-grande">{moeda(resumo.recursos)}</span>
+                  <span className="numero-grande">{moeda(resumo.recursos, idioma)}</span>
                 </dd>
               </div>
               {resumo.apoiados > 0 ? (
                 <div>
                   <dt>{t.editais.resumoApoiados}</dt>
                   <dd>
-                    <span className="numero-grande">{numero(resumo.apoiados)}</span>
+                    <span className="numero-grande">{numero(resumo.apoiados, idioma)}</span>
                   </dd>
                 </div>
               ) : null}

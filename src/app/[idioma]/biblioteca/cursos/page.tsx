@@ -70,7 +70,7 @@ export default async function CursosPage({
                   <p className="cartao__texto">{curso.resumo}</p>
                   <div className="cartao__rodape">
                     <span>
-                      {t.aprendizado.cursos.proximaTurma}: {data(curso.proximaTurma)}
+                      {t.aprendizado.cursos.proximaTurma}: {data(curso.proximaTurma, idioma)}
                     </span>
                     <Botao
                       href={rota(idioma, `biblioteca/cursos/${curso.slug}`)}

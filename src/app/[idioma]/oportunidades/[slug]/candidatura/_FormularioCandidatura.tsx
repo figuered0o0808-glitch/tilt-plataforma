@@ -100,6 +100,8 @@ function validarProjeto(
   faixa: { min: number; max: number },
   tc: TextosCandidatura,
   separador: string,
+  /* A mensagem de faixa cita valores, e valor tem formato por idioma. */
+  idioma: Idioma,
 ): Erros {
   const erros: Erros = {};
   if (!dados.projeto.trim()) erros.projeto = tc.erros.obrigatorio;
@@ -110,7 +112,7 @@ function validarProjeto(
   if (!dados.valor.trim()) erros.valor = tc.erros.obrigatorio;
   else if (!Number.isFinite(valor) || valor <= 0) erros.valor = tc.erros.valorNumero;
   else if (valor < faixa.min || valor > faixa.max) {
-    erros.valor = `${tc.erros.valorFaixa} ${moeda(faixa.min)} ${separador} ${moeda(faixa.max)}.`;
+    erros.valor = `${tc.erros.valorFaixa} ${moeda(faixa.min, idioma)} ${separador} ${moeda(faixa.max, idioma)}.`;
   }
 
   if (!dados.justificativa.trim()) erros.justificativa = tc.erros.obrigatorio;
@@ -125,9 +127,10 @@ function validarPasso(
   faixa: { min: number; max: number },
   tc: TextosCandidatura,
   separador: string,
+  idioma: Idioma,
 ): Erros {
   if (passo === 0) return validarProponente(dados, tc);
-  if (passo === 1) return validarProjeto(dados, faixa, tc, separador);
+  if (passo === 1) return validarProjeto(dados, faixa, tc, separador, idioma);
   return {};
 }
 
@@ -159,9 +162,9 @@ export function FormularioCandidatura({
   const topo = useRef<HTMLDivElement>(null);
 
   const faixa = edital.faixaApoio;
-  const faixaTexto = `${tc.projeto.faixaAjuda} ${moeda(faixa.min)} ${separador} ${moeda(
-    faixa.max,
-  )}.`;
+  const faixaTexto = `${tc.projeto.faixaAjuda} ${moeda(faixa.min, idioma)} ${separador} ${moeda(
+    faixa.max, idioma
+)}.`;
 
   function irPara(destino: number) {
     setPasso(destino);
@@ -197,7 +200,7 @@ export function FormularioCandidatura({
   }
 
   function avancar() {
-    const encontrados = validarPasso(passo, dados, faixa, tc, separador);
+    const encontrados = validarPasso(passo, dados, faixa, tc, separador, idioma);
     setErros(encontrados);
     if (Object.keys(encontrados).length === 0) irPara(passo + 1);
   }
@@ -205,7 +208,7 @@ export function FormularioCandidatura({
   function enviar() {
     const encontrados = {
       ...validarProponente(dados, tc),
-      ...validarProjeto(dados, faixa, tc, separador),
+      ...validarProjeto(dados, faixa, tc, separador, idioma),
     };
     if (Object.keys(encontrados).length > 0) {
       setErros(encontrados);
@@ -262,10 +265,10 @@ export function FormularioCandidatura({
           </p>
           <div>
             <Item rotulo={tc.confirmacao.protocolo} valor={enviada.id} />
-            <Item rotulo={tc.confirmacao.enviadaEm} valor={data(enviada.enviadaEm)} />
+            <Item rotulo={tc.confirmacao.enviadaEm} valor={data(enviada.enviadaEm, idioma)} />
             <Item rotulo={tc.confirmacao.edital} valor={enviada.editalTitulo} />
             <Item rotulo={tc.confirmacao.projeto} valor={enviada.projeto} />
-            <Item rotulo={tc.confirmacao.valor} valor={moeda(enviada.valorSolicitado)} />
+            <Item rotulo={tc.confirmacao.valor} valor={moeda(enviada.valorSolicitado, idioma)} />
             <Item rotulo={tc.confirmacao.situacao} valor={<Selo idioma={idioma} status={enviada.status} />} />
           </div>
 
@@ -501,7 +504,7 @@ export function FormularioCandidatura({
                 <Item rotulo={tc.projeto.nome} valor={dados.projeto} />
                 <Item rotulo={tc.projeto.descricao} valor={dados.descricao} />
                 <Item rotulo={tc.projeto.formato} valor={dados.formato} />
-                <Item rotulo={tc.projeto.valor} valor={moeda(Number(dados.valor))} />
+                <Item rotulo={tc.projeto.valor} valor={moeda(Number(dados.valor), idioma)} />
                 <Item rotulo={tc.projeto.justificativa} valor={dados.justificativa} />
                 <Item rotulo={tc.projeto.alcance} valor={dados.alcance} />
                 <Item rotulo={tc.projeto.distribuicao} valor={dados.distribuicao} />

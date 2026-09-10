@@ -123,14 +123,14 @@ export default async function PaginaEdital({
             </div>
             <div>
               <dt>{t.comum.rotulos.valorTotal}</dt>
-              <dd>{moeda(edital.valorTotal)}</dd>
+              <dd>{moeda(edital.valorTotal, idioma)}</dd>
             </div>
             <div>
               <dt>{t.comum.rotulos.apoio}</dt>
               <dd>
-                {`${moeda(edital.faixaApoio.min)} ${t.editais.faixaSeparador} ${moeda(
-                  edital.faixaApoio.max,
-                )}`}
+                {`${moeda(edital.faixaApoio.min, idioma)} ${t.editais.faixaSeparador} ${moeda(
+                  edital.faixaApoio.max, idioma
+)}`}
               </dd>
             </div>
             <div>
@@ -230,7 +230,7 @@ export default async function PaginaEdital({
                 <Secao id="cronograma" titulo={t.editais.secoes.cronograma}>
                   <div>
                     {edital.cronograma.map((etapa) => (
-                      <Registro key={etapa.etapa} rotulo={data(etapa.data)}>
+                      <Registro key={etapa.etapa} rotulo={data(etapa.data, idioma)}>
                         <p style={{ margin: 0 }}>{etapa.etapa}</p>
                       </Registro>
                     ))}

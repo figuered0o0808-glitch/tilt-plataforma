@@ -93,14 +93,14 @@ export function ChamadaDestaque({
         </div>
         <div>
           <dt>{t.comum.rotulos.valorTotal}</dt>
-          <dd>{moeda(edital.valorTotal)}</dd>
+          <dd>{moeda(edital.valorTotal, idioma)}</dd>
         </div>
         <div>
           <dt>{t.comum.rotulos.apoio}</dt>
           <dd>
-            {`${moeda(edital.faixaApoio.min)} ${t.editais.faixaSeparador} ${moeda(
-              edital.faixaApoio.max,
-            )}`}
+            {`${moeda(edital.faixaApoio.min, idioma)} ${t.editais.faixaSeparador} ${moeda(
+              edital.faixaApoio.max, idioma
+)}`}
           </dd>
         </div>
         <div>

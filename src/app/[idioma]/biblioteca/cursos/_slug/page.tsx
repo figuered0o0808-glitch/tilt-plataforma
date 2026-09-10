@@ -122,7 +122,7 @@ export default async function CursoPage({
                 </div>
                 <div>
                   <dt>{t.aprendizado.cursos.proximaTurma}</dt>
-                  <dd>{data(curso.proximaTurma)}</dd>
+                  <dd>{data(curso.proximaTurma, idioma)}</dd>
                 </div>
               </dl>
             </div>

@@ -8,7 +8,7 @@
     "start": "npx serve docs",
     "lint": "next lint",
     "typecheck": "tsc --noEmit",
-    "publicar": "next build && rm -rf docs && mv out docs && touch docs/.nojekyll"
+    "publicar": "next build && rm -rf docs && mv out docs && touch docs/.nojekyll && node scripts/idioma-no-html.mjs"
   },
   "dependencies": {
     "next": "^15.5.25",
