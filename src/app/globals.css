@@ -606,11 +606,11 @@ select {
   overflow: hidden;
 }
 .publicacao__capa {
-  border-right: 1px solid var(--preto);
+  /* Sem borda e sem respiro: a capa sangra ate o corte do cartao. */
   background: var(--areia);
   display: flex;
   align-items: stretch;
-  padding: 14px;
+  overflow: hidden;
 }
 .publicacao__ficha {
   display: flex;
@@ -632,9 +632,8 @@ select {
   display: block;
   width: 100%;
   height: 100%;
-  /* Capa de publicacao e documento: mostrar inteira, nunca cortar o titulo. */
-  object-fit: contain;
-  object-position: center;
+  object-fit: cover;
+  object-position: center top;
 }
 .capa--gerada {
   position: relative;
@@ -660,8 +659,8 @@ select {
 
 @media (max-width: 760px) {
   .publicacao { grid-template-columns: minmax(0, 1fr); }
-  .publicacao__capa { border-right: 0; border-bottom: 1px solid var(--preto); }
-  .capa { height: auto; max-height: 220px; }
+  .publicacao__capa { max-height: 200px; }
+  .capa { height: 200px; }
 }
 
 /* Nichos: selecao multipla em pilulas, sem lista comprida de caixas. */

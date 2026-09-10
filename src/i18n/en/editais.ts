@@ -3,7 +3,9 @@
  * cada chamada e bloco de resultado publicado.
  */
 export const editais = {
-  listaOlho: 'Funding for original projects',
+  termoEtapaResultado: 'result',
+  posicaoSufixo: '.',
+  faixaSeparador: 'to',
   listaTitulo: 'Opportunities',
 
   resumoTitulo: 'Cycle status',
