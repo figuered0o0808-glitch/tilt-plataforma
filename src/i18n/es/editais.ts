@@ -71,15 +71,13 @@ export const editais = {
 
   publicadoEm: 'Publicado el',
   resultadoFundamentacao: 'Fundamentación de la decisión',
-  resultadoTabelaTitulo: 'Lista íntegra de apoyados',
+  resultadoTabelaTitulo: 'Proyectos seleccionados',
   resultadoColunas: {
     apoiado: 'Apoyado',
     projeto: 'Proyecto',
     formato: 'Formato',
     uf: 'UF',
-    valor: 'Monto',
   },
-  totalApoiado: 'Total apoyado',
   inscricoesRecebidas: 'Inscripciones recibidas',
   projetosApoiados: 'Proyectos apoyados',
   resultadoPublicadoEm: 'Resultado publicado el',

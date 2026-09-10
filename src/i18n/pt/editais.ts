@@ -13,7 +13,7 @@ export const editais = {
   /* Estado da aba enquanto nenhuma chamada foi publicada. */
   semChamadaTitulo: 'Ainda não há chamada aberta',
   semChamadaTexto:
-    'A primeira chamada será publicada nesta página, com o texto integral, os critérios de seleção, a banca e o prazo de inscrição. O resultado fica publicado na página da chamada, com a relação de apoiados e os valores.',
+    'A primeira chamada será publicada nesta página, com o texto integral, os critérios de seleção, a banca e o prazo de inscrição.',
   prepararTitulo: 'O que você pode adiantar',
   prepararItens: [
     'Título e descrição do projeto, com a abordagem e a quantidade de peças',
@@ -75,15 +75,13 @@ export const editais = {
 
   publicadoEm: 'Publicado em',
   resultadoFundamentacao: 'Fundamentação da decisão',
-  resultadoTabelaTitulo: 'Relação integral de apoiados',
+  resultadoTabelaTitulo: 'Projetos selecionados',
   resultadoColunas: {
     apoiado: 'Apoiado',
     projeto: 'Projeto',
     formato: 'Formato',
     uf: 'UF',
-    valor: 'Valor',
   },
-  totalApoiado: 'Total apoiado',
   inscricoesRecebidas: 'Inscrições recebidas',
   projetosApoiados: 'Projetos apoiados',
   resultadoPublicadoEm: 'Resultado publicado em',

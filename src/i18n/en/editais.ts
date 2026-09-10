@@ -14,7 +14,7 @@ export const editais = {
   /* Estado da aba enquanto nenhuma chamada foi publicada. */
   semChamadaTitulo: 'No call is open yet',
   semChamadaTexto:
-    'The first call will be published on this page, with the full text, the selection criteria, the panel and the application deadline. The result stays published on the call page, with the list of recipients and the amounts.',
+    'The first call will be published on this page, with the full text, the selection criteria, the panel and the application deadline.',
   prepararTitulo: 'What you can prepare ahead',
   prepararItens: [
     'Project title and description, with the approach and the number of pieces',
@@ -71,15 +71,13 @@ export const editais = {
 
   publicadoEm: 'Published on',
   resultadoFundamentacao: 'Grounds for the decision',
-  resultadoTabelaTitulo: 'Full list of recipients',
+  resultadoTabelaTitulo: 'Selected projects',
   resultadoColunas: {
     apoiado: 'Recipient',
     projeto: 'Project',
     formato: 'Format',
     uf: 'State',
-    valor: 'Amount',
   },
-  totalApoiado: 'Total support',
   inscricoesRecebidas: 'Applications received',
   projetosApoiados: 'Projects supported',
   resultadoPublicadoEm: 'Result published on',
