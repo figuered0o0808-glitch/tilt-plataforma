@@ -599,7 +599,12 @@ select {
 /* Cartao de publicacao: capa a esquerda, ficha a direita. */
 .publicacao {
   display: grid;
-  grid-template-columns: 148px minmax(0, 1fr);
+  /*
+   * A largura acompanha a proporcao da capa. Estreita demais, o `cover` come as
+   * laterais e corta o titulo impresso na propria capa, que e o que identifica
+   * o material na lista.
+   */
+  grid-template-columns: 190px minmax(0, 1fr);
   gap: 0;
   align-items: stretch;
   padding: 0;

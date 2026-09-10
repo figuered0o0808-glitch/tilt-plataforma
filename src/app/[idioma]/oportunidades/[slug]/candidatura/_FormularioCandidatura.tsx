@@ -1,6 +1,6 @@
 'use client';
 
-import { useRef, useState, type FormEvent, type ReactNode } from 'react';
+import { useMemo, useRef, useState, type FormEvent, type ReactNode } from 'react';
 
 import { Botao } from '@/components/Botao';
 import { CampoArea, CampoSelecao, CampoTexto } from '@/components/Campo';
@@ -10,6 +10,7 @@ import { Selo } from '@/components/Selo';
 import type { Idioma } from '@/i18n/idiomas';
 import { textos, type Strings } from '@/i18n/strings';
 import { data, moeda } from '@/lib/format';
+import { PAIS_PADRAO, nomeDoPais, opcoesDePais } from '@/lib/paises';
 import { rota } from '@/lib/rotas';
 import type { Candidatura } from '@/lib/types';
 import { useApp } from '@/state/AppState';
@@ -26,7 +27,10 @@ type TextosCandidatura = Strings['fluxos']['candidatura'];
 interface Dados {
   nome: string;
   documento: string;
+  /** Codigo ISO de dois digitos. Ver src/lib/paises.ts. */
+  pais: string;
   cidade: string;
+  /** UF quando o pais e o Brasil; nome livre da regiao nos demais. */
   uf: string;
   email: string;
   projeto: string;
@@ -44,6 +48,7 @@ type Erros = Partial<Record<NomeCampo, string>>;
 const VAZIO: Dados = {
   nome: '',
   documento: '',
+  pais: PAIS_PADRAO,
   cidade: '',
   uf: '',
   email: '',
@@ -57,7 +62,7 @@ const VAZIO: Dados = {
 };
 
 const CAMPOS_DO_PASSO: NomeCampo[][] = [
-  ['nome', 'documento', 'cidade', 'uf', 'email'],
+  ['nome', 'documento', 'pais', 'cidade', 'uf', 'email'],
   ['projeto', 'descricao', 'formato', 'valor', 'justificativa', 'alcance', 'distribuicao'],
 ];
 
@@ -71,11 +76,20 @@ function emailValido(valor: string): boolean {
 
 function validarProponente(dados: Dados, tc: TextosCandidatura): Erros {
   const erros: Erros = {};
+  /*
+   * A regra de 11 ou 14 digitos e a do CPF e do CNPJ, e so vale no Brasil.
+   * Aplicada a quem propoe de fora, ela recusa um documento valido; por isso
+   * fora do Brasil o documento so precisa existir. Pela mesma razao a UF, que e
+   * uma lista brasileira, deixa de ser obrigatoria e vira regiao em texto.
+   */
+  const noBrasil = dados.pais === PAIS_PADRAO;
+
   if (!dados.nome.trim()) erros.nome = tc.erros.obrigatorio;
   if (!dados.documento.trim()) erros.documento = tc.erros.obrigatorio;
-  else if (![11, 14].includes(digitos(dados.documento).length)) erros.documento = tc.erros.documento;
+  else if (noBrasil && ![11, 14].includes(digitos(dados.documento).length))
+    erros.documento = tc.erros.documento;
   if (!dados.cidade.trim()) erros.cidade = tc.erros.obrigatorio;
-  if (!dados.uf) erros.uf = tc.erros.uf;
+  if (noBrasil && !dados.uf) erros.uf = tc.erros.uf;
   if (!dados.email.trim()) erros.email = tc.erros.obrigatorio;
   else if (!emailValido(dados.email)) erros.email = tc.erros.email;
   return erros;
@@ -160,6 +174,24 @@ export function FormularioCandidatura({
       if (!atual[campo]) return atual;
       const proximo = { ...atual };
       delete proximo[campo];
+      return proximo;
+    });
+  }
+
+  const paises = useMemo(() => opcoesDePais(idioma), [idioma]);
+  const noBrasil = dados.pais === PAIS_PADRAO;
+
+  /*
+   * Trocar de pais limpa a regiao e o erro dela: a UF marcada antes pertence a
+   * uma lista que sai da tela junto com o Brasil.
+   */
+  function trocarPais(codigo: string) {
+    setDados((atual) => ({ ...atual, pais: codigo, uf: '' }));
+    setErros((atual) => {
+      if (!atual.uf && !atual.documento) return atual;
+      const proximo = { ...atual };
+      delete proximo.uf;
+      delete proximo.documento;
       return proximo;
     });
   }
@@ -278,9 +310,13 @@ export function FormularioCandidatura({
             <div className="grade--2" style={{ gap: 16 }}>
               <CampoTexto idioma={idioma}
                 id="documento"
-                rotulo={tc.proponente.documento}
-                placeholder={tc.proponente.exemplos.documento}
-                inputMode="numeric"
+                rotulo={noBrasil ? tc.proponente.documento : tc.proponente.documentoFora}
+                placeholder={
+                  noBrasil
+                    ? tc.proponente.exemplos.documento
+                    : tc.proponente.exemplos.documentoFora
+                }
+                inputMode={noBrasil ? 'numeric' : 'text'}
                 value={dados.documento}
                 erro={erros.documento}
                 onChange={(evento) => atualizar('documento', evento.target.value)}
@@ -297,6 +333,15 @@ export function FormularioCandidatura({
               />
             </div>
 
+            <CampoSelecao
+              idioma={idioma}
+              id="pais"
+              rotulo={tc.proponente.pais}
+              opcoes={paises}
+              value={dados.pais}
+              onChange={(evento) => trocarPais(evento.target.value)}
+            />
+
             <div className="grade--2" style={{ gap: 16 }}>
               <CampoTexto idioma={idioma}
                 id="cidade"
@@ -307,15 +352,27 @@ export function FormularioCandidatura({
                 autoComplete="off"
                 onChange={(evento) => atualizar('cidade', evento.target.value)}
               />
-              <CampoSelecao idioma={idioma}
-                id="uf"
-                rotulo={tc.proponente.uf}
-                vazio={tc.selecioneUf}
-                opcoes={tc.ufs.map((uf) => ({ valor: uf, rotulo: uf }))}
-                value={dados.uf}
-                erro={erros.uf}
-                onChange={(evento) => atualizar('uf', evento.target.value)}
-              />
+              {noBrasil ? (
+                <CampoSelecao idioma={idioma}
+                  id="uf"
+                  rotulo={tc.proponente.uf}
+                  vazio={tc.selecioneUf}
+                  opcoes={tc.ufs.map((uf) => ({ valor: uf, rotulo: uf }))}
+                  value={dados.uf}
+                  erro={erros.uf}
+                  onChange={(evento) => atualizar('uf', evento.target.value)}
+                />
+              ) : (
+                <CampoTexto
+                  idioma={idioma}
+                  id="regiao"
+                  rotulo={tc.proponente.regiao}
+                  value={dados.uf}
+                  autoComplete="off"
+                  opcional
+                  onChange={(evento) => atualizar('uf', evento.target.value)}
+                />
+              )}
             </div>
           </section>
         ) : null}
@@ -421,8 +478,15 @@ export function FormularioCandidatura({
                 <Item rotulo={tc.proponente.nome} valor={dados.nome} />
                 <Item rotulo={tc.proponente.documento} valor={dados.documento} />
                 <Item rotulo={tc.proponente.email} valor={dados.email} />
+                <Item rotulo={tc.proponente.pais} valor={nomeDoPais(dados.pais, idioma)} />
                 <Item rotulo={tc.proponente.cidade} valor={dados.cidade} />
-                <Item rotulo={tc.proponente.uf} valor={dados.uf} />
+                {/* Fora do Brasil a regiao e opcional: em branco, nao vira linha. */}
+                {dados.uf ? (
+                  <Item
+                    rotulo={noBrasil ? tc.proponente.uf : tc.proponente.regiao}
+                    valor={dados.uf}
+                  />
+                ) : null}
               </div>
             </div>
 

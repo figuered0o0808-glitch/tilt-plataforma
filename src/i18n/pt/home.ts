@@ -62,8 +62,10 @@ export const home = {
   cursoOlho: 'Curso inaugural',
   cursoDuracao: 'Duração',
   cursoTurma: 'Próxima turma',
+  cursoModuloUm: 'módulo',
   cursoModulos: 'módulos',
   materiaisOlho: 'Materiais de consulta',
+  materialContagemUm: 'material publicado',
   materiaisContagem: 'materiais publicados',
   materiaisTexto:
     'Guias e notas técnicas curtas. Para criadores, declaração de apoio e checagem antes de publicar. Para organizações, briefing que respeita a autonomia e medição de resultado.',

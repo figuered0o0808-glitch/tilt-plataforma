@@ -14,7 +14,7 @@
  * nele.
  */
 
-import { useEffect, useRef, useState, type CSSProperties } from 'react';
+import { useEffect, useMemo, useRef, useState, type CSSProperties } from 'react';
 
 import type { RedeDoCriador } from '@/lib/types';
 
@@ -25,6 +25,7 @@ import { Selo } from '@/components/Selo';
 import type { Idioma } from '@/i18n/idiomas';
 import { textos } from '@/i18n/strings';
 import { conteudo } from '@/lib/data';
+import { PAIS_PADRAO, opcoesDePais } from '@/lib/paises';
 import { rota } from '@/lib/rotas';
 import { useApp } from '@/state/AppState';
 
@@ -110,10 +111,23 @@ function CadastroFormulario({ idioma }: { idioma: Idioma }) {
 
   const [nome, setNome] = useState('');
   const [email, setEmail] = useState('');
-  const [pais, setPais] = useState('Brasil');
+  const [pais, setPais] = useState(PAIS_PADRAO);
   const [cidade, setCidade] = useState('');
   const [uf, setUf] = useState('');
   const [nichos, setNichos] = useState<string[]>([]);
+
+  const paises = useMemo(() => opcoesDePais(idioma), [idioma]);
+  const noBrasil = pais === PAIS_PADRAO;
+
+  /*
+   * Trocar de pais limpa a regiao. Sem isso, quem marcasse Sao Paulo e depois
+   * mudasse para Portugal seguiria cadastrado como SP, numa lista de UF que
+   * nem aparece mais na tela.
+   */
+  function trocarPais(codigo: string) {
+    setPais(codigo);
+    setUf('');
+  }
 
   function alternarNicho(nicho: string) {
     setNichos((atuais) =>
@@ -215,13 +229,13 @@ function CadastroFormulario({ idioma }: { idioma: Idioma }) {
                   autoComplete="off"
                   required
                 />
-                <CampoTexto
+                <CampoSelecao
                   idioma={idioma}
                   id="cadastro-pais"
                   rotulo={tc.campos.pais}
+                  opcoes={paises}
                   value={pais}
-                  onChange={(evento) => setPais(evento.target.value)}
-                  autoComplete="off"
+                  onChange={(evento) => trocarPais(evento.target.value)}
                   required
                 />
                 <div className="grade--2" style={{ gap: 14 }}>
@@ -233,6 +247,13 @@ function CadastroFormulario({ idioma }: { idioma: Idioma }) {
                     autoComplete="off"
                     required
                   />
+                  {/*
+                   * A lista de UF e brasileira. Quem se cadastra de fora do
+                   * Brasil escreve a regiao no proprio idioma, e o campo deixa
+                   * de ser obrigatorio: ha pais que nao divide o territorio em
+                   * nada que caiba nesta linha.
+                   */}
+                  {noBrasil ? (
                   <CampoSelecao idioma={idioma}
                     id="cadastro-uf"
                     rotulo={tc.campos.uf}
@@ -245,6 +266,17 @@ function CadastroFormulario({ idioma }: { idioma: Idioma }) {
                     onChange={(evento) => setUf(evento.target.value)}
                     required
                   />
+                  ) : (
+                    <CampoTexto
+                      idioma={idioma}
+                      id="cadastro-regiao"
+                      rotulo={tc.campos.regiao}
+                      value={uf}
+                      onChange={(evento) => setUf(evento.target.value)}
+                      autoComplete="off"
+                      opcional
+                    />
+                  )}
                 </div>
                 <fieldset
                   style={{

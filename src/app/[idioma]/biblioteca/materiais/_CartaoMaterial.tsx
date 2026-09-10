@@ -1,12 +1,14 @@
 import Link from 'next/link';
 
-import { CapaMaterial } from '@/components/CapaMaterial';
 import { Chip, type CorChip } from '@/components/Chip';
 import type { Idioma } from '@/i18n/idiomas';
 import { textos } from '@/i18n/strings';
 import { arquivoPublico } from '@/lib/format';
 import { rota } from '@/lib/rotas';
 import type { Article, Trilha } from '@/lib/types';
+
+import { Capa } from './_Capa';
+import { dataCurta } from './_regras';
 
 /** Nome da trilha em texto de interface. */
 export function rotuloTrilha(idioma: Idioma, trilha: Trilha): string {
@@ -27,9 +29,11 @@ export function marcaDaTrilha(trilha: Trilha): string {
 }
 
 /**
- * Cartao de material: quem publica, quem assina, sobre o que e em que formato.
- * Sem hooks: serve a lista de materiais, o indice da Biblioteca e a sugestao de
- * leitura ao pe de cada texto.
+ * Cartao de material: quem publica, quem assina, sobre o que, em que formato e
+ * de quando. A data entra no pe porque o acervo ordena por ela.
+ *
+ * Sem hooks: serve a lista de materiais, o indice da Biblioteca e a faixa de
+ * publicacoes vizinhas ao pe de cada texto.
  */
 export function CartaoMaterial({
   idioma,
@@ -40,7 +44,7 @@ export function CartaoMaterial({
   material: Article;
   mostrarTrilha?: boolean;
 }) {
-  const t = textos(idioma);
+  const r = textos(idioma).aprendizado.materiais;
 
   return (
     <Link
@@ -48,11 +52,7 @@ export function CartaoMaterial({
       className="cartao publicacao"
     >
       <div className="publicacao__capa">
-        <CapaMaterial
-          capa={material.capa}
-          titulo={material.titulo}
-          cor={marcaDaTrilha(material.trilha)}
-        />
+        <Capa material={material} cor={marcaDaTrilha(material.trilha)} variante="cartao" />
       </div>
 
       <div className="publicacao__ficha">
@@ -82,9 +82,10 @@ export function CartaoMaterial({
         <div className="chips">
           <Chip vazado>{material.tema}</Chip>
         </div>
+        {/* O cartao inteiro e o link: no pe cabe o que ajuda a escolher. */}
         <div className="cartao__rodape">
           <span>{material.formato}</span>
-          <span className="link-seta">{t.comum.acoes.lerMaterial}</span>
+          <span>{dataCurta(material.atualizadoEm, r.dataCurtaModelo)}</span>
         </div>
       </div>
     </Link>

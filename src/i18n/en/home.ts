@@ -62,8 +62,10 @@ export const home = {
   cursoOlho: 'Inaugural course',
   cursoDuracao: 'Duration',
   cursoTurma: 'Next class',
+  cursoModuloUm: 'module',
   cursoModulos: 'modules',
   materiaisOlho: 'Reference materials',
+  materialContagemUm: 'material published',
   materiaisContagem: 'materials published',
   materiaisTexto:
     'Guides and short technical notes. For creators, disclosure of support and checking before publishing. For organizations, briefing that respects autonomy and measuring results.',

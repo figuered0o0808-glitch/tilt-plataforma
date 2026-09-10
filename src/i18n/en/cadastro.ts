@@ -28,6 +28,7 @@ export const cadastro = {
     pais: 'Country',
     cidade: 'City',
     uf: 'State',
+    regiao: 'State or region',
   },
 
   nichos: {

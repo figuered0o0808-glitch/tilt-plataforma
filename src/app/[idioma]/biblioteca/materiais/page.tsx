@@ -10,8 +10,9 @@ import { textos } from '@/i18n/strings';
 import { conteudo } from '@/lib/data';
 import { rota } from '@/lib/rotas';
 
-import { CartaoMaterial } from './_CartaoMaterial';
+import { Acervo } from './_Acervo';
 import { Trilhas } from './_Trilhas';
+import { EstilosAcervo } from './_estilos';
 
 export async function generateMetadata({
   params,
@@ -25,9 +26,10 @@ export async function generateMetadata({
 }
 
 /**
- * Biblioteca de materiais tecnicos. O que esta publicado abre a pagina; as duas
- * trilhas vem depois, como leitura do conjunto e como ancora do pe de cada
- * material.
+ * Acervo de materiais tecnicos. Reune publicacoes de varias organizacoes: a
+ * pagina nasce com busca, filtros e ordenacao mesmo tendo poucos titulos, e
+ * cada filtro sai do que esta publicado. As duas trilhas vem depois, como
+ * leitura do conjunto e como ancora do pe de cada material.
  */
 export default async function MateriaisPage({
   params,
@@ -42,6 +44,7 @@ export default async function MateriaisPage({
 
   return (
     <>
+      <EstilosAcervo />
       <CabecalhoPagina
         olho={t.aprendizado.materiais.olho}
         titulo={t.aprendizado.materiais.titulo}
@@ -60,19 +63,10 @@ export default async function MateriaisPage({
               }
             />
           ) : (
-            <div className="pilha">
-              {materiais.map((material) => (
-                <CartaoMaterial
-                  key={material.slug}
-                  idioma={idioma}
-                  material={material}
-                  mostrarTrilha
-                />
-              ))}
-            </div>
+            <Acervo idioma={idioma} materiais={materiais} />
           )}
 
-          <Trilhas idioma={idioma} />
+          <Trilhas idioma={idioma} materiais={materiais} />
         </div>
       </div>
     </>

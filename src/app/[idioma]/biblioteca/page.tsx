@@ -10,6 +10,11 @@ import { conteudo } from '@/lib/data';
 import { rota } from '@/lib/rotas';
 
 import { CartaoMaterial } from './materiais/_CartaoMaterial';
+import { ordenar } from './materiais/_regras';
+import { EstilosAcervo } from './materiais/_estilos';
+
+/** Quantas publicacoes recentes cabem no indice antes de mandar para o acervo. */
+const RECENTES = 3;
 
 export async function generateMetadata({
   params,
@@ -23,8 +28,9 @@ export async function generateMetadata({
 }
 
 /**
- * Indice da Biblioteca: o que ja esta publicado abre a pagina. Os cursos ficam
- * numa linha so enquanto nao ha turma.
+ * Indice da Biblioteca: as publicacoes atualizadas mais recentemente abrem a
+ * pagina e o acervo inteiro fica a um clique, com a contagem no proprio link.
+ * Os cursos ficam numa linha so enquanto nao ha turma.
  */
 export default async function BibliotecaPage({
   params,
@@ -34,22 +40,25 @@ export default async function BibliotecaPage({
   const { idioma } = await params;
   if (!ehIdioma(idioma)) notFound();
 
-  const { indice } = textos(idioma).aprendizado;
+  const t = textos(idioma);
+  const { indice } = t.aprendizado;
   const { cursos, materiais } = conteudo(idioma);
+  const recentes = ordenar(materiais, 'atualizacao').slice(0, RECENTES);
 
   return (
     <>
+      <EstilosAcervo />
       <CabecalhoPagina olho={indice.olho} titulo={indice.titulo} />
 
       <section className="secao">
         <div className="container pilha--g">
-          {materiais.length > 0 ? (
+          {recentes.length > 0 ? (
             <div className="pilha">
               <h2 className="olho" style={{ margin: 0 }}>
                 {indice.materiaisTitulo}
               </h2>
               <div className="pilha">
-                {materiais.map((material) => (
+                {recentes.map((material) => (
                   <CartaoMaterial
                     key={material.slug}
                     idioma={idioma}
@@ -60,7 +69,7 @@ export default async function BibliotecaPage({
               </div>
               <div className="linha">
                 <Link href={rota(idioma, 'biblioteca/materiais')} className="link-seta">
-                  {indice.materiaisAcao}
+                  {`${indice.materiaisAcao} (${materiais.length})`}
                 </Link>
               </div>
             </div>

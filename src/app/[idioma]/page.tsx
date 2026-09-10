@@ -258,7 +258,9 @@ export default async function Home({ params }: { params: Promise<{ idioma: strin
                     </div>
                   </dl>
                   <div className="cartao__rodape">
-                    <span>{`${numero(curso.modulos.length)} ${t.home.cursoModulos}`}</span>
+                    <span>{`${numero(curso.modulos.length)} ${
+                      curso.modulos.length === 1 ? t.home.cursoModuloUm : t.home.cursoModulos
+                    }`}</span>
                     <span className="link-seta">{t.comum.acoes.verCurso}</span>
                   </div>
                 </Link>
@@ -270,7 +272,9 @@ export default async function Home({ params }: { params: Promise<{ idioma: strin
                     <Chip vazado>{t.home.materiaisOlho}</Chip>
                   </div>
                   <h3 className="cartao__titulo">
-                    {`${numero(materiais.length)} ${t.home.materiaisContagem}`}
+                    {`${numero(materiais.length)} ${
+                      materiais.length === 1 ? t.home.materialContagemUm : t.home.materiaisContagem
+                    }`}
                   </h3>
                   <p className="cartao__texto">{t.home.materiaisTexto}</p>
                   <Chips itens={formatos} />
