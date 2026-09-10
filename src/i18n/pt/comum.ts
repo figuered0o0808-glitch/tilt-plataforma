@@ -4,6 +4,7 @@
  */
 export const comum = {
   navegacao: {
+    principal: 'Navegação principal',
     editais: 'Oportunidades',
     biblioteca: 'Biblioteca',
     painel: 'Meu painel',

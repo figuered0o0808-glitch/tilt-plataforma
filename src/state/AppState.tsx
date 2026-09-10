@@ -20,7 +20,6 @@ import {
 } from 'react';
 
 import { DATA_REFERENCIA, STORAGE_KEY } from '@/config/program';
-import { painel } from '@/lib/data';
 import { proximoId } from '@/lib/format';
 import type { Candidatura } from '@/lib/types';
 
@@ -35,7 +34,7 @@ function estadoInicial(): Estado {
   return {
     cadastrado: false,
     nome: '',
-    candidaturas: painel.candidaturas,
+    candidaturas: [],
     cursosInscritos: [],
   };
 }

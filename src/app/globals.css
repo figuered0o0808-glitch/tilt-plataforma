@@ -432,7 +432,22 @@ a.cartao:hover .cartao__titulo { text-decoration: underline; text-underline-offs
 }
 .cabecalho__link:hover { border-color: var(--preto); text-decoration: none; }
 .cabecalho__link[aria-current='page'] { background: var(--preto); color: var(--branco); border-color: var(--preto); }
-.cabecalho__acoes { display: flex; align-items: center; gap: 10px; }
+.cabecalho__acoes { display: flex; align-items: center; gap: 14px; }
+
+/* Seletor de idioma: tres siglas separadas por barra fina. */
+.seletor-idioma { display: flex; align-items: center; gap: 2px; }
+.seletor-idioma__opcao {
+  font-family: var(--mono);
+  font-size: 0.6875rem;
+  letter-spacing: 0.1em;
+  color: var(--tinta-suave);
+  text-decoration: none;
+  padding: 6px 7px;
+  border-radius: 2px;
+}
+.seletor-idioma__opcao:hover { color: var(--preto); text-decoration: none; }
+.seletor-idioma__opcao[aria-current='true'] { color: var(--branco); background: var(--preto); }
+.seletor-idioma__opcao + .seletor-idioma__opcao { border-left: 1px solid var(--linha); }
 
 .rodape {
   margin-top: 0;

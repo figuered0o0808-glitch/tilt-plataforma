@@ -1,0 +1,51 @@
+[
+  {
+    "slug": "modelo-economico-redes-algoritmicas",
+    "titulo": "Un modelo económico para el mercado de contenido en redes sociales algorítmicas",
+    "trilha": "organizacoes",
+    "autoria": [
+      "Francisco Figueiredo",
+      "Lauanny Brandão",
+      "Pedro Bordinhão"
+    ],
+    "organizacao": "INDICA",
+    "tema": "Economía de la atención",
+    "palavrasChave": [
+      "Economía de la atención",
+      "Redes sociales algorítmicas",
+      "Timing",
+      "Saturación acumulada",
+      "Asignación intertemporal",
+      "Tiempo de reacción"
+    ],
+    "resumo": "Por qué dos contenidos parecidos rinden resultados muy distintos según el momento en que salen al aire, y qué cambia eso en la planificación de una campaña.",
+    "formato": "Artículo académico",
+    "atualizadoEm": "2026-07-02",
+    "secoes": [
+      {
+        "titulo": "Para quién es",
+        "paragrafos": [
+          "Para organizaciones que quieren posicionarse mejor en las redes sociales, aprovechar las oportunidades en el momento en que aparecen y planificar campañas con influencers."
+        ]
+      },
+      {
+        "titulo": "Qué se saca de aquí",
+        "paragrafos": [
+          "Decidir rápido vale más que producir rápido. El tiempo entre percibir la oportunidad y publicar se compone de decisión y de producción, y la decisión es lo que se puede acortar.",
+          "Cuando la campaña paga por pieza contratada, el mejor momento para publicar es antes del pico de atención pública, y no durante.",
+          "La disputa por la atención no viene solo de lo publicado hoy: el contenido antiguo sigue circulando y ocupando espacio."
+        ]
+      }
+    ],
+    "arquivos": [
+      {
+        "idioma": "Portugués",
+        "arquivo": "/materiais/modelo-economico-redes-algoritmicas-pt.pdf"
+      },
+      {
+        "idioma": "Inglés",
+        "arquivo": "/materiais/modelo-economico-redes-algoritmicas-en.pdf"
+      }
+    ]
+  }
+]

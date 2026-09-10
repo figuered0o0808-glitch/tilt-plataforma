@@ -1,0 +1,51 @@
+[
+  {
+    "slug": "modelo-economico-redes-algoritmicas",
+    "titulo": "An economic model for the content market in algorithmic social networks",
+    "trilha": "organizacoes",
+    "autoria": [
+      "Francisco Figueiredo",
+      "Lauanny Brandão",
+      "Pedro Bordinhão"
+    ],
+    "organizacao": "INDICA",
+    "tema": "Attention economy",
+    "palavrasChave": [
+      "Attention economy",
+      "Algorithmic social networks",
+      "Timing",
+      "Cumulative saturation",
+      "Intertemporal allocation",
+      "Reaction time"
+    ],
+    "resumo": "Why two similar pieces of content yield very different results depending on when they go live, and what that changes in campaign planning.",
+    "formato": "Academic paper",
+    "atualizadoEm": "2026-07-02",
+    "secoes": [
+      {
+        "titulo": "Who it is for",
+        "paragrafos": [
+          "For organizations that want to position themselves better on social media, take opportunities when they appear and plan campaigns with influencers."
+        ]
+      },
+      {
+        "titulo": "What you take from it",
+        "paragrafos": [
+          "Deciding fast is worth more than producing fast. The time between spotting the opportunity and publishing is made of decision and production, and decision is the part you can shorten.",
+          "When the campaign pays per contracted piece, the best moment to publish is before the peak of public attention, not during it.",
+          "Competition for attention does not come only from what was published today: old content keeps circulating and taking up space."
+        ]
+      }
+    ],
+    "arquivos": [
+      {
+        "idioma": "Portuguese",
+        "arquivo": "/materiais/modelo-economico-redes-algoritmicas-pt.pdf"
+      },
+      {
+        "idioma": "English",
+        "arquivo": "/materiais/modelo-economico-redes-algoritmicas-en.pdf"
+      }
+    ]
+  }
+]

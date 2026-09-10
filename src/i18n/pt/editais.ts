@@ -3,7 +3,6 @@
  * e bloco de resultado publicado.
  */
 export const editais = {
-  listaOlho: 'Financiamento a projetos autorais',
   listaTitulo: 'Oportunidades',
 
   resumoTitulo: 'Situação do ciclo',
@@ -45,6 +44,9 @@ export const editais = {
   prazoADefinir: 'Prazo a definir',
   semPrazo: 'A definir',
 
+  /* Liga os dois extremos de uma faixa de valor: 5.000 a 20.000. */
+  faixaSeparador: 'a',
+
   secoes: {
     apresentacao: 'Apresentação',
     escopo: 'O que é apoiado',
@@ -60,6 +62,8 @@ export const editais = {
   /* Chamada que ordena os criterios em vez de atribuir peso numerico. */
   criteriosOrdem: 'Os critérios estão listados em ordem de peso.',
   pesoRotulo: 'Peso',
+  /* Vem depois do numero da posicao do criterio: 1º, 2º, 3º. */
+  posicaoSufixo: 'º',
   somaPesos: 'Soma dos pesos',
   perguntaRotulo: 'Pergunta',
   bancaSemComposicao:
@@ -86,6 +90,11 @@ export const editais = {
   resultadoPublicadoEm: 'Resultado publicado em',
   inscricoesEncerradasEm: 'Inscrições encerradas em',
   resultadoPrevistoPara: 'Resultado previsto para',
+  /*
+   * Nao aparece na tela: e o termo procurado no nome das etapas do cronograma
+   * para achar a divulgacao do resultado. Em minusculas, no idioma dos dados.
+   */
+  termoEtapaResultado: 'resultado',
 
   candidaturaTitulo: 'Candidatura',
   encerradaAviso: 'As inscrições estão encerradas.',

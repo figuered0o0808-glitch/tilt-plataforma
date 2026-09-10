@@ -1,8 +1,10 @@
 import type { ReactNode, InputHTMLAttributes, TextareaHTMLAttributes, SelectHTMLAttributes } from 'react';
 
-import { t } from '@/i18n/strings';
+import type { Idioma } from '@/i18n/idiomas';
+import { textos } from '@/i18n/strings';
 
 interface Envolucro {
+  idioma: Idioma;
   id: string;
   rotulo: string;
   ajuda?: string;
@@ -11,12 +13,12 @@ interface Envolucro {
   children: ReactNode;
 }
 
-export function Campo({ id, rotulo, ajuda, erro, opcional, children }: Envolucro) {
+export function Campo({ idioma, id, rotulo, ajuda, erro, opcional, children }: Envolucro) {
   return (
     <div className="campo">
       <label className="campo__rotulo" htmlFor={id}>
         {rotulo}
-        {opcional ? <span className="campo__opcional"> ({t.comum.rotulos.opcional})</span> : null}
+        {opcional ? <span className="campo__opcional"> ({textos(idioma).comum.rotulos.opcional})</span> : null}
       </label>
       {ajuda ? (
         <p className="campo__ajuda" id={`${id}-ajuda`}>
@@ -45,6 +47,7 @@ function ariaCampo(id: string, ajuda?: string, erro?: string) {
 }
 
 type PropsTexto = Omit<InputHTMLAttributes<HTMLInputElement>, 'id'> & {
+  idioma: Idioma;
   id: string;
   rotulo: string;
   ajuda?: string;
@@ -52,15 +55,16 @@ type PropsTexto = Omit<InputHTMLAttributes<HTMLInputElement>, 'id'> & {
   opcional?: boolean;
 };
 
-export function CampoTexto({ id, rotulo, ajuda, erro, opcional, ...resto }: PropsTexto) {
+export function CampoTexto({ idioma, id, rotulo, ajuda, erro, opcional, ...resto }: PropsTexto) {
   return (
-    <Campo id={id} rotulo={rotulo} ajuda={ajuda} erro={erro} opcional={opcional}>
+    <Campo idioma={idioma} id={id} rotulo={rotulo} ajuda={ajuda} erro={erro} opcional={opcional}>
       <input id={id} type={resto.type ?? 'text'} {...ariaCampo(id, ajuda, erro)} {...resto} />
     </Campo>
   );
 }
 
 type PropsArea = Omit<TextareaHTMLAttributes<HTMLTextAreaElement>, 'id'> & {
+  idioma: Idioma;
   id: string;
   rotulo: string;
   ajuda?: string;
@@ -68,15 +72,16 @@ type PropsArea = Omit<TextareaHTMLAttributes<HTMLTextAreaElement>, 'id'> & {
   opcional?: boolean;
 };
 
-export function CampoArea({ id, rotulo, ajuda, erro, opcional, ...resto }: PropsArea) {
+export function CampoArea({ idioma, id, rotulo, ajuda, erro, opcional, ...resto }: PropsArea) {
   return (
-    <Campo id={id} rotulo={rotulo} ajuda={ajuda} erro={erro} opcional={opcional}>
+    <Campo idioma={idioma} id={id} rotulo={rotulo} ajuda={ajuda} erro={erro} opcional={opcional}>
       <textarea id={id} {...ariaCampo(id, ajuda, erro)} {...resto} />
     </Campo>
   );
 }
 
 type PropsSelecao = Omit<SelectHTMLAttributes<HTMLSelectElement>, 'id'> & {
+  idioma: Idioma;
   id: string;
   rotulo: string;
   ajuda?: string;
@@ -87,6 +92,7 @@ type PropsSelecao = Omit<SelectHTMLAttributes<HTMLSelectElement>, 'id'> & {
 };
 
 export function CampoSelecao({
+  idioma,
   id,
   rotulo,
   ajuda,
@@ -97,7 +103,7 @@ export function CampoSelecao({
   ...resto
 }: PropsSelecao) {
   return (
-    <Campo id={id} rotulo={rotulo} ajuda={ajuda} erro={erro} opcional={opcional}>
+    <Campo idioma={idioma} id={id} rotulo={rotulo} ajuda={ajuda} erro={erro} opcional={opcional}>
       <select id={id} {...ariaCampo(id, ajuda, erro)} {...resto}>
         {vazio ? <option value="">{vazio}</option> : null}
         {opcoes.map((opcao) => (

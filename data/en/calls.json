@@ -1,0 +1,88 @@
+[
+  {
+    "slug": "campanha-01-veiculos-eletricos",
+    "titulo": "Campaign Call No. 01: the cost of electric vehicles in Brazil",
+    "status": "aberta",
+    "tipo": "pauta-especifica",
+    "resumo": "Funds 3 to 10 original projects on the cost of electric vehicles in Brazil. Open to creators, collectives and communication agencies.",
+    "proponente": "INDICA",
+    "apresentacao": [
+      "Instead of hiring a single influencer to front the campaign, this call buys creative capacity from several creators at once. Each selected project serves the campaign objective through the strategy, the format and the narrative of whoever proposed it.",
+      "Three to ten independent projects reach different audiences through different doors, and the campaign result does not depend on one person. Selection is a public process, with criteria and result published.",
+      "INDICA runs the call as the responsible intermediary and shares execution with Koko."
+    ],
+    "escopo": [
+      "Original projects that generate public conversation about the cost of electric vehicles in Brazil.",
+      "Projects that direct the audience to the campaign participation channel.",
+      "Creators as individuals or companies, small collectives and communication agencies.",
+      "Any audience size and any niche: eligibility belongs to the project, not to the channel's usual subject.",
+      "Written or video proposals, with an itemized budget."
+    ],
+    "naoApoiado": [],
+    "criterios": [
+      {
+        "titulo": "Project quality",
+        "descricao": "Strength of the idea, the narrative and the format proposed."
+      },
+      {
+        "titulo": "Expected reach relative to the creator's scale",
+        "descricao": "What is assessed is the reach expected given the audience size of whoever proposes, not the size itself."
+      },
+      {
+        "titulo": "Strength of the conversion path",
+        "descricao": "How well the project takes the audience to the campaign participation channel."
+      },
+      {
+        "titulo": "Feasibility",
+        "descricao": "Coherence between scope, budget and schedule."
+      }
+    ],
+    "banca": [],
+    "distribuicao": [
+      {
+        "faixa": "R$ 10,000 to R$ 50,000 per project",
+        "quantidade": "3 to 10 projects",
+        "observacao": "Only one project can receive the R$ 50,000 ceiling."
+      },
+      {
+        "faixa": "Itemized budget",
+        "quantidade": "Required in every proposal",
+        "observacao": "The selection panel may award an amount different from the one requested."
+      }
+    ],
+    "valorTotal": 100000,
+    "faixaApoio": {
+      "min": 10000,
+      "max": 50000
+    },
+    "inscricoesAte": null,
+    "cronograma": [],
+    "faq": [
+      {
+        "pergunta": "Who can apply?",
+        "resposta": "Creators as individuals or companies, small collectives and communication agencies, of any audience size and any niche. Eligibility belongs to the project."
+      },
+      {
+        "pergunta": "Does the program approve scripts or cuts?",
+        "resposta": "No. Approval happens at selection: what is delivered is the approved proposal. INDICA's coordination covers schedule, technical information and support."
+      },
+      {
+        "pergunta": "Do I need to disclose advertising?",
+        "resposta": "Yes, from the first post on, under CONAR rules. Narrative devices of buildup and reveal are welcome, as long as the paid nature of the content is never hidden."
+      },
+      {
+        "pergunta": "Who holds the intellectual property?",
+        "resposta": "The creator, with a non-exclusive institutional license. The content stays published for at least 12 months."
+      },
+      {
+        "pergunta": "I have had a contract with a carmaker or a fuel company. Does that rule me out?",
+        "resposta": "Not automatically. Shortlisted applicants go through a conflict of interest check, and declaring commercial relationships from the last 24 months with the automotive, fuel and energy sectors is mandatory. Omitting a relationship rules you out."
+      },
+      {
+        "pergunta": "How can the proposal be sent?",
+        "resposta": "In writing or on video, with the creator's introduction and audience metrics, the project, the conversion path, the schedule and the itemized budget."
+      }
+    ],
+    "resultado": null
+  }
+]

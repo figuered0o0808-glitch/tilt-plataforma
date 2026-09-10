@@ -1,0 +1,106 @@
+import type { Idioma } from '@/i18n/idiomas';
+import { textos } from '@/i18n/strings';
+import { data, moeda, numero } from '@/lib/format';
+import type { ResultadoEdital } from '@/lib/types';
+
+/** Par de numero do resultado. As cores vao inline por causa do fundo preto. */
+function Numero({ rotulo, valor }: { rotulo: string; valor: string }) {
+  return (
+    <div>
+      <dt style={{ color: 'rgba(255, 255, 255, 0.6)' }}>{rotulo}</dt>
+      <dd style={{ color: 'var(--branco)' }}>
+        <span className="numero-grande">{valor}</span>
+      </dd>
+    </div>
+  );
+}
+
+/**
+ * Bloco de transparencia do resultado, ancorado em preto no topo da pagina da
+ * chamada encerrada, com a relacao integral de apoiados, projetos e valores.
+ */
+export function Resultado({
+  idioma,
+  resultado,
+}: {
+  idioma: Idioma;
+  resultado: ResultadoEdital;
+}) {
+  const t = textos(idioma);
+  const total = resultado.apoiados.reduce((soma, apoiado) => soma + apoiado.valor, 0);
+
+  return (
+    <section id="resultado" className="secao secao--preto" style={{ scrollMarginTop: 84 }}>
+      <div className="container">
+        <div className="linha linha--fim" style={{ alignItems: 'flex-end', gap: 24 }}>
+          <h2 style={{ margin: 0 }}>{t.editais.secoes.resultado}</h2>
+          <p className="texto-pequeno" style={{ margin: 0 }}>
+            {`${t.editais.publicadoEm} ${data(resultado.publicadoEm)}`}
+          </p>
+        </div>
+
+        <div style={{ marginTop: 28 }}>
+          <div className="registro">
+            <p className="registro__rotulo">{t.editais.resultadoFundamentacao}</p>
+            <p style={{ margin: 0, maxWidth: '66ch' }}>{resultado.fundamentacao}</p>
+          </div>
+        </div>
+
+        <dl
+          className="definicoes"
+          style={{
+            gridTemplateColumns: 'repeat(auto-fit, minmax(190px, 1fr))',
+            margin: '32px 0',
+            gap: 24,
+          }}
+        >
+          <Numero
+            rotulo={t.editais.inscricoesRecebidas}
+            valor={numero(resultado.inscricoesRecebidas)}
+          />
+          <Numero
+            rotulo={t.editais.projetosApoiados}
+            valor={numero(resultado.apoiados.length)}
+          />
+          <Numero rotulo={t.editais.totalApoiado} valor={moeda(total)} />
+        </dl>
+
+        <h3 style={{ marginBottom: 14 }}>{t.editais.resultadoTabelaTitulo}</h3>
+
+        <div className="tabela-rolagem">
+          <table className="tabela">
+            <caption className="sr-only">{t.editais.resultadoTabelaTitulo}</caption>
+            <thead>
+              <tr>
+                <th scope="col">{t.editais.resultadoColunas.apoiado}</th>
+                <th scope="col">{t.editais.resultadoColunas.projeto}</th>
+                <th scope="col">{t.editais.resultadoColunas.formato}</th>
+                <th scope="col">{t.editais.resultadoColunas.uf}</th>
+                <th scope="col" className="num">
+                  {t.editais.resultadoColunas.valor}
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              {resultado.apoiados.map((apoiado) => (
+                <tr key={`${apoiado.nome}-${apoiado.projeto}`}>
+                  <td>{apoiado.nome}</td>
+                  <td>{apoiado.projeto}</td>
+                  <td>{apoiado.formato}</td>
+                  <td>{apoiado.uf}</td>
+                  <td className="num">{moeda(apoiado.valor)}</td>
+                </tr>
+              ))}
+            </tbody>
+            <tfoot>
+              <tr>
+                <td colSpan={4}>{t.editais.totalApoiado}</td>
+                <td className="num">{moeda(total)}</td>
+              </tr>
+            </tfoot>
+          </table>
+        </div>
+      </div>
+    </section>
+  );
+}

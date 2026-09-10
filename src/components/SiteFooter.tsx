@@ -3,9 +3,13 @@ import Link from 'next/link';
 import { Faixas } from '@/components/Faixas';
 import { LogoTilt } from '@/components/LogoTilt';
 import { PROGRAM_NAME, PROGRAM_TAGLINE } from '@/config/program';
-import { t } from '@/i18n/strings';
+import type { Idioma } from '@/i18n/idiomas';
+import { textos } from '@/i18n/strings';
+import { rota } from '@/lib/rotas';
 
-export function SiteFooter() {
+export function SiteFooter({ idioma }: { idioma: Idioma }) {
+  const t = textos(idioma);
+
   return (
     <>
       <Faixas altura="normal" invertido />
@@ -27,13 +31,10 @@ export function SiteFooter() {
               <p className="rodape__titulo">{t.comum.rodape.navegue}</p>
               <ul className="rodape__lista">
                 <li>
-                  <Link href="/oportunidades">{t.comum.navegacao.editais}</Link>
+                  <Link href={rota(idioma, 'oportunidades')}>{t.comum.navegacao.editais}</Link>
                 </li>
                 <li>
-                  <Link href="/biblioteca">{t.comum.navegacao.biblioteca}</Link>
-                </li>
-                <li>
-                  <Link href="/cadastro">{t.cadastro.entrar}</Link>
+                  <Link href={rota(idioma, 'biblioteca')}>{t.comum.navegacao.biblioteca}</Link>
                 </li>
               </ul>
             </div>
