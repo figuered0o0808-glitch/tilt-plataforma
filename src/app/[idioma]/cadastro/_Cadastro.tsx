@@ -110,6 +110,7 @@ function CadastroFormulario({ idioma }: { idioma: Idioma }) {
 
   const [nome, setNome] = useState('');
   const [email, setEmail] = useState('');
+  const [pais, setPais] = useState('Brasil');
   const [cidade, setCidade] = useState('');
   const [uf, setUf] = useState('');
   const [nichos, setNichos] = useState<string[]>([]);
@@ -144,6 +145,7 @@ function CadastroFormulario({ idioma }: { idioma: Idioma }) {
     cadastrar({
       nome,
       email,
+      pais,
       cidade,
       uf,
       nichos,
@@ -210,6 +212,15 @@ function CadastroFormulario({ idioma }: { idioma: Idioma }) {
                   type="email"
                   value={email}
                   onChange={(evento) => setEmail(evento.target.value)}
+                  autoComplete="off"
+                  required
+                />
+                <CampoTexto
+                  idioma={idioma}
+                  id="cadastro-pais"
+                  rotulo={tc.campos.pais}
+                  value={pais}
+                  onChange={(evento) => setPais(evento.target.value)}
                   autoComplete="off"
                   required
                 />

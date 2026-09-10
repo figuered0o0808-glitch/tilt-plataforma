@@ -172,6 +172,7 @@ export interface RedeDoCriador {
 export interface PerfilCadastro {
   nome: string;
   email: string;
+  pais: string;
   cidade: string;
   uf: string;
   /** Nichos em que a pessoa atua. Varios, porque quase ninguem faz um so. */
