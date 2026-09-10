@@ -62,7 +62,7 @@ export default async function MateriaisPage({
               }
             />
           ) : (
-            <div className="grade--2">
+            <div className="pilha">
               {materiais.map((material) => (
                 <CartaoMaterial
                   key={material.slug}

@@ -115,6 +115,10 @@ export interface Article {
   /** Quem assina. Varias organizacoes publicam na mesma biblioteca. */
   autoria: string[];
   organizacao: string;
+  /** Marca da organizacao que publica, em /public/organizacoes. */
+  logoOrganizacao?: string;
+  /** Capa da publicacao, em /public/materiais/capas. Sem ela, entra a capa gerada. */
+  capa?: string;
   /** Tematica geral, usada como filtro e como chip. */
   tema: string;
   palavrasChave: string[];

@@ -1,8 +1,10 @@
 import Link from 'next/link';
 
+import { CapaMaterial } from '@/components/CapaMaterial';
 import { Chip, type CorChip } from '@/components/Chip';
 import type { Idioma } from '@/i18n/idiomas';
 import { textos } from '@/i18n/strings';
+import { arquivoPublico } from '@/lib/format';
 import { rota } from '@/lib/rotas';
 import type { Article, Trilha } from '@/lib/types';
 
@@ -41,26 +43,49 @@ export function CartaoMaterial({
   const t = textos(idioma);
 
   return (
-    <Link href={rota(idioma, `biblioteca/materiais/${material.slug}`)} className="cartao">
-      <div className="linha linha--fim">
-        <span className="olho" style={{ margin: 0 }}>
-          {material.organizacao}
-        </span>
-        {mostrarTrilha ? (
-          <Chip cor={corDaTrilha(material.trilha)}>{rotuloTrilha(idioma, material.trilha)}</Chip>
-        ) : null}
+    <Link
+      href={rota(idioma, `biblioteca/materiais/${material.slug}`)}
+      className="cartao publicacao"
+    >
+      <div className="publicacao__capa">
+        <CapaMaterial
+          capa={material.capa}
+          titulo={material.titulo}
+          cor={marcaDaTrilha(material.trilha)}
+        />
       </div>
-      <p className="cartao__titulo">{material.titulo}</p>
-      <p className="texto-pequeno" style={{ margin: 0 }}>
-        {material.autoria.join(', ')}
-      </p>
-      <p className="cartao__texto">{material.resumo}</p>
-      <div className="chips">
-        <Chip vazado>{material.tema}</Chip>
-      </div>
-      <div className="cartao__rodape">
-        <span>{material.formato}</span>
-        <span className="link-seta">{t.comum.acoes.lerMaterial}</span>
+
+      <div className="publicacao__ficha">
+        <div className="publicacao__marca">
+          {material.logoOrganizacao ? (
+            // eslint-disable-next-line @next/next/no-img-element
+            <img
+              src={arquivoPublico(material.logoOrganizacao)}
+              alt={material.organizacao}
+              className="publicacao__logo"
+            />
+          ) : (
+            <span className="olho" style={{ margin: 0 }}>
+              {material.organizacao}
+            </span>
+          )}
+          {mostrarTrilha ? (
+            <Chip cor={corDaTrilha(material.trilha)}>{rotuloTrilha(idioma, material.trilha)}</Chip>
+          ) : null}
+        </div>
+
+        <p className="cartao__titulo">{material.titulo}</p>
+        <p className="texto-pequeno" style={{ margin: 0 }}>
+          {material.autoria.join(', ')}
+        </p>
+        <p className="cartao__texto">{material.resumo}</p>
+        <div className="chips">
+          <Chip vazado>{material.tema}</Chip>
+        </div>
+        <div className="cartao__rodape">
+          <span>{material.formato}</span>
+          <span className="link-seta">{t.comum.acoes.lerMaterial}</span>
+        </div>
       </div>
     </Link>
   );

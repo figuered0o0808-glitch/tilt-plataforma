@@ -48,7 +48,7 @@ export default async function BibliotecaPage({
               <h2 className="olho" style={{ margin: 0 }}>
                 {indice.materiaisTitulo}
               </h2>
-              <div className="grade--2">
+              <div className="pilha">
                 {materiais.map((material) => (
                   <CartaoMaterial
                     key={material.slug}
