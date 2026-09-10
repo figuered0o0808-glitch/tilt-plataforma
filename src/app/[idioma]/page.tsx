@@ -5,73 +5,18 @@ import { notFound } from 'next/navigation';
 
 import { Botao } from '@/components/Botao';
 import { Chip, Chips } from '@/components/Chip';
-import { Ilustracao } from '@/components/Ilustracao';
 import { LogoTilt } from '@/components/LogoTilt';
 import { Selo } from '@/components/Selo';
 import { PROGRAM_TAGLINE } from '@/config/program';
-import { ehIdioma, type Idioma } from '@/i18n/idiomas';
+import { ehIdioma } from '@/i18n/idiomas';
 import { textos } from '@/i18n/strings';
 import { conteudo } from '@/lib/data';
-import { arquivoPublico, dataCurta, moeda, numero } from '@/lib/format';
+import { moeda, numero } from '@/lib/format';
 import { rota } from '@/lib/rotas';
-import type { Call } from '@/lib/types';
 
 import { Entrada } from './_Entrada';
-
-/** Rotulo do prazo, coerente com a situacao da chamada. */
-function prazoRotulo(idioma: Idioma, chamada: Call): string {
-  const t = textos(idioma);
-  return chamada.status === 'aberta' ? t.comum.rotulos.inscricoesAte : t.comum.rotulos.prazo;
-}
-
-function CartaoChamada({ idioma, chamada }: { idioma: Idioma; chamada: Call }) {
-  const t = textos(idioma);
-
-  return (
-    <Link href={rota(idioma, `oportunidades/${chamada.slug}`)} className="cartao">
-      <div className="linha linha--fim" style={{ gap: 12 }}>
-        <div className="linha" style={{ gap: 8 }}>
-          <Selo idioma={idioma} status={chamada.status} />
-          <Chip vazado>{t.comum.tiposEdital[chamada.tipo]}</Chip>
-        </div>
-        {chamada.logoOrganizacao ? (
-          // eslint-disable-next-line @next/next/no-img-element
-          <img
-            src={arquivoPublico(chamada.logoOrganizacao)}
-            alt={chamada.organizacao ?? ''}
-            style={{ height: 16, width: 'auto', display: 'block', flex: 'none' }}
-          />
-        ) : null}
-      </div>
-
-      <div>
-        <h3 className="cartao__titulo">{chamada.titulo}</h3>
-        {chamada.proponente ? (
-          <p className="texto-mini" style={{ margin: '6px 0 0' }}>
-            {`${t.home.rotuloProponente}: ${chamada.proponente}`}
-          </p>
-        ) : null}
-      </div>
-
-      <p className="cartao__texto">{chamada.resumo}</p>
-
-      <dl className="definicoes" style={{ gap: 12 }}>
-        <div>
-          <dt>{t.comum.rotulos.apoio}</dt>
-          <dd>{`${moeda(chamada.faixaApoio.min)} a ${moeda(chamada.faixaApoio.max)}`}</dd>
-        </div>
-        <div>
-          <dt>{prazoRotulo(idioma, chamada)}</dt>
-          <dd>{chamada.inscricoesAte ? dataCurta(chamada.inscricoesAte) : t.home.prazoADefinir}</dd>
-        </div>
-      </dl>
-
-      <div className="cartao__rodape">
-        <span className="link-seta">{t.comum.acoes.verEdital}</span>
-      </div>
-    </Link>
-  );
-}
+import { CartaoEdital } from './oportunidades/_CartaoEdital';
+import { ChamadaDestaque } from './oportunidades/_ChamadaDestaque';
 
 /** Item da faixa de numeros. So entra na faixa quando ha o que contar. */
 type Indicador = { rotulo: string; valor: string };
@@ -80,8 +25,7 @@ type Indicador = { rotulo: string; valor: string };
 function gradeDe(quantidade: number): string {
   if (quantidade >= 4) return 'grade--4';
   if (quantidade === 3) return 'grade--3';
-  if (quantidade === 2) return 'grade--2';
-  return 'grade';
+  return 'grade--2';
 }
 
 export default async function Home({ params }: { params: Promise<{ idioma: string }> }) {
@@ -94,12 +38,13 @@ export default async function Home({ params }: { params: Promise<{ idioma: strin
   const abertas = editais.filter((chamada) => chamada.status === 'aberta');
   const emCartaz = (abertas.length > 0 ? abertas : editais).slice(0, 3);
   const totalAberto = abertas.reduce((soma, chamada) => soma + chamada.valorTotal, 0);
-  const chamadaDestaque = abertas[0] ?? editais[0];
-  const chamadaComResultado = editais.find((chamada) => chamada.resultado !== null);
 
   const curso = cursos.find((item) => item.status === 'aberto') ?? cursos[0];
   const formatos = Array.from(new Set(materiais.map((material) => material.formato)));
-  const licencas = Array.from(new Set(materiais.map((material) => material.licenca)));
+  /* Licenca e opcional no material: sem nenhuma declarada, o rotulo nao entra. */
+  const licencas = Array.from(
+    new Set(materiais.map((material) => material.licenca).filter(Boolean)),
+  );
 
   // Os dois estados da home saem daqui: enquanto nada foi publicado, a pagina
   // explica o programa e as duas areas; quando entra conteudo, os blocos de
@@ -111,13 +56,26 @@ export default async function Home({ params }: { params: Promise<{ idioma: strin
   const temConteudo = temChamadas || temRecursos;
   const doisCartoesRecursos = Boolean(curso) && temMateriais;
 
+  /*
+   * Com uma unica chamada em cartaz, ela e publicada inteira logo abaixo, com
+   * os proprios numeros. Repetir "1 chamada" e "R$ X em chamadas abertas" na
+   * faixa de cima seria contar duas vezes a mesma coisa.
+   */
+  const chamadaUnica = emCartaz.length === 1;
+
   const indicadores: (Indicador | null)[] = [
-    totalAberto > 0 ? { rotulo: t.home.numeros.recursos, valor: moeda(totalAberto) } : null,
-    abertas.length > 0 ? { rotulo: t.home.numeros.chamadas, valor: numero(abertas.length) } : null,
+    !chamadaUnica && totalAberto > 0
+      ? { rotulo: t.home.numeros.recursos, valor: moeda(totalAberto) }
+      : null,
+    !chamadaUnica && abertas.length > 0
+      ? { rotulo: t.home.numeros.chamadas, valor: numero(abertas.length) }
+      : null,
     temCursos ? { rotulo: t.home.numeros.cursos, valor: numero(cursos.length) } : null,
     temMateriais ? { rotulo: t.home.numeros.materiais, valor: numero(materiais.length) } : null,
   ];
+  /* Numero solto nao e faixa de numeros: quem o tem e o cartao que o explica. */
   const numeros = indicadores.filter((item): item is Indicador => item !== null);
+  const temFaixaDeNumeros = numeros.length > 1;
 
   return (
     <>
@@ -147,7 +105,6 @@ export default async function Home({ params }: { params: Promise<{ idioma: strin
         <section className="secao" id="areas">
           <div className="container">
             <div className="secao__marca">
-              <span className="secao__indice">02</span>
               <h2>{t.home.areasTitulo}</h2>
             </div>
 
@@ -173,7 +130,7 @@ export default async function Home({ params }: { params: Promise<{ idioma: strin
         </section>
       )}
 
-      {numeros.length > 0 ? (
+      {temFaixaDeNumeros ? (
         <section className="secao secao--curta secao--branco">
           <div className="container">
             <dl className={`${gradeDe(numeros.length)} definicoes`} style={{ gap: 24, margin: 0 }}>
@@ -198,24 +155,30 @@ export default async function Home({ params }: { params: Promise<{ idioma: strin
               style={{ alignItems: 'flex-end', gap: 20, marginBottom: 28 }}
             >
               <div className="secao__marca" style={{ flex: 1, marginBottom: 0, borderBottom: 0 }}>
-                <span className="secao__indice">01</span>
-                <h2>{abertas.length > 0 ? t.home.chamadasTitulo : t.home.chamadasTituloSemAbertas}</h2>
+                <h2>
+                  {abertas.length > 0 ? t.home.chamadasTitulo : t.home.chamadasTituloSemAbertas}
+                </h2>
               </div>
-              <Botao href={rota(idioma, 'oportunidades')} variante="secundario" tamanho="pequeno">
-                {t.home.chamadasAcao}
-              </Botao>
+              {/* Com uma so chamada, "ver todas" leva a uma pagina com ela de novo. */}
+              {editais.length > 1 ? (
+                <Botao href={rota(idioma, 'oportunidades')} variante="secundario" tamanho="pequeno">
+                  {t.home.chamadasAcao}
+                </Botao>
+              ) : null}
             </div>
 
-            <div className="grade--3">
-              {emCartaz.map((chamada) => (
-                <CartaoChamada key={chamada.slug} idioma={idioma} chamada={chamada} />
-              ))}
-            </div>
+            {chamadaUnica ? (
+              <ChamadaDestaque idioma={idioma} edital={emCartaz[0]} nivel={3} />
+            ) : (
+              <div className={emCartaz.length === 2 ? 'grade--2' : 'grade--3'}>
+                {emCartaz.map((chamada) => (
+                  <CartaoEdital key={chamada.slug} idioma={idioma} edital={chamada} />
+                ))}
+              </div>
+            )}
           </div>
         </section>
       ) : null}
-
-
 
       {temRecursos ? (
         <section className="secao secao--branco">
@@ -279,7 +242,11 @@ export default async function Home({ params }: { params: Promise<{ idioma: strin
                   <p className="cartao__texto">{t.home.materiaisTexto}</p>
                   <Chips itens={formatos} />
                   <div className="cartao__rodape">
-                    <span>{`${t.home.materiaisLicenca} ${licencas.join(', ')}`}</span>
+                    {licencas.length > 0 ? (
+                      <span>{`${t.home.materiaisLicenca} ${licencas.join(', ')}`}</span>
+                    ) : (
+                      <span />
+                    )}
                     <span className="link-seta">{t.home.materiaisAcao}</span>
                   </div>
                 </Link>
@@ -289,7 +256,7 @@ export default async function Home({ params }: { params: Promise<{ idioma: strin
         </section>
       ) : null}
 
-            <section
+      <section
         className="secao secao--alta secao--preto"
         style={{ position: 'relative', overflow: 'hidden' }}
       >

@@ -180,27 +180,38 @@ const CSS = `
   padding-top: 0.3em;
 }
 
-/* Arquivos: um por idioma, com o que o leitor baixa dito por extenso. */
-.bib-arquivo {
+/*
+ * Texto completo: um botao por idioma publicado, lado a lado enquanto couberem.
+ * O rotulo do botao nomeia o idioma do arquivo, e a linha abaixo diz o formato
+ * e o peso. E a decisao que a pagina pede: qual dos PDFs baixar.
+ */
+.bib-baixar {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) auto;
-  gap: 16px;
-  align-items: center;
-  padding: 11px 0;
-  border-top: 1px solid var(--linha);
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 12px 16px;
 }
-.bib-arquivo__idioma { margin: 0; font-size: 1.05rem; line-height: 1.25; }
-.bib-arquivo__nota {
-  margin: 3px 0 0;
+.bib-baixar__item { display: grid; gap: 6px; align-content: start; }
+.bib-baixar__ficha {
+  margin: 0;
   font-family: var(--mono);
   font-size: 0.6875rem;
   letter-spacing: 0.11em;
   text-transform: uppercase;
+  text-align: center;
   color: var(--tinta-suave);
 }
 
 @media (max-width: 880px) {
   .bib-abertura { grid-template-columns: 184px minmax(0, 1fr); gap: 20px; }
+}
+
+/*
+ * Capa do cartao no celular, onde a lista vira coluna unica e a capa passa a
+ * ocupar a largura inteira. Uma faixa de 200px cortava a capa em pe no meio de
+ * uma linha do titulo impresso nela; em 4 por 3 o titulo cabe inteiro.
+ */
+@media (max-width: 760px) {
+  .publicacao .publicacao__capa { max-height: none; aspect-ratio: 4 / 3; }
 }
 
 @media (max-width: 640px) {

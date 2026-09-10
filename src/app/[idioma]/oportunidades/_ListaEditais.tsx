@@ -9,6 +9,7 @@ import { textos } from '@/i18n/strings';
 import type { Call, StatusEdital, TipoEdital } from '@/lib/types';
 
 import { CartaoEdital } from './_CartaoEdital';
+import { ChamadaDestaque } from './_ChamadaDestaque';
 
 /** Ordem canonica de exibicao dos filtros. So aparece o que existe nos dados. */
 const ORDEM_STATUS: StatusEdital[] = ['aberta', 'em-avaliacao', 'encerrada'];
@@ -128,15 +129,13 @@ export function ListaEditais({ idioma, editais }: { idioma: Idioma; editais: Cal
   /*
    * Sem nenhuma chamada publicada nao ha o que filtrar nem contar: a pagina
    * mostra o bloco SemChamadas no lugar desta lista. Com uma unica chamada,
-   * filtro e contagem tambem nao acrescentam nada.
+   * filtro e contagem tambem nao acrescentam nada, e ela e publicada em
+   * largura inteira: meia grade faria a unica chamada do programa parecer
+   * uma lista pela metade.
    */
   if (editais.length === 0) return null;
   if (editais.length === 1) {
-    return (
-      <div className="grade--2">
-        <CartaoEdital idioma={idioma} edital={editais[0]} />
-      </div>
-    );
+    return <ChamadaDestaque idioma={idioma} edital={editais[0]} />;
   }
 
   return (

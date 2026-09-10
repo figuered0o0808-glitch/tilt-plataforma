@@ -17,15 +17,11 @@ export function SiteFooter({ idioma }: { idioma: Idioma }) {
         <div className="container">
           <div className="rodape__grade">
             <div>
-              <p style={{ margin: '0 0 12px' }}>
+              <p className="rodape__marca">
                 <LogoTilt altura={26} rotulo={PROGRAM_NAME} />
               </p>
-              <p className="rotulo" style={{ marginBottom: 14 }}>
-                {PROGRAM_TAGLINE}
-              </p>
-              <p className="texto-pequeno" style={{ maxWidth: '40ch' }}>
-                {t.comum.rodape.descricao}
-              </p>
+              <p className="rotulo rodape__tagline">{PROGRAM_TAGLINE}</p>
+              <p className="texto-pequeno rodape__descricao">{t.comum.rodape.descricao}</p>
             </div>
             <div>
               <p className="rodape__titulo">{t.comum.rodape.navegue}</p>

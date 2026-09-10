@@ -22,6 +22,10 @@ import {
 import { DATA_REFERENCIA, STORAGE_KEY } from '@/config/program';
 import { proximoId } from '@/lib/format';
 import type { Candidatura, PerfilCadastro } from '@/lib/types';
+import {
+  enviarCadastro as enviarCadastroParaIndica,
+  enviarCandidatura as enviarCandidaturaParaIndica,
+} from '@/lib/envio';
 
 interface Estado {
   cadastrado: boolean;
@@ -47,6 +51,16 @@ export interface NovaCandidatura {
   projeto: string;
   formato: string;
   valorSolicitado: number;
+  /**
+   * Dados de quem propoe, para o envio a INDICA.
+   *
+   * Opcional porque o estado local nao precisa deles: o painel do criador mostra
+   * projeto, valor e situacao, e nao repete o que a pessoa digitou sobre si.
+   * Quem preenche este campo e o formulario de candidatura, que os tem em maos.
+   * Enquanto ele nao preencher, a candidatura chega a API sem identificacao do
+   * proponente, o que a API deve recusar.
+   */
+  proponente?: Record<string, string>;
 }
 
 interface ContextoApp extends Estado {
@@ -100,6 +114,14 @@ export function AppProvider({ children }: { children: ReactNode }) {
       nome: perfil.nome.trim(),
       perfil,
     }));
+
+    /*
+     * Sai daqui para a INDICA quando ha destino configurado (ver src/lib/envio.ts).
+     * Sem destino, nao ha requisicao nenhuma, e e esse o estado de hoje.
+     * O envio nao e esperado de proposito: a confirmacao na tela responde ao que
+     * a pessoa fez, e nao ao que a rede conseguiu fazer.
+     */
+    void enviarCadastroParaIndica(perfil);
   }, []);
 
   const enviarCandidatura = useCallback(
@@ -119,6 +141,15 @@ export function AppProvider({ children }: { children: ReactNode }) {
         cadastrado: true,
         candidaturas: [nova, ...atual.candidaturas],
       }));
+
+      /* Mesmo desenho do cadastro: nao espera e nao bloqueia a confirmacao. */
+      void enviarCandidaturaParaIndica({
+        chamadaSlug: dados.editalSlug,
+        proponente: dados.proponente ?? {},
+        projeto: { titulo: dados.projeto, formato: dados.formato },
+        valorSolicitado: dados.valorSolicitado,
+      });
+
       return nova;
     },
     [estado.candidaturas],

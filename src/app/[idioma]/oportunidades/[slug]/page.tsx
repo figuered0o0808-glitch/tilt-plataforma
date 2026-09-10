@@ -12,8 +12,10 @@ import { textos } from '@/i18n/strings';
 import { conteudo, editalPorSlug } from '@/lib/data';
 import { arquivoPublico, data, moeda } from '@/lib/format';
 
+import { enderecoDaChamada } from '../_endereco';
 import { prazoDaChamada } from '../_prazo';
 
+import { Compartilhar } from './_Compartilhar';
 import { Lateral } from './_Lateral';
 import { Resultado } from './_Resultado';
 
@@ -78,6 +80,7 @@ export default async function PaginaEdital({
 
   const prazo = prazoDaChamada(idioma, edital);
   const temObservacao = edital.distribuicao.some((faixa) => Boolean(faixa.observacao));
+  const endereco = enderecoDaChamada(idioma, edital.slug);
 
   return (
     <>
@@ -100,7 +103,10 @@ export default async function PaginaEdital({
         }
       />
 
-      <section className="secao secao--curta secao--branco" style={{ marginTop: 44 }}>
+      <section
+        className="secao secao--curta secao--branco"
+        style={{ marginTop: 44, borderTop: '1px solid var(--linha)' }}
+      >
         <div className="container">
           <h2 className="sr-only">{t.editais.numerosTitulo}</h2>
           <dl
@@ -137,13 +143,24 @@ export default async function PaginaEdital({
 
       <Faixas altura="fina" />
 
+      {/*
+        Em coluna unica a lateral cairia depois do documento inteiro: quem le
+        no celular so encontraria o prazo, o botao de candidatura e o sumario
+        no fim da pagina. A regra vale so aqui, por isso mora nesta pagina.
+      */}
+      <style>{`
+        @media (max-width: 1040px) {
+          .chamada__corpo > .lateral { order: -1; }
+        }
+      `}</style>
+
       {edital.status === 'encerrada' && edital.resultado ? (
         <Resultado idioma={idioma} resultado={edital.resultado} />
       ) : null}
 
       <div className="secao">
         <div className="container">
-          <div className="grade--lateral">
+          <div className="grade--lateral chamada__corpo">
             <div className="pilha--g">
               <Secao id="apresentacao" titulo={t.editais.secoes.apresentacao}>
                 <div className="prosa">
@@ -208,6 +225,19 @@ export default async function PaginaEdital({
                 </div>
               </Secao>
 
+              {/* Cronograma so entra depois de fechado: sem etapas, sem secao. */}
+              {edital.cronograma.length > 0 ? (
+                <Secao id="cronograma" titulo={t.editais.secoes.cronograma}>
+                  <div>
+                    {edital.cronograma.map((etapa) => (
+                      <Registro key={etapa.etapa} rotulo={data(etapa.data)}>
+                        <p style={{ margin: 0 }}>{etapa.etapa}</p>
+                      </Registro>
+                    ))}
+                  </div>
+                </Secao>
+              ) : null}
+
               <Secao id="banca" titulo={t.editais.secoes.banca}>
                 {edital.banca.length > 0 ? (
                   <div className="grade--2">
@@ -259,19 +289,7 @@ export default async function PaginaEdital({
                 </div>
               </Secao>
 
-              {/* Cronograma so entra depois de fechado: sem etapas, sem secao. */}
-              {edital.cronograma.length > 0 ? (
-                <Secao id="cronograma" titulo={t.editais.secoes.cronograma}>
-                  <div>
-                    {edital.cronograma.map((etapa) => (
-                      <Registro key={etapa.etapa} rotulo={data(etapa.data)}>
-                        <p style={{ margin: 0 }}>{etapa.etapa}</p>
-                      </Registro>
-                    ))}
-                  </div>
-                </Secao>
-              ) : null}
-
+              <Compartilhar idioma={idioma} endereco={endereco} />
             </div>
 
             <Lateral idioma={idioma} edital={edital} />

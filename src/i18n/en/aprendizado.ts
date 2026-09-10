@@ -77,6 +77,8 @@ export const aprendizado = {
     sumario: 'In this publication',
     arquivosTitulo: 'Full text',
     arquivoTipo: 'PDF',
+    /* O idioma sai do proprio arquivo publicado, ja escrito no idioma da pagina. */
+    arquivoBaixarEm: 'Download in {idioma}',
     paginas: 'pages',
     /* Selo e nota so aparecem quando o material declara licenca. */
     licencaNota: 'Use and adaptation allowed with attribution.',

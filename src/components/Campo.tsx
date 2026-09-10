@@ -27,7 +27,7 @@ export function Campo({ idioma, id, rotulo, ajuda, erro, opcional, children }: E
       ) : null}
       {children}
       {erro ? (
-        <p className="campo__erro" id={`${id}-erro`}>
+        <p className="campo__erro" id={`${id}-erro`} role="alert">
           {erro}
         </p>
       ) : null}

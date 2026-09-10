@@ -8,24 +8,29 @@
 import Link from 'next/link';
 
 import { Botao } from '@/components/Botao';
+import { Chip } from '@/components/Chip';
 import { EstadoVazio } from '@/components/EstadoVazio';
 import { Selo } from '@/components/Selo';
 import type { Idioma } from '@/i18n/idiomas';
 import { textos } from '@/i18n/strings';
+import { conteudo } from '@/lib/data';
 import { dataCurta, moeda } from '@/lib/format';
 import { rota } from '@/lib/rotas';
-import type { Candidatura } from '@/lib/types';
+import type { Call, Candidatura } from '@/lib/types';
 
-export function Candidaturas({
-  idioma,
-  candidaturas,
-}: {
-  idioma: Idioma;
-  candidaturas: Candidatura[];
-}) {
-  const s = textos(idioma).paineis;
+/**
+ * Estado vazio de quem tem cadastro e ainda nao se candidatou.
+ *
+ * Em vez de dizer que a lista esta vazia e mandar procurar, ele traz as
+ * chamadas que estao aceitando inscricao agora, com o apoio por projeto, o
+ * prazo e o botao que abre o formulario. E o unico lugar do painel em que a
+ * pessoa pode agir sem sair da pagina.
+ */
+function SemCandidatura({ idioma, abertas }: { idioma: Idioma; abertas: Call[] }) {
+  const t = textos(idioma);
+  const s = t.paineis;
 
-  if (candidaturas.length === 0) {
+  if (abertas.length === 0) {
     return (
       <EstadoVazio
         desenho="pasta"
@@ -37,6 +42,78 @@ export function Candidaturas({
         }
       />
     );
+  }
+
+  return (
+    <div className="pilha">
+      <p style={{ margin: 0 }}>{s.candidaturasVazio}</p>
+
+      {abertas.map((edital) => (
+        <article key={edital.slug} className="cartao">
+          <div className="linha" style={{ gap: 8 }}>
+            <Selo idioma={idioma} status={edital.status} />
+            <Chip vazado>{t.comum.tiposEdital[edital.tipo]}</Chip>
+          </div>
+
+          <h3 className="cartao__titulo">{edital.titulo}</h3>
+          {/* O painel e largo; o resumo para na medida em que ainda se le. */}
+          <p className="cartao__texto" style={{ maxWidth: '62ch' }}>
+            {edital.resumo}
+          </p>
+
+          <dl
+            className="definicoes definicoes--2"
+            style={{ gap: 16, borderTop: '1px solid var(--linha)', paddingTop: 16 }}
+          >
+            <div>
+              <dt>{t.comum.rotulos.apoio}</dt>
+              <dd>
+                {`${moeda(edital.faixaApoio.min)} ${t.editais.faixaSeparador} ${moeda(
+                  edital.faixaApoio.max,
+                )}`}
+              </dd>
+            </div>
+            <div>
+              <dt>{t.comum.rotulos.prazo}</dt>
+              <dd>
+                {edital.inscricoesAte ? dataCurta(edital.inscricoesAte) : t.editais.semPrazo}
+              </dd>
+            </div>
+          </dl>
+
+          <div className="linha">
+            <Botao
+              href={rota(idioma, `oportunidades/${edital.slug}/candidatura`)}
+              tamanho="pequeno"
+            >
+              {t.comum.acoes.candidatarProjeto}
+            </Botao>
+            <Botao
+              href={rota(idioma, `oportunidades/${edital.slug}`)}
+              variante="secundario"
+              tamanho="pequeno"
+            >
+              {t.comum.acoes.verEdital}
+            </Botao>
+          </div>
+        </article>
+      ))}
+    </div>
+  );
+}
+
+export function Candidaturas({
+  idioma,
+  candidaturas,
+}: {
+  idioma: Idioma;
+  candidaturas: Candidatura[];
+}) {
+  const s = textos(idioma).paineis;
+
+  if (candidaturas.length === 0) {
+    const abertas = conteudo(idioma).editais.filter((edital) => edital.status === 'aberta');
+    return <SemCandidatura idioma={idioma} abertas={abertas} />;
   }
 
   const total = candidaturas.reduce((soma, item) => soma + item.valorSolicitado, 0);

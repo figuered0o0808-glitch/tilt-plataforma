@@ -14,7 +14,7 @@ import { rota } from '@/lib/rotas';
 
 import { Capa } from '../_Capa';
 import { CartaoMaterial, marcaDaTrilha, rotuloTrilha } from '../_CartaoMaterial';
-import { dataLonga, vizinhanca } from '../_regras';
+import { dataLonga, ordenarArquivos, vizinhanca } from '../_regras';
 import { EstilosAcervo } from '../_estilos';
 
 /** Um endereco por idioma e por material publicado naquele idioma. */
@@ -40,6 +40,15 @@ export async function generateMetadata({
   };
 }
 
+/**
+ * Pagina de um material.
+ *
+ * Quem chega aqui decide duas coisas: se vale a pena ler e qual arquivo baixar.
+ * Por isso a abertura reune o que decide (capa, resumo e ficha) e logo abaixo
+ * vem o texto completo, um botao por idioma publicado. O texto da pagina fica
+ * depois: quem ja decidiu nao precisa dele, e quem ainda nao decidiu le ali
+ * antes de baixar.
+ */
 export default async function MaterialPage({
   params,
 }: {
@@ -59,6 +68,9 @@ export default async function MaterialPage({
   const palavrasChave = material.palavrasChave.filter(
     (palavra) => palavra.toLowerCase() !== material.tema.toLowerCase(),
   );
+
+  // O arquivo no idioma de quem le abre a lista e leva o botao cheio.
+  const arquivos = ordenarArquivos(material.arquivos, idioma);
 
   // Sumario so quando ha o que sumariar: com duas secoes a rolagem resolve.
   const comSumario = material.secoes.length > 2;
@@ -85,51 +97,85 @@ export default async function MaterialPage({
           <div className="bib-abertura">
             <Capa material={material} cor={marcaDaTrilha(material.trilha)} variante="grande" />
 
-            <div
-              className="cartao cartao--marcado"
-              style={{ '--marca': marcaDaTrilha(material.trilha) } as CSSProperties}
-            >
-              <dl className="bib-ficha">
-                <div className="bib-ficha__linha">
-                  <dt>{r.autoria}</dt>
-                  <dd>{material.autoria.join(', ')}</dd>
-                </div>
-                <div className="bib-ficha__linha">
-                  <dt>{r.organizacao}</dt>
-                  <dd>{material.organizacao}</dd>
-                </div>
-                <div className="bib-ficha__linha">
-                  <dt>{r.tema}</dt>
-                  <dd>{material.tema}</dd>
-                </div>
-                <div className="bib-ficha__linha">
-                  <dt>{r.formato}</dt>
-                  <dd>{material.formato}</dd>
-                </div>
-                {material.tempoLeitura ? (
+            <div className="pilha">
+              <p className="texto-guia" style={{ margin: 0 }}>
+                {material.resumo}
+              </p>
+
+              <div
+                className="cartao cartao--marcado"
+                style={{ '--marca': marcaDaTrilha(material.trilha) } as CSSProperties}
+              >
+                <dl className="bib-ficha">
                   <div className="bib-ficha__linha">
-                    <dt>{r.tempoLeitura}</dt>
-                    <dd>{material.tempoLeitura}</dd>
+                    <dt>{r.autoria}</dt>
+                    <dd>{material.autoria.join(', ')}</dd>
+                  </div>
+                  <div className="bib-ficha__linha">
+                    <dt>{r.organizacao}</dt>
+                    <dd>{material.organizacao}</dd>
+                  </div>
+                  <div className="bib-ficha__linha">
+                    <dt>{r.tema}</dt>
+                    <dd>{material.tema}</dd>
+                  </div>
+                  <div className="bib-ficha__linha">
+                    <dt>{r.formato}</dt>
+                    <dd>{material.formato}</dd>
+                  </div>
+                  {material.tempoLeitura ? (
+                    <div className="bib-ficha__linha">
+                      <dt>{r.tempoLeitura}</dt>
+                      <dd>{material.tempoLeitura}</dd>
+                    </div>
+                  ) : null}
+                  <div className="bib-ficha__linha">
+                    <dt>{r.atualizadoEm}</dt>
+                    <dd>{dataLonga(material.atualizadoEm, r.dataModelo, r.meses)}</dd>
+                  </div>
+                </dl>
+
+                {palavrasChave.length > 0 ? (
+                  <div className="pilha--p" style={{ marginTop: 14 }}>
+                    <p className="rotulo">{r.palavrasChave}</p>
+                    <Chips itens={palavrasChave} vazado />
                   </div>
                 ) : null}
-                <div className="bib-ficha__linha">
-                  <dt>{r.atualizadoEm}</dt>
-                  <dd>{dataLonga(material.atualizadoEm, r.dataModelo, r.meses)}</dd>
-                </div>
-              </dl>
-
-              {palavrasChave.length > 0 ? (
-                <div className="pilha--p" style={{ marginTop: 14 }}>
-                  <p className="rotulo">{r.palavrasChave}</p>
-                  <Chips itens={palavrasChave} vazado />
-                </div>
-              ) : null}
+              </div>
             </div>
           </div>
 
-          <p className="texto-guia" style={{ margin: 0 }}>
-            {material.resumo}
-          </p>
+          {arquivos.length > 0 ? (
+            <div className="cartao cartao--compacto">
+              {/* O formato e o mesmo para todos os arquivos: fica dito uma vez. */}
+              <div className="linha linha--fim">
+                <h2 className="rotulo rotulo--forte" style={{ margin: 0 }}>
+                  {r.arquivosTitulo}
+                </h2>
+                <p className="rotulo" style={{ margin: 0 }}>
+                  {r.arquivoTipo}
+                </p>
+              </div>
+              {/* Um botao por idioma publicado: o rotulo diz qual arquivo sai. */}
+              <div className="bib-baixar">
+                {arquivos.map((arquivo, indice) => (
+                  <div key={arquivo.arquivo} className="bib-baixar__item">
+                    <a
+                      href={arquivoPublico(arquivo.arquivo)}
+                      className={`btn ${
+                        indice === 0 ? 'btn--primario' : 'btn--secundario'
+                      } btn--pequeno btn--largo`}
+                    >
+                      {r.arquivoBaixarEm.replace('{idioma}', arquivo.idioma)}
+                    </a>
+                    {arquivo.paginas ? (
+                      <p className="bib-baixar__ficha">{`${arquivo.paginas} ${r.paginas}`}</p>
+                    ) : null}
+                  </div>
+                ))}
+              </div>
+            </div>
+          ) : null}
 
           {comSumario ? (
             <nav className="cartao cartao--compacto" aria-label={r.sumario}>
@@ -159,34 +205,6 @@ export default async function MaterialPage({
               </section>
             ))}
           </div>
-
-          {material.arquivos.length > 0 ? (
-            <div className="cartao cartao--compacto">
-              <h2 className="rotulo rotulo--forte" style={{ margin: 0 }}>
-                {r.arquivosTitulo}
-              </h2>
-              <div>
-                {material.arquivos.map((arquivo) => (
-                  <div key={arquivo.arquivo} className="bib-arquivo">
-                    <div>
-                      <p className="bib-arquivo__idioma">{arquivo.idioma}</p>
-                      <p className="bib-arquivo__nota">
-                        {arquivo.paginas
-                          ? `${r.arquivoTipo} · ${arquivo.paginas} ${r.paginas}`
-                          : r.arquivoTipo}
-                      </p>
-                    </div>
-                    <a
-                      href={arquivoPublico(arquivo.arquivo)}
-                      className="btn btn--secundario btn--pequeno"
-                    >
-                      {t.comum.acoes.baixar}
-                    </a>
-                  </div>
-                ))}
-              </div>
-            </div>
-          ) : null}
 
           {material.licenca ? (
             <div

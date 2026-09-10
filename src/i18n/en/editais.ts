@@ -16,7 +16,7 @@ export const editais = {
   /* Estado da aba enquanto nenhuma chamada foi publicada. */
   semChamadaTitulo: 'No call is open yet',
   semChamadaTexto:
-    'The first call will be published on this page, with the full text, the selection criteria, the panel and the application deadline.',
+    'The first call brings the full text, the selection criteria, the panel and the application deadline.',
   prepararTitulo: 'What you can prepare ahead',
   prepararItens: [
     'Project title and description, with the approach and the number of pieces',
@@ -85,6 +85,11 @@ export const editais = {
   resultadoPublicadoEm: 'Result published on',
   inscricoesEncerradasEm: 'Applications closed on',
   resultadoPrevistoPara: 'Result expected for',
+
+  /* Compartilhamento: o endereco fica escrito na pagina, sem script de rede. */
+  compartilharTitulo: 'Share this call',
+  copiarEndereco: 'Copy address',
+  enderecoCopiado: 'Address copied.',
 
   candidaturaTitulo: 'Application',
   encerradaAviso: 'Applications are closed.',

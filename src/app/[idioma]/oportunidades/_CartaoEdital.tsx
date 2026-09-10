@@ -34,7 +34,14 @@ export function CartaoEdital({ idioma, edital }: { idioma: Idioma; edital: Call 
           <img
             src={arquivoPublico(edital.logoOrganizacao)}
             alt={edital.organizacao ?? ''}
-            style={{ height: 16, width: 'auto', display: 'block', flex: 'none' }}
+            style={{
+              height: 16,
+              width: 'auto',
+              display: 'block',
+              flex: 'none',
+              /* Quando a linha quebra no celular, a marca fica no fim, nao orfa a esquerda. */
+              marginLeft: 'auto',
+            }}
           />
         ) : null}
       </div>

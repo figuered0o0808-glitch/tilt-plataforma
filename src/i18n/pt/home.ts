@@ -52,12 +52,10 @@ export const home = {
   chamadasTituloSemAbertas: 'Chamadas do programa',
 
   chamadasAcao: 'Ver todas as chamadas',
-  prazoADefinir: 'A definir',
-  rotuloProponente: 'Proponente',
 
   recursosTitulo: 'Biblioteca',
   recursosTexto:
-    'A segunda área reúne formação e material de consulta, em duas trilhas: uma para criadores e uma para organizações que trabalham com essas pautas. A leitura é livre; a inscrição no curso pede cadastro.',
+    'Duas trilhas: uma para criadores e uma para organizações que trabalham com essas pautas. A leitura é livre; a inscrição no curso pede cadastro.',
   recursosAcao: 'Abrir a biblioteca',
   cursoOlho: 'Curso inaugural',
   cursoDuracao: 'Duração',

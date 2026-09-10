@@ -57,8 +57,12 @@ export const cadastro = {
     perfilExemplo: '@tuperfil',
     seguidores: 'Seguidores',
     seguidoresExemplo: 'Solo números',
+    /* Numera cada linha: no celular as tres colunas viram tres campos soltos. */
+    rede: 'Red',
     acrescentar: 'Agregar red',
     remover: 'Quitar',
+    /* Soma dos seguidores digitados, atualizada enquanto a pessoa preenche. */
+    soma: 'Audiencia sumada',
     plataformas: [
       'Instagram',
       'TikTok',

@@ -15,11 +15,11 @@ export function CabecalhoPagina({
   estreito?: boolean;
 }) {
   return (
-    <header className="secao secao--curta" style={{ paddingBottom: 0 }}>
+    <header className="secao secao--curta cabecalho-pagina">
       <div className={estreito ? 'container-estreito' : 'container'}>
         {olho ? <p className="olho">{olho}</p> : null}
-        <div className="linha linha--fim" style={{ alignItems: 'flex-end', gap: 20 }}>
-          <div style={{ maxWidth: '46rem' }}>
+        <div className="linha linha--fim cabecalho-pagina__topo">
+          <div className="cabecalho-pagina__texto">
             <h1>{titulo}</h1>
             {descricao ? <p className="texto-guia">{descricao}</p> : null}
           </div>

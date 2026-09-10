@@ -16,7 +16,7 @@ export function EstadoVazio({
     <div className="vazio">
       <Ilustracao nome={desenho} largura={92} />
       <p className="vazio__titulo">{titulo}</p>
-      {descricao ? <p className="texto-pequeno" style={{ margin: 0, maxWidth: '38ch' }}>{descricao}</p> : null}
+      {descricao ? <p className="texto-pequeno vazio__texto">{descricao}</p> : null}
       {acao}
     </div>
   );

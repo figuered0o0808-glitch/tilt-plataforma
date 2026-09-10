@@ -13,7 +13,7 @@ export const editais = {
   /* Estado da aba enquanto nenhuma chamada foi publicada. */
   semChamadaTitulo: 'Ainda não há chamada aberta',
   semChamadaTexto:
-    'A primeira chamada será publicada nesta página, com o texto integral, os critérios de seleção, a banca e o prazo de inscrição.',
+    'A primeira chamada traz o texto integral, os critérios de seleção, a banca e o prazo de inscrição.',
   prepararTitulo: 'O que você pode adiantar',
   prepararItens: [
     'Título e descrição do projeto, com a abordagem e a quantidade de peças',
@@ -92,6 +92,11 @@ export const editais = {
    * para achar a divulgacao do resultado. Em minusculas, no idioma dos dados.
    */
   termoEtapaResultado: 'resultado',
+
+  /* Compartilhamento: o endereco fica escrito na pagina, sem script de rede. */
+  compartilharTitulo: 'Compartilhar a chamada',
+  copiarEndereco: 'Copiar endereço',
+  enderecoCopiado: 'Endereço copiado.',
 
   candidaturaTitulo: 'Candidatura',
   encerradaAviso: 'As inscrições estão encerradas.',

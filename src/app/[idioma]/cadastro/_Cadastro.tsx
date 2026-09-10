@@ -29,6 +29,11 @@ import { PAIS_PADRAO, opcoesDePais } from '@/lib/paises';
 import { rota } from '@/lib/rotas';
 import { useApp } from '@/state/AppState';
 
+import { EstilosCadastro } from './_estilos';
+
+/** Localidade de cada idioma, para o separador de milhar da audiencia somada. */
+const LOCALIDADE: Record<Idioma, string> = { pt: 'pt-BR', en: 'en', es: 'es' };
+
 /**
  * Condicao unica que reabre o cadastro e, junto com ele, o painel.
  *
@@ -92,6 +97,12 @@ function Acoes({ idioma }: { idioma: Idioma }) {
 /**
  * Formulario de cadastro. So e montado quando `cadastroAberto()` e verdadeiro.
  *
+ * Dois blocos, e nao uma pilha unica de campos. O primeiro identifica a pessoa
+ * e leva o que o programa precisa saber para julgar uma candidatura; o segundo
+ * sao as redes declaradas, que e o que de fato descreve um criador, e por isso
+ * e o unico cartao com regua de cor. A audiencia somada aparece no pe das
+ * redes enquanto a pessoa digita: e a conta que ela mesma faria.
+ *
  * Ao reabrir: hoje `cadastrar` apenas guarda o nome no navegador. Antes de
  * publicar o formulario de novo, o envio precisa de destino: sem isso, os
  * outros campos se perdem quando a pessoa troca de navegador.
@@ -154,6 +165,9 @@ function CadastroFormulario({ idioma }: { idioma: Idioma }) {
     setRedes((atuais) => atuais.filter((_, i) => i !== indice));
   }
 
+  /* Soma dos seguidores ja digitados. Campo vazio nao conta como zero: some. */
+  const audiencia = redes.reduce((soma, rede) => soma + (Number(rede.seguidores) || 0), 0);
+
   function enviar(evento: React.FormEvent) {
     evento.preventDefault();
     cadastrar({
@@ -172,6 +186,7 @@ function CadastroFormulario({ idioma }: { idioma: Idioma }) {
 
   return (
     <>
+      <EstilosCadastro />
       <CabecalhoPagina estreito olho={tc.olho} titulo={tc.titulo} descricao={tc.descricao} />
 
       <div className="secao">
@@ -202,82 +217,85 @@ function CadastroFormulario({ idioma }: { idioma: Idioma }) {
               <Acoes idioma={idioma} />
             </section>
           ) : (
-            <section
-              className="cartao cartao--marcado"
-              style={{ '--marca': 'var(--menta)' } as CSSProperties}
-              aria-labelledby="cadastro-formulario-titulo"
-            >
-              <h2 className="cartao__titulo" id="cadastro-formulario-titulo">
-                {tc.formularioTitulo}
-              </h2>
+            <form onSubmit={enviar} className="pilha--g">
+              <section className="cartao" aria-labelledby="cadastro-dados-titulo">
+                <h2 className="cartao__titulo" id="cadastro-dados-titulo">
+                  {tc.formularioTitulo}
+                </h2>
 
-              <form onSubmit={enviar} className="pilha">
-                <CampoTexto idioma={idioma}
-                  id="cadastro-nome"
-                  rotulo={tc.campos.nome}
-                  value={nome}
-                  onChange={(evento) => setNome(evento.target.value)}
-                  autoComplete="off"
-                  required
-                />
-                <CampoTexto idioma={idioma}
-                  id="cadastro-email"
-                  rotulo={tc.campos.email}
-                  type="email"
-                  value={email}
-                  onChange={(evento) => setEmail(evento.target.value)}
-                  autoComplete="off"
-                  required
-                />
-                <CampoSelecao
-                  idioma={idioma}
-                  id="cadastro-pais"
-                  rotulo={tc.campos.pais}
-                  opcoes={paises}
-                  value={pais}
-                  onChange={(evento) => trocarPais(evento.target.value)}
-                  required
-                />
-                <div className="grade--2" style={{ gap: 14 }}>
-                  <CampoTexto idioma={idioma}
-                    id="cadastro-cidade"
-                    rotulo={tc.campos.cidade}
-                    value={cidade}
-                    onChange={(evento) => setCidade(evento.target.value)}
+                <div className="pilha">
+                  <CampoTexto
+                    idioma={idioma}
+                    id="cadastro-nome"
+                    rotulo={tc.campos.nome}
+                    value={nome}
+                    onChange={(evento) => setNome(evento.target.value)}
                     autoComplete="off"
                     required
                   />
-                  {/*
-                   * A lista de UF e brasileira. Quem se cadastra de fora do
-                   * Brasil escreve a regiao no proprio idioma, e o campo deixa
-                   * de ser obrigatorio: ha pais que nao divide o territorio em
-                   * nada que caiba nesta linha.
-                   */}
-                  {noBrasil ? (
-                  <CampoSelecao idioma={idioma}
-                    id="cadastro-uf"
-                    rotulo={tc.campos.uf}
-                    vazio={t.fluxos.candidatura.selecioneUf}
-                    opcoes={t.fluxos.candidatura.ufs.map((sigla) => ({
-                      valor: sigla,
-                      rotulo: sigla,
-                    }))}
-                    value={uf}
-                    onChange={(evento) => setUf(evento.target.value)}
+                  <CampoTexto
+                    idioma={idioma}
+                    id="cadastro-email"
+                    rotulo={tc.campos.email}
+                    type="email"
+                    value={email}
+                    onChange={(evento) => setEmail(evento.target.value)}
+                    autoComplete="off"
                     required
                   />
-                  ) : (
+                  <CampoSelecao
+                    idioma={idioma}
+                    id="cadastro-pais"
+                    rotulo={tc.campos.pais}
+                    opcoes={paises}
+                    value={pais}
+                    onChange={(evento) => trocarPais(evento.target.value)}
+                    required
+                  />
+                  <div className="grade--2" style={{ gap: 14 }}>
                     <CampoTexto
                       idioma={idioma}
-                      id="cadastro-regiao"
-                      rotulo={tc.campos.regiao}
-                      value={uf}
-                      onChange={(evento) => setUf(evento.target.value)}
+                      id="cadastro-cidade"
+                      rotulo={tc.campos.cidade}
+                      value={cidade}
+                      onChange={(evento) => setCidade(evento.target.value)}
                       autoComplete="off"
-                      opcional
+                      required
                     />
-                  )}
+                    {/*
+                     * A lista de UF e brasileira. Quem se cadastra de fora do
+                     * Brasil escreve a regiao no proprio idioma, e o campo deixa
+                     * de ser obrigatorio: ha pais que nao divide o territorio em
+                     * nada que caiba nesta linha.
+                     */}
+                    {noBrasil ? (
+                      <CampoSelecao
+                        idioma={idioma}
+                        id="cadastro-uf"
+                        rotulo={tc.campos.uf}
+                        vazio={t.fluxos.candidatura.selecioneUf}
+                        opcoes={t.fluxos.candidatura.ufs.map((sigla) => ({
+                          valor: sigla,
+                          rotulo: sigla,
+                        }))}
+                        value={uf}
+                        onChange={(evento) => setUf(evento.target.value)}
+                        required
+                      />
+                    ) : (
+                      <CampoTexto
+                        idioma={idioma}
+                        id="cadastro-regiao"
+                        rotulo={tc.campos.regiao}
+                        value={uf}
+                        onChange={(evento) => setUf(evento.target.value)}
+                        autoComplete="off"
+                        opcional
+                      />
+                    )}
+                  </div>
                 </div>
+
                 <fieldset
                   style={{
                     border: 0,
@@ -317,83 +335,102 @@ function CadastroFormulario({ idioma }: { idioma: Idioma }) {
                     })}
                   </div>
                 </fieldset>
+              </section>
 
-                <fieldset
-                  style={{
-                    border: 0,
-                    padding: 0,
-                    margin: '10px 0 0',
-                    display: 'flex',
-                    flexDirection: 'column',
-                    gap: 14,
-                  }}
-                >
-                  <legend style={{ padding: 0 }}>
-                    <span className="campo__rotulo">{tc.redes.titulo}</span>
-                  </legend>
-                  <p className="campo__ajuda" style={{ marginTop: -6 }}>
-                    {tc.redes.ajuda}
-                  </p>
+              <section
+                className="cartao cartao--marcado"
+                style={{ '--marca': 'var(--menta)' } as CSSProperties}
+                aria-labelledby="cadastro-redes-titulo"
+              >
+                <h2 className="cartao__titulo" id="cadastro-redes-titulo">
+                  {tc.redes.titulo}
+                </h2>
+                <p className="cartao__texto">{tc.redes.ajuda}</p>
 
+                <div>
                   {redes.map((rede, indice) => (
-                    <div key={indice} className="rede-linha">
-                      <CampoSelecao
-                        idioma={idioma}
-                        id={`rede-plataforma-${indice}`}
-                        rotulo={tc.redes.plataforma}
-                        vazio={tc.redes.escolhaPlataforma}
-                        opcoes={tc.redes.plataformas.map((nome) => ({
-                          valor: nome,
-                          rotulo: nome,
-                        }))}
-                        value={rede.plataforma}
-                        onChange={(evento) => alterarRede(indice, 'plataforma', evento.target.value)}
-                        required={indice === 0}
-                      />
-                      <CampoTexto
-                        idioma={idioma}
-                        id={`rede-perfil-${indice}`}
-                        rotulo={tc.redes.perfil}
-                        placeholder={tc.redes.perfilExemplo}
-                        value={rede.perfil}
-                        onChange={(evento) => alterarRede(indice, 'perfil', evento.target.value)}
-                        autoComplete="off"
-                        required={indice === 0}
-                      />
-                      <CampoTexto
-                        idioma={idioma}
-                        id={`rede-seguidores-${indice}`}
-                        rotulo={tc.redes.seguidores}
-                        placeholder={tc.redes.seguidoresExemplo}
-                        inputMode="numeric"
-                        value={rede.seguidores}
-                        onChange={(evento) =>
-                          alterarRede(indice, 'seguidores', evento.target.value.replace(/\D/g, ''))
-                        }
-                        autoComplete="off"
-                      />
-                      {redes.length > 1 ? (
-                        <button
-                          type="button"
-                          className="btn btn--discreto btn--pequeno rede-linha__remover"
-                          onClick={() => removerRede(indice)}
-                        >
-                          {tc.redes.remover}
-                        </button>
-                      ) : null}
+                    <div key={indice} className="cad-rede">
+                      <div className="cad-rede__topo">
+                        <p className="rotulo rotulo--forte" style={{ margin: 0 }}>
+                          {`${tc.redes.rede} ${indice + 1}`}
+                        </p>
+                        {redes.length > 1 ? (
+                          <button
+                            type="button"
+                            className="btn btn--discreto btn--pequeno"
+                            onClick={() => removerRede(indice)}
+                          >
+                            {tc.redes.remover}
+                          </button>
+                        ) : null}
+                      </div>
+
+                      <div className="cad-rede__campos">
+                        <CampoSelecao
+                          idioma={idioma}
+                          id={`rede-plataforma-${indice}`}
+                          rotulo={tc.redes.plataforma}
+                          vazio={tc.redes.escolhaPlataforma}
+                          opcoes={tc.redes.plataformas.map((nome) => ({
+                            valor: nome,
+                            rotulo: nome,
+                          }))}
+                          value={rede.plataforma}
+                          onChange={(evento) =>
+                            alterarRede(indice, 'plataforma', evento.target.value)
+                          }
+                          required={indice === 0}
+                        />
+                        <CampoTexto
+                          idioma={idioma}
+                          id={`rede-perfil-${indice}`}
+                          rotulo={tc.redes.perfil}
+                          placeholder={tc.redes.perfilExemplo}
+                          value={rede.perfil}
+                          onChange={(evento) => alterarRede(indice, 'perfil', evento.target.value)}
+                          autoComplete="off"
+                          required={indice === 0}
+                        />
+                        <CampoTexto
+                          idioma={idioma}
+                          id={`rede-seguidores-${indice}`}
+                          rotulo={tc.redes.seguidores}
+                          placeholder={tc.redes.seguidoresExemplo}
+                          inputMode="numeric"
+                          value={rede.seguidores}
+                          onChange={(evento) =>
+                            alterarRede(indice, 'seguidores', evento.target.value.replace(/\D/g, ''))
+                          }
+                          autoComplete="off"
+                        />
+                      </div>
                     </div>
                   ))}
+                </div>
 
+                <div className="linha">
                   <Botao variante="secundario" tamanho="pequeno" onClick={acrescentarRede}>
                     {tc.redes.acrescentar}
                   </Botao>
-                </fieldset>
+                </div>
 
-                <Botao type="submit" largo>
-                  {tc.acao}
-                </Botao>
-              </form>
-            </section>
+                {/* Aparece no primeiro numero digitado e acompanha cada tecla. */}
+                {audiencia > 0 ? (
+                  <div className="cad-soma">
+                    <p className="rotulo rotulo--forte" style={{ margin: 0 }}>
+                      {tc.redes.soma}
+                    </p>
+                    <p className="numero-grande cad-soma__valor">
+                      {new Intl.NumberFormat(LOCALIDADE[idioma]).format(audiencia)}
+                    </p>
+                  </div>
+                ) : null}
+              </section>
+
+              <Botao type="submit" largo>
+                {tc.acao}
+              </Botao>
+            </form>
           )}
         </div>
       </div>

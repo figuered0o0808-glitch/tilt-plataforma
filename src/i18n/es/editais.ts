@@ -16,7 +16,7 @@ export const editais = {
   /* Estado da aba enquanto nenhuma chamada foi publicada. */
   semChamadaTitulo: 'Todavía no hay convocatoria abierta',
   semChamadaTexto:
-    'La primera convocatoria se publicará en esta página, con el texto íntegro, los criterios de selección, el jurado y el plazo de inscripción. El resultado queda publicado en la página de la convocatoria, con la lista de apoyados y los montos.',
+    'La primera convocatoria trae el texto íntegro, los criterios de selección, el jurado y el plazo de inscripción.',
   prepararTitulo: 'Lo que puedes adelantar',
   prepararItens: [
     'Título y descripción del proyecto, con el enfoque y la cantidad de piezas',
@@ -85,6 +85,11 @@ export const editais = {
   resultadoPublicadoEm: 'Resultado publicado el',
   inscricoesEncerradasEm: 'Inscripciones cerradas el',
   resultadoPrevistoPara: 'Resultado previsto para',
+
+  /* Compartilhamento: o endereco fica escrito na pagina, sem script de rede. */
+  compartilharTitulo: 'Compartir la convocatoria',
+  copiarEndereco: 'Copiar dirección',
+  enderecoCopiado: 'Dirección copiada.',
 
   candidaturaTitulo: 'Postulación',
   encerradaAviso: 'Las inscripciones están cerradas.',

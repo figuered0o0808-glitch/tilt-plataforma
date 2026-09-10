@@ -52,12 +52,10 @@ export const home = {
   chamadasTituloSemAbertas: 'Program calls',
 
   chamadasAcao: 'See all calls',
-  prazoADefinir: 'To be defined',
-  rotuloProponente: 'Funder',
 
   recursosTitulo: 'Library',
   recursosTexto:
-    'The second area brings together training and reference material, in two tracks: one for creators and one for organizations working on these topics. Reading is open; enrolling in a course requires an account.',
+    'Two tracks: one for creators and one for organizations working on these topics. Reading is open; enrolling in a course requires an account.',
   recursosAcao: 'Open the library',
   cursoOlho: 'Inaugural course',
   cursoDuracao: 'Duration',

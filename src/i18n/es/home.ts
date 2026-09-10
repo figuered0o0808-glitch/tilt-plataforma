@@ -52,12 +52,10 @@ export const home = {
   chamadasTituloSemAbertas: 'Convocatorias del programa',
 
   chamadasAcao: 'Ver todas las convocatorias',
-  prazoADefinir: 'Por definir',
-  rotuloProponente: 'Proponente',
 
   recursosTitulo: 'Biblioteca',
   recursosTexto:
-    'La segunda área reúne formación y material de consulta, en dos rutas: una para creadores y otra para organizaciones que trabajan con estos temas. La lectura es libre; la inscripción al curso requiere cuenta.',
+    'Dos rutas: una para creadores y otra para organizaciones que trabajan con estos temas. La lectura es libre; la inscripción al curso requiere cuenta.',
   recursosAcao: 'Abrir la biblioteca',
   cursoOlho: 'Curso inaugural',
   cursoDuracao: 'Duración',

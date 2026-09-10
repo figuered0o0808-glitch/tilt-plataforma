@@ -5,7 +5,8 @@
  * mesmo criterio. As opcoes de filtro saem sempre do conteudo publicado: nada
  * aqui conhece um tema, uma organizacao ou um formato pelo nome.
  */
-import type { Article } from '@/lib/types';
+import type { Idioma } from '@/i18n/idiomas';
+import type { Article, ArquivoMaterial } from '@/lib/types';
 
 /** Campos que viram filtro. Todos sao texto livre vindo do conteudo. */
 export type CampoFacetado = 'trilha' | 'tema' | 'organizacao' | 'formato';
@@ -155,4 +156,30 @@ export function vizinhanca(
       : outros.filter((outro) => outro.trilha === material.trilha).slice(0, limite);
 
   return { organizacao, tema, trilha };
+}
+
+/**
+ * Codigo do idioma de um arquivo, lido do fim do nome: "-pt.pdf" devolve "pt".
+ *
+ * O JSON escreve o idioma por extenso e ja traduzido, o que serve de rotulo mas
+ * nao serve de chave. Nome fora do padrao devolve string vazia e nao ordena
+ * nada: uma publicacao com um arquivo so nunca depende disto.
+ */
+export function idiomaDoArquivo(caminho: string): string {
+  return /-([a-z]{2})\.[a-z0-9]+$/i.exec(caminho)?.[1]?.toLowerCase() ?? '';
+}
+
+/**
+ * O arquivo no idioma de quem le vem primeiro; os outros mantem a ordem
+ * publicada. E o unico criterio que separa dois PDFs do mesmo texto.
+ */
+export function ordenarArquivos(
+  arquivos: ArquivoMaterial[],
+  idioma: Idioma,
+): ArquivoMaterial[] {
+  return [...arquivos].sort(
+    (a, b) =>
+      Number(idiomaDoArquivo(b.arquivo) === idioma) -
+      Number(idiomaDoArquivo(a.arquivo) === idioma),
+  );
 }

@@ -31,13 +31,11 @@ function ancoras(idioma: Idioma, edital: Call): { id: string; rotulo: string }[]
     { id: 'escopo', rotulo: secoes.escopo },
     ...(edital.naoApoiado.length > 0 ? [{ id: 'nao-apoiado', rotulo: secoes.naoApoiado }] : []),
     { id: 'criterios', rotulo: secoes.criterios },
+    /* A pagina so publica cronograma quando ha etapas. */
+    ...(edital.cronograma.length > 0 ? [{ id: 'cronograma', rotulo: secoes.cronograma }] : []),
     { id: 'banca', rotulo: secoes.banca },
     { id: 'distribuicao', rotulo: secoes.distribuicao },
   );
-  /* A pagina so publica cronograma quando ha etapas. */
-  if (edital.cronograma.length > 0) {
-    itens.push({ id: 'cronograma', rotulo: secoes.cronograma });
-  }
   return itens;
 }
 
