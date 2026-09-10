@@ -53,7 +53,6 @@ export const editais = {
     banca: 'Jurado',
     distribuicao: 'Distribución de los apoyos',
     cronograma: 'Cronograma',
-    faq: 'Preguntas frecuentes',
     resultado: 'Resultado',
   },
 

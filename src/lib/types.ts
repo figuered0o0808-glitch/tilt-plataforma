@@ -34,11 +34,6 @@ export interface EtapaCronograma {
   data: string;
 }
 
-export interface PerguntaFrequente {
-  pergunta: string;
-  resposta: string;
-}
-
 export interface Apoiado {
   nome: string;
   projeto: string;
@@ -57,6 +52,9 @@ export interface ResultadoEdital {
 export interface Call {
   slug: string;
   titulo: string;
+  /** Quem opera a chamada. A marca aparece na pagina. */
+  organizacao?: string;
+  logoOrganizacao?: string;
   status: StatusEdital;
   tipo: TipoEdital;
   resumo: string;
@@ -72,7 +70,6 @@ export interface Call {
   /** Nulo enquanto o calendario da chamada nao esta fechado. */
   inscricoesAte: string | null;
   cronograma: EtapaCronograma[];
-  faq: PerguntaFrequente[];
   resultado: ResultadoEdital | null;
 }
 

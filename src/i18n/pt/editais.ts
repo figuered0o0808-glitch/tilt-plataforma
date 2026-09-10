@@ -55,7 +55,6 @@ export const editais = {
     banca: 'Banca',
     distribuicao: 'Distribuição dos apoios',
     cronograma: 'Cronograma',
-    faq: 'Perguntas frequentes',
     resultado: 'Resultado',
   },
 

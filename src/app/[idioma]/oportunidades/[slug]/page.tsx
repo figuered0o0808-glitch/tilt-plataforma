@@ -10,11 +10,10 @@ import { Selo } from '@/components/Selo';
 import { IDIOMAS, ehIdioma } from '@/i18n/idiomas';
 import { textos } from '@/i18n/strings';
 import { conteudo, editalPorSlug } from '@/lib/data';
-import { data, moeda } from '@/lib/format';
+import { arquivoPublico, data, moeda } from '@/lib/format';
 
 import { prazoDaChamada } from '../_prazo';
 
-import { Faq } from './_Faq';
 import { Lateral } from './_Lateral';
 import { Resultado } from './_Resultado';
 
@@ -86,7 +85,19 @@ export default async function PaginaEdital({
         olho={t.comum.tiposEdital[edital.tipo]}
         titulo={edital.titulo}
         descricao={edital.resumo}
-        acoes={<Selo idioma={idioma} status={edital.status} />}
+        acoes={
+          <div className="linha" style={{ gap: 18 }}>
+            {edital.logoOrganizacao ? (
+              // eslint-disable-next-line @next/next/no-img-element
+              <img
+                src={arquivoPublico(edital.logoOrganizacao)}
+                alt={edital.organizacao ?? ''}
+                style={{ height: 20, width: 'auto', display: 'block' }}
+              />
+            ) : null}
+            <Selo idioma={idioma} status={edital.status} />
+          </div>
+        }
       />
 
       <section className="secao secao--curta secao--branco" style={{ marginTop: 44 }}>
@@ -261,9 +272,6 @@ export default async function PaginaEdital({
                 </Secao>
               ) : null}
 
-              <Secao id="faq" titulo={t.editais.secoes.faq}>
-                <Faq idioma={idioma} itens={edital.faq} />
-              </Secao>
             </div>
 
             <Lateral idioma={idioma} edital={edital} />

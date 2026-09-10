@@ -38,7 +38,6 @@ function ancoras(idioma: Idioma, edital: Call): { id: string; rotulo: string }[]
   if (edital.cronograma.length > 0) {
     itens.push({ id: 'cronograma', rotulo: secoes.cronograma });
   }
-  itens.push({ id: 'faq', rotulo: secoes.faq });
   return itens;
 }
 

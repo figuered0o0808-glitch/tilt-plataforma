@@ -57,7 +57,7 @@ export const comum = {
   },
   rodape: {
     descricao:
-      'Plataforma da INDICA e da TILT. Financiamento a projetos autorais e formação para criadores, e materiais técnicos abertos para criadores e organizações. Piloto no Brasil.',
+      'Plataforma da INDICA e da TILT. Financiamento a projetos autorais e formação para criadores, e materiais técnicos abertos para criadores e organizações.',
     programa: 'Programa',
     navegue: 'Navegue',
   },

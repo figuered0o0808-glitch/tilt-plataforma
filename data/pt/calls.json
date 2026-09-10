@@ -4,11 +4,11 @@
     "titulo": "Chamada de Campanha nº 01: o custo dos veículos elétricos no Brasil",
     "status": "aberta",
     "tipo": "pauta-especifica",
-    "resumo": "Financia de 3 a 10 projetos autorais sobre o custo dos veículos elétricos no Brasil. Aberta a criadores, coletivos e agências de comunicação.",
+    "resumo": "Financia projetos de criadores para incentivar a eletrificação da frota brasileira, mostrando ao público o que custa e o que rende trocar um carro a combustão por um elétrico.",
     "proponente": "INDICA",
     "apresentacao": [
-      "Em vez de contratar um único influenciador para estrelar a campanha, esta chamada compra capacidade de criação de vários criadores ao mesmo tempo. Cada projeto selecionado cumpre o objetivo da campanha pela estratégia, pelo formato e pela narrativa de quem o propôs.",
-      "Três a dez projetos independentes alcançam públicos diferentes por portas diferentes, e o resultado da campanha não depende de uma única pessoa. A seleção é um processo público, com critérios e resultado publicados.",
+      "A campanha existe para acelerar a eletrificação da frota brasileira. O obstáculo não é só o preço: é o que as pessoas acreditam sobre o preço. Custo de recarga, autonomia real, manutenção e revenda são decididos na conversa cotidiana, e é ali que a campanha precisa estar.",
+      "Em vez de contratar um único influenciador para repetir uma mensagem pronta, a chamada compra capacidade de criação de vários criadores ao mesmo tempo. Cada projeto selecionado persegue o mesmo objetivo pela estratégia, pelo formato e pela narrativa de quem o propôs, e leva sua audiência ao canal de participação da campanha.",
       "A INDICA opera a chamada como intermediária responsável e divide a execução com a Koko."
     ],
     "escopo": [
@@ -57,32 +57,8 @@
     },
     "inscricoesAte": null,
     "cronograma": [],
-    "faq": [
-      {
-        "pergunta": "Quem pode se inscrever?",
-        "resposta": "Criadores pessoa física ou jurídica, pequenos coletivos e agências de comunicação, de qualquer tamanho de audiência e de qualquer nicho. A elegibilidade é do projeto."
-      },
-      {
-        "pergunta": "O programa aprova roteiro ou corte?",
-        "resposta": "Não. A aprovação acontece na seleção: o que se entrega é a proposta aprovada. A coordenação da INDICA cobre calendário, informação técnica e apoio."
-      },
-      {
-        "pergunta": "Preciso declarar publicidade?",
-        "resposta": "Sim, desde a primeira publicação, conforme as regras do CONAR. Recursos narrativos de expectativa e revelação são bem-vindos, desde que a natureza paga do conteúdo nunca seja ocultada."
-      },
-      {
-        "pergunta": "De quem fica a propriedade intelectual?",
-        "resposta": "Do criador, com licença institucional não exclusiva. O conteúdo permanece publicado por pelo menos 12 meses."
-      },
-      {
-        "pergunta": "Já tive contrato com montadora ou empresa de combustível. Isso me elimina?",
-        "resposta": "Não automaticamente. Os pré-selecionados passam por checagem de conflito de interesse, e é obrigatório declarar relações comerciais dos últimos 24 meses com os setores automotivo, de combustíveis e de energia. Omitir a relação elimina."
-      },
-      {
-        "pergunta": "Como a proposta pode ser enviada?",
-        "resposta": "Por escrito ou em vídeo, com apresentação do criador e métricas de audiência, o projeto, o caminho de conversão, o cronograma e o orçamento detalhado."
-      }
-    ],
-    "resultado": null
+    "resultado": null,
+    "organizacao": "INDICA",
+    "logoOrganizacao": "/organizacoes/indica.png"
   }
 ]

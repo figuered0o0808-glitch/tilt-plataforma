@@ -4,12 +4,12 @@
     "titulo": "Campaign Call No. 01: the cost of electric vehicles in Brazil",
     "status": "aberta",
     "tipo": "pauta-especifica",
-    "resumo": "Funds 3 to 10 original projects on the cost of electric vehicles in Brazil. Open to creators, collectives and communication agencies.",
+    "resumo": "Funds creator projects to accelerate the electrification of the Brazilian fleet, showing the public what it really costs and what it saves to move from a combustion car to an electric one.",
     "proponente": "INDICA",
     "apresentacao": [
-      "Instead of hiring a single influencer to front the campaign, this call buys creative capacity from several creators at once. Each selected project serves the campaign objective through the strategy, the format and the narrative of whoever proposed it.",
-      "Three to ten independent projects reach different audiences through different doors, and the campaign result does not depend on one person. Selection is a public process, with criteria and result published.",
-      "INDICA runs the call as the responsible intermediary and shares execution with Koko."
+      "The campaign exists to accelerate the electrification of the Brazilian fleet. The obstacle is not only price: it is what people believe about price. Charging costs, real range, maintenance and resale value are settled in everyday conversation, and that is where the campaign has to be.",
+      "Instead of hiring a single influencer to repeat a ready message, the call buys design capacity from several creators at once. Each selected project pursues the same objective through its own strategy, format and narrative, and directs its audience to the campaign participation channel.",
+      "INDICA runs the call as responsible intermediary and shares delivery with Koko."
     ],
     "escopo": [
       "Original projects that generate public conversation about the cost of electric vehicles in Brazil.",
@@ -57,32 +57,8 @@
     },
     "inscricoesAte": null,
     "cronograma": [],
-    "faq": [
-      {
-        "pergunta": "Who can apply?",
-        "resposta": "Creators as individuals or companies, small collectives and communication agencies, of any audience size and any niche. Eligibility belongs to the project."
-      },
-      {
-        "pergunta": "Does the program approve scripts or cuts?",
-        "resposta": "No. Approval happens at selection: what is delivered is the approved proposal. INDICA's coordination covers schedule, technical information and support."
-      },
-      {
-        "pergunta": "Do I need to disclose advertising?",
-        "resposta": "Yes, from the first post on, under CONAR rules. Narrative devices of buildup and reveal are welcome, as long as the paid nature of the content is never hidden."
-      },
-      {
-        "pergunta": "Who holds the intellectual property?",
-        "resposta": "The creator, with a non-exclusive institutional license. The content stays published for at least 12 months."
-      },
-      {
-        "pergunta": "I have had a contract with a carmaker or a fuel company. Does that rule me out?",
-        "resposta": "Not automatically. Shortlisted applicants go through a conflict of interest check, and declaring commercial relationships from the last 24 months with the automotive, fuel and energy sectors is mandatory. Omitting a relationship rules you out."
-      },
-      {
-        "pergunta": "How can the proposal be sent?",
-        "resposta": "In writing or on video, with the creator's introduction and audience metrics, the project, the conversion path, the schedule and the itemized budget."
-      }
-    ],
-    "resultado": null
+    "resultado": null,
+    "organizacao": "INDICA",
+    "logoOrganizacao": "/organizacoes/indica.png"
   }
 ]

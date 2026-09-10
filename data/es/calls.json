@@ -4,12 +4,12 @@
     "titulo": "Convocatoria de Campaña n.º 01: el costo de los vehículos eléctricos en Brasil",
     "status": "aberta",
     "tipo": "pauta-especifica",
-    "resumo": "Financia de 3 a 10 proyectos de autoría propia sobre el costo de los vehículos eléctricos en Brasil. Abierta a creadores, colectivos y agencias de comunicación.",
+    "resumo": "Financia proyectos de creadores para incentivar la electrificación de la flota brasileña, mostrando al público cuánto cuesta y cuánto rinde cambiar un auto de combustión por uno eléctrico.",
     "proponente": "INDICA",
     "apresentacao": [
-      "En lugar de contratar a un único influencer para protagonizar la campaña, esta convocatoria compra capacidad de creación de varios creadores a la vez. Cada proyecto seleccionado cumple el objetivo de la campaña con la estrategia, el formato y la narrativa de quien lo propuso.",
-      "Tres a diez proyectos independientes llegan a públicos distintos por puertas distintas, y el resultado de la campaña no depende de una sola persona. La selección es un proceso público, con criterios y resultado publicados.",
-      "INDICA opera la convocatoria como intermediaria responsable y divide la ejecución con Koko."
+      "La campaña existe para acelerar la electrificación de la flota brasileña. El obstáculo no es solo el precio: es lo que la gente cree sobre el precio. Costo de carga, autonomía real, mantenimiento y reventa se deciden en la conversación cotidiana, y ahí es donde la campaña tiene que estar.",
+      "En lugar de contratar a un solo influencer para repetir un mensaje ya hecho, la convocatoria compra capacidad de creación de varios creadores a la vez. Cada proyecto seleccionado persigue el mismo objetivo con la estrategia, el formato y la narrativa de quien lo propuso, y lleva a su audiencia al canal de participación de la campaña.",
+      "INDICA opera la convocatoria como intermediaria responsable y comparte la ejecución con Koko."
     ],
     "escopo": [
       "Proyectos de autoría propia que generen conversación pública sobre el costo de los vehículos eléctricos en Brasil.",
@@ -57,32 +57,8 @@
     },
     "inscricoesAte": null,
     "cronograma": [],
-    "faq": [
-      {
-        "pergunta": "¿Quién puede inscribirse?",
-        "resposta": "Creadores como persona física o jurídica, pequeños colectivos y agencias de comunicación, de cualquier tamaño de audiencia y de cualquier nicho. La elegibilidad es del proyecto."
-      },
-      {
-        "pergunta": "¿El programa aprueba guion o corte?",
-        "resposta": "No. La aprobación ocurre en la selección: lo que se entrega es la propuesta aprobada. La coordinación de INDICA cubre calendario, información técnica y apoyo."
-      },
-      {
-        "pergunta": "¿Hay que declarar publicidad?",
-        "resposta": "Sí, desde la primera publicación, según las reglas del CONAR. Los recursos narrativos de expectativa y revelación son bienvenidos, siempre que la naturaleza paga del contenido nunca se oculte."
-      },
-      {
-        "pergunta": "¿De quién es la propiedad intelectual?",
-        "resposta": "Del creador, con licencia institucional no exclusiva. El contenido permanece publicado por al menos 12 meses."
-      },
-      {
-        "pergunta": "Ya tuve contrato con una automotriz o una empresa de combustibles. ¿Eso me elimina?",
-        "resposta": "No automáticamente. Los preseleccionados pasan por una verificación de conflicto de interés, y es obligatorio declarar relaciones comerciales de los últimos 24 meses con los sectores automotriz, de combustibles y de energía. Omitir la relación elimina."
-      },
-      {
-        "pergunta": "¿Cómo se puede enviar la propuesta?",
-        "resposta": "Por escrito o en video, con presentación del creador y métricas de audiencia, el proyecto, el camino de conversión, el cronograma y el presupuesto detallado."
-      }
-    ],
-    "resultado": null
+    "resultado": null,
+    "organizacao": "INDICA",
+    "logoOrganizacao": "/organizacoes/indica.png"
   }
 ]

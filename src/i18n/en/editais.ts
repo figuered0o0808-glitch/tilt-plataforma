@@ -53,7 +53,6 @@ export const editais = {
     banca: 'Panel',
     distribuicao: 'Distribution of the support',
     cronograma: 'Schedule',
-    faq: 'Frequently asked questions',
     resultado: 'Result',
   },
 
