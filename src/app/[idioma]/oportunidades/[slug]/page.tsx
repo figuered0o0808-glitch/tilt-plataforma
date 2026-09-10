@@ -144,13 +144,23 @@ export default async function PaginaEdital({
       <Faixas altura="fina" />
 
       {/*
-        Em coluna unica a lateral cairia depois do documento inteiro: quem le
-        no celular so encontraria o prazo, o botao de candidatura e o sumario
-        no fim da pagina. A regra vale so aqui, por isso mora nesta pagina.
+        A lateral vem ANTES do documento no JSX, e nao depois.
+
+        Ela traz o prazo, o sumario e o botao de candidatura: no celular, em
+        coluna unica, ela precisa aparecer primeiro, e no desktop precisa ficar
+        a direita. A versao anterior resolvia isso com `order: -1` no celular,
+        mantendo a lateral por ultimo no DOM. So que `order` muda a ordem
+        visual e nao a ordem de foco: quem lia com os olhos via o botao de
+        candidatura primeiro, e quem navegava por Tab so chegava nele depois de
+        percorrer o edital inteiro.
+
+        Com a lateral primeiro no DOM, o celular ja fica certo sem regra
+        nenhuma, e no desktop `order: 2` a devolve para a coluna da direita.
+        Agora a ordem de leitura e a ordem de foco sao a mesma nas duas larguras.
       */}
       <style>{`
-        @media (max-width: 1040px) {
-          .chamada__corpo > .lateral { order: -1; }
+        @media (min-width: 1041px) {
+          .chamada__corpo > .lateral { order: 2; }
         }
       `}</style>
 
@@ -161,6 +171,8 @@ export default async function PaginaEdital({
       <div className="secao">
         <div className="container">
           <div className="grade--lateral chamada__corpo">
+            <Lateral idioma={idioma} edital={edital} />
+
             <div className="pilha--g">
               <Secao id="apresentacao" titulo={t.editais.secoes.apresentacao}>
                 <div className="prosa">
@@ -291,8 +303,6 @@ export default async function PaginaEdital({
 
               <Compartilhar idioma={idioma} endereco={endereco} />
             </div>
-
-            <Lateral idioma={idioma} edital={edital} />
           </div>
         </div>
       </div>
