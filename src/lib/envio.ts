@@ -19,7 +19,7 @@
  * candidatou: perder o que a pessoa digitou por causa de um 500 seria pior do
  * que nao ter canal nenhum. Por isso `enviar` nunca lanca excecao.
  *
- * Ver docs/INTEGRACAO_INDICA.md, secao 8, no repositorio da operacao: os dois
+ * Ver docs/BRIEFING_INDICA.md, secao 7, no repositorio da operacao: os dois
  * destinos abaixo sao rotas SEM CONTA, e portanto a superficie mais exposta do
  * modulo. Do lado da API elas precisam de limite de taxa e de validacao propria.
  * Nada do que sai daqui pode ser tratado como confiavel na chegada.
