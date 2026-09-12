@@ -67,6 +67,11 @@ export interface Call {
   distribuicao: FaixaDistribuicao[];
   valorTotal: number;
   faixaApoio: { min: number; max: number };
+  /**
+   * Quantos projetos a chamada pretende apoiar. Opcional: chamada antiga nao
+   * declarava. Na home vira a fileira de pontos, cheios e vazados.
+   */
+  vagas?: { min: number; max: number };
   /** Nulo enquanto o calendario da chamada nao esta fechado. */
   inscricoesAte: string | null;
   cronograma: EtapaCronograma[];

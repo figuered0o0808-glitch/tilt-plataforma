@@ -9,6 +9,11 @@
    O sistema visual do manual e feito de faixas de cor: blocos horizontais
    da paleta, em larguras diferentes, no lugar de um logotipo repetido.
 
+   Direcao atual: o ponto do logotipo e a unidade de tudo. Na home ele entra
+   espalhado e assenta formando a marca (.enxame); embaixo, marca cada coluna
+   (.marcador) e mede as vagas (.pontos). A cor entra so como superficie:
+   tres colunas chapadas, da borda a borda (.colunas). Controles em pilula.
+
    Tamanho de texto e espaco saem sempre dos tokens declarados em :root.
    Numero solto no meio da folha significa que o valor nao pertence ao
    ritmo: e medida de um componente (largura de coluna, diametro).
@@ -325,7 +330,7 @@ img, svg { max-width: 100%; }
   text-transform: uppercase;
   line-height: var(--entrelinha-rotulo);
   padding: var(--esp-16) var(--esp-24);
-  border-radius: 2px;
+  border-radius: var(--raio-pilula);
   border: 1px solid var(--preto);
   background: transparent;
   color: var(--preto);
@@ -493,10 +498,21 @@ a.cartao:hover .cartao__titulo { text-decoration: underline; text-underline-offs
   padding-top: var(--esp-12);
   padding-bottom: var(--esp-12);
 }
-.cabecalho__marca { display: inline-flex; align-items: center; flex: none; color: var(--preto); text-decoration: none; }
+.cabecalho__marca {
+  display: inline-flex;
+  align-items: center;
+  flex: none;
+  color: var(--preto);
+  text-decoration: none;
+  transition: opacity 0.3s ease;
+}
 .cabecalho__marca:hover { opacity: 0.6; }
+/* Na home a marca se forma no meio da tela; a do cabecalho espera a rolagem.
+   O lugar fica reservado para a navegacao nao pular quando ela aparece. */
+.cabecalho__marca--oculta { opacity: 0; pointer-events: none; }
 
-.cabecalho__nav { display: flex; align-items: center; gap: var(--esp-4); margin-left: auto; }
+/* Marca e navegacao a esquerda, idioma e acao a direita. */
+.cabecalho__nav { display: flex; align-items: center; gap: var(--esp-4); }
 .cabecalho__link {
   display: inline-flex;
   align-items: center;
@@ -508,13 +524,13 @@ a.cartao:hover .cartao__titulo { text-decoration: underline; text-underline-offs
   color: var(--preto);
   text-decoration: none;
   padding: var(--esp-12) var(--esp-16);
-  border-radius: 2px;
+  border-radius: var(--raio-pilula);
   border: 1px solid transparent;
   white-space: nowrap;
 }
 .cabecalho__link:hover { border-color: var(--preto); text-decoration: none; }
 .cabecalho__link[aria-current='page'] { background: var(--preto); color: var(--branco); border-color: var(--preto); }
-.cabecalho__acoes { display: flex; align-items: center; gap: var(--esp-12); }
+.cabecalho__acoes { display: flex; align-items: center; gap: var(--esp-12); margin-left: auto; }
 
 /* Seletor de idioma: tres siglas separadas por barra fina. */
 .seletor-idioma { display: flex; align-items: center; flex: none; }
@@ -670,6 +686,8 @@ input[type='text'],
 input[type='email'],
 input[type='number'],
 input[type='search'],
+input[type='url'],
+input[type='tel'],
 select,
 textarea {
   font-family: var(--serif);
@@ -678,18 +696,30 @@ textarea {
   color: var(--preto);
   background: var(--branco);
   border: 1px solid var(--preto);
-  border-radius: 2px;
-  padding: var(--esp-12) var(--esp-16);
+  border-radius: var(--raio-pilula);
+  padding: var(--esp-12) var(--esp-24);
   width: 100%;
 }
-textarea { resize: vertical; min-height: 130px; border-radius: var(--raio-g); }
-input::placeholder, textarea::placeholder { color: var(--tinta-suave); font-style: italic; }
+/* Caixa de texto corrido: raio grande, mas nao a pilula inteira, senao a
+   primeira linha nasce dentro da curva. */
+textarea { resize: vertical; min-height: 130px; border-radius: var(--esp-24); }
+/* O placeholder e rotulo, nao texto: mono, caixa alta, tinta a 45%.
+   O que a pessoa digita volta a ser serifa preta. */
+input::placeholder, textarea::placeholder {
+  font-family: var(--mono);
+  font-size: var(--texto-xp);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  font-style: normal;
+  color: rgba(0, 0, 0, 0.45);
+  opacity: 1;
+}
 input:focus, select:focus, textarea:focus { outline: 2px solid var(--foco-cor); outline-offset: 2px; }
 select {
   appearance: none;
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1.5 6 6.5l5-5' fill='none' stroke='%23000' stroke-width='1.4' stroke-linecap='round'/%3E%3C/svg%3E");
   background-repeat: no-repeat;
-  background-position: right var(--esp-16) center;
+  background-position: right var(--esp-24) center;
   padding-right: var(--esp-48);
 }
 
@@ -914,6 +944,142 @@ select {
   margin: 0 0 var(--esp-24);
 }
 
+/* ---------- O enxame e a porta, as colunas sao a casa ----------
+   O ponto do logotipo faz tres trabalhos: forma a marca (.enxame), marca cada
+   coluna (.marcador) e mede as vagas (.pontos). A cor entra so como superficie
+   de coluna e nos tres pontos da ponte. */
+
+/* A marca em movimento. O SVG acompanha a largura pedida e nunca passa do
+   bloco em que esta. Cada ponto traz o proprio deslocamento inicial em
+   --dx/--dy, na unidade do viewBox: o percurso escala junto com a marca. */
+.enxame { display: block; max-width: 100%; height: auto; color: var(--preto); }
+.enxame__ponto { animation: assentar 2.4s cubic-bezier(0.22, 0.61, 0.36, 1) forwards; }
+@keyframes assentar {
+  0%   { transform: translate(var(--dx), var(--dy)); opacity: 0; }
+  18%  { opacity: 1; }
+  100% { transform: translate(0, 0); opacity: 1; }
+}
+
+/* A ponte: tres pontos na cor das tres colunas, que so aparecem depois que a
+   marca assentou. A cor desce para o lugar dela. */
+.ponte { display: flex; align-items: center; gap: var(--esp-8); opacity: 0; animation: surgir 0.9s ease 2.3s forwards; }
+@keyframes surgir { to { opacity: 1; } }
+.ponte__ponto {
+  display: block;
+  flex: none;
+  width: 13px;
+  height: 13px;
+  border-radius: var(--raio-pilula);
+  border: 1px solid var(--preto);
+}
+.ponte__ponto--rosa { background: var(--rosa); }
+.ponte__ponto--menta { background: var(--menta); }
+.ponte__ponto--amarelo { background: var(--amarelo); }
+.ponte__rotulo {
+  margin-left: var(--esp-8);
+  font-family: var(--mono);
+  font-size: var(--texto-xp);
+  line-height: var(--entrelinha-rotulo);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--tinta-suave);
+}
+
+/* As colunas: tres superficies de cor, da borda a borda da tela, separadas por
+   um fio preto. Ficam fora do .container; o respiro interno e da coluna. */
+.colunas {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  border-top: 1px solid var(--preto);
+}
+.coluna {
+  display: flex;
+  flex-direction: column;
+  gap: var(--esp-16);
+  min-width: 0;
+  padding: var(--esp-32) clamp(var(--esp-24), 2.7vw, 36px) var(--esp-32);
+}
+.coluna:not(:last-child) { border-right: 1px solid var(--preto); }
+.coluna--rosa { background: var(--rosa); }
+.coluna--menta { background: var(--menta); }
+.coluna--amarelo { background: var(--amarelo); }
+
+/* Pecas de dentro da coluna, para as tres falarem a mesma lingua. */
+.coluna__cabeca { display: flex; align-items: center; gap: var(--esp-12); }
+.coluna__titulo {
+  margin: 0;
+  font-size: clamp(1.375rem, 1.2rem + 0.5vw, 1.625rem);   /* 22 a 26px */
+  line-height: 1.12;
+  letter-spacing: -0.01em;
+}
+.coluna__linhas { display: flex; flex-direction: column; gap: var(--esp-8); }
+.coluna__linha {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: var(--esp-16);
+  padding-bottom: var(--esp-8);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.3);
+  font-size: var(--texto-m);
+}
+.coluna__linha .rotulo { color: var(--preto); }
+/* O que fecha a coluna (botao, link) desce ate o pe, e as tres alinham.
+   Filho direto da coluna, um .btn ocupa a largura inteira sozinho (flex). */
+.coluna__pe { margin-top: auto; }
+
+/* Marcador de coluna: um aglomerado de pontos onde outro site poria um icone. */
+.marcador { display: block; flex: none; width: 22px; height: 22px; color: var(--preto); }
+
+/* O hero da home: a marca se forma no centro, e so depois vem a frase. */
+.hero--enxame { padding: var(--esp-24) 0 0; }
+.hero__marca {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--esp-24);
+  padding: var(--esp-32) 0 var(--esp-48);
+}
+.hero__marca .enxame { width: min(560px, 78vw); }
+.hero__corpo {
+  display: grid;
+  grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
+  gap: var(--esp-48);
+  align-items: end;
+  padding-bottom: var(--esp-48);
+}
+.hero__acoes { display: flex; flex-direction: column; gap: var(--esp-24); align-items: flex-start; }
+
+/* Os quatro campos da coluna de cadastro sao atalhos para o formulario, e nao
+   campos de verdade: parecem pilula de campo, mas sao links. */
+.campo-atalho {
+  display: block;
+  width: 100%;
+  box-sizing: border-box;
+  padding: 13px 20px;
+  border: 1px solid var(--preto);
+  border-radius: var(--raio-pilula);
+  font-family: var(--mono);
+  font-size: var(--texto-xp);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgba(0, 0, 0, 0.55);
+  text-decoration: none;
+  background: transparent;
+}
+.campo-atalho:hover { color: var(--preto); background: rgba(255, 255, 255, 0.5); }
+
+/* Pontos de medida: cada vaga e um ponto. Cheio, ocupada; vazado, aberta. */
+.pontos { display: flex; flex-wrap: wrap; gap: 7px; }
+.pontos__ponto {
+  display: block;
+  flex: none;
+  width: 15px;
+  height: 15px;
+  border-radius: var(--raio-pilula);
+  background: var(--preto);
+}
+.pontos__ponto--vazado { background: transparent; border: 1px solid var(--preto); }
+
 /* ---------- Filtros ---------- */
 
 .filtros {
@@ -964,6 +1130,13 @@ select {
   .publicacao { grid-template-columns: minmax(0, 1fr); }
   .publicacao__capa { max-height: 200px; }
   .capa { height: 200px; }
+
+  .hero__corpo { grid-template-columns: minmax(0, 1fr); gap: var(--esp-24); align-items: start; }
+  .hero__marca { padding: var(--esp-24) 0 var(--esp-32); }
+  /* As colunas empilham; o fio que as separava passa a correr embaixo. */
+  .colunas { grid-template-columns: minmax(0, 1fr); }
+  .coluna { padding: var(--esp-32) var(--margem-lateral); }
+  .coluna:not(:last-child) { border-right: 0; border-bottom: 1px solid var(--preto); }
 
   /* Cabecalho no celular: duas faixas separadas por um fio.
      Em cima, a marca e o idioma. Embaixo, para onde ir e o que fazer.
@@ -1016,6 +1189,9 @@ select {
 
 @media (prefers-reduced-motion: reduce) {
   * { transition: none !important; animation: none !important; }
+  /* Sem animacao, a marca ja nasce formada e a ponte ja esta la. */
+  .enxame__ponto { animation: none; }
+  .ponte { opacity: 1; animation: none; }
 }
 
 /* ---------- Impressao ----------
@@ -1073,10 +1249,15 @@ select {
   /* Fundo colorido nao imprime bem: fica o preto sobre o branco. */
   .secao--fundo, .secao--menta, .secao--azul, .secao--amarelo, .secao--rosa,
   .cartao--menta, .cartao--azul, .cartao--amarelo, .cartao--rosa, .cartao--areia,
+  .coluna--rosa, .coluna--menta, .coluna--amarelo,
   .chip, .destaque, .aviso-papel, .avatar, .publicacao__capa {
     background: #fff !important;
     color: #000 !important;
   }
+  /* No papel nao ha tempo: a marca sai formada e a ponte, visivel. */
+  .enxame__ponto { animation: none !important; }
+  .ponte { opacity: 1 !important; animation: none !important; }
+  .ponte__ponto { background: #fff !important; }
   .secao--preto {
     background: #fff !important;
     color: #000 !important;

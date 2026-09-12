@@ -41,6 +41,25 @@ export const home = {
     },
   ],
 
+  /* The new home: the swarm is the door, the columns are the house. */
+  ponte: 'Open now · Sign up · Library',
+  coluna: {
+    apoio: 'Support per project',
+    proponente: 'Proposed by',
+    vagas: 'Places',
+    vagasFaixa: '{min} to {max} projects supported.',
+    vagasSelecionados: '{n} selected, {r} places open.',
+    verChamada: 'See the call',
+    semChamada: 'No call open at the moment.',
+    verOportunidades: 'See opportunities',
+    cadastroOlho: 'Sign up',
+    cadastroTitulo: 'Do you create content?',
+    cadastroTexto: 'Free, with no minimum follower count.',
+    cadastroCampos: ['Name', 'Email', 'Country', 'Where you publish'],
+    cadastroAcao: 'Join the network',
+    semMaterial: 'No material published yet.',
+  },
+
   numeros: {
     recursos: 'In open calls',
     chamadas: 'Calls open for applications',

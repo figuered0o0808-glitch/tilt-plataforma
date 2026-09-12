@@ -3,11 +3,12 @@
  * tres linhas, como no logotipo oficial (tiltnetwork.com).
  */
 
-const PASSO = 7.5;
-const RAIO = 3;
+export const PASSO = 7.5;
+export const RAIO = 3;
 
-/** [coluna, linha] de cada ponto, em unidades de grade. */
-const PONTOS: [number, number][] = [
+/** [coluna, linha] de cada ponto, em unidades de grade. A ordem importa:
+ *  Enxame.tsx associa a cada ponto, por indice, o deslocamento inicial. */
+export const PONTOS: [number, number][] = [
   // T
   [0, 0], [1, 0], [2, 0], [1, 1], [1, 2],
   // I (com barras superior e inferior)
@@ -18,8 +19,13 @@ const PONTOS: [number, number][] = [
   [9.5, 0], [10.5, 0], [11.5, 0], [10.5, 1], [10.5, 2],
 ];
 
-const LARGURA = 11.5 * PASSO + 2 * (RAIO + 1);
-const ALTURA = 2 * PASSO + 2 * (RAIO + 1);
+export const LARGURA = 11.5 * PASSO + 2 * (RAIO + 1);
+export const ALTURA = 2 * PASSO + 2 * (RAIO + 1);
+
+/** Centro de um ponto no viewBox, a partir da posicao na grade. */
+export function centro([coluna, linha]: [number, number]): { cx: number; cy: number } {
+  return { cx: RAIO + 1 + coluna * PASSO, cy: RAIO + 1 + linha * PASSO };
+}
 
 export function LogoTilt({ altura = 22, rotulo }: { altura?: number; rotulo?: string }) {
   return (

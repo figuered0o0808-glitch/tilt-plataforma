@@ -35,21 +35,18 @@ export function Entrada({ idioma, temConteudo }: { idioma: Idioma; temConteudo: 
     );
   }
 
+  /*
+   * Os dois botoes, em pilula. A nota sobre o cadastro ser gratuito saiu daqui
+   * e mora na coluna de cadastro, logo abaixo, onde e o assunto.
+   */
   return (
-    <div className="pilha" style={{ gap: 14, marginTop: 30, alignItems: 'flex-start' }}>
-      <div className="linha" style={{ gap: 18 }}>
-        <Botao href={rota(idioma, entrou ? 'painel' : 'cadastro')}>
-          {entrou ? t.home.entrarPainel : t.home.entrarPrincipal}
-        </Botao>
-        <Botao href={rota(idioma, 'oportunidades')} variante="discreto">
-          {t.home.entrarSecundario}
-        </Botao>
-      </div>
-      {entrou ? null : (
-        <p className="texto-mini" style={{ margin: 0 }}>
-          {t.home.entrarNota}
-        </p>
-      )}
+    <div className="linha" style={{ gap: 12 }}>
+      <Botao href={rota(idioma, entrou ? 'painel' : 'cadastro')}>
+        {entrou ? t.home.entrarPainel : t.home.entrarPrincipal}
+      </Botao>
+      <Botao href={rota(idioma, 'oportunidades')} variante="secundario">
+        {t.home.entrarSecundario}
+      </Botao>
     </div>
   );
 }

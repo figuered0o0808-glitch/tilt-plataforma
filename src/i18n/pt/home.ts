@@ -41,6 +41,25 @@ export const home = {
     },
   ],
 
+  /* A home nova: o enxame e a porta, as colunas sao a casa. */
+  ponte: 'Aberto agora · Cadastro · Biblioteca',
+  coluna: {
+    apoio: 'Apoio por projeto',
+    proponente: 'Proponente',
+    vagas: 'Vagas',
+    vagasFaixa: 'De {min} a {max} projetos apoiados.',
+    vagasSelecionados: '{n} selecionados, {r} vagas abertas.',
+    verChamada: 'Ver a chamada',
+    semChamada: 'Nenhuma chamada aberta no momento.',
+    verOportunidades: 'Ver oportunidades',
+    cadastroOlho: 'Cadastro',
+    cadastroTitulo: 'Você cria conteúdo?',
+    cadastroTexto: 'Gratuito, sem número mínimo de seguidores.',
+    cadastroCampos: ['Nome', 'E-mail', 'País', 'Onde você publica'],
+    cadastroAcao: 'Entrar para a rede',
+    semMaterial: 'Nenhum material publicado ainda.',
+  },
+
   numeros: {
     recursos: 'Em chamadas abertas',
     chamadas: 'Chamadas com inscrição aberta',

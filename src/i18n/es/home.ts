@@ -41,6 +41,25 @@ export const home = {
     },
   ] as readonly Record<string, string>[],
 
+  /* La home nueva: el enjambre es la puerta, las columnas son la casa. */
+  ponte: 'Abierta ahora · Registro · Biblioteca',
+  coluna: {
+    apoio: 'Apoyo por proyecto',
+    proponente: 'Proponente',
+    vagas: 'Plazas',
+    vagasFaixa: 'De {min} a {max} proyectos apoyados.',
+    vagasSelecionados: '{n} seleccionados, {r} plazas abiertas.',
+    verChamada: 'Ver la convocatoria',
+    semChamada: 'Ninguna convocatoria abierta por ahora.',
+    verOportunidades: 'Ver oportunidades',
+    cadastroOlho: 'Registro',
+    cadastroTitulo: '¿Creas contenido?',
+    cadastroTexto: 'Gratis, sin mínimo de seguidores.',
+    cadastroCampos: ['Nombre', 'Correo', 'País', 'Dónde publicas'],
+    cadastroAcao: 'Entrar a la red',
+    semMaterial: 'Ningún material publicado todavía.',
+  },
+
   numeros: {
     recursos: 'En convocatorias abiertas',
     chamadas: 'Convocatorias con inscripción abierta',

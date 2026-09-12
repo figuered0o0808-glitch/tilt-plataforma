@@ -55,6 +55,10 @@
       "min": 10000,
       "max": 50000
     },
+    "vagas": {
+      "min": 3,
+      "max": 10
+    },
     "inscricoesAte": null,
     "cronograma": [],
     "resultado": null,
