@@ -1,6 +1,8 @@
 'use client';
 
 import { Botao } from '@/components/Botao';
+import { Marcador } from '@/components/Marcador';
+import { Vagas } from '@/components/Vagas';
 import type { Idioma } from '@/i18n/idiomas';
 import { textos } from '@/i18n/strings';
 import { data } from '@/lib/format';
@@ -58,12 +60,20 @@ export function Lateral({ idioma, edital }: { idioma: Idioma; edital: Call }) {
   const previsao = previsaoDoResultado(idioma, edital);
   const prazo = prazoDaChamada(idioma, edital);
 
+  /*
+   * A lateral e a coluna rosa da home que continuou: mesma superficie, mesmo
+   * marcador de pontos no lugar de icone, as vagas como fileira de pontos. O
+   * documento ao lado fica em branco; a cor e da acao, nao do texto.
+   */
   return (
     <aside className="lateral">
-      <div className="cartao">
-        <p className="olho" style={{ margin: 0 }}>
-          {t.editais.candidaturaTitulo}
-        </p>
+      <div className="coluna coluna--rosa coluna--solta">
+        <div className="coluna__cabeca">
+          <Marcador arranjo={1} />
+          <span className="rotulo">{t.editais.candidaturaTitulo}</span>
+        </div>
+
+        <Vagas idioma={idioma} chamada={edital} />
 
         {edital.status === 'aberta' ? (
           <>

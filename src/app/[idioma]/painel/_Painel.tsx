@@ -146,6 +146,7 @@ export function Painel({ idioma }: { idioma: Idioma }) {
       <SecaoPainel
         id="cursos"
         titulo={s.cursosTitulo}
+        marcador={3}
         fundo
         acoes={
           linhasCursos.length > 0 ? (

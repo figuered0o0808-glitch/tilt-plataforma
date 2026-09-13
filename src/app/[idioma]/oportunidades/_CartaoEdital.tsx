@@ -1,7 +1,9 @@
 import Link from 'next/link';
 
 import { Chip } from '@/components/Chip';
+import { Marcador } from '@/components/Marcador';
 import { Selo } from '@/components/Selo';
+import { Vagas } from '@/components/Vagas';
 import type { Idioma } from '@/i18n/idiomas';
 import { textos } from '@/i18n/strings';
 import { arquivoPublico, dataCurta, moeda } from '@/lib/format';
@@ -25,7 +27,8 @@ export function CartaoEdital({ idioma, edital }: { idioma: Idioma; edital: Call 
   return (
     <Link href={rota(idioma, `oportunidades/${edital.slug}`)} className="cartao">
       <div className="linha linha--fim" style={{ gap: 12 }}>
-        <div className="linha" style={{ gap: 8 }}>
+        <div className="linha" style={{ gap: 10 }}>
+          <Marcador arranjo={1} />
           <Selo idioma={idioma} status={edital.status} />
           <Chip vazado>{t.comum.tiposEdital[edital.tipo]}</Chip>
         </div>
@@ -60,23 +63,24 @@ export function CartaoEdital({ idioma, edital }: { idioma: Idioma; edital: Call 
         {edital.resumo}
       </p>
 
-      <dl
-        className="definicoes definicoes--2"
-        style={{ gap: 16, borderTop: '1px solid var(--linha)', paddingTop: 16 }}
-      >
-        <div>
-          <dt>{t.comum.rotulos.valorTotal}</dt>
-          <dd>{moeda(edital.valorTotal, idioma)}</dd>
+      {/* A ficha em linhas com filete, como na coluna rosa da home. */}
+      <div className="coluna__linhas">
+        <div className="coluna__linha">
+          <span className="rotulo">{t.comum.rotulos.valorTotal}</span>
+          <span>{moeda(edital.valorTotal, idioma)}</span>
         </div>
-        <div>
-          <dt>{t.comum.rotulos.apoio}</dt>
-          <dd>
+        <div className="coluna__linha">
+          <span className="rotulo">{t.comum.rotulos.apoio}</span>
+          <span>
             {`${moeda(edital.faixaApoio.min, idioma)} ${t.editais.faixaSeparador} ${moeda(
-              edital.faixaApoio.max, idioma
-)}`}
-          </dd>
+              edital.faixaApoio.max,
+              idioma,
+            )}`}
+          </span>
         </div>
-      </dl>
+      </div>
+
+      <Vagas idioma={idioma} chamada={edital} />
 
       <div className="cartao__rodape">
         <span>{rodape(idioma, edital)}</span>

@@ -2,7 +2,9 @@ import Link from 'next/link';
 import type { CSSProperties } from 'react';
 
 import { Chip } from '@/components/Chip';
+import { Marcador } from '@/components/Marcador';
 import { Selo } from '@/components/Selo';
+import { Vagas } from '@/components/Vagas';
 import type { Idioma } from '@/i18n/idiomas';
 import { textos } from '@/i18n/strings';
 import { arquivoPublico, moeda } from '@/lib/format';
@@ -31,16 +33,24 @@ export function ChamadaDestaque({
   const t = textos(idioma);
   const prazo = prazoDaChamada(idioma, edital);
   const Titulo = nivel === 2 ? 'h2' : 'h3';
-  const marca = edital.status === 'aberta' ? 'var(--menta)' : 'var(--areia)';
+
+  /*
+   * Sozinha na lista, a chamada aberta e a coluna rosa da home que continuou:
+   * mesma superficie, mesmo marcador, a ficha em linhas com filete e as vagas
+   * em pontos. Encerrada ou em avaliacao, a cor sai e fica o cartao branco.
+   */
+  const classe =
+    edital.status === 'aberta' ? 'cartao coluna--rosa coluna--solta' : 'cartao';
 
   return (
     <Link
       href={rota(idioma, `oportunidades/${edital.slug}`)}
-      className="cartao cartao--marcado"
-      style={{ '--marca': marca, gap: 'var(--esp-16)' } as CSSProperties}
+      className={classe}
+      style={{ gap: 'var(--esp-16)' } as CSSProperties}
     >
       <div className="linha linha--fim" style={{ gap: 12 }}>
-        <div className="linha" style={{ gap: 8 }}>
+        <div className="linha" style={{ gap: 10 }}>
+          <Marcador arranjo={1} />
           <Selo idioma={idioma} status={edital.status} />
           <Chip vazado>{t.comum.tiposEdital[edital.tipo]}</Chip>
         </div>
@@ -77,37 +87,41 @@ export function ChamadaDestaque({
         {edital.resumo}
       </p>
 
-      <dl
-        className="definicoes"
+      <div
         style={{
-          gridTemplateColumns: 'repeat(auto-fit, minmax(190px, 1fr))',
-          gap: 'var(--esp-24)',
-          borderTop: '1px solid var(--linha)',
+          display: 'grid',
+          gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))',
+          gap: 'var(--esp-32)',
+          alignItems: 'start',
+          borderTop: '1px solid var(--preto)',
           paddingTop: 'var(--esp-24)',
-          margin: 0,
         }}
       >
-        <div>
-          <dt>{t.editais.proponente}</dt>
-          <dd>{edital.proponente ?? t.editais.proponenteProprio}</dd>
+        <div className="coluna__linhas">
+          <div className="coluna__linha">
+            <span className="rotulo">{t.editais.proponente}</span>
+            <span>{edital.proponente ?? t.editais.proponenteProprio}</span>
+          </div>
+          <div className="coluna__linha">
+            <span className="rotulo">{t.comum.rotulos.valorTotal}</span>
+            <span>{moeda(edital.valorTotal, idioma)}</span>
+          </div>
+          <div className="coluna__linha">
+            <span className="rotulo">{t.comum.rotulos.apoio}</span>
+            <span>
+              {`${moeda(edital.faixaApoio.min, idioma)} ${t.editais.faixaSeparador} ${moeda(
+                edital.faixaApoio.max,
+                idioma,
+              )}`}
+            </span>
+          </div>
+          <div className="coluna__linha">
+            <span className="rotulo">{prazo.rotulo}</span>
+            <span>{prazo.valor}</span>
+          </div>
         </div>
-        <div>
-          <dt>{t.comum.rotulos.valorTotal}</dt>
-          <dd>{moeda(edital.valorTotal, idioma)}</dd>
-        </div>
-        <div>
-          <dt>{t.comum.rotulos.apoio}</dt>
-          <dd>
-            {`${moeda(edital.faixaApoio.min, idioma)} ${t.editais.faixaSeparador} ${moeda(
-              edital.faixaApoio.max, idioma
-)}`}
-          </dd>
-        </div>
-        <div>
-          <dt>{prazo.rotulo}</dt>
-          <dd>{prazo.valor}</dd>
-        </div>
-      </dl>
+        <Vagas idioma={idioma} chamada={edital} />
+      </div>
 
       <div className="cartao__rodape">
         <span className="link-seta">{t.comum.acoes.verEdital}</span>

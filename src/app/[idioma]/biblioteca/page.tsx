@@ -4,6 +4,7 @@ import Link from 'next/link';
 import { notFound } from 'next/navigation';
 
 import { CabecalhoPagina } from '@/components/CabecalhoPagina';
+import { Marcador } from '@/components/Marcador';
 import { ehIdioma } from '@/i18n/idiomas';
 import { textos } from '@/i18n/strings';
 import { conteudo } from '@/lib/data';
@@ -53,10 +54,14 @@ export default async function BibliotecaPage({
       <section className="secao">
         <div className="container pilha--g">
           {recentes.length > 0 ? (
-            <div className="pilha">
-              <h2 className="olho" style={{ margin: 0 }}>
-                {indice.materiaisTitulo}
-              </h2>
+            /* A coluna amarela da home que continuou: os materiais moram nela. */
+            <div className="coluna coluna--amarelo coluna--solta">
+              <div className="coluna__cabeca">
+                <Marcador arranjo={3} />
+                <h2 className="rotulo" style={{ margin: 0 }}>
+                  {indice.materiaisTitulo}
+                </h2>
+              </div>
               <div className="pilha">
                 {recentes.map((material) => (
                   <CartaoMaterial

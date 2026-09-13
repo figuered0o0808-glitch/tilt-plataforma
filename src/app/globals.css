@@ -861,16 +861,17 @@ select {
   line-height: var(--entrelinha-rotulo);
   color: var(--tinta-suave); margin-bottom: -1px;
 }
-.passo__numero {
-  width: 26px; height: 26px; border-radius: var(--raio-pilula);
-  border: 1px solid currentColor;
-  display: inline-flex; align-items: center; justify-content: center;
-  font-size: var(--texto-p); flex: none;
+/* O passo e um ponto de 15px, igual aos pontos de medida: vazado enquanto
+   falta, cheio quando concluido ou em curso. */
+.passo__ponto {
+  width: 15px; height: 15px; border-radius: var(--raio-pilula);
+  border: 1px solid var(--preto); background: transparent;
+  display: inline-block; flex: none; box-sizing: border-box;
 }
 .passo--ativo { color: var(--preto); border-bottom: 2px solid var(--preto); }
-.passo--ativo .passo__numero { background: var(--preto); color: var(--branco); }
+.passo--ativo .passo__ponto { background: var(--preto); }
 .passo--concluido { color: var(--preto); }
-.passo--concluido .passo__numero { background: var(--menta); color: var(--preto); }
+.passo--concluido .passo__ponto { background: var(--preto); }
 
 /* ---------- Abas ---------- */
 
@@ -1003,6 +1004,11 @@ select {
 .coluna--rosa { background: var(--rosa); }
 .coluna--menta { background: var(--menta); }
 .coluna--amarelo { background: var(--amarelo); }
+
+/* A coluna fora da grade (a lateral de uma chamada, por exemplo): a mesma
+   superficie, com a borda inteira, porque nao ha vizinha para partilhar o fio. */
+.coluna--solta { border: 1px solid var(--preto); border-radius: 2px; }
+.coluna--solta:not(:last-child) { border-right: 1px solid var(--preto); }
 
 /* Pecas de dentro da coluna, para as tres falarem a mesma lingua. */
 .coluna__cabeca { display: flex; align-items: center; gap: var(--esp-12); }

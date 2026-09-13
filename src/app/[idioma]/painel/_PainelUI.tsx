@@ -8,25 +8,33 @@
 
 import type { ReactNode } from 'react';
 
+import { Marcador } from '@/components/Marcador';
+
 /** Secao do painel: titulo, acoes a direita e conteudo. */
 export function SecaoPainel({
   id,
   titulo,
   acoes,
   fundo,
+  marcador = 1,
   children,
 }: {
   id: string;
   titulo: string;
   acoes?: ReactNode;
   fundo?: boolean;
+  /** Arranjo do marcador de pontos ao lado do titulo, para duas secoes nao repetirem o desenho. */
+  marcador?: 1 | 2 | 3;
   children: ReactNode;
 }) {
   return (
     <section id={id} className={fundo ? 'secao secao--fundo' : 'secao'}>
       <div className="container">
         <div className="linha linha--fim" style={{ alignItems: 'flex-end', marginBottom: 22 }}>
-          <h2 style={{ margin: 0 }}>{titulo}</h2>
+          <div className="linha" style={{ gap: 12 }}>
+            <Marcador arranjo={marcador} />
+            <h2 style={{ margin: 0 }}>{titulo}</h2>
+          </div>
           {acoes ? <div className="linha">{acoes}</div> : null}
         </div>
         {children}

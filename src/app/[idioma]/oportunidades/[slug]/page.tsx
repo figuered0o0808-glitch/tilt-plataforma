@@ -5,7 +5,6 @@ import { notFound } from 'next/navigation';
 import { Avatar } from '@/components/Avatar';
 import { CabecalhoPagina } from '@/components/CabecalhoPagina';
 import { corDoTema } from '@/components/Chip';
-import { Faixas } from '@/components/Faixas';
 import { Selo } from '@/components/Selo';
 import { IDIOMAS, ehIdioma } from '@/i18n/idiomas';
 import { textos } from '@/i18n/strings';
@@ -140,8 +139,6 @@ export default async function PaginaEdital({
           </dl>
         </div>
       </section>
-
-      <Faixas altura="fina" />
 
       {/*
         A lateral vem ANTES do documento no JSX, e nao depois.

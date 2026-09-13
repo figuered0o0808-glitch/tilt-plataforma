@@ -21,6 +21,7 @@ import type { RedeDoCriador } from '@/lib/types';
 import { Botao } from '@/components/Botao';
 import { CabecalhoPagina } from '@/components/CabecalhoPagina';
 import { CampoSelecao, CampoTexto } from '@/components/Campo';
+import { Marcador } from '@/components/Marcador';
 import { Selo } from '@/components/Selo';
 import type { Idioma } from '@/i18n/idiomas';
 import { textos } from '@/i18n/strings';
@@ -98,10 +99,11 @@ function Acoes({ idioma }: { idioma: Idioma }) {
  * Formulario de cadastro. So e montado quando `cadastroAberto()` e verdadeiro.
  *
  * Dois blocos, e nao uma pilha unica de campos. O primeiro identifica a pessoa
- * e leva o que o programa precisa saber para julgar uma candidatura; o segundo
- * sao as redes declaradas, que e o que de fato descreve um criador, e por isso
- * e o unico cartao com regua de cor. A audiencia somada aparece no pe das
- * redes enquanto a pessoa digita: e a conta que ela mesma faria.
+ * e e a coluna menta da home que continuou: mesma superficie, mesmo marcador.
+ * O segundo sao as redes declaradas, que e o que de fato descreve um criador:
+ * fica em branco sobre a menta de cima, e e esse contraste que o destaca. A
+ * audiencia somada aparece no pe das redes enquanto a pessoa digita: e a conta
+ * que ela mesma faria.
  *
  * Ao reabrir: hoje `cadastrar` apenas guarda o nome no navegador. Antes de
  * publicar o formulario de novo, o envio precisa de destino: sem isso, os
@@ -218,10 +220,14 @@ function CadastroFormulario({ idioma }: { idioma: Idioma }) {
             </section>
           ) : (
             <form onSubmit={enviar} className="pilha--g">
-              <section className="cartao" aria-labelledby="cadastro-dados-titulo">
-                <h2 className="cartao__titulo" id="cadastro-dados-titulo">
-                  {tc.formularioTitulo}
-                </h2>
+              {/* A coluna menta da home que continuou: o cadastro mora nela. */}
+              <section className="cartao coluna--menta coluna--solta" aria-labelledby="cadastro-dados-titulo">
+                <div className="coluna__cabeca">
+                  <Marcador arranjo={2} />
+                  <h2 className="cartao__titulo" id="cadastro-dados-titulo" style={{ margin: 0 }}>
+                    {tc.formularioTitulo}
+                  </h2>
+                </div>
 
                 <div className="pilha">
                   <CampoTexto
@@ -337,11 +343,8 @@ function CadastroFormulario({ idioma }: { idioma: Idioma }) {
                 </fieldset>
               </section>
 
-              <section
-                className="cartao cartao--marcado"
-                style={{ '--marca': 'var(--menta)' } as CSSProperties}
-                aria-labelledby="cadastro-redes-titulo"
-              >
+              {/* As redes sao o peso do cadastro: em branco, sobre a menta de cima, e o que se destaca. */}
+              <section className="cartao" aria-labelledby="cadastro-redes-titulo">
                 <h2 className="cartao__titulo" id="cadastro-redes-titulo">
                   {tc.redes.titulo}
                 </h2>

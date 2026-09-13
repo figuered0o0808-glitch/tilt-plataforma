@@ -5,11 +5,12 @@ import { Botao } from '@/components/Botao';
 import { CapaMaterial } from '@/components/CapaMaterial';
 import { Enxame, Ponte } from '@/components/Enxame';
 import { Marcador } from '@/components/Marcador';
+import { Vagas } from '@/components/Vagas';
 import { PROGRAM_TAGLINE } from '@/config/program';
 import { ehIdioma, type Idioma } from '@/i18n/idiomas';
 import { textos } from '@/i18n/strings';
 import { conteudo } from '@/lib/data';
-import { moeda, numero } from '@/lib/format';
+import { moeda } from '@/lib/format';
 import { rota } from '@/lib/rotas';
 import type { Article, Call } from '@/lib/types';
 
@@ -27,11 +28,6 @@ import { Entrada } from './_Entrada';
  * Tres pontos de cor entre as duas metades sao a ponte: surgem depois que a
  * marca assentou, cada um na cor da coluna que vem embaixo.
  */
-
-/** Modelo curto com chaves entre chaves: "{n} de {max}". */
-function preencher(modelo: string, valores: Record<string, string>): string {
-  return modelo.replace(/\{(\w+)\}/g, (_, chave: string) => valores[chave] ?? '');
-}
 
 /* -------------------------------------------------------------------------- */
 /* Coluna rosa: a chamada aberta                                               */
@@ -60,24 +56,6 @@ function ColunaChamada({ idioma, chamada }: { idioma: Idioma; chamada: Call | nu
     );
   }
 
-  /*
-   * Os pontos: um por vaga ate o maximo declarado. Cheio e projeto ja
-   * selecionado (so existe depois do resultado); vazado e vaga aberta.
-   */
-  const max = chamada.vagas?.max ?? 0;
-  const selecionados = chamada.resultado?.apoiados.length ?? 0;
-  const abertas = Math.max(max - selecionados, 0);
-  const legenda =
-    selecionados > 0
-      ? preencher(tc.vagasSelecionados, {
-          n: numero(selecionados, idioma),
-          r: numero(abertas, idioma),
-        })
-      : preencher(tc.vagasFaixa, {
-          min: numero(chamada.vagas?.min ?? 0, idioma),
-          max: numero(max, idioma),
-        });
-
   return (
     <div className="coluna coluna--rosa">
       <div className="coluna__cabeca">
@@ -103,25 +81,7 @@ function ColunaChamada({ idioma, chamada }: { idioma: Idioma; chamada: Call | nu
         ) : null}
       </div>
 
-      {max > 0 ? (
-        <div>
-          <p className="rotulo" style={{ margin: '0 0 10px' }}>
-            {tc.vagas}
-          </p>
-          {/* A fileira e desenho; o numero, para quem nao ve, esta na legenda. */}
-          <div className="pontos" aria-hidden="true">
-            {Array.from({ length: max }, (_, indice) => (
-              <span
-                key={indice}
-                className={indice < selecionados ? 'pontos__ponto' : 'pontos__ponto pontos__ponto--vazado'}
-              />
-            ))}
-          </div>
-          <p className="texto-pequeno" style={{ margin: '9px 0 0' }}>
-            {legenda}
-          </p>
-        </div>
-      ) : null}
+      <Vagas idioma={idioma} chamada={chamada} />
 
       <div className="coluna__pe">
         <Botao href={rota(idioma, `oportunidades/${chamada.slug}`)} largo>
