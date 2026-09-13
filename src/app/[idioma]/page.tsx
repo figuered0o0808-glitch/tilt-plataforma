@@ -214,12 +214,10 @@ export default async function Home({ params }: { params: Promise<{ idioma: strin
 
           <div className="hero__corpo">
             <div>
-              <h1 className="hero__frase" style={{ maxWidth: '18ch' }}>
+              {/* So o titulo. O cliente vetou qualquer frase de apoio: ela reduzia o projeto. */}
+              <h1 className="hero__frase" style={{ maxWidth: '18ch', margin: 0 }}>
                 {t.home.frase}
               </h1>
-              <p className="texto-guia" style={{ margin: 0, maxWidth: '46ch' }}>
-                {t.home.apresentacao}
-              </p>
             </div>
             <div className="hero__acoes">
               <Entrada idioma={idioma} temConteudo={temConteudo} />
