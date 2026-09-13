@@ -1,0 +1,247 @@
+1:"$Sreact.fragment"
+2:I[1280,["467","static/chunks/467-212e2ea7bd18d3b3.js","177","static/chunks/app/layout-b251cf84b06f7670.js"],"AppProvider"]
+3:I[9766,[],""]
+4:I[8924,[],""]
+5:I[2619,["619","static/chunks/619-ba102abea3e3d0e4.js","913","static/chunks/app/%5Bidioma%5D/biblioteca/materiais/%5Bslug%5D/page-c1fe48fab40b1a67.js"],""]
+a:I[7150,[],""]
+:HL["/tilt-plataforma/_next/static/css/52a9aad2727ca4df.css","style"]
+0:{"P":null,"b":"PEjTfnpoIgIcZDHEYaO3_","p":"/tilt-plataforma","c":["","es","biblioteca","materiais","checagem-antes-de-publicar",""],"i":false,"f":[[["",{"children":[["idioma","es","d"],{"children":["biblioteca",{"children":["materiais",{"children":[["slug","checagem-antes-de-publicar","d"],{"children":["__PAGE__",{}]}]}]}]}]},"$undefined","$undefined",true],["",["$","$1","c",{"children":[[["$","link","0",{"rel":"stylesheet","href":"/tilt-plataforma/_next/static/css/52a9aad2727ca4df.css","precedence":"next","crossOrigin":"$undefined","nonce":"$undefined"}]],["$","html",null,{"lang":"pt-BR","children":["$","body",null,{"children":["$","$L2",null,{"children":["$","$L3",null,{"parallelRouterKey":"children","error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L4",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":[["$","div",null,{"className":"secao","children":["$","div",null,{"className":"container-estreito","children":[["$","h1",null,{"className":"sr-only","children":"Página não encontrada"}],["$","div",null,{"className":"vazio","children":[["$","svg",null,{"className":"ilustracao ","viewBox":"0 0 120 96","width":92,"role":"presentation","aria-hidden":"true","fill":"none","stroke":"currentColor","strokeWidth":"1.5","strokeLinecap":"round","strokeLinejoin":"round","style":{"height":"auto"},"children":[["$","g",null,{"opacity":0.28,"children":[["$","circle","0-0",{"cx":24,"cy":20,"r":2.2,"fill":"currentColor","stroke":"none"}],["$","circle","0-1",{"cx":38,"cy":20,"r":2.2,"fill":"currentColor","stroke":"none"}],["$","circle","0-2",{"cx":52,"cy":20,"r":2.2,"fill":"currentColor","stroke":"none"}],["$","circle","0-3",{"cx":66,"cy":20,"r":2.2,"fill":"currentColor","stroke":"none"}],["$","circle","0-4",{"cx":80,"cy":20,"r":2.2,"fill":"currentColor","stroke":"none"}],["$","circle","0-5",{"cx":94,"cy":20,"r":2.2,"fill":"currentColor","stroke":"none"}],["$","circle","1-0",{"cx":24,"cy":34,"r":2.2,"fill":"currentColor","stroke":"none"}],["$","circle","1-1",{"cx":38,"cy":34,"r":2.2,"fill":"currentColor","stroke":"none"}],["$","circle","1-2",{"cx":52,"cy":34,"r":2.2,"fill":"currentColor","stroke":"none"}],["$","circle","1-3",{"cx":66,"cy":34,"r":2.2,"fill":"currentColor","stroke":"none"}],["$","circle","1-4",{"cx":80,"cy":34,"r":2.2,"fill":"currentColor","stroke":"none"}],["$","circle","1-5",{"cx":94,"cy":34,"r":2.2,"fill":"currentColor","stroke":"none"}],["$","circle","2-0",{"cx":24,"cy":48,"r":2.2,"fill":"currentColor","stroke":"none"}],["$","circle","2-1",{"cx":38,"cy":48,"r":2.2,"fill":"currentColor","stroke":"none"}],["$","circle","2-2",{"cx":52,"cy":48,"r":2.2,"fill":"currentColor","stroke":"none"}],["$","circle","2-3",{"cx":66,"cy":48,"r":2.2,"fill":"currentColor","stroke":"none"}],["$","circle","2-4",{"cx":80,"cy":48,"r":2.2,"fill":"currentColor","stroke":"none"}],["$","circle","2-5",{"cx":94,"cy":48,"r":2.2,"fill":"currentColor","stroke":"none"}],["$","circle","3-0",{"cx":24,"cy":62,"r":2.2,"fill":"currentColor","stroke":"none"}],["$","circle","3-1",{"cx":38,"cy":62,"r":2.2,"fill":"currentColor","stroke":"none"}],["$","circle","3-2",{"cx":52,"cy":62,"r":2.2,"fill":"currentColor","stroke":"none"}],["$","circle","3-3",{"cx":66,"cy":62,"r":2.2,"fill":"currentColor","stroke":"none"}],["$","circle","3-4",{"cx":80,"cy":62,"r":2.2,"fill":"currentColor","stroke":"none"}],["$","circle","3-5",{"cx":94,"cy":62,"r":2.2,"fill":"currentColor","stroke":"none"}],["$","circle","4-0",{"cx":24,"cy":76,"r":2.2,"fill":"currentColor","stroke":"none"}],["$","circle","4-1",{"cx":38,"cy":76,"r":2.2,"fill":"currentColor","stroke":"none"}],["$","circle","4-2",{"cx":52,"cy":76,"r":2.2,"fill":"currentColor","stroke":"none"}],["$","circle","4-3",{"cx":66,"cy":76,"r":2.2,"fill":"currentColor","stroke":"none"}],["$","circle","4-4",{"cx":80,"cy":76,"r":2.2,"fill":"currentColor","stroke":"none"}],["$","circle","4-5",{"cx":94,"cy":76,"r":2.2,"fill":"currentColor","stroke":"none"}]]}],["$","circle",null,{"cx":"54","cy":"42","r":"23","fill":"var(--branco)"}],["$","g",null,{"opacity":1,"children":[["$","circle","0-0",{"cx":44,"cy":36,"r":2.1,"fill":"currentColor","stroke":"none"}],["$","circle","0-1",{"cx":54,"cy":36,"r":2.1,"fill":"currentColor","stroke":"none"}],["$","circle","0-2",{"cx":64,"cy":36,"r":2.1,"fill":"currentColor","stroke":"none"}],["$","circle","1-0",{"cx":44,"cy":46,"r":2.1,"fill":"currentColor","stroke":"none"}],["$","circle","1-1",{"cx":54,"cy":46,"r":2.1,"fill":"currentColor","stroke":"none"}],["$","circle","1-2",{"cx":64,"cy":46,"r":2.1,"fill":"currentColor","stroke":"none"}]]}],["$","path",null,{"d":"M71 59l19 19","strokeWidth":"2"}]]}],["$","p",null,{"className":"vazio__titulo","children":"Página não encontrada"}],["$","p",null,{"className":"texto-pequeno vazio__texto","children":"O endereço que você abriu não existe neste site."}],["$","$L5",null,{"href":"/","className":"btn btn--primario","onClick":"$undefined","children":"Voltar ao início"}]]}]]}]}],[]],"forbidden":"$undefined","unauthorized":"$undefined"}]}]}]}]]}],{"children":[["idioma","es","d"],["$","$1","c",{"children":[null,"$L6"]}],{"children":["biblioteca",["$","$1","c",{"children":[null,["$","$L3",null,{"parallelRouterKey":"children","error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L4",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":"$undefined","forbidden":"$undefined","unauthorized":"$undefined"}]]}],{"children":["materiais",["$","$1","c",{"children":[null,["$","$L3",null,{"parallelRouterKey":"children","error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L4",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":"$undefined","forbidden":"$undefined","unauthorized":"$undefined"}]]}],{"children":[["slug","checagem-antes-de-publicar","d"],"$L7",{"children":["__PAGE__","$L8",{},null,false]},null,false]},null,false]},null,false]},null,false]},null,false],"$L9",false]],"m":"$undefined","G":["$a",[]],"s":false,"S":true}
+c:I[4431,[],"OutletBoundary"]
+e:I[5278,[],"AsyncMetadataOutlet"]
+10:I[4431,[],"ViewportBoundary"]
+12:I[4431,[],"MetadataBoundary"]
+13:"$Sreact.suspense"
+7:["$","$1","c",{"children":[null,["$","$L3",null,{"parallelRouterKey":"children","error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L4",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":"$undefined","forbidden":"$undefined","unauthorized":"$undefined"}]]}]
+8:["$","$1","c",{"children":["$Lb",null,["$","$Lc",null,{"children":["$Ld",["$","$Le",null,{"promise":"$@f"}]]}]]}]
+9:["$","$1","h",{"children":[null,[["$","$L10",null,{"children":"$L11"}],null],["$","$L12",null,{"children":["$","div",null,{"hidden":true,"children":["$","$13",null,{"fallback":null,"children":"$L14"}]}]}]]}]
+15:I[3336,["619","static/chunks/619-ba102abea3e3d0e4.js","467","static/chunks/467-212e2ea7bd18d3b3.js","587","static/chunks/587-cb0729eb358a979d.js","134","static/chunks/app/%5Bidioma%5D/layout-763cf8a71bd0d829.js"],"SiteHeader"]
+6:[["$","$L15",null,{"idioma":"es"}],["$","main",null,{"children":["$","$L3",null,{"parallelRouterKey":"children","error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L4",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":"$undefined","forbidden":"$undefined","unauthorized":"$undefined"}]}],[["$","div",null,{"className":"faixas","aria-hidden":"true","children":[["$","span","var(--branco)14",{"style":{"background":"var(--branco)","flex":14}}],["$","span","var(--rosa)8",{"style":{"background":"var(--rosa)","flex":8}}],["$","span","var(--areia)38",{"style":{"background":"var(--areia)","flex":38}}],["$","span","var(--menta)22",{"style":{"background":"var(--menta)","flex":22}}],["$","span","var(--amarelo)4",{"style":{"background":"var(--amarelo)","flex":4}}],["$","span","var(--azul)14",{"style":{"background":"var(--azul)","flex":14}}]]}],["$","footer",null,{"className":"rodape","children":["$","div",null,{"className":"container","children":["$","div",null,{"className":"rodape__grade","children":[["$","div",null,{"children":[["$","p",null,{"className":"rodape__marca","children":["$","svg",null,{"viewBox":"0 0 94.25 23","height":26,"width":106.54347826086956,"role":"img","aria-label":"TILT","aria-hidden":"$undefined","children":[["$","circle","0-0",{"cx":4,"cy":4,"r":3,"fill":"currentColor"}],["$","circle","1-0",{"cx":11.5,"cy":4,"r":3,"fill":"currentColor"}],["$","circle","2-0",{"cx":19,"cy":4,"r":3,"fill":"currentColor"}],["$","circle","1-1",{"cx":11.5,"cy":11.5,"r":3,"fill":"currentColor"}],["$","circle","1-2",{"cx":11.5,"cy":19,"r":3,"fill":"currentColor"}],["$","circle","3.5-0",{"cx":30.25,"cy":4,"r":3,"fill":"currentColor"}],["$","circle","4.5-0",{"cx":37.75,"cy":4,"r":3,"fill":"currentColor"}],["$","circle","5.5-0",{"cx":45.25,"cy":4,"r":3,"fill":"currentColor"}],["$","circle","4.5-1",{"cx":37.75,"cy":11.5,"r":3,"fill":"currentColor"}],["$","circle","3.5-2",{"cx":30.25,"cy":19,"r":3,"fill":"currentColor"}],["$","circle","4.5-2",{"cx":37.75,"cy":19,"r":3,"fill":"currentColor"}],["$","circle","5.5-2",{"cx":45.25,"cy":19,"r":3,"fill":"currentColor"}],["$","circle","7-0",{"cx":56.5,"cy":4,"r":3,"fill":"currentColor"}],["$","circle","7-1",{"cx":56.5,"cy":11.5,"r":3,"fill":"currentColor"}],["$","circle","7-2",{"cx":56.5,"cy":19,"r":3,"fill":"currentColor"}],["$","circle","8-2",{"cx":64,"cy":19,"r":3,"fill":"currentColor"}],["$","circle","9.5-0",{"cx":75.25,"cy":4,"r":3,"fill":"currentColor"}],["$","circle","10.5-0",{"cx":82.75,"cy":4,"r":3,"fill":"currentColor"}],["$","circle","11.5-0",{"cx":90.25,"cy":4,"r":3,"fill":"currentColor"}],["$","circle","10.5-1",{"cx":82.75,"cy":11.5,"r":3,"fill":"currentColor"}],["$","circle","10.5-2",{"cx":82.75,"cy":19,"r":3,"fill":"currentColor"}]]}]}],["$","p",null,{"className":"rotulo rodape__tagline","children":"The influencers lab for tomorrow"}],["$","p",null,{"className":"texto-pequeno rodape__descricao","children":"Plataforma de INDICA y TILT. Financiamiento de proyectos autorales y formación para creadores, y materiales técnicos abiertos para creadores y organizaciones."}]]}],["$","div",null,{"children":[["$","p",null,{"className":"rodape__titulo","children":"Navegación"}],["$","ul",null,{"className":"rodape__lista","children":[["$","li",null,{"children":["$","$L5",null,{"href":"/es/oportunidades","children":"Oportunidades"}]}],["$","li",null,{"children":["$","$L5",null,{"href":"/es/biblioteca","children":"Biblioteca"}]}]]}]]}],["$","div",null,{"children":[["$","p",null,{"className":"rodape__titulo","children":"Programa"}],["$","ul",null,{"className":"rodape__lista","style":{"display":"flex","flexDirection":"column","gap":10},"children":[["$","li",null,{"children":["$","img",null,{"src":"/tilt-plataforma/organizacoes/indica.png","alt":"INDICA","style":{"height":16,"width":"auto","display":"inline-block","verticalAlign":"middle"}}]}],["$","li",null,{"children":["$","svg",null,{"viewBox":"0 0 94.25 23","height":14,"width":57.369565217391305,"role":"img","aria-label":"TILT","aria-hidden":"$undefined","children":[["$","circle","0-0",{"cx":4,"cy":4,"r":3,"fill":"currentColor"}],["$","circle","1-0",{"cx":11.5,"cy":4,"r":3,"fill":"currentColor"}],["$","circle","2-0",{"cx":19,"cy":4,"r":3,"fill":"currentColor"}],["$","circle","1-1",{"cx":11.5,"cy":11.5,"r":3,"fill":"currentColor"}],["$","circle","1-2",{"cx":11.5,"cy":19,"r":3,"fill":"currentColor"}],["$","circle","3.5-0",{"cx":30.25,"cy":4,"r":3,"fill":"currentColor"}],["$","circle","4.5-0",{"cx":37.75,"cy":4,"r":3,"fill":"currentColor"}],["$","circle","5.5-0",{"cx":45.25,"cy":4,"r":3,"fill":"currentColor"}],["$","circle","4.5-1",{"cx":37.75,"cy":11.5,"r":3,"fill":"currentColor"}],["$","circle","3.5-2",{"cx":30.25,"cy":19,"r":3,"fill":"currentColor"}],["$","circle","4.5-2",{"cx":37.75,"cy":19,"r":3,"fill":"currentColor"}],["$","circle","5.5-2",{"cx":45.25,"cy":19,"r":3,"fill":"currentColor"}],["$","circle","7-0",{"cx":56.5,"cy":4,"r":3,"fill":"currentColor"}],["$","circle","7-1",{"cx":56.5,"cy":11.5,"r":3,"fill":"currentColor"}],["$","circle","7-2",{"cx":56.5,"cy":19,"r":3,"fill":"currentColor"}],["$","circle","8-2",{"cx":64,"cy":19,"r":3,"fill":"currentColor"}],["$","circle","9.5-0",{"cx":75.25,"cy":4,"r":3,"fill":"currentColor"}],["$","circle","10.5-0",{"cx":82.75,"cy":4,"r":3,"fill":"currentColor"}],["$","circle","11.5-0",{"cx":90.25,"cy":4,"r":3,"fill":"currentColor"}],["$","circle","10.5-1",{"cx":82.75,"cy":11.5,"r":3,"fill":"currentColor"}],["$","circle","10.5-2",{"cx":82.75,"cy":19,"r":3,"fill":"currentColor"}]]}]}]]}]]}]]}]}]}]]]
+16:T1679,
+/* Barra de busca e filtros: um cartao denso, nada de painel lateral. */
+.bib-controles {
+  background: var(--branco);
+  border: 1px solid var(--preto);
+  border-radius: 2px;
+  padding: 14px 18px 6px;
+}
+.bib-busca {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 14px;
+  align-items: center;
+  padding-bottom: 12px;
+}
+.bib-busca input[type='search'] {
+  padding: 10px 14px;
+  font-size: 1rem;
+}
+.bib-linha {
+  display: grid;
+  grid-template-columns: 108px minmax(0, 1fr);
+  gap: 16px;
+  align-items: center;
+  padding: 8px 0;
+  border-top: 1px solid var(--linha);
+}
+.bib-linha__rotulo {
+  font-family: var(--mono);
+  font-size: 0.6875rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--tinta-suave);
+  margin: 0;
+}
+.bib-opcoes { display: flex; flex-wrap: wrap; gap: 6px; }
+
+.bib-pilula {
+  font-family: var(--mono);
+  font-size: 0.6875rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  line-height: 1;
+  padding: 7px 11px;
+  border: 1px solid var(--linha);
+  border-radius: 2px;
+  background: var(--branco);
+  color: var(--tinta-media);
+  cursor: pointer;
+}
+.bib-pilula:hover:not(:disabled) { border-color: var(--preto); color: var(--preto); }
+.bib-pilula[aria-pressed='true'] {
+  background: var(--preto);
+  border-color: var(--preto);
+  color: var(--branco);
+}
+.bib-pilula:disabled { opacity: 0.3; cursor: not-allowed; }
+.bib-pilula__n { opacity: 0.58; margin-left: 6px; }
+
+/* Contagem do acervo: numeros em monoespacada, sempre visiveis. */
+.bib-contagem {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+  font-family: var(--mono);
+  font-size: 0.6875rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--tinta-suave);
+}
+.bib-contagem strong { color: var(--preto); font-weight: 500; }
+
+/* Capa: sem moldura e sem respiro, em qualquer tamanho. */
+.bib-capa {
+  display: block;
+  width: 100%;
+  height: 100%;
+  border: 0;
+  object-fit: cover;
+  object-position: center top;
+}
+/* Sem capa enviada: malha de pontos e a marca de quem publica, sem texto. */
+.bib-capa-marca {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  padding: 16px;
+  overflow: hidden;
+}
+.bib-capa-marca__malha {
+  position: absolute;
+  inset: 0;
+  color: rgba(0, 0, 0, 0.24);
+  background-image: radial-gradient(circle, currentColor 1.2px, transparent 1.2px);
+  background-size: 16px 16px;
+}
+.bib-capa-marca__logo {
+  position: relative;
+  display: block;
+  width: auto;
+  max-width: 76%;
+  max-height: 40%;
+}
+.bib-capa-marca__sigla {
+  position: relative;
+  font-family: var(--mono);
+  font-size: 0.8125rem;
+  line-height: 1.35;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  text-align: center;
+  color: var(--preto);
+}
+
+/* Abertura da pagina de um material: capa em tamanho digno ao lado da ficha. */
+.bib-abertura {
+  display: grid;
+  grid-template-columns: 240px minmax(0, 1fr);
+  gap: 26px;
+  align-items: start;
+}
+.bib-abertura__capa { display: block; overflow: hidden; border-radius: 2px; }
+.bib-abertura__capa .bib-capa { height: auto; }
+.bib-abertura__gerada { aspect-ratio: 3 / 4; background: var(--areia); }
+
+.bib-ficha { display: grid; gap: 0; margin: 0; }
+.bib-ficha__linha {
+  display: grid;
+  grid-template-columns: 104px minmax(0, 1fr);
+  gap: 14px;
+  padding: 9px 0;
+  border-top: 1px solid var(--linha);
+}
+.bib-ficha__linha:first-child { border-top: 0; padding-top: 0; }
+.bib-ficha dt {
+  font-family: var(--mono);
+  font-size: 0.6875rem;
+  letter-spacing: 0.11em;
+  text-transform: uppercase;
+  color: var(--tinta-suave);
+  padding-top: 0.3em;
+}
+.bib-ficha dd { margin: 0; font-size: 1rem; line-height: 1.4; }
+
+/* Sumario: numero e titulo da secao, uma linha por secao. */
+.bib-sumario { display: grid; gap: 0; }
+.bib-sumario__item {
+  display: grid;
+  grid-template-columns: 30px minmax(0, 1fr);
+  gap: 10px;
+  padding: 8px 2px;
+  border-top: 1px solid var(--linha);
+  font-size: 1rem;
+  color: var(--preto);
+  text-decoration: none;
+}
+.bib-sumario__item:first-child { border-top: 0; }
+.bib-sumario__item:hover { background: var(--areia); text-decoration: none; }
+.bib-sumario__item:hover .bib-sumario__titulo {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+.bib-sumario__n {
+  font-family: var(--mono);
+  font-size: 0.6875rem;
+  letter-spacing: 0.1em;
+  color: var(--tinta-suave);
+  padding-top: 0.3em;
+}
+
+/*
+ * Texto completo: um botao por idioma publicado, lado a lado enquanto couberem.
+ * O rotulo do botao nomeia o idioma do arquivo, e a linha abaixo diz o formato
+ * e o peso. E a decisao que a pagina pede: qual dos PDFs baixar.
+ */
+.bib-baixar {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 12px 16px;
+}
+.bib-baixar__item { display: grid; gap: 6px; align-content: start; }
+.bib-baixar__ficha {
+  margin: 0;
+  font-family: var(--mono);
+  font-size: 0.6875rem;
+  letter-spacing: 0.11em;
+  text-transform: uppercase;
+  text-align: center;
+  color: var(--tinta-suave);
+}
+
+@media (max-width: 880px) {
+  .bib-abertura { grid-template-columns: 184px minmax(0, 1fr); gap: 20px; }
+}
+
+/*
+ * Capa do cartao no celular, onde a lista vira coluna unica e a capa passa a
+ * ocupar a largura inteira. Uma faixa de 200px cortava a capa em pe no meio de
+ * uma linha do titulo impresso nela; em 4 por 3 o titulo cabe inteiro.
+ */
+@media (max-width: 760px) {
+  .publicacao .publicacao__capa { max-height: none; aspect-ratio: 4 / 3; }
+}
+
+@media (max-width: 640px) {
+  .bib-abertura { grid-template-columns: minmax(0, 1fr); }
+  .bib-abertura__capa { max-width: 200px; }
+  .bib-busca { grid-template-columns: minmax(0, 1fr); }
+  .bib-linha { grid-template-columns: minmax(0, 1fr); gap: 8px; }
+}
+b:[["$","style",null,{"dangerouslySetInnerHTML":{"__html":"$16"}}],"$L17","$L18","$L19"]
+17:["$","header",null,{"className":"secao secao--curta cabecalho-pagina","children":["$","div",null,{"className":"container-estreito","children":[["$","p",null,{"className":"olho","children":"Materiales técnicos: Para creadores"}],["$","div",null,{"className":"linha linha--fim cabecalho-pagina__topo","children":[["$","div",null,{"className":"cabecalho-pagina__texto","children":[["$","h1",null,{"children":"Nota técnica: verificación antes de publicar"}],null]}],null]}]]}]}]
+18:["$","div",null,{"className":"secao secao--curta","children":["$","div",null,{"className":"container-estreito pilha--g","children":[["$","div",null,{"className":"bib-abertura","children":[["$","span",null,{"className":"bib-abertura__capa","children":["$","img",null,{"src":"/tilt-plataforma/materiais/capas/checagem-antes-de-publicar.svg","alt":"","className":"bib-capa"}]}],["$","div",null,{"className":"pilha","children":[["$","p",null,{"className":"texto-guia","style":{"margin":0},"children":"Una rutina de verificación para números, citas e imágenes, calibrada para el tiempo que un creador tiene entre grabar y publicar."}],["$","div",null,{"className":"cartao cartao--marcado","style":{"--marca":"var(--menta)"},"children":[["$","dl",null,{"className":"bib-ficha","children":[["$","div",null,{"className":"bib-ficha__linha","children":[["$","dt",null,{"children":"Autoría"}],["$","dd",null,{"children":"Renata Quiroga, Tomás Albuquerque"}]]}],["$","div",null,{"className":"bib-ficha__linha","children":[["$","dt",null,{"children":"Organización"}],["$","dd",null,{"children":["$","img",null,{"src":"/tilt-plataforma/organizacoes/labdados.svg","alt":"LabDados","style":{"height":15,"width":"auto","display":"inline-block","verticalAlign":"middle"}}]}]]}],["$","div",null,{"className":"bib-ficha__linha","children":[["$","dt",null,{"children":"Tema"}],["$","dd",null,{"children":"Verificación"}]]}],["$","div",null,{"className":"bib-ficha__linha","children":[["$","dt",null,{"children":"Formato"}],["$","dd",null,{"children":"Nota técnica"}]]}],["$","div",null,{"className":"bib-ficha__linha","children":[["$","dt",null,{"children":"Lectura"}],["$","dd",null,{"children":"5 min"}]]}],["$","div",null,{"className":"bib-ficha__linha","children":[["$","dt",null,{"children":"Actualizado el"}],["$","dd",null,{"children":"30 de septiembre de 2026"}]]}]]}],["$","div",null,{"className":"pilha--p","style":{"marginTop":14},"children":[["$","p",null,{"className":"rotulo","children":"Palabras clave"}],["$","div",null,{"className":"chips","children":[["$","span","Fuentes primarias",{"className":"chip chip--vazado","children":"Fuentes primarias"}],["$","span","Datos públicos",{"className":"chip chip--vazado","children":"Datos públicos"}],["$","span","Imágenes",{"className":"chip chip--vazado","children":"Imágenes"}],["$","span","Error de contexto",{"className":"chip chip--vazado","children":"Error de contexto"}]]}]]}]]}]]}]]}],null,["$","nav",null,{"className":"cartao cartao--compacto","aria-label":"En esta publicación","children":[["$","p",null,{"className":"rotulo rotulo--forte","style":{"margin":0},"children":"En esta publicación"}],["$","div",null,{"className":"bib-sumario","children":[["$","a","Qué verificar y en qué orden",{"className":"bib-sumario__item","href":"#secao-1","children":[["$","span",null,{"className":"bib-sumario__n","children":"01"}],["$","span",null,{"className":"bib-sumario__titulo","children":"Qué verificar y en qué orden"}]]}],["$","a","Cuánto tiempo reservar",{"className":"bib-sumario__item","href":"#secao-2","children":[["$","span",null,{"className":"bib-sumario__n","children":"02"}],["$","span",null,{"className":"bib-sumario__titulo","children":"Cuánto tiempo reservar"}]]}],["$","a","Cómo dejar registro",{"className":"bib-sumario__item","href":"#secao-3","children":[["$","span",null,{"className":"bib-sumario__n","children":"03"}],["$","span",null,{"className":"bib-sumario__titulo","children":"Cómo dejar registro"}]]}]]}]]}],["$","div",null,{"className":"prosa","children":[["$","section","Qué verificar y en qué orden",{"id":"secao-1","children":[["$","h2",null,{"children":"Qué verificar y en qué orden"}],[["$","p","Empiece por lo que sostiene la pieza: el número, la frase atribuida a alguien o la imagen central. Si esa parte cae, el resto no sirve, así que va primero.",{"children":"Empiece por lo que sostiene la pieza: el número, la frase atribuida a alguien o la imagen central. Si esa parte cae, el resto no sirve, así que va primero."}],["$","p","Números: busque la fuente primaria, que es la tabla, el informe o la base de donde salió el número, y no la nota que lo citó. Revise unidad, período y recorte geográfico. La mayoría de los errores que el laboratorio revisa no son números inventados, sino números correctos en el contexto equivocado.",{"children":"Números: busque la fuente primaria, que es la tabla, el informe o la base de donde salió el número, y no la nota que lo citó. Revise unidad, período y recorte geográfico. La mayoría de los errores que el laboratorio revisa no son números inventados, sino números correctos en el contexto equivocado."}],"$L1a","$L1b"]]}],"$L1c","$L1d"]}],"$L1e","$L1f"]}]}]
+19:["$","div",null,{"className":"secao secao--curta","children":["$","div",null,{"className":"container-estreito pilha--g","children":[["$","div","trilha",{"className":"pilha","children":[["$","p",null,{"className":"olho","style":{"margin":0},"children":"Lee también"}],[["$","$L5","guia-declarar-apoio",{"href":"/es/biblioteca/materiais/guia-declarar-apoio","className":"cartao publicacao","children":[["$","div",null,{"className":"publicacao__capa","children":["$","img",null,{"src":"/tilt-plataforma/materiais/capas/guia-declarar-apoio.svg","alt":"","className":"bib-capa"}]}],["$","div",null,{"className":"publicacao__ficha","children":[["$","div",null,{"className":"publicacao__marca","children":[["$","img",null,{"src":"/tilt-plataforma/organizacoes/alianca-democracia.svg","alt":"Aliança Democracia e Informação","className":"publicacao__logo"}],["$","span",null,{"className":"chip chip--menta","children":"Para creadores"}]]}],["$","p",null,{"className":"cartao__titulo","children":"Guía: cómo declarar apoyo y publicidad en contenido"}],["$","p",null,{"className":"texto-pequeno","style":{"margin":0},"children":"Marina Sotelo, Caio Bittencourt"}],["$","p",null,{"className":"cartao__texto","children":"Qué decir, dónde ponerlo y cuándo el aviso de apoyo es obligatorio, con los errores más comunes en videos, stories y textos."}],["$","div",null,{"className":"chips","children":["$","span",null,{"className":"chip chip--vazado","children":"Transparencia"}]}],["$","div",null,{"className":"cartao__rodape","children":[["$","span",null,{"children":"Guía"}],["$","span",null,{"children":"21/08/2026"}]]}]]}]]}],["$","$L5","glossario-clima-para-criadores",{"href":"/es/biblioteca/materiais/glossario-clima-para-criadores","className":"cartao publicacao","children":[["$","div",null,{"className":"publicacao__capa","children":["$","img",null,{"src":"/tilt-plataforma/materiais/capas/glossario-clima-para-criadores.svg","alt":"","className":"bib-capa"}]}],["$","div",null,{"className":"publicacao__ficha","children":[["$","div",null,{"className":"publicacao__marca","children":[["$","img",null,{"src":"/tilt-plataforma/organizacoes/clima-urbano.svg","alt":"Observatório Clima Urbano","className":"publicacao__logo"}],["$","span",null,{"className":"chip chip--menta","children":"Para creadores"}]]}],["$","p",null,{"className":"cartao__titulo","children":"Glosario de clima para quien hace contenido"}],["$","p",null,{"className":"texto-pequeno","style":{"margin":0},"children":"Rafael Ordoñez, Camila Estévez"}],["$","p",null,{"className":"cartao__texto","children":"Los términos de clima que más aparecen en briefings y noticias, con su significado exacto y el error de uso que más se repite en videos."}],["$","div",null,{"className":"chips","children":["$","span",null,{"className":"chip chip--vazado","children":"Clima"}]}],["$","div",null,{"className":"cartao__rodape","children":[["$","span",null,{"children":"Glosario"}],["$","span",null,{"children":"09/06/2026"}]]}]]}]]}]]]}]]}]}]
+1a:["$","p","Citas: ubique el registro original, sea video, audio, documento o publicación. Una frase que solo existe en capturas y reproducciones se trata como no verificada.",{"children":"Citas: ubique el registro original, sea video, audio, documento o publicación. Una frase que solo existe en capturas y reproducciones se trata como no verificada."}]
+1b:["$","p","Imágenes y videos: búsqueda inversa en al menos dos herramientas, fecha y lugar verificados por elementos visibles y revisión de señales de generación sintética. El material sin origen confirmado entra como ilustración declarada o no entra.",{"children":"Imágenes y videos: búsqueda inversa en al menos dos herramientas, fecha y lugar verificados por elementos visibles y revisión de señales de generación sintética. El material sin origen confirmado entra como ilustración declarada o no entra."}]
+1c:["$","section","Cuánto tiempo reservar",{"id":"secao-2","children":[["$","h2",null,{"children":"Cuánto tiempo reservar"}],[["$","p","Una pieza con un dato central y una imagen lleva de veinte a cuarenta minutos de verificación para quien ya sabe dónde buscar. Reserve ese tiempo en el cronograma antes de grabar, no después: descubrir el error con el video listo obliga a grabar de nuevo.",{"children":"Una pieza con un dato central y una imagen lleva de veinte a cuarenta minutos de verificación para quien ya sabe dónde buscar. Reserve ese tiempo en el cronograma antes de grabar, no después: descubrir el error con el video listo obliga a grabar de nuevo."}],["$","p","Si el tiempo no alcanza para verificar todo, corte lo que no se verificó. Una pieza con dos datos confirmados vale más que una con cinco datos y uno equivocado.",{"children":"Si el tiempo no alcanza para verificar todo, corte lo que no se verificó. Una pieza con dos datos confirmados vale más que una con cinco datos y uno equivocado."}]]]}]
+1d:["$","section","Cómo dejar registro",{"id":"secao-3","children":[["$","h2",null,{"children":"Cómo dejar registro"}],[["$","p","Guarde, por cada dato usado, el enlace a la fuente primaria, la fecha de acceso y una captura. El registro sirve para responder a una impugnación en minutos y es lo que la organización apoyadora va a pedir si la pieza es cuestionada.",{"children":"Guarde, por cada dato usado, el enlace a la fuente primaria, la fecha de acceso y una captura. El registro sirve para responder a una impugnación en minutos y es lo que la organización apoyadora va a pedir si la pieza es cuestionada."}],["$","p","Cuando la fuente es una persona, anote nombre, cargo y cómo se hizo el contacto. Cuando es un documento, anote página y fragmento.",{"children":"Cuando la fuente es una persona, anote nombre, cargo y cómo se hizo el contacto. Cuando es un documento, anote página y fragmento."}],["$","p","Un error descubierto después de publicar se corrige en la misma pieza, con la fecha de la corrección visible, y no con una pieza nueva que deja la equivocada al aire.",{"children":"Un error descubierto después de publicar se corrige en la misma pieza, con la fecha de la corrección visible, y no con una pieza nueva que deja la equivocada al aire."}]]]}]
+1e:["$","div",null,{"className":"cartao cartao--compacto","style":{"flexDirection":"row","alignItems":"center","gap":14},"children":[["$","span",null,{"className":"selo selo--neutro","children":"CC BY 4.0"}],["$","p",null,{"className":"texto-pequeno texto-secundario","style":{"margin":0},"children":"Uso y adaptación permitidos con atribución."}]]}]
+1f:["$","div",null,{"className":"linha","children":["$","$L5",null,{"href":"/es/biblioteca/materiais/?trilha=criadores","className":"btn btn--discreto btn--pequeno","onClick":"$undefined","children":"Volver a la ruta"}]}]
+11:[["$","meta","0",{"charSet":"utf-8"}],["$","meta","1",{"name":"viewport","content":"width=device-width, initial-scale=1"}]]
+d:null
+f:{"metadata":[["$","title","0",{"children":"Nota técnica: verificación antes de publicar | TILT"}],["$","meta","1",{"name":"description","content":"Una rutina de verificación para números, citas e imágenes, calibrada para el tiempo que un creador tiene entre grabar y publicar."}]],"error":null,"digest":"$undefined"}
+14:"$f:metadata"

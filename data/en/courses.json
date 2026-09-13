@@ -1,1 +1,129 @@
-[]
+[
+  {
+    "slug": "divulgacao-cientifica-para-criadores",
+    "titulo": "Science communication for content creators",
+    "status": "aberto",
+    "resumo": "How to go from a published study to a video or post that survives fact-checking, without inflating the result or hiding the uncertainty.",
+    "descricao": [
+      "Most people who make content about science start from a headline, not from the study. The course reverses that order: each module opens with a real, published paper and ends with a piece ready for the platform the participant chooses.",
+      "Live classes run twice a week, in the evening, and are recorded. Between sessions, the asynchronous material covers reading tables, finding primary sources and exercises graded by the LabDados team.",
+      "The course is offered by INDICA in partnership with LabDados. By the end, each participant has published one piece of content and kept a record of how they measured whether the message reached the audience."
+    ],
+    "paraQuem": [
+      "Creators who publish about health, climate or technology and have already been challenged on a source.",
+      "Journalists and communicators moving to short formats who need to keep the rigor.",
+      "Researchers who want to speak to a lay audience without depending on their institution's press office."
+    ],
+    "modulos": [
+      {
+        "numero": 1,
+        "titulo": "Reading a study",
+        "descricao": "Where to look first in a scientific paper: design, sample, main result and what the authors admit they do not know."
+      },
+      {
+        "numero": 2,
+        "titulo": "Uncertainty and consensus",
+        "descricao": "How to say a result is preliminary without sounding evasive, and how to tell an isolated study from a field consensus."
+      },
+      {
+        "numero": 3,
+        "titulo": "Sources and fact-checking",
+        "descricao": "Getting to the primary source from a news story, and checking authorship, funding and peer review before citing."
+      },
+      {
+        "numero": 4,
+        "titulo": "Format by platform",
+        "descricao": "The same finding as a short video, a carousel and a long text: what fits in each and what gets lost."
+      },
+      {
+        "numero": 5,
+        "titulo": "Errors and public correction",
+        "descricao": "What to do when published content is wrong: correct it, notify those who shared it and keep a record of the correction."
+      },
+      {
+        "numero": 6,
+        "titulo": "Measuring whether the message landed",
+        "descricao": "Comments, retention and audience questions as indicators of understanding, not just reach."
+      }
+    ],
+    "duracao": "5 weeks",
+    "formato": "Live online, with asynchronous material",
+    "proximaTurma": "2026-11-03"
+  },
+  {
+    "slug": "como-ler-um-estudo",
+    "titulo": "How to read a study before citing it",
+    "status": "em-breve",
+    "resumo": "Two weeks of self-paced exercises to read a scientific paper all the way through and decide whether it supports the sentence about to be published.",
+    "descricao": [
+      "Most wrong citations come from reading the abstract, not the paper. The course teaches how to move through the sections in the right order, with limited time, and to take from the text only what it actually claims.",
+      "All content is asynchronous: guided readings, exercises with annotated answer keys and a forum followed by the LabDados team. Each participant finishes with a reading sheet for a study of their choice, reviewed before the course closes."
+    ],
+    "paraQuem": [
+      "Creators who cite studies often and want to stop relying on someone else's reading.",
+      "Communication teams at organizations that need to validate data before approving a piece.",
+      "Undergraduate students who have not yet taken a research methods course."
+    ],
+    "modulos": [
+      {
+        "numero": 1,
+        "titulo": "Anatomy of a paper",
+        "descricao": "Abstract, methods, results and discussion: what each section promises and what it tends to hide."
+      },
+      {
+        "numero": 2,
+        "titulo": "Numbers that mislead",
+        "descricao": "Relative risk, p-value, sample size and confidence interval, explained for those who will not do the math."
+      },
+      {
+        "numero": 3,
+        "titulo": "From reading to citation",
+        "descricao": "How to turn the finding into a publishable sentence that the study's authors would recognize as their own."
+      }
+    ],
+    "duracao": "2 weeks",
+    "formato": "Asynchronous",
+    "proximaTurma": "2027-02-01"
+  },
+  {
+    "slug": "campanhas-com-organizacoes",
+    "titulo": "Campaigns with organizations: from briefing to measurement",
+    "status": "aberto",
+    "resumo": "Three weeks on the full cycle of a campaign between a creator and an organization: what the briefing must contain, what the contract defines, how content gets approved and how results are measured.",
+    "descricao": [
+      "Campaigns between creators and organizations tend to fail at predictable points: a vague briefing, an undefined approval deadline, a metric agreed only after publication. The course walks through each stage using real documents from campaigns run by INDICA and Koko, with the names changed.",
+      "Cohorts mix creators and organization staff. In the exercises, each side writes down what it would expect from the other, and the comparison is discussed live. The aim is for both sides to leave knowing what to ask for and what to offer.",
+      "Offered by INDICA with Koko. Two live classes a week, recorded, and one final deliverable: a complete briefing and a measurement plan for a real or simulated campaign."
+    ],
+    "paraQuem": [
+      "Creators who have done paid partnerships and want to work with nonprofits, institutes and foundations.",
+      "Communication and project managers at organizations that hire or plan to hire creators.",
+      "Small production companies and agencies that broker campaigns and need to standardize briefings and reports."
+    ],
+    "modulos": [
+      {
+        "numero": 1,
+        "titulo": "Briefing",
+        "descricao": "What the organization needs to tell the creator before any proposal: objective, audience, constraints and what cannot be said."
+      },
+      {
+        "numero": 2,
+        "titulo": "Proposal and contract",
+        "descricao": "Scope, deliverables, approval deadlines, usage rights and what happens when one side is late."
+      },
+      {
+        "numero": 3,
+        "titulo": "Production and approval",
+        "descricao": "Script, final video and revisions: how many rounds, who decides and how each approval is recorded."
+      },
+      {
+        "numero": 4,
+        "titulo": "Measurement and reporting",
+        "descricao": "Set the metric before publishing, collect data over the two weeks that follow and write a report the organization can use."
+      }
+    ],
+    "duracao": "3 weeks",
+    "formato": "Live online, with recorded classes",
+    "proximaTurma": "2026-11-17"
+  }
+]

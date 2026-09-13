@@ -52,7 +52,7 @@ function resumoDoCiclo(lista: Call[]) {
   const abertas = lista.filter((edital) => edital.status === 'aberta');
   return {
     abertas: abertas.length,
-    recursos: abertas.reduce((soma, edital) => soma + edital.valorTotal, 0),
+    recursos: abertas.reduce((soma, edital) => soma + (edital.valorTotal ?? 0), 0),
     apoiados: lista.reduce(
       (soma, edital) => soma + (edital.resultado ? edital.resultado.apoiados.length : 0),
       0,

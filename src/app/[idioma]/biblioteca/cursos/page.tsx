@@ -72,13 +72,16 @@ export default async function CursosPage({
                     <span>
                       {t.aprendizado.cursos.proximaTurma}: {data(curso.proximaTurma, idioma)}
                     </span>
-                    <Botao
-                      href={rota(idioma, `biblioteca/cursos/${curso.slug}`)}
-                      variante="discreto"
-                      tamanho="pequeno"
-                    >
-                      {t.comum.acoes.verCurso}
-                    </Botao>
+                    {/* So a turma aberta tem pagina; a que vem depois fica no catalogo. */}
+                    {curso.status === 'aberto' ? (
+                      <Botao
+                        href={rota(idioma, `biblioteca/cursos/${curso.slug}`)}
+                        variante="discreto"
+                        tamanho="pequeno"
+                      >
+                        {t.comum.acoes.verCurso}
+                      </Botao>
+                    ) : null}
                   </div>
                 </article>
               ))}

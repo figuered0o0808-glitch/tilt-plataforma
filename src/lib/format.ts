@@ -28,7 +28,7 @@ const LOCALE_DE_MOEDA: Record<Idioma, string> = { pt: 'pt-BR', en: 'en', es: 'pt
 const LOCALE_DE_NUMERO: Record<Idioma, string> = { pt: 'pt-BR', en: 'en', es: 'es' };
 
 /** 42000 -> "R$ 42.000" em portugues, "R$42,000" em ingles */
-export function moeda(valor: number, idioma: Idioma = 'pt'): string {
+export function moeda(valor: number, idioma: Idioma): string {
   return new Intl.NumberFormat(LOCALE_DE_MOEDA[idioma], {
     style: 'currency',
     currency: 'BRL',
@@ -36,21 +36,8 @@ export function moeda(valor: number, idioma: Idioma = 'pt'): string {
   }).format(valor);
 }
 
-/** 1250000 -> "1,2 mi" | 480000 -> "480 mil" | 8200 -> "8,2 mil" */
-export function seguidores(total: number): string {
-  if (total >= 1_000_000) {
-    const v = total / 1_000_000;
-    return `${v.toFixed(v >= 10 ? 0 : 1).replace('.', ',')} mi`;
-  }
-  if (total >= 1_000) {
-    const v = total / 1_000;
-    return `${v.toFixed(v >= 100 ? 0 : 1).replace('.', ',').replace(',0', '')} mil`;
-  }
-  return numero(total);
-}
-
 /** 1250000 -> "1.250.000" em portugues, "1,250,000" em ingles */
-export function numero(valor: number, idioma: Idioma = 'pt'): string {
+export function numero(valor: number, idioma: Idioma): string {
   return new Intl.NumberFormat(LOCALE_DE_NUMERO[idioma]).format(valor);
 }
 
@@ -64,7 +51,7 @@ function calendario(idioma: Idioma) {
 }
 
 /** "2026-03-12" -> "12 de março de 2026" | "March 12, 2026" */
-export function data(iso: string, idioma: Idioma = 'pt'): string {
+export function data(iso: string, idioma: Idioma): string {
   const [ano, mes, dia] = iso.split('-').map(Number);
   if (!ano || !mes || !dia) return iso;
   const { meses, dataModelo } = calendario(idioma);
@@ -75,7 +62,7 @@ export function data(iso: string, idioma: Idioma = 'pt'): string {
 }
 
 /** "2026-03-12" -> "12/03/2026" | "03/12/2026" em ingles */
-export function dataCurta(iso: string, idioma: Idioma = 'pt'): string {
+export function dataCurta(iso: string, idioma: Idioma): string {
   const [ano, mes, dia] = iso.split('-');
   if (!ano || !mes || !dia) return iso;
   return calendario(idioma)

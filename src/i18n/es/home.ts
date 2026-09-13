@@ -49,6 +49,7 @@ export const home = {
     vagas: 'Plazas',
     vagasFaixa: 'De {min} a {max} proyectos apoyados.',
     vagasSelecionados: '{n} seleccionados, {r} plazas abiertas.',
+    vagasApoiados: '{n} proyectos apoyados.',
     verChamada: 'Ver la convocatoria',
     semChamada: 'Ninguna convocatoria abierta por ahora.',
     verOportunidades: 'Ver oportunidades',

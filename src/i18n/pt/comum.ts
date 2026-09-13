@@ -37,6 +37,11 @@ export const comum = {
     aberto: 'Turma aberta',
     'em-breve': 'Em breve',
   },
+  publicoEdital: {
+    criadores: 'Para criadores',
+    organizacoes: 'Para organizações',
+    ambos: 'Para criadores e organizações',
+  },
   tiposEdital: {
     'tema-amplo': 'Tema amplo',
     macrotema: 'Macrotema de financiador',

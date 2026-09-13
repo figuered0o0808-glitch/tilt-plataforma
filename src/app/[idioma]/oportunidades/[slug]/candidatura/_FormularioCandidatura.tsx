@@ -18,7 +18,8 @@ import { useApp } from '@/state/AppState';
 export interface EditalResumo {
   slug: string;
   titulo: string;
-  faixaApoio: { min: number; max: number };
+  /** Nula quando a chamada nao tem faixa de valor: o campo aceita qualquer valor. */
+  faixaApoio: { min: number; max: number } | null;
 }
 
 /** Strings do fluxo, passadas para as funcoes que validam fora do componente. */
@@ -97,7 +98,7 @@ function validarProponente(dados: Dados, tc: TextosCandidatura): Erros {
 
 function validarProjeto(
   dados: Dados,
-  faixa: { min: number; max: number },
+  faixa: { min: number; max: number } | null,
   tc: TextosCandidatura,
   separador: string,
   /* A mensagem de faixa cita valores, e valor tem formato por idioma. */
@@ -111,7 +112,7 @@ function validarProjeto(
   const valor = Number(dados.valor);
   if (!dados.valor.trim()) erros.valor = tc.erros.obrigatorio;
   else if (!Number.isFinite(valor) || valor <= 0) erros.valor = tc.erros.valorNumero;
-  else if (valor < faixa.min || valor > faixa.max) {
+  else if (faixa && (valor < faixa.min || valor > faixa.max)) {
     erros.valor = `${tc.erros.valorFaixa} ${moeda(faixa.min, idioma)} ${separador} ${moeda(faixa.max, idioma)}.`;
   }
 
@@ -124,7 +125,7 @@ function validarProjeto(
 function validarPasso(
   passo: number,
   dados: Dados,
-  faixa: { min: number; max: number },
+  faixa: { min: number; max: number } | null,
   tc: TextosCandidatura,
   separador: string,
   idioma: Idioma,
@@ -162,9 +163,10 @@ export function FormularioCandidatura({
   const topo = useRef<HTMLDivElement>(null);
 
   const faixa = edital.faixaApoio;
-  const faixaTexto = `${tc.projeto.faixaAjuda} ${moeda(faixa.min, idioma)} ${separador} ${moeda(
-    faixa.max, idioma
-)}.`;
+  /* Sem faixa nao ha o que lembrar: a ajuda do campo some. */
+  const faixaTexto = faixa
+    ? `${tc.projeto.faixaAjuda} ${moeda(faixa.min, idioma)} ${separador} ${moeda(faixa.max, idioma)}.`
+    : undefined;
 
   function irPara(destino: number) {
     setPasso(destino);

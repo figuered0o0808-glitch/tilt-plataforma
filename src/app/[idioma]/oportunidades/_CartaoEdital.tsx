@@ -10,6 +10,7 @@ import { textos } from '@/i18n/strings';
 import { arquivoPublico, dataCurta, moeda } from '@/lib/format';
 import { rota } from '@/lib/rotas';
 import type { Call } from '@/lib/types';
+import { textoDoApoio, textoDoValorTotal } from '@/lib/apoio';
 
 import { prazoEmLinha } from './_prazo';
 
@@ -32,6 +33,8 @@ export function CartaoEdital({ idioma, edital }: { idioma: Idioma; edital: Call 
           <Marcador arranjo={1} />
           <Selo idioma={idioma} status={edital.status} />
           <Chip vazado>{t.comum.tiposEdital[edital.tipo]}</Chip>
+          {edital.modalidade ? <Chip vazado>{edital.modalidade}</Chip> : null}
+          {edital.publico ? <Chip cor="areia">{t.comum.publicoEdital[edital.publico]}</Chip> : null}
         </div>
         {edital.logoOrganizacao ? (
           // eslint-disable-next-line @next/next/no-img-element
@@ -73,16 +76,11 @@ export function CartaoEdital({ idioma, edital }: { idioma: Idioma; edital: Call 
       <div className="coluna__linhas">
         <div className="coluna__linha">
           <span className="rotulo">{t.comum.rotulos.valorTotal}</span>
-          <span>{moeda(edital.valorTotal, idioma)}</span>
+          <span>{textoDoValorTotal(idioma, edital)}</span>
         </div>
         <div className="coluna__linha">
           <span className="rotulo">{t.comum.rotulos.apoio}</span>
-          <span>
-            {`${moeda(edital.faixaApoio.min, idioma)} ${t.editais.faixaSeparador} ${moeda(
-              edital.faixaApoio.max,
-              idioma,
-            )}`}
-          </span>
+          <span>{textoDoApoio(idioma, edital)}</span>
         </div>
       </div>
 

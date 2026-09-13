@@ -37,6 +37,11 @@ export const comum = {
     aberto: 'Class open',
     'em-breve': 'Coming soon',
   },
+  publicoEdital: {
+    criadores: 'For creators',
+    organizacoes: 'For organizations',
+    ambos: 'For creators and organizations',
+  },
   tiposEdital: {
     'tema-amplo': 'Broad theme',
     macrotema: 'Funder macro theme',

@@ -1,1 +1,129 @@
-[]
+[
+  {
+    "slug": "divulgacao-cientifica-para-criadores",
+    "titulo": "Divulgación científica para creadores de contenido",
+    "status": "aberto",
+    "resumo": "Cómo pasar de un estudio publicado a un video o una publicación que resiste la verificación, sin inflar el resultado ni ocultar la incertidumbre.",
+    "descricao": [
+      "Quien produce contenido sobre ciencia suele partir de un titular, no del estudio. El curso invierte el orden: cada módulo empieza con un artículo real, publicado, y termina con una pieza lista para la plataforma que elija el participante.",
+      "Las clases en vivo se dan dos veces por semana, de noche, y quedan grabadas. Entre una clase y otra, el material asincrónico cubre lectura de tablas, búsqueda de fuentes primarias y ejercicios corregidos por el equipo de LabDados.",
+      "El curso lo ofrece INDICA en alianza con LabDados. Al final, el participante entrega un contenido publicado y un registro de cómo midió si el mensaje llegó al público."
+    ],
+    "paraQuem": [
+      "Creadores que publican sobre salud, clima o tecnología y ya fueron cuestionados por una fuente.",
+      "Periodistas y comunicadores que migran a formatos cortos y necesitan mantener el rigor.",
+      "Investigadores que quieren hablar con público no especializado sin depender de la oficina de prensa de su institución."
+    ],
+    "modulos": [
+      {
+        "numero": 1,
+        "titulo": "Leer un estudio",
+        "descricao": "Dónde mirar primero en un artículo científico: diseño, muestra, resultado principal y lo que los autores admiten no saber."
+      },
+      {
+        "numero": 2,
+        "titulo": "Incertidumbre y consenso",
+        "descricao": "Cómo decir que un resultado es preliminar sin sonar evasivo, y cómo distinguir un estudio aislado de un consenso del campo."
+      },
+      {
+        "numero": 3,
+        "titulo": "Fuentes y verificación",
+        "descricao": "Llegar a la fuente primaria desde una noticia, y revisar autoría, financiamiento y revisión por pares antes de citar."
+      },
+      {
+        "numero": 4,
+        "titulo": "Formato por plataforma",
+        "descricao": "El mismo hallazgo en video corto, carrusel y texto largo: qué cabe en cada uno y qué se pierde."
+      },
+      {
+        "numero": 5,
+        "titulo": "Error y corrección pública",
+        "descricao": "Qué hacer cuando el contenido ya publicado está mal: rectificar, avisar a quienes lo compartieron y dejar registro de la corrección."
+      },
+      {
+        "numero": 6,
+        "titulo": "Medir si el mensaje llegó",
+        "descricao": "Comentarios, retención y preguntas del público como indicadores de comprensión, no solo de alcance."
+      }
+    ],
+    "duracao": "5 semanas",
+    "formato": "En línea en vivo, con material asincrónico",
+    "proximaTurma": "2026-11-03"
+  },
+  {
+    "slug": "como-ler-um-estudo",
+    "titulo": "Cómo leer un estudio antes de citarlo",
+    "status": "em-breve",
+    "resumo": "Dos semanas de ejercicios asincrónicos para leer un artículo científico completo y decidir si sostiene la frase que se pretende publicar.",
+    "descricao": [
+      "La mayoría de las citas equivocadas nace de una lectura del resumen, no del artículo. El curso enseña a recorrer las secciones en el orden correcto, con tiempo limitado, y a extraer del texto solo lo que de verdad afirma.",
+      "Todo el contenido es asincrónico: lecturas guiadas, ejercicios con respuestas comentadas y un foro acompañado por el equipo de LabDados. Cada participante termina con una ficha de lectura de un estudio elegido por él, evaluada antes del cierre."
+    ],
+    "paraQuem": [
+      "Creadores que citan estudios con frecuencia y quieren dejar de depender de la lectura de terceros.",
+      "Equipos de comunicación de organizaciones que necesitan validar datos antes de aprobar una pieza.",
+      "Estudiantes de grado que todavía no cursaron metodología."
+    ],
+    "modulos": [
+      {
+        "numero": 1,
+        "titulo": "Anatomía de un artículo",
+        "descricao": "Resumen, métodos, resultados y discusión: qué promete cada sección y qué suele esconder."
+      },
+      {
+        "numero": 2,
+        "titulo": "Números que engañan",
+        "descricao": "Riesgo relativo, valor p, tamaño de muestra e intervalo de confianza, explicados para quien no va a hacer la cuenta."
+      },
+      {
+        "numero": 3,
+        "titulo": "De la lectura a la cita",
+        "descricao": "Cómo convertir el hallazgo en una frase publicable que los autores del estudio reconocerían como suya."
+      }
+    ],
+    "duracao": "2 semanas",
+    "formato": "Asincrónico",
+    "proximaTurma": "2027-02-01"
+  },
+  {
+    "slug": "campanhas-com-organizacoes",
+    "titulo": "Campañas con organizaciones: del briefing a la medición",
+    "status": "aberto",
+    "resumo": "Tres semanas sobre el ciclo completo de una campaña entre creador y organización: qué debe contener el briefing, qué define el contrato, cómo se aprueba el contenido y cómo se mide el resultado.",
+    "descricao": [
+      "Las campañas entre creadores y organizaciones suelen fallar en puntos previsibles: briefing vago, plazo de aprobación indefinido, métrica acordada recién después de publicar. El curso recorre cada etapa con documentos reales de campañas conducidas por INDICA y Koko, con los nombres cambiados.",
+      "Los grupos mezclan creadores y profesionales de organizaciones. En los ejercicios, cada lado escribe lo que esperaría del otro, y la comparación se discute en vivo. La intención es que ambos salgan sabiendo qué pedir y qué ofrecer.",
+      "Lo ofrece INDICA con Koko. Dos clases en vivo por semana, grabadas, y una entrega final: un briefing completo y un plan de medición para una campaña real o simulada."
+    ],
+    "paraQuem": [
+      "Creadores que ya hicieron publicidad y quieren trabajar con organizaciones sin fines de lucro, institutos y fundaciones.",
+      "Responsables de comunicación y de proyectos en organizaciones que contratan o planean contratar creadores.",
+      "Productoras y agencias pequeñas que intermedian campañas y necesitan estandarizar briefing e informe."
+    ],
+    "modulos": [
+      {
+        "numero": 1,
+        "titulo": "Briefing",
+        "descricao": "Lo que la organización necesita decirle al creador antes de cualquier propuesta: objetivo, público, restricciones y lo que no se puede decir."
+      },
+      {
+        "numero": 2,
+        "titulo": "Propuesta y contrato",
+        "descricao": "Alcance, entregables, plazos de aprobación, derechos de uso y qué pasa cuando una de las partes se atrasa."
+      },
+      {
+        "numero": 3,
+        "titulo": "Producción y aprobación",
+        "descricao": "Guion, video final y ajustes: cuántas rondas, quién decide y cómo registrar cada aprobación."
+      },
+      {
+        "numero": 4,
+        "titulo": "Medición e informe",
+        "descricao": "Definir la métrica antes de publicar, recolectar datos en las dos semanas siguientes y escribir un informe que la organización pueda usar."
+      }
+    ],
+    "duracao": "3 semanas",
+    "formato": "En línea en vivo, con clases grabadas",
+    "proximaTurma": "2026-11-17"
+  }
+]

@@ -65,8 +65,19 @@ export interface Call {
   criterios: CriterioSelecao[];
   banca: MembroBanca[];
   distribuicao: FaixaDistribuicao[];
-  valorTotal: number;
-  faixaApoio: { min: number; max: number };
+  /**
+   * Nulo quando a chamada nao tem valor definido: em negociacao com o
+   * financiador, ou apoio que nao e dinheiro (residencia, mentoria, estudio).
+   * Nesses casos `apoioDescricao` diz o que se oferece.
+   */
+  valorTotal: number | null;
+  faixaApoio: { min: number; max: number } | null;
+  /** O que a chamada oferece quando nao e (so) dinheiro, ou quando o valor ainda nao esta definido. */
+  apoioDescricao?: string;
+  /** Como a chamada se apresenta: campanha, edital de projetos, residencia, premio, bolsa. Texto no idioma. */
+  modalidade?: string;
+  /** A quem a chamada se dirige. */
+  publico?: 'criadores' | 'organizacoes' | 'ambos';
   /**
    * Quantos projetos a chamada pretende apoiar. Opcional: chamada antiga nao
    * declarava. Na home vira a fileira de pontos, cheios e vazados.

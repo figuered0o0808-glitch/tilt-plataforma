@@ -19,6 +19,11 @@ const ORDEM_TIPO: TipoEdital[] = [
   'pauta-especifica',
   'edital-organizacao',
 ];
+/* Chamada sem publico declarado vale para criadores: e o caso da maioria. */
+const ORDEM_PUBLICO: NonNullable<Call['publico']>[] = ['criadores', 'organizacoes', 'ambos'];
+function publicoDe(edital: Call): NonNullable<Call['publico']> {
+  return edital.publico ?? 'criadores';
+}
 
 interface Opcao {
   valor: string;
@@ -90,6 +95,7 @@ export function ListaEditais({ idioma, editais }: { idioma: Idioma; editais: Cal
   const t = textos(idioma);
   const [status, setStatus] = useState<string>('');
   const [tipo, setTipo] = useState<string>('');
+  const [publico, setPublico] = useState<string>('');
 
   const opcoesStatus = useMemo<Opcao[]>(
     () =>
@@ -111,19 +117,33 @@ export function ListaEditais({ idioma, editais }: { idioma: Idioma; editais: Cal
     [editais, t],
   );
 
+  const opcoesPublico = useMemo<Opcao[]>(
+    () =>
+      ORDEM_PUBLICO.map((valor) => ({
+        valor,
+        rotulo: t.comum.publicoEdital[valor],
+        total: editais.filter((edital) => publicoDe(edital) === valor).length,
+      })).filter((opcao) => opcao.total > 0),
+    [editais, t],
+  );
+
+  /* "Para criadores e organizacoes" atende os dois filtros, e nao so o proprio. */
   const filtrados = useMemo(
     () =>
       editais.filter(
         (edital) =>
-          (status === '' || edital.status === status) && (tipo === '' || edital.tipo === tipo),
+          (status === '' || edital.status === status) &&
+          (tipo === '' || edital.tipo === tipo) &&
+          (publico === '' || publicoDe(edital) === publico || publicoDe(edital) === 'ambos'),
       ),
-    [editais, status, tipo],
+    [editais, status, tipo, publico],
   );
 
-  const temFiltro = status !== '' || tipo !== '';
+  const temFiltro = status !== '' || tipo !== '' || publico !== '';
   const limpar = () => {
     setStatus('');
     setTipo('');
+    setPublico('');
   };
 
   /*
@@ -157,6 +177,16 @@ export function ListaEditais({ idioma, editais }: { idioma: Idioma; editais: Cal
           valor={tipo}
           aoEscolher={setTipo}
         />
+        {opcoesPublico.length > 1 ? (
+          <LinhaFiltro
+            rotulo={t.editais.filtroPublico}
+            rotuloTodos={t.editais.todosPublicos}
+            total={editais.length}
+            opcoes={opcoesPublico}
+            valor={publico}
+            aoEscolher={setPublico}
+          />
+        ) : null}
       </section>
 
       <div className="barra-resultado">

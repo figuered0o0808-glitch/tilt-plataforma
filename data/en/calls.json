@@ -64,5 +64,780 @@
     "resultado": null,
     "organizacao": "INDICA",
     "logoOrganizacao": "/organizacoes/indica.png"
+  },
+  {
+    "slug": "chamada-02-ciencia-no-cotidiano",
+    "titulo": "Call No. 02: science in everyday life",
+    "status": "aberta",
+    "tipo": "tema-amplo",
+    "resumo": "Funds original creator projects that explain the science behind everyday decisions, in any format and on any platform, with resources from Fundação Vale do Rio Claro.",
+    "proponente": "INDICA",
+    "apresentacao": [
+      "Science reaches people through small decisions: what to eat, how to treat a fever, whether a new light bulb is worth it, whom to believe when two videos say the opposite. The people who explain this well are concentrated in a few channels and a few formats, and most of the audience never gets to them.",
+      "The call funds creators who bring that explanation to their own audience, in the format and on the platform where they already publish. Fundação Vale do Rio Claro funds the call with R$ 240,000. INDICA proposes and runs the call, conducts the selection with the panel and follows production through to publication.",
+      "The theme is broad on purpose: any field of science qualifies, as long as the project starts from something the audience decides or does. A creator who already publishes about cooking, personal finance, parenting or games is as eligible as one who publishes about science."
+    ],
+    "escopo": [
+      "Original projects that explain the science behind everyday decisions: food, health, home, money, climate, technology.",
+      "Any format and any platform: short video, podcast, newsletter, post series, live stream.",
+      "Creators as individuals or companies, of any audience size and any niche.",
+      "Series of at least four pieces, published between January and March 2027.",
+      "Written or video proposals, with an itemized budget and at least one scientific source per planned piece."
+    ],
+    "naoApoiado": [
+      "Content that promotes a specific product, supplement, treatment or brand.",
+      "Dissemination of research results not yet published or not peer-reviewed.",
+      "Event coverage and institutional material for universities, companies or governments."
+    ],
+    "criterios": [
+      {
+        "titulo": "Accuracy of the scientific content",
+        "descricao": "Verifiable sources and a correct reading of what the research says and what it cannot yet say."
+      },
+      {
+        "titulo": "Link to an everyday decision",
+        "descricao": "The project starts from something the audience decides or does, not from the topic for its own sake."
+      },
+      {
+        "titulo": "Fit between format and audience",
+        "descricao": "Coherence between the format, the platform and the public the creator already reaches."
+      },
+      {
+        "titulo": "Feasibility",
+        "descricao": "Coherence between scope, budget and schedule."
+      }
+    ],
+    "banca": [
+      {
+        "nome": "Helena Sarmento Cardoso",
+        "afiliacao": "Fundação Vale do Rio Claro",
+        "minibio": "Has coordinated the foundation's public science communication line since 2022. Before that, she ran science outreach programs in museums and science centers."
+      },
+      {
+        "nome": "Rodrigo Tavares Quintanilha",
+        "afiliacao": "INDICA",
+        "minibio": "Content director at INDICA. Responsible for the relationship with supported creators and for following production."
+      },
+      {
+        "nome": "Marina Ochoa Bittencourt",
+        "afiliacao": "Guest creator",
+        "minibio": "Biologist, has published short videos on the science of daily choices for six years. Sits on the panel as a guest creator, with no competing project."
+      }
+    ],
+    "distribuicao": [
+      {
+        "faixa": "R$ 8,000 to R$ 15,000 per project",
+        "quantidade": "5 to 8 projects",
+        "observacao": "Short series or individual creators."
+      },
+      {
+        "faixa": "Above R$ 15,000, up to R$ 30,000 per project",
+        "quantidade": "3 to 4 projects",
+        "observacao": "Long series or projects with a production team. The panel may award an amount different from the one requested."
+      }
+    ],
+    "valorTotal": 240000,
+    "faixaApoio": {
+      "min": 8000,
+      "max": 30000
+    },
+    "modalidade": "Project call",
+    "publico": "criadores",
+    "vagas": {
+      "min": 8,
+      "max": 12
+    },
+    "inscricoesAte": "2026-11-30",
+    "cronograma": [
+      {
+        "etapa": "Applications close",
+        "data": "2026-11-30"
+      },
+      {
+        "etapa": "Panel evaluation begins",
+        "data": "2026-12-01"
+      },
+      {
+        "etapa": "Results published",
+        "data": "2026-12-18"
+      },
+      {
+        "etapa": "Production deadline and publication of all pieces",
+        "data": "2027-03-31"
+      }
+    ],
+    "resultado": null,
+    "organizacao": "INDICA",
+    "logoOrganizacao": "/organizacoes/indica.png"
+  },
+  {
+    "slug": "residencia-clima-urbano",
+    "titulo": "Creative residency: extreme heat in cities",
+    "status": "aberta",
+    "tipo": "pauta-especifica",
+    "resumo": "Selects six creators for an eight-week residency at Observatório Clima Urbano, producing series on extreme heat in cities from the observatory's own data and research.",
+    "proponente": "Observatório Clima Urbano",
+    "apresentacao": [
+      "Extreme heat is the climate event that kills the most people in cities, and it kills unequally. Someone who lives on a street without trees, works outdoors or sleeps under an uninsulated concrete roof feels several degrees more than the weather station records. The news treats a heat wave as a temperature record; the residency wants it treated as a matter of housing, work and health.",
+      "Six creators spend eight weeks inside the observatory, with access to surface temperature maps of twelve state capitals, to the research team and to a recording studio. Two weeks are in person at the observatory's office; the other six are remote, with weekly mentoring. Each creator arrives with a project and leaves with a series published on their own channel and distributed through the observatory's networks.",
+      "There is no fixed support amount. The stipend is agreed with each selected creator according to city of origin, time commitment and the project's production cost, and is formalized before the start. Observatório Clima Urbano runs the residency; INDICA handles applications, contracting and payment."
+    ],
+    "escopo": [
+      "Projects on extreme heat in Brazilian cities: who suffers most, why, and what the city can do.",
+      "Individual creators with an active channel on any platform and availability for eight weeks, two of them in person.",
+      "Use of the observatory's data with source attribution and technical review before publication.",
+      "A series of at least three pieces published on the creator's channel by the end of the residency.",
+      "Written proposals or video proposals of up to three minutes, with a portfolio of up to five works."
+    ],
+    "naoApoiado": [
+      "One-off coverage of heat waves without a series project.",
+      "Content with commercial sponsorship from a product related to the theme, such as air conditioners or beverages."
+    ],
+    "criterios": [
+      {
+        "titulo": "Angle on heat inequality",
+        "descricao": "The project starts from the people who suffer most from heat and from what changes for them, not from the temperature record."
+      },
+      {
+        "titulo": "Use of data",
+        "descricao": "Ability to turn temperature measurements and heat maps into a narrative the audience understands and can verify."
+      },
+      {
+        "titulo": "Relationship with the audience",
+        "descricao": "Coherence between the public the creator already reaches and the public the residency wants to reach: residents of outlying neighborhoods, outdoor workers and local officials."
+      }
+    ],
+    "banca": [
+      {
+        "nome": "Letícia Amarante Fonseca",
+        "afiliacao": "Observatório Clima Urbano",
+        "minibio": "Coordinates the research line on urban heat islands. A geographer, she has worked with remote sensing and surface temperature for ten years."
+      },
+      {
+        "nome": "Tomás Villalba Rocha",
+        "afiliacao": "Observatório Clima Urbano",
+        "minibio": "Head of communication at the observatory. Leads the narrative mentoring and the distribution of the series produced in the residency."
+      },
+      {
+        "nome": "Camila Nascimento Arruda",
+        "afiliacao": "Guest creator",
+        "minibio": "Has published for four years about housing and the city from the outskirts of a state capital. Took part in the observatory's pilot residency in 2025."
+      }
+    ],
+    "distribuicao": [],
+    "valorTotal": null,
+    "faixaApoio": null,
+    "apoioDescricao": "Eight-week residency with mentoring, studio and distribution. Stipend agreed with each selected creator.",
+    "modalidade": "Residency",
+    "publico": "criadores",
+    "vagas": {
+      "min": 6,
+      "max": 6
+    },
+    "inscricoesAte": "2026-12-05",
+    "cronograma": [
+      {
+        "etapa": "Applications close",
+        "data": "2026-12-05"
+      },
+      {
+        "etapa": "Results published",
+        "data": "2027-01-08"
+      },
+      {
+        "etapa": "Residency begins",
+        "data": "2027-02-01"
+      },
+      {
+        "etapa": "Residency ends and series are published",
+        "data": "2027-03-26"
+      }
+    ],
+    "resultado": null,
+    "organizacao": "Observatório Clima Urbano",
+    "logoOrganizacao": "/organizacoes/clima-urbano.svg"
+  },
+  {
+    "slug": "premio-saude-em-pauta-2026",
+    "titulo": "Saúde em Pauta Award 2026: public health content published this year",
+    "status": "em-avaliacao",
+    "tipo": "macrotema",
+    "resumo": "Awards three pieces on public health published in 2026, one per category: prevention, mental health and vaccination. R$ 20,000 per category, for content already published.",
+    "proponente": "Rede Saúde em Pauta",
+    "apresentacao": [
+      "The Saúde em Pauta Award recognizes public health content published by creators in 2026. No project is submitted: entrants submit a piece already published, with its public address and publication date. The panel judges what the audience saw, not what was intended.",
+      "Rede Saúde em Pauta rewards published content because the problem it faces is the gap between what science knows and what circulates on social networks. A piece that has already been through that contest, with reach figures and comments open to verification, shows more about the creator than a proposal does.",
+      "There are three categories, each with a R$ 20,000 award: prevention, mental health and vaccination. Each creator could enter up to two pieces, in different categories. A category with no piece approved by the panel goes without an award; the money does not move to another category. Entries are closed and the result is published on 10 November 2026."
+    ],
+    "escopo": [
+      "Pieces published between 1 January and 30 September 2026, on any network or website, with a public address that allows date and reach to be checked.",
+      "Prevention: habits, screening and continued care that avoid illness or harm, in line with public health system guidance.",
+      "Mental health: psychological distress, access to care and stigma reduction, without prescribing treatment.",
+      "Vaccination: the immunization schedule, coverage and answers to frequent doubts, with the source identified in the piece.",
+      "Video, audio, text, carousel or short series, in Portuguese, published on the entrant's own channel.",
+      "Up to two pieces per creator, in different categories."
+    ],
+    "naoApoiado": [
+      "A piece published before 2026 or edited after the entry deadline.",
+      "Content paid for by a manufacturer of medicines, vaccines or supplements, or by a health insurer, even when labeled as advertising.",
+      "A piece that recommends treatment, dosage or replacing medical advice.",
+      "Institutional content from a news outlet, public body or company."
+    ],
+    "criterios": [
+      {
+        "titulo": "Accuracy",
+        "descricao": "Correctness of the information, with a verifiable source that was current on the publication date."
+      },
+      {
+        "titulo": "Clarity for people outside the field",
+        "descricao": "How far the piece makes a health decision understandable to someone without training in the area, without simplifying to the point of error."
+      },
+      {
+        "titulo": "Response relative to the audience",
+        "descricao": "Reach and conversation generated in proportion to the channel's size, measured by the piece's public figures and its comments."
+      }
+    ],
+    "banca": [
+      {
+        "nome": "Marília Quaresma Rocha",
+        "afiliacao": "Rede Saúde em Pauta",
+        "minibio": "Coordinator of the network. Public health specialist, worked ten years in primary care in Caruaru before moving into health communication."
+      },
+      {
+        "nome": "Otávio Bandeira Furtado",
+        "afiliacao": "Rede Saúde em Pauta",
+        "minibio": "Psychiatrist and editor of the network's mental health desk. Responsible for the clinical reading of the pieces in that category."
+      },
+      {
+        "nome": "Renata Villaça Sodré",
+        "afiliacao": "Aliança Democracia e Informação",
+        "minibio": "Fact-checker. Has coordinated the alliance's monitoring of vaccine misinformation since 2023."
+      },
+      {
+        "nome": "Pilar Etcheverry",
+        "afiliacao": "Guest creator",
+        "minibio": "Nurse and creator of vaccination content for families, with an audience in Brazil and Uruguay."
+      },
+      {
+        "nome": "Caio Lemos Ferraz",
+        "afiliacao": "INDICA",
+        "minibio": "Content director at INDICA. Assesses format, response and the relation between reach and channel size."
+      }
+    ],
+    "distribuicao": [
+      {
+        "faixa": "Prevention: R$ 20,000",
+        "quantidade": "1 piece"
+      },
+      {
+        "faixa": "Mental health: R$ 20,000",
+        "quantidade": "1 piece"
+      },
+      {
+        "faixa": "Vaccination: R$ 20,000",
+        "quantidade": "1 piece"
+      }
+    ],
+    "valorTotal": 60000,
+    "faixaApoio": {
+      "min": 20000,
+      "max": 20000
+    },
+    "modalidade": "Award",
+    "publico": "criadores",
+    "vagas": {
+      "min": 3,
+      "max": 3
+    },
+    "inscricoesAte": "2026-09-30",
+    "cronograma": [
+      {
+        "etapa": "Entries open",
+        "data": "2026-07-01"
+      },
+      {
+        "etapa": "Entries close",
+        "data": "2026-09-30"
+      },
+      {
+        "etapa": "Publication of the list of eligible pieces",
+        "data": "2026-10-09"
+      },
+      {
+        "etapa": "Publication of the result",
+        "data": "2026-11-10"
+      },
+      {
+        "etapa": "Payment of the awards",
+        "data": "2026-11-30"
+      }
+    ],
+    "resultado": null,
+    "organizacao": "Rede Saúde em Pauta",
+    "logoOrganizacao": "/organizacoes/saude-em-pauta.svg"
+  },
+  {
+    "slug": "bolsa-labdados-jornalismo-de-dados",
+    "titulo": "LabDados Fellowship: six months of data journalism for creators",
+    "status": "aberta",
+    "tipo": "tema-amplo",
+    "resumo": "Six fellowships of R$ 15,000, over six months, for creators to produce a series from public databases, with guidance from LabDados and the science communication course included.",
+    "proponente": "LabDados",
+    "apresentacao": [
+      "The fellowship funds six creators for six months to produce a series from public databases. LabDados provides training, guidance and access to the databases; the creator brings the audience and the language they already command. What is expected at the end is a series published on the fellow's channel, not a report.",
+      "Each fellow receives R$ 15,000 in six monthly installments of R$ 2,500 and follows a work plan settled in the first month: one topic, one main database and a publication calendar. A LabDados advisor accompanies the fellow in fortnightly meetings and reviews the reading of the data before each publication.",
+      "The fellowship includes enrollment in the course Science communication for creators, from the program's library, taken in the first two months. Completing the course is a condition for receiving the installments from the third onward."
+    ],
+    "escopo": [
+      "Creators with a channel active for at least one year, on any platform and with any audience size.",
+      "A proposal for a series on a topic of public interest that depends on reading data: budget, health, education, public safety, climate, labor or transport.",
+      "Use of Brazilian public databases, with the database and the intended cut identified in the proposal.",
+      "Any format: video, audio, text, newsletter or carousel.",
+      "Part-time dedication, compatible with the channel's routine, with at least one piece published per month from the third month onward."
+    ],
+    "naoApoiado": [
+      "A proposal from an organization, news outlet or agency. The fellowship is individual.",
+      "A series based on private company data or on the creator's own survey without a verifiable public database.",
+      "A creator with an employment relationship or a current contract with LabDados."
+    ],
+    "criterios": [
+      {
+        "titulo": "Relevance of the topic",
+        "descricao": "Public interest of the subject and the existence of a database able to sustain it."
+      },
+      {
+        "titulo": "Ability to translate",
+        "descricao": "The channel's track record in explaining complex subjects to a non-specialist audience, shown by pieces already published."
+      },
+      {
+        "titulo": "Feasibility of the plan",
+        "descricao": "Coherence between topic, database, publication calendar and the routine of the person proposing."
+      },
+      {
+        "titulo": "Composition of the cohort",
+        "descricao": "Distribution of regions, platforms and topics among the six selected. Applied as a tiebreaker after the three previous criteria."
+      }
+    ],
+    "banca": [
+      {
+        "nome": "Helena Barroso Antunes",
+        "afiliacao": "LabDados",
+        "minibio": "Director of the lab. Data journalist, coordinated the training of more than two hundred reporters in public database analysis."
+      },
+      {
+        "nome": "Joaquín Salaberry",
+        "afiliacao": "LabDados",
+        "minibio": "Statistician and fellowship advisor. Responsible for reviewing the reading of the data in the fellows' pieces."
+      },
+      {
+        "nome": "Lívia Nakamura Prado",
+        "afiliacao": "INDICA",
+        "minibio": "Manager of creator programs at INDICA. Assesses the publication plan and the relation between format and audience."
+      }
+    ],
+    "distribuicao": [
+      {
+        "faixa": "R$ 15,000 per fellow",
+        "quantidade": "6 fellowships",
+        "observacao": "Six monthly installments of R$ 2,500, from February to July 2027."
+      },
+      {
+        "faixa": "Course Science communication for creators",
+        "quantidade": "Included in every fellowship",
+        "observacao": "Completion required in the first two months."
+      },
+      {
+        "faixa": "Guidance from LabDados",
+        "quantidade": "Fortnightly meetings",
+        "observacao": "One advisor per fellow, for the six months."
+      }
+    ],
+    "valorTotal": 90000,
+    "faixaApoio": {
+      "min": 15000,
+      "max": 15000
+    },
+    "apoioDescricao": "R$ 15,000 in six installments, a science communication course and editorial guidance for six months.",
+    "modalidade": "Fellowship",
+    "publico": "criadores",
+    "vagas": {
+      "min": 6,
+      "max": 6
+    },
+    "inscricoesAte": "2026-11-20",
+    "cronograma": [
+      {
+        "etapa": "Applications open",
+        "data": "2026-10-01"
+      },
+      {
+        "etapa": "Applications close",
+        "data": "2026-11-20"
+      },
+      {
+        "etapa": "Interviews with up to twelve finalists",
+        "data": "2026-12-07"
+      },
+      {
+        "etapa": "Publication of the result",
+        "data": "2026-12-15"
+      },
+      {
+        "etapa": "Start of the fellowship and the course",
+        "data": "2027-02-01"
+      }
+    ],
+    "resultado": null,
+    "organizacao": "LabDados",
+    "logoOrganizacao": "/organizacoes/labdados.svg"
+  },
+  {
+    "slug": "parceria-checagem-clima",
+    "titulo": "Partnership for collaborative fact-checking of climate disinformation",
+    "status": "aberta",
+    "tipo": "edital-organizacao",
+    "resumo": "Calls on organizations to form a collaborative network for fact-checking climate disinformation. The Alliance brings the method and the checkers; co-funding is agreed project by project.",
+    "proponente": "Aliança Democracia e Informação",
+    "apresentacao": [
+      "Climate disinformation spreads faster than fact-checking can answer. Much of it starts in local circuits: public works, floods, energy tariffs, wildfires. A central team does not reach those circuits, and those who do reach them have neither the method nor the time to verify.",
+      "The Alliance calls on organizations that already produce or distribute information about climate to check together. The Alliance brings the verification method, the training and the network of checkers. The partner organization brings knowledge of the territory, distribution channels and part of the cost.",
+      "Each partnership is designed per project. Co-funding, volume of checks and publication channels are agreed between the parties before signing. Every published check carries the names of both organizations."
+    ],
+    "escopo": [
+      "Communication organizations, media collectives, local outlets and research centers working on climate, energy or the environment.",
+      "Fact-checking projects about a defined territory or topic, lasting at least six months.",
+      "Proposals that publish the checks on the organization's own channels, in addition to the Alliance repository.",
+      "Organizations incorporated in Brazil, with an active CNPJ."
+    ],
+    "naoApoiado": [
+      "Checking of electoral content unrelated to climate.",
+      "Projects that will not publish the checks under the network's method and labels.",
+      "Organizations that produce paid content for energy or mining companies."
+    ],
+    "criterios": [
+      {
+        "titulo": "Presence in the territory or topic",
+        "descricao": "Track record of coverage and active channels with the public that the disinformation reaches."
+      },
+      {
+        "titulo": "Fact-checking capacity",
+        "descricao": "Team available to verify, with or without prior experience, and willingness to adopt the network's method."
+      },
+      {
+        "titulo": "Reach of publication",
+        "descricao": "Where the checks will be published and how many people they are likely to reach."
+      },
+      {
+        "titulo": "Sustainability of the partnership",
+        "descricao": "Financial or staff contribution the organization can sustain over the life of the project."
+      }
+    ],
+    "banca": [
+      {
+        "nome": "Marina Quevedo Lins",
+        "afiliacao": "Aliança Democracia e Informação",
+        "minibio": "Coordinates the Alliance's network of checkers. Spent ten years in investigative newsrooms."
+      },
+      {
+        "nome": "Tadeu Barroso Ferraz",
+        "afiliacao": "Observatório Clima Urbano",
+        "minibio": "Researcher in climate communication. Studies how rumors about disasters circulate in Brazilian cities."
+      },
+      {
+        "nome": "Lucía Arrieta Paredes",
+        "afiliacao": "Independent fact-checker, Lima",
+        "minibio": "Trained verification teams in four Latin American countries. Active in regional fact-checking networks since 2017."
+      }
+    ],
+    "distribuicao": [],
+    "valorTotal": null,
+    "faixaApoio": null,
+    "apoioDescricao": "Co-funding agreed per project. The Alliance brings the verification method, the training and the network of checkers.",
+    "modalidade": "Partnership",
+    "publico": "organizacoes",
+    "vagas": {
+      "min": 4,
+      "max": 8
+    },
+    "inscricoesAte": "2026-11-15",
+    "cronograma": [
+      {
+        "etapa": "Call published",
+        "data": "2026-10-06"
+      },
+      {
+        "etapa": "Applications close",
+        "data": "2026-11-15"
+      },
+      {
+        "etapa": "Interviews with shortlisted organizations",
+        "data": "2026-12-01"
+      },
+      {
+        "etapa": "Result announced",
+        "data": "2026-12-12"
+      },
+      {
+        "etapa": "Partnership agreements signed",
+        "data": "2027-01-30"
+      },
+      {
+        "etapa": "Fact-checking begins",
+        "data": "2027-03-01"
+      }
+    ],
+    "resultado": null,
+    "organizacao": "Aliança Democracia e Informação",
+    "logoOrganizacao": "/organizacoes/alianca-democracia.svg"
+  },
+  {
+    "slug": "chamada-piloto-energia-nas-periferias",
+    "titulo": "Pilot call: energy in peripheral neighborhoods",
+    "status": "encerrada",
+    "tipo": "pauta-especifica",
+    "resumo": "The program's first call. It supported four creator projects on the cost, access and generation of energy in peripheral neighborhoods, funded by Instituto Corrente Limpa.",
+    "proponente": "INDICA",
+    "apresentacao": [
+      "The electricity bill weighs more where income is lower. In peripheral neighborhoods, irregular connections, a social tariff few people know about and rooftops without solar panels are the rule, and the public debate on energy transition rarely passes through there.",
+      "The call supported creators who live or produce in those territories to talk about energy from the experience of the person who pays the bill: what it costs, what rights exist and what can be generated at home or in the neighborhood.",
+      "Instituto Corrente Limpa funded the call. INDICA ran the selection and the contract with each creator, and Koko shared production. It was the program's pilot call, and its result shaped the format of the calls that followed."
+    ],
+    "escopo": [
+      "Original projects about the cost, access or generation of energy in peripheral neighborhoods of any Brazilian city.",
+      "Videos, post series, podcasts or live streams, with a defined publication plan.",
+      "Creators as individuals or companies who live or produce in the territory portrayed.",
+      "Itemized budget between R$ 5,000 and R$ 15,000."
+    ],
+    "naoApoiado": [
+      "Advertising content for energy distributors or equipment manufacturers.",
+      "Projects with no link to a specific territory."
+    ],
+    "criterios": [
+      {
+        "titulo": "Link to the territory",
+        "descricao": "The creator's ties to the neighborhood portrayed and access to the people the content is about."
+      },
+      {
+        "titulo": "Usefulness of the content",
+        "descricao": "How much the audience learns about the cost, rights or generation of energy from the project."
+      },
+      {
+        "titulo": "Expected reach relative to the creator's scale",
+        "descricao": "The reach expected given the audience size of whoever proposes, not the size itself."
+      },
+      {
+        "titulo": "Feasibility",
+        "descricao": "Coherence between scope, budget and schedule."
+      }
+    ],
+    "banca": [
+      {
+        "nome": "Renata Vilaça Monteiro",
+        "afiliacao": "INDICA",
+        "minibio": "Content director at INDICA. Has coordinated creator selection for the agency's campaigns since 2021."
+      },
+      {
+        "nome": "Josué Andrade Pimentel",
+        "afiliacao": "Instituto Corrente Limpa",
+        "minibio": "Program manager at the Institute. Electrical engineer, worked on rural electrification and distributed generation projects."
+      },
+      {
+        "nome": "Sueli Braga Nascimento",
+        "afiliacao": "Guest creator",
+        "minibio": "Produces content on household finances, with an audience built in neighborhoods of Rio de Janeiro's north zone."
+      }
+    ],
+    "distribuicao": [
+      {
+        "faixa": "R$ 5,000 to R$ 15,000 per project",
+        "quantidade": "3 to 5 projects",
+        "observacao": "The panel could award an amount different from the one requested."
+      }
+    ],
+    "valorTotal": 50000,
+    "faixaApoio": {
+      "min": 5000,
+      "max": 15000
+    },
+    "modalidade": "Campaign",
+    "publico": "criadores",
+    "vagas": {
+      "min": 3,
+      "max": 5
+    },
+    "inscricoesAte": "2026-01-31",
+    "cronograma": [
+      {
+        "etapa": "Call published",
+        "data": "2025-12-08"
+      },
+      {
+        "etapa": "Applications close",
+        "data": "2026-01-31"
+      },
+      {
+        "etapa": "Panel evaluation begins",
+        "data": "2026-02-02"
+      },
+      {
+        "etapa": "Interviews with finalists",
+        "data": "2026-03-05"
+      },
+      {
+        "etapa": "Result announced",
+        "data": "2026-03-20"
+      },
+      {
+        "etapa": "Contracts signed",
+        "data": "2026-04-06"
+      },
+      {
+        "etapa": "Content publication begins",
+        "data": "2026-05-04"
+      },
+      {
+        "etapa": "Campaign ends",
+        "data": "2026-07-31"
+      }
+    ],
+    "resultado": {
+      "fundamentacao": "The panel received 61 applications and assessed each one against the call's four criteria, in order of weight. Twenty-three proposals passed to the second stage for demonstrating ties to the territory; of those, nine went to interview. The final decision favored projects with direct access to the people portrayed and a publication plan already in place, even when the creator's audience was small.\n\nTwo projects received less than requested, after production items were adjusted and absorbed by Koko. The final distribution supports four projects in four states, in distinct formats, so that the campaign reaches different audiences with the same funds. Proposals not selected received individual written feedback.",
+      "publicadoEm": "2026-03-20",
+      "inscricoesRecebidas": 61,
+      "apoiados": [
+        {
+          "nome": "Ícaro Bezerra Dantas",
+          "projeto": "The electricity bill, line by line",
+          "formato": "Short video series",
+          "uf": "PE",
+          "valor": 12000
+        },
+        {
+          "nome": "Camila Ruas Oliveira",
+          "projeto": "Social tariff: who is entitled",
+          "formato": "Five-episode podcast",
+          "uf": "SP",
+          "valor": 15000
+        },
+        {
+          "nome": "Wesley Tavares Cunha",
+          "projeto": "A roof that generates",
+          "formato": "Short documentary and live streams",
+          "uf": "BA",
+          "valor": 14000
+        },
+        {
+          "nome": "Ana Paula Sardinha Reis",
+          "projeto": "The price of an irregular connection",
+          "formato": "Post and reel series",
+          "uf": "RJ",
+          "valor": 9000
+        }
+      ]
+    },
+    "organizacao": "INDICA",
+    "logoOrganizacao": "/organizacoes/indica.png"
+  },
+  {
+    "slug": "convocatoria-latam-agua-e-cidade",
+    "titulo": "Latin American open call: water and the city",
+    "status": "aberta",
+    "tipo": "tema-amplo",
+    "resumo": "Supports ten projects by creators and organizations in Latin America on the relationship between water and the city: supply, floods, urban rivers and sanitation. USD 5,000 per project.",
+    "proponente": "Observatório Clima Urbano with Fundação Vale do Rio Claro",
+    "apresentacao": [
+      "Latin American cities live with both too little and too much water. Rationing and flooding coexist in the same neighborhood, sometimes in the same year. The research on this exists; what is missing is content that translates it for people deciding where to live, what to demand and how to prepare.",
+      "The call is open to creators and organizations from any Latin American country. The theme is broad on purpose: each proposal chooses its angle, format and audience. What is required is that the project start from a concrete city and from data that can be verified.",
+      "Observatório Clima Urbano coordinates the selection and opens its database and contact with its researchers to the selected projects. Fundação Vale do Rio Claro funds the grants. The ten projects will be presented at a virtual meeting at the end of the cycle."
+    ],
+    "escopo": [
+      "Creators, collectives and organizations based in Latin American countries.",
+      "Projects on water supply, sanitation, floods, urban rivers or water consumption in a defined city.",
+      "Any format: video, audio, text, data visualization, social media series.",
+      "Proposals in Portuguese or Spanish, with a budget and a publication schedule."
+    ],
+    "naoApoiado": [
+      "Projects on rural or agricultural water with no link to a city.",
+      "Content commissioned by sanitation utilities or companies in the sector.",
+      "Academic research with no publication plan for the general public."
+    ],
+    "criterios": [
+      {
+        "titulo": "Local relevance",
+        "descricao": "How much the topic weighs in the chosen city and how well the proposal demonstrates it."
+      },
+      {
+        "titulo": "Grounding in data",
+        "descricao": "Use of verifiable data, with a declared source for each central claim of the project."
+      },
+      {
+        "titulo": "Fit between format and audience",
+        "descricao": "Coherence between the chosen format and the people the project wants to reach."
+      },
+      {
+        "titulo": "Feasibility",
+        "descricao": "Coherence between scope, budget in local currency and publication deadline."
+      }
+    ],
+    "banca": [
+      {
+        "nome": "Helena Sarmento Pires",
+        "afiliacao": "Observatório Clima Urbano, Brazil",
+        "minibio": "Leads the Observatory's water and cities area. Geographer, researches urban flooding in the São Paulo metropolitan region."
+      },
+      {
+        "nome": "Rodrigo Ibarra Cervantes",
+        "afiliacao": "Independent consultant, Mexico",
+        "minibio": "Hydraulic engineer. Advised water supply programs in Mexico City and writes about urban scarcity."
+      },
+      {
+        "nome": "Valentina Ospina Restrepo",
+        "afiliacao": "Independent journalist, Colombia",
+        "minibio": "Data journalist. Covered sanitation and urban rivers in Medellín and Bogotá for eight years."
+      },
+      {
+        "nome": "Martín Aguirre Solano",
+        "afiliacao": "Content creator, Argentina",
+        "minibio": "Produces a documentary series on the buried streams of Buenos Aires. Worked in environmental communication for twelve years."
+      }
+    ],
+    "distribuicao": [
+      {
+        "faixa": "USD 5,000 per project",
+        "quantidade": "10 projects",
+        "observacao": "Paid in local currency, at the exchange rate on the contract date."
+      }
+    ],
+    "valorTotal": null,
+    "faixaApoio": null,
+    "apoioDescricao": "USD 5,000 per project, paid in local currency",
+    "modalidade": "Open call",
+    "publico": "ambos",
+    "vagas": {
+      "min": 10,
+      "max": 10
+    },
+    "inscricoesAte": "2026-12-15",
+    "cronograma": [
+      {
+        "etapa": "Applications close",
+        "data": "2026-12-15"
+      },
+      {
+        "etapa": "Interviews with finalists",
+        "data": "2027-01-25"
+      },
+      {
+        "etapa": "Result announced",
+        "data": "2027-02-10"
+      },
+      {
+        "etapa": "Projects begin",
+        "data": "2027-03-01"
+      }
+    ],
+    "resultado": null,
+    "organizacao": "Observatório Clima Urbano",
+    "logoOrganizacao": "/organizacoes/clima-urbano.svg"
   }
 ]

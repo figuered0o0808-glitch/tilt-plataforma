@@ -11,6 +11,7 @@ import { IDIOMAS, ehIdioma } from '@/i18n/idiomas';
 import { textos } from '@/i18n/strings';
 import { conteudo, editalPorSlug } from '@/lib/data';
 import { arquivoPublico, data, moeda } from '@/lib/format';
+import { textoDoApoio, textoDoValorTotal } from '@/lib/apoio';
 
 import { enderecoDaChamada } from '../_endereco';
 import { prazoDaChamada } from '../_prazo';
@@ -85,7 +86,7 @@ export default async function PaginaEdital({
   return (
     <>
       <CabecalhoPagina
-        olho={t.comum.tiposEdital[edital.tipo]}
+        olho={edital.modalidade ? `${edital.modalidade} · ${t.comum.tiposEdital[edital.tipo]}` : t.comum.tiposEdital[edital.tipo]}
         titulo={edital.titulo}
         descricao={edital.resumo}
         acoes={
@@ -129,14 +130,12 @@ export default async function PaginaEdital({
             </div>
             <div>
               <dt>{t.comum.rotulos.valorTotal}</dt>
-              <dd>{moeda(edital.valorTotal, idioma)}</dd>
+              <dd>{textoDoValorTotal(idioma, edital)}</dd>
             </div>
             <div>
               <dt>{t.comum.rotulos.apoio}</dt>
               <dd>
-                {`${moeda(edital.faixaApoio.min, idioma)} ${t.editais.faixaSeparador} ${moeda(
-                  edital.faixaApoio.max, idioma
-)}`}
+                {textoDoApoio(idioma, edital)}
               </dd>
             </div>
             <div>

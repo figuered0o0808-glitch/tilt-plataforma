@@ -17,6 +17,7 @@ import { conteudo } from '@/lib/data';
 import { dataCurta, moeda } from '@/lib/format';
 import { rota } from '@/lib/rotas';
 import type { Call, Candidatura } from '@/lib/types';
+import { textoDoApoio, textoDoValorTotal } from '@/lib/apoio';
 
 /**
  * Estado vazio de quem tem cadastro e ainda nao se candidatou.
@@ -53,6 +54,8 @@ function SemCandidatura({ idioma, abertas }: { idioma: Idioma; abertas: Call[] }
           <div className="linha" style={{ gap: 8 }}>
             <Selo idioma={idioma} status={edital.status} />
             <Chip vazado>{t.comum.tiposEdital[edital.tipo]}</Chip>
+            {edital.modalidade ? <Chip vazado>{edital.modalidade}</Chip> : null}
+            {edital.publico ? <Chip cor="areia">{t.comum.publicoEdital[edital.publico]}</Chip> : null}
           </div>
 
           <h3 className="cartao__titulo">{edital.titulo}</h3>
@@ -68,9 +71,7 @@ function SemCandidatura({ idioma, abertas }: { idioma: Idioma; abertas: Call[] }
             <div>
               <dt>{t.comum.rotulos.apoio}</dt>
               <dd>
-                {`${moeda(edital.faixaApoio.min, idioma)} ${t.editais.faixaSeparador} ${moeda(
-                  edital.faixaApoio.max, idioma
-)}`}
+                {textoDoApoio(idioma, edital)}
               </dd>
             </div>
             <div>

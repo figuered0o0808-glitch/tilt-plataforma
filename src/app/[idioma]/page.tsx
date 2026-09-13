@@ -14,6 +14,7 @@ import { conteudo } from '@/lib/data';
 import { moeda } from '@/lib/format';
 import { rota } from '@/lib/rotas';
 import type { Article, Call } from '@/lib/types';
+import { textoDoApoio, textoDoValorTotal } from '@/lib/apoio';
 
 import { Entrada } from './_Entrada';
 
@@ -69,10 +70,7 @@ function ColunaChamada({ idioma, chamada }: { idioma: Idioma; chamada: Call | nu
       <div className="coluna__linhas">
         <div className="coluna__linha">
           <span className="rotulo">{tc.apoio}</span>
-          <span>
-            {moeda(chamada.faixaApoio.min, idioma)} {t.editais.faixaSeparador}{' '}
-            {moeda(chamada.faixaApoio.max, idioma)}
-          </span>
+          <span>{textoDoApoio(idioma, chamada)}</span>
         </div>
         {chamada.organizacao ? (
           <div className="coluna__linha">

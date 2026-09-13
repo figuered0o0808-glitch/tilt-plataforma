@@ -49,5 +49,273 @@
     ],
     "logoOrganizacao": "/organizacoes/indica.png",
     "capa": "/materiais/capas/modelo-economico-redes-algoritmicas.png"
+  },
+  {
+    "slug": "guia-declarar-apoio",
+    "titulo": "Guía: cómo declarar apoyo y publicidad en contenido",
+    "trilha": "criadores",
+    "autoria": [
+      "Marina Sotelo",
+      "Caio Bittencourt"
+    ],
+    "organizacao": "Aliança Democracia e Informação",
+    "tema": "Transparencia",
+    "palavrasChave": [
+      "Publicidad",
+      "Apoyo institucional",
+      "Señalización",
+      "Contenido pagado",
+      "Confianza",
+      "Etiquetado"
+    ],
+    "resumo": "Qué decir, dónde ponerlo y cuándo el aviso de apoyo es obligatorio, con los errores más comunes en videos, stories y textos.",
+    "formato": "Guía",
+    "tempoLeitura": "6 min",
+    "atualizadoEm": "2026-08-21",
+    "secoes": [
+      {
+        "titulo": "Cuándo el aviso es obligatorio",
+        "paragrafos": [
+          "Toda pieza hecha a partir de un pago, un canje, un producto recibido o un viaje costeado tiene que decírselo a quien la ve. La regla vale para campañas de interés público igual que para productos de consumo: el apoyo de una fundación o de un instituto es apoyo y se declara.",
+          "No importa si el apoyador no pidió el aviso ni si el creador está de acuerdo con la causa. El criterio es el origen del recurso, no la opinión de quien publica.",
+          "El contenido hecho por cuenta propia sobre un tema que el creador ya cubrió en una campaña pagada no necesita aviso, siempre que no haya pago ni pedido del apoyador. Ante la duda, el aviso cuesta menos que la sospecha."
+        ]
+      },
+      {
+        "titulo": "Cómo escribir el aviso",
+        "paragrafos": [
+          "Use una expresión que cualquiera entienda a la primera lectura: 'publicidad', 'contenido pagado', 'con apoyo de' seguido del nombre de la organización. Las siglas, los hashtags escondidos al final de la leyenda y términos como 'alianza' o 'collab' no cumplen la función.",
+          "El aviso va al principio, no al final. En video, aparece en pantalla y se dice en voz alta en los primeros segundos. En stories, entra en cada tarjeta de la secuencia, porque la persona puede empezar a ver por la mitad. En texto, va antes del primer párrafo.",
+          "Cuando la plataforma tiene su propio marcador de contenido pagado, el marcador se suma al aviso escrito y no lo sustituye. El marcador desaparece en republicaciones y capturas; el texto queda."
+        ]
+      },
+      {
+        "titulo": "Errores comunes y cómo corregirlos",
+        "paragrafos": [
+          "Declarar solo en el primer video de una serie. Cada pieza se ve sola y cada pieza lleva el aviso.",
+          "Nombrar al apoyador de forma vaga, como 'una organización aliada'. El nombre completo permite que la audiencia busque quién pagó y evalúe el interés detrás del mensaje.",
+          "Tratar el aviso como una vergüenza. En los seguimientos de la red, el aviso claro no redujo el alcance de las piezas y es el criterio que más usan los apoyadores para volver a llamar al mismo creador."
+        ]
+      }
+    ],
+    "arquivos": [],
+    "logoOrganizacao": "/organizacoes/alianca-democracia.svg",
+    "capa": "/materiais/capas/guia-declarar-apoio.svg",
+    "licenca": "CC BY 4.0"
+  },
+  {
+    "slug": "checagem-antes-de-publicar",
+    "titulo": "Nota técnica: verificación antes de publicar",
+    "trilha": "criadores",
+    "autoria": [
+      "Renata Quiroga",
+      "Tomás Albuquerque"
+    ],
+    "organizacao": "LabDados",
+    "tema": "Verificación",
+    "palavrasChave": [
+      "Verificación",
+      "Fuentes primarias",
+      "Datos públicos",
+      "Imágenes",
+      "Error de contexto"
+    ],
+    "resumo": "Una rutina de verificación para números, citas e imágenes, calibrada para el tiempo que un creador tiene entre grabar y publicar.",
+    "formato": "Nota técnica",
+    "tempoLeitura": "5 min",
+    "atualizadoEm": "2026-09-30",
+    "secoes": [
+      {
+        "titulo": "Qué verificar y en qué orden",
+        "paragrafos": [
+          "Empiece por lo que sostiene la pieza: el número, la frase atribuida a alguien o la imagen central. Si esa parte cae, el resto no sirve, así que va primero.",
+          "Números: busque la fuente primaria, que es la tabla, el informe o la base de donde salió el número, y no la nota que lo citó. Revise unidad, período y recorte geográfico. La mayoría de los errores que el laboratorio revisa no son números inventados, sino números correctos en el contexto equivocado.",
+          "Citas: ubique el registro original, sea video, audio, documento o publicación. Una frase que solo existe en capturas y reproducciones se trata como no verificada.",
+          "Imágenes y videos: búsqueda inversa en al menos dos herramientas, fecha y lugar verificados por elementos visibles y revisión de señales de generación sintética. El material sin origen confirmado entra como ilustración declarada o no entra."
+        ]
+      },
+      {
+        "titulo": "Cuánto tiempo reservar",
+        "paragrafos": [
+          "Una pieza con un dato central y una imagen lleva de veinte a cuarenta minutos de verificación para quien ya sabe dónde buscar. Reserve ese tiempo en el cronograma antes de grabar, no después: descubrir el error con el video listo obliga a grabar de nuevo.",
+          "Si el tiempo no alcanza para verificar todo, corte lo que no se verificó. Una pieza con dos datos confirmados vale más que una con cinco datos y uno equivocado."
+        ]
+      },
+      {
+        "titulo": "Cómo dejar registro",
+        "paragrafos": [
+          "Guarde, por cada dato usado, el enlace a la fuente primaria, la fecha de acceso y una captura. El registro sirve para responder a una impugnación en minutos y es lo que la organización apoyadora va a pedir si la pieza es cuestionada.",
+          "Cuando la fuente es una persona, anote nombre, cargo y cómo se hizo el contacto. Cuando es un documento, anote página y fragmento.",
+          "Un error descubierto después de publicar se corrige en la misma pieza, con la fecha de la corrección visible, y no con una pieza nueva que deja la equivocada al aire."
+        ]
+      }
+    ],
+    "arquivos": [],
+    "logoOrganizacao": "/organizacoes/labdados.svg",
+    "capa": "/materiais/capas/checagem-antes-de-publicar.svg",
+    "licenca": "CC BY 4.0"
+  },
+  {
+    "slug": "briefing-para-organizacoes",
+    "titulo": "Briefing para organizaciones: contratar creadores sin interferir en la edición",
+    "trilha": "organizacoes",
+    "autoria": [
+      "Helena Prado",
+      "Diego Salvatierra"
+    ],
+    "organizacao": "INDICA",
+    "tema": "Contratación",
+    "palavrasChave": [
+      "Briefing",
+      "Autonomía editorial",
+      "Contrato",
+      "Aprobación",
+      "Guion",
+      "Mensaje central"
+    ],
+    "resumo": "Qué escribir en el briefing, qué dejar afuera y cómo aprobar un guion sin convertir al creador en vocero.",
+    "formato": "Guía",
+    "tempoLeitura": "6 min",
+    "atualizadoEm": "2026-07-15",
+    "secoes": [
+      {
+        "titulo": "Qué entra en el briefing",
+        "paragrafos": [
+          "El briefing dice qué necesita la organización que la audiencia sepa o haga, y para quién. Un mensaje central, dos como máximo, escritos en una frase cada uno. Si la organización no logra resumirlo así, el problema es de objetivo y no de creador.",
+          "Diga qué no se puede decir: datos que la organización no respalda, promesas que no puede cumplir, comparaciones que generan riesgo jurídico. Esa lista es el límite real de la campaña y ahorra rondas de revisión.",
+          "Incluya los hechos y las fuentes que el creador puede usar, con enlaces. El creador no debería tener que investigar lo que la organización ya sabe.",
+          "Plazo de entrega, formato, cantidad de piezas y valor por pieza van en el contrato, no en el briefing. Mezclar los dos hace que el creador lea el briefing como una orden de trabajo."
+        ]
+      },
+      {
+        "titulo": "Qué queda afuera",
+        "paragrafos": [
+          "Guion listo, texto para leer, orden de escenas. El creador fue contratado porque la audiencia confía en la forma en que habla. Si la organización escribe el discurso, compra el alcance y pierde la confianza.",
+          "Adjetivos sobre la organización. La audiencia no necesita saber que la fundación es 'referente' o 'pionera'; necesita entender el tema.",
+          "Pedidos de exclusividad más allá del período de la campaña y cláusulas de silencio sobre temas relacionados. Ambos alejan a los creadores más respetados y no cambian el resultado de la pieza."
+        ]
+      },
+      {
+        "titulo": "Cómo aprobar sin editar",
+        "paragrafos": [
+          "La aprobación verifica tres cosas: el mensaje central está, no se dijo nada de la lista de prohibiciones y el apoyo está declarado. Fuera de eso es opinión, y la opinión no es motivo de rechazo.",
+          "Una ronda de revisión sobre el guion y una sobre el video final. Cada ronda tiene un plazo de respuesta para la organización, en general dos días hábiles. El plazo vencido cuenta como aprobado.",
+          "Los comentarios van en lista, con el fragmento citado y la razón ligada a uno de los tres criterios. 'No me gustó el tono' no es un comentario; 'el dato del minuto dos contradice la fuente enviada' sí lo es."
+        ]
+      }
+    ],
+    "arquivos": [],
+    "logoOrganizacao": "/organizacoes/indica.png",
+    "capa": "/materiais/capas/briefing-para-organizacoes.svg"
+  },
+  {
+    "slug": "medir-campanhas-de-interesse-publico",
+    "titulo": "Informe: cómo medir campañas de interés público",
+    "trilha": "organizacoes",
+    "autoria": [
+      "Beatriz Nakamura",
+      "Rafael Ordoñez",
+      "Lívia Carvalho Mota"
+    ],
+    "organizacao": "Observatório Clima Urbano",
+    "tema": "Medición",
+    "palavrasChave": [
+      "Indicadores",
+      "Alcance",
+      "Cambio de comportamiento",
+      "Línea de base",
+      "Evaluación",
+      "Costo por resultado",
+      "Grupo de comparación"
+    ],
+    "resumo": "Qué indicadores muestran si una campaña cambió lo que la gente sabe o hace, y por qué el alcance y los me gusta no responden a esa pregunta.",
+    "formato": "Informe",
+    "tempoLeitura": "7 min",
+    "atualizadoEm": "2026-10-02",
+    "secoes": [
+      {
+        "titulo": "Qué mide el alcance y qué no mide",
+        "paragrafos": [
+          "El alcance cuenta cuántas pantallas mostraron la pieza. No dice si alguien la vio hasta el final, la entendió o hizo algo distinto después. Para una campaña que vende un producto puede bastar; para una que quiere cambiar un hábito o informar sobre un riesgo, no basta.",
+          "Los me gusta y los comentarios miden la reacción a la pieza, no al tema. El informe compara doce campañas de interés público que el observatorio siguió en 2025 y 2026: la correlación entre interacción y cambio medido en una encuesta posterior fue débil en diez de ellas.",
+          "La retención y el tiempo de visualización son los indicadores de plataforma que más se acercan a la comprensión. Una pieza de tres minutos vista hasta el final por el 40% de la audiencia informó más que una de treinta segundos con el triple de alcance."
+        ]
+      },
+      {
+        "titulo": "Indicadores que responden a la pregunta",
+        "paragrafos": [
+          "Defina antes de la campaña qué tiene que cambiar: una información que la audiencia no tenía, una acción que no hacía. El indicador sale de esa definición. Sin ella, cualquier número sirve y ninguno decide.",
+          "Mida la línea de base antes de que la primera pieza salga al aire, con una encuesta corta en la propia audiencia del creador: tres preguntas en una encuesta de la plataforma o en un formulario. Repita la misma encuesta dos semanas después de la última pieza. La diferencia es el resultado de la campaña.",
+          "Cuando la campaña pide una acción que deja rastro, como un registro, una consulta a un servicio o el uso de un enlace, mida la acción con un enlace propio por creador. El costo por acción es el indicador que más ayuda a decidir la próxima campaña.",
+          "Use un grupo de comparación siempre que sea posible: una ciudad, una franja etaria o una audiencia que no recibió la campaña. Sin comparación, un aumento en las búsquedas del tema puede ser la noticia, y no la campaña."
+        ]
+      },
+      {
+        "titulo": "Cómo presentar el resultado",
+        "paragrafos": [
+          "Un informe de campaña tiene una página: objetivo, línea de base, resultado, costo por resultado y qué se haría distinto. El alcance y la interacción van en anexo.",
+          "Separe el resultado por creador y por formato. En las campañas seguidas, la diferencia entre el creador más eficiente y el menos eficiente, medida en costo por acción, fue de seis veces dentro de la misma campaña.",
+          "Registre lo que no funcionó con la misma precisión que lo que funcionó. La organización que solo informa éxitos no logra justificar un cambio de estrategia en la campaña siguiente."
+        ]
+      }
+    ],
+    "arquivos": [],
+    "logoOrganizacao": "/organizacoes/clima-urbano.svg",
+    "capa": "/materiais/capas/medir-campanhas-de-interesse-publico.svg",
+    "licenca": "CC BY 4.0"
+  },
+  {
+    "slug": "glossario-clima-para-criadores",
+    "titulo": "Glosario de clima para quien hace contenido",
+    "trilha": "criadores",
+    "autoria": [
+      "Rafael Ordoñez",
+      "Camila Estévez"
+    ],
+    "organizacao": "Observatório Clima Urbano",
+    "tema": "Clima",
+    "palavrasChave": [
+      "Cambio climático",
+      "Emisiones",
+      "Adaptación",
+      "Mitigación",
+      "Isla de calor",
+      "Evento extremo"
+    ],
+    "resumo": "Los términos de clima que más aparecen en briefings y noticias, con su significado exacto y el error de uso que más se repite en videos.",
+    "formato": "Glosario",
+    "tempoLeitura": "8 min",
+    "atualizadoEm": "2026-06-09",
+    "secoes": [
+      {
+        "titulo": "Causas y medidas",
+        "paragrafos": [
+          "Cambio climático: alteración de largo plazo en los patrones de temperatura y lluvia, medida en décadas. Un verano más caluroso es tiempo; treinta veranos más calurosos es clima. No use 'cambio climático' para describir un día atípico.",
+          "Gases de efecto invernadero: gases que retienen calor en la atmósfera. El dióxido de carbono es el más citado, pero el metano retiene mucho más calor por tonelada en el corto plazo y proviene sobre todo de rellenos sanitarios, ganadería y fugas de gas. Cuando el tema es la ciudad, el relleno y el tránsito suelen pesar más que la industria.",
+          "Emisiones netas cero: cuando lo que se emite se compensa con lo que se retira de la atmósfera. No es lo mismo que emitir cero. Una empresa o ciudad con meta de 'neutralidad' puede seguir emitiendo y pagar por remoción en otro lugar; vale preguntar cuánto es reducción y cuánto es compensación.",
+          "Mitigación y adaptación: mitigar es reducir emisiones para que el problema crezca menos; adaptar es preparar la ciudad para el problema que ya existe. Plantar árboles para dar sombra es adaptación; cambiar buses a diésel por eléctricos es mitigación. Un contenido que confunde los dos da a entender que una cosa sustituye a la otra."
+        ]
+      },
+      {
+        "titulo": "Efectos en la ciudad",
+        "paragrafos": [
+          "Isla de calor: área urbana más caliente que su entorno por el asfalto, el concreto y la falta de vegetación. La diferencia llega a varios grados a la misma hora entre barrios de la misma ciudad. Es el término correcto para explicar por qué un barrio sufre más que otro en una ola de calor.",
+          "Evento extremo: lluvia, sequía, calor o frío fuera del rango histórico del lugar. Un evento aislado no prueba el cambio climático; la frecuencia creciente de eventos, sí. Al cubrir una inundación, la formulación correcta es que eventos de este tipo se están volviendo más frecuentes, y no que esa inundación fue causada por el clima.",
+          "Vulnerabilidad: cuánto sufre un grupo o un lugar con el mismo evento. Dos calles con la misma lluvia terminan distinto según el drenaje, el ingreso y el tipo de vivienda. El contenido sobre clima que no habla de vulnerabilidad tiende a tratar como igual lo que no lo es."
+        ]
+      },
+      {
+        "titulo": "Términos que engañan",
+        "paragrafos": [
+          "Compensación de carbono: pago por remoción o reducción de emisiones hecha por otro. Sirve para lo que no se puede reducir y no sustituye la reducción. Si un patrocinador pide llamar a la compensación 'carbono cero', el término correcto es 'compensado'.",
+          "Verde, sostenible, eco: sin definición fija y sin regla de uso. Cuando aparecen en un briefing, pida el dato que hay detrás: cuánto reduce, comparado con qué, medido por quién. Sin respuesta, la palabra no entra en el guion.",
+          "Transición energética: sustitución de fuentes fósiles por renovables. No es un evento, es un proceso con plazos y costos, y la pregunta útil para el público es quién paga y cuándo. El contenido que presenta la transición como una elección individual de consumo se equivoca en la escala del problema."
+        ]
+      }
+    ],
+    "arquivos": [],
+    "logoOrganizacao": "/organizacoes/clima-urbano.svg",
+    "capa": "/materiais/capas/glossario-clima-para-criadores.svg",
+    "licenca": "CC BY 4.0"
   }
 ]

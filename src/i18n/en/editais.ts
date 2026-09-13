@@ -29,6 +29,8 @@ export const editais = {
   filtrosTitulo: 'Filters',
   filtroStatus: 'Status',
   filtroTipo: 'Call type',
+  filtroPublico: 'Audience',
+  todosPublicos: 'All audiences',
   todasSituacoes: 'All',
   todosTipos: 'All',
   limparFiltros: 'Clear filters',
@@ -46,6 +48,7 @@ export const editais = {
   /* Chamada com calendario ainda em aberto: nenhuma data e escrita. */
   prazoADefinir: 'Deadline to be defined',
   semPrazo: 'To be defined',
+  semValor: 'To be defined',
 
   secoes: {
     apresentacao: 'Overview',

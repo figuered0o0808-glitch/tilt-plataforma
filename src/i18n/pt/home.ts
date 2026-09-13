@@ -49,6 +49,7 @@ export const home = {
     vagas: 'Vagas',
     vagasFaixa: 'De {min} a {max} projetos apoiados.',
     vagasSelecionados: '{n} selecionados, {r} vagas abertas.',
+    vagasApoiados: '{n} projetos apoiados.',
     verChamada: 'Ver a chamada',
     semChamada: 'Nenhuma chamada aberta no momento.',
     verOportunidades: 'Ver oportunidades',

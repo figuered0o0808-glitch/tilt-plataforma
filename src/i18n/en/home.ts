@@ -49,6 +49,7 @@ export const home = {
     vagas: 'Places',
     vagasFaixa: '{min} to {max} projects supported.',
     vagasSelecionados: '{n} selected, {r} places open.',
+    vagasApoiados: '{n} projects supported.',
     verChamada: 'See the call',
     semChamada: 'No call open at the moment.',
     verOportunidades: 'See opportunities',

@@ -36,16 +36,25 @@ export function Vagas({
 
   const selecionados = chamada.resultado?.apoiados.length ?? 0;
   const abertas = Math.max(max - selecionados, 0);
-  const legenda =
-    selecionados > 0
+  /*
+   * Chamada encerrada nao tem vaga aberta: o que sobrou do maximo deixou de
+   * existir. A fileira mostra so os selecionados, todos cheios.
+   */
+  const encerrada = chamada.status === 'encerrada';
+  const total = encerrada && selecionados > 0 ? selecionados : max;
+  const legenda = encerrada && selecionados > 0
+    ? preencher(tc.vagasApoiados, { n: numero(selecionados, idioma) })
+    : selecionados > 0
       ? preencher(tc.vagasSelecionados, {
           n: numero(selecionados, idioma),
           r: numero(abertas, idioma),
         })
-      : preencher(tc.vagasFaixa, {
-          min: numero(chamada.vagas?.min ?? 0, idioma),
-          max: numero(max, idioma),
-        });
+      : (chamada.vagas?.min ?? 0) === max
+        ? preencher(tc.vagasApoiados, { n: numero(max, idioma) })
+        : preencher(tc.vagasFaixa, {
+            min: numero(chamada.vagas?.min ?? 0, idioma),
+            max: numero(max, idioma),
+          });
 
   return (
     <div>
@@ -55,7 +64,7 @@ export function Vagas({
         </p>
       )}
       <div className="pontos" aria-hidden="true">
-        {Array.from({ length: max }, (_, indice) => (
+        {Array.from({ length: total }, (_, indice) => (
           <span
             key={indice}
             className={indice < selecionados ? 'pontos__ponto' : 'pontos__ponto pontos__ponto--vazado'}

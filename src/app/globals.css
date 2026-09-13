@@ -360,6 +360,7 @@ img, svg { max-width: 100%; }
 .btn--pequeno { padding: var(--esp-12) var(--esp-16); }
 .btn--largo { width: 100%; }
 
+.link-seta { white-space: nowrap; }
 .link-seta::after { content: ' \2192'; }
 
 /* ---------- Cartoes ---------- */

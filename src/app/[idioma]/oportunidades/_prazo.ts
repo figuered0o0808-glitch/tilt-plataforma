@@ -22,7 +22,7 @@ export function prazoDaChamada(
       edital.status === 'aberta'
         ? t.comum.rotulos.inscricoesAte
         : t.editais.inscricoesEncerradasEm,
-    valor: curto ? dataCurta(edital.inscricoesAte) : data(edital.inscricoesAte),
+    valor: curto ? dataCurta(edital.inscricoesAte, idioma) : data(edital.inscricoesAte, idioma),
   };
 }
 

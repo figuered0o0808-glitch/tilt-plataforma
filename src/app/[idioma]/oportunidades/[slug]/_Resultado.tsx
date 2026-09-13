@@ -41,7 +41,7 @@ export function Resultado({
         <div style={{ marginTop: 28 }}>
           <div className="registro">
             <p className="registro__rotulo">{t.editais.resultadoFundamentacao}</p>
-            <p style={{ margin: 0, maxWidth: '66ch' }}>{resultado.fundamentacao}</p>
+            <p style={{ margin: 0, maxWidth: '66ch', whiteSpace: 'pre-line' }}>{resultado.fundamentacao}</p>
           </div>
         </div>
 

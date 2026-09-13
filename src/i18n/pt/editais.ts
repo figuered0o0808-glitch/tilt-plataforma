@@ -26,6 +26,8 @@ export const editais = {
   filtrosTitulo: 'Filtros',
   filtroStatus: 'Situação',
   filtroTipo: 'Tipo de chamada',
+  filtroPublico: 'Público',
+  todosPublicos: 'Todos os públicos',
   todasSituacoes: 'Todas',
   todosTipos: 'Todos',
   limparFiltros: 'Limpar filtros',
@@ -43,6 +45,7 @@ export const editais = {
   /* Chamada com calendario ainda em aberto: nenhuma data e escrita. */
   prazoADefinir: 'Prazo a definir',
   semPrazo: 'A definir',
+  semValor: 'A definir',
 
   /* Liga os dois extremos de uma faixa de valor: 5.000 a 20.000. */
   faixaSeparador: 'a',
