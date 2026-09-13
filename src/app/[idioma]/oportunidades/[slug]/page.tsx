@@ -6,6 +6,7 @@ import { Avatar } from '@/components/Avatar';
 import { CabecalhoPagina } from '@/components/CabecalhoPagina';
 import { corDoTema } from '@/components/Chip';
 import { Selo } from '@/components/Selo';
+import { Organizacao } from '@/components/Organizacao';
 import { IDIOMAS, ehIdioma } from '@/i18n/idiomas';
 import { textos } from '@/i18n/strings';
 import { conteudo, editalPorSlug } from '@/lib/data';
@@ -118,7 +119,13 @@ export default async function PaginaEdital({
           >
             <div>
               <dt>{t.editais.proponente}</dt>
-              <dd>{edital.proponente ?? t.editais.proponenteProprio}</dd>
+              <dd>
+                {edital.proponente ? (
+                  <Organizacao nome={edital.proponente} logo={edital.logoOrganizacao} />
+                ) : (
+                  t.editais.proponenteProprio
+                )}
+              </dd>
             </div>
             <div>
               <dt>{t.comum.rotulos.valorTotal}</dt>

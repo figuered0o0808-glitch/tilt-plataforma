@@ -5,6 +5,7 @@ import { Chip } from '@/components/Chip';
 import { Marcador } from '@/components/Marcador';
 import { Selo } from '@/components/Selo';
 import { Vagas } from '@/components/Vagas';
+import { Organizacao } from '@/components/Organizacao';
 import type { Idioma } from '@/i18n/idiomas';
 import { textos } from '@/i18n/strings';
 import { arquivoPublico, moeda } from '@/lib/format';
@@ -100,7 +101,13 @@ export function ChamadaDestaque({
         <div className="coluna__linhas">
           <div className="coluna__linha">
             <span className="rotulo">{t.editais.proponente}</span>
-            <span>{edital.proponente ?? t.editais.proponenteProprio}</span>
+            <span>
+              {edital.proponente ? (
+                <Organizacao nome={edital.proponente} logo={edital.logoOrganizacao} />
+              ) : (
+                t.editais.proponenteProprio
+              )}
+            </span>
           </div>
           <div className="coluna__linha">
             <span className="rotulo">{t.comum.rotulos.valorTotal}</span>

@@ -4,6 +4,7 @@ import { Chip } from '@/components/Chip';
 import { Marcador } from '@/components/Marcador';
 import { Selo } from '@/components/Selo';
 import { Vagas } from '@/components/Vagas';
+import { Organizacao } from '@/components/Organizacao';
 import type { Idioma } from '@/i18n/idiomas';
 import { textos } from '@/i18n/strings';
 import { arquivoPublico, dataCurta, moeda } from '@/lib/format';
@@ -51,10 +52,15 @@ export function CartaoEdital({ idioma, edital }: { idioma: Idioma; edital: Call 
 
       <div>
         <h3 className="cartao__titulo">{edital.titulo}</h3>
-        <p className="texto-mini" style={{ margin: '8px 0 0' }}>
-          {edital.proponente
-            ? `${t.editais.proponente}: ${edital.proponente}`
-            : t.editais.proponenteProprio}
+        <p className="texto-mini" style={{ margin: '8px 0 0', display: 'flex', alignItems: 'center', gap: 8 }}>
+          {edital.proponente ? (
+            <>
+              <span>{t.editais.proponente}:</span>
+              <Organizacao nome={edital.proponente} logo={edital.logoOrganizacao} altura={13} />
+            </>
+          ) : (
+            t.editais.proponenteProprio
+          )}
         </p>
       </div>
 

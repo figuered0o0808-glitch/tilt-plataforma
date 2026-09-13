@@ -14,6 +14,9 @@ export const EXECUTORAS = {
   tilt: 'TILT',
 } as const;
 
+/** Marca da INDICA, para os lugares em que ela nao vem dos dados (rodape). */
+export const LOGO_INDICA = '/organizacoes/indica.png';
+
 /**
  * Data de referencia usada ao registrar acoes no navegador, no lugar do
  * relogio, para que a exportacao estatica seja deterministica.

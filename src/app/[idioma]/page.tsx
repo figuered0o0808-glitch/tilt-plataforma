@@ -6,6 +6,7 @@ import { CapaMaterial } from '@/components/CapaMaterial';
 import { Enxame, Ponte } from '@/components/Enxame';
 import { Marcador } from '@/components/Marcador';
 import { Vagas } from '@/components/Vagas';
+import { Organizacao } from '@/components/Organizacao';
 import { PROGRAM_TAGLINE } from '@/config/program';
 import { ehIdioma, type Idioma } from '@/i18n/idiomas';
 import { textos } from '@/i18n/strings';
@@ -76,7 +77,7 @@ function ColunaChamada({ idioma, chamada }: { idioma: Idioma; chamada: Call | nu
         {chamada.organizacao ? (
           <div className="coluna__linha">
             <span className="rotulo">{tc.proponente}</span>
-            <span>{chamada.organizacao}</span>
+            <Organizacao nome={chamada.organizacao} logo={chamada.logoOrganizacao} />
           </div>
         ) : null}
       </div>

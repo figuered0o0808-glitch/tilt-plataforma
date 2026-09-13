@@ -953,7 +953,10 @@ select {
 /* A marca em movimento. O SVG acompanha a largura pedida e nunca passa do
    bloco em que esta. Cada ponto traz o proprio deslocamento inicial em
    --dx/--dy, na unidade do viewBox: o percurso escala junto com a marca. */
-.enxame { display: block; max-width: 100%; height: auto; color: var(--preto); }
+/* overflow visible e o que importa: os pontos entram voando de FORA da caixa
+   do SVG (deslocamento de ate 38 unidades num viewBox de 94 x 23), e sem isso
+   o navegador os recorta na aresta retangular durante o movimento. */
+.enxame { display: block; max-width: 100%; height: auto; color: var(--preto); overflow: visible; }
 .enxame__ponto { animation: assentar 2.4s cubic-bezier(0.22, 0.61, 0.36, 1) forwards; }
 @keyframes assentar {
   0%   { transform: translate(var(--dx), var(--dy)); opacity: 0; }

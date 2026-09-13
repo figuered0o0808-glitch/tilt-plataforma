@@ -2,7 +2,8 @@ import Link from 'next/link';
 
 import { Faixas } from '@/components/Faixas';
 import { LogoTilt } from '@/components/LogoTilt';
-import { PROGRAM_NAME, PROGRAM_TAGLINE } from '@/config/program';
+import { Organizacao } from '@/components/Organizacao';
+import { PROGRAM_NAME, PROGRAM_TAGLINE, EXECUTORAS, LOGO_INDICA } from '@/config/program';
 import type { Idioma } from '@/i18n/idiomas';
 import { textos } from '@/i18n/strings';
 import { rota } from '@/lib/rotas';
@@ -36,9 +37,14 @@ export function SiteFooter({ idioma }: { idioma: Idioma }) {
             </div>
             <div>
               <p className="rodape__titulo">{t.comum.rodape.programa}</p>
-              <ul className="rodape__lista">
-                <li>INDICA</li>
-                <li>TILT</li>
+              {/* As duas organizacoes pela marca, nao pelo nome. */}
+              <ul className="rodape__lista" style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
+                <li>
+                  <Organizacao nome={EXECUTORAS.indica} logo={LOGO_INDICA} altura={16} />
+                </li>
+                <li>
+                  <LogoTilt altura={14} rotulo={EXECUTORAS.tilt} />
+                </li>
               </ul>
             </div>
           </div>

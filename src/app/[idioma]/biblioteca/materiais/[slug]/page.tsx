@@ -6,6 +6,7 @@ import { Botao } from '@/components/Botao';
 import { CabecalhoPagina } from '@/components/CabecalhoPagina';
 import { Chips } from '@/components/Chip';
 import { Selo } from '@/components/Selo';
+import { Organizacao } from '@/components/Organizacao';
 import { IDIOMAS, ehIdioma } from '@/i18n/idiomas';
 import { textos } from '@/i18n/strings';
 import { conteudo, materialPorSlug } from '@/lib/data';
@@ -113,7 +114,9 @@ export default async function MaterialPage({
                   </div>
                   <div className="bib-ficha__linha">
                     <dt>{r.organizacao}</dt>
-                    <dd>{material.organizacao}</dd>
+                    <dd>
+                      <Organizacao nome={material.organizacao} logo={material.logoOrganizacao} />
+                    </dd>
                   </div>
                   <div className="bib-ficha__linha">
                     <dt>{r.tema}</dt>
