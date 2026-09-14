@@ -49,6 +49,7 @@ export const comum = {
     'edital-organizacao': 'Convocatoria de organización',
   },
   rotulos: {
+    idioma: 'Idioma',
     busca: 'Buscar',
     resultado: 'Resultado',
     prazo: 'Plazo',

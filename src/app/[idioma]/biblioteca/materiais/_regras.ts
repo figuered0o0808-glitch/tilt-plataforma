@@ -18,7 +18,33 @@ export const CAMPOS_FACETADOS: readonly CampoFacetado[] = [
   'formato',
 ];
 
-export type Ordem = 'atualizacao' | 'titulo';
+/**
+ * Como a estante se organiza. As duas primeiras sao ordens planas; as outras
+ * agrupam: uma prateleira por valor do campo, com o mais recente primeiro
+ * dentro de cada uma. E o mesmo controle porque, para quem le, "por tema" e
+ * "por titulo" sao respostas a mesma pergunta: em que ordem quero ver isto.
+ */
+export type Ordem = 'atualizacao' | 'titulo' | 'tema' | 'organizacao' | 'formato' | 'ano';
+
+export const ORDENS: readonly Ordem[] = [
+  'atualizacao',
+  'titulo',
+  'tema',
+  'organizacao',
+  'formato',
+  'ano',
+];
+
+export function ehOrdem(valor: string): valor is Ordem {
+  return (ORDENS as readonly string[]).includes(valor);
+}
+
+/** Uma prateleira da estante: o valor que a nomeia e o que ela reune. */
+export interface Prateleira {
+  chave: string;
+  rotulo: string;
+  itens: Article[];
+}
 
 export type Selecao = Record<CampoFacetado, string>;
 
@@ -83,7 +109,11 @@ export function valoresDistintos(materiais: Article[], campo: CampoFacetado): st
   return [...vistos].sort((a, b) => (normalizar(a) < normalizar(b) ? -1 : 1));
 }
 
-/** Data mais recente primeiro; empate resolvido pelo titulo. */
+/**
+ * Ordem plana: por titulo quando pedida; senao data mais recente primeiro,
+ * empate resolvido pelo titulo. As ordens agrupadas caem na segunda regra,
+ * que e a ordem de dentro de cada prateleira.
+ */
 export function ordenar(materiais: Article[], ordem: Ordem): Article[] {
   const lista = [...materiais];
   lista.sort((a, b) => {
@@ -92,6 +122,55 @@ export function ordenar(materiais: Article[], ordem: Ordem): Article[] {
     return normalizar(a.titulo) < normalizar(b.titulo) ? -1 : 1;
   });
   return lista;
+}
+
+/** O valor que nomeia a prateleira de um material, para uma ordem agrupada. */
+function chaveDaPrateleira(material: Article, ordem: Ordem): string {
+  if (ordem === 'ano') return /^\d{4}-/.test(material.atualizadoEm) ? material.atualizadoEm.slice(0, 4) : '';
+  if (ordem === 'tema' || ordem === 'organizacao' || ordem === 'formato') return material[ordem];
+  return '';
+}
+
+/**
+ * As ordens que valem a pena oferecer para este acervo: as planas sempre; as
+ * agrupadas so quando o campo varia, porque agrupar por um campo de valor
+ * unico daria uma prateleira so, com tudo, que e a lista plana com um titulo.
+ */
+export function ordensDisponiveis(materiais: Article[]): Ordem[] {
+  return ORDENS.filter((ordem) => {
+    if (ordem === 'atualizacao' || ordem === 'titulo') return true;
+    const vistos = new Set(materiais.map((material) => chaveDaPrateleira(material, ordem)));
+    vistos.delete('');
+    return vistos.size > 1;
+  });
+}
+
+/**
+ * A estante em prateleiras. Ordem plana devolve uma prateleira so, sem nome,
+ * com tudo; ordem agrupada devolve uma por valor, em ordem alfabetica, exceto
+ * o ano, que vem do mais novo para o mais velho. Dentro de cada uma, o mais
+ * recente primeiro. Material sem valor no campo (tema vazio, data fora do
+ * padrao) vai para uma ultima prateleira sem nome, que a tela mostra sem
+ * cabecalho, em vez de sumir da estante.
+ */
+export function prateleiras(materiais: Article[], ordem: Ordem): Prateleira[] {
+  if (ordem === 'atualizacao' || ordem === 'titulo') {
+    return [{ chave: '', rotulo: '', itens: ordenar(materiais, ordem) }];
+  }
+  const porChave = new Map<string, Article[]>();
+  for (const material of ordenar(materiais, 'atualizacao')) {
+    const chave = chaveDaPrateleira(material, ordem);
+    const itens = porChave.get(chave) ?? [];
+    itens.push(material);
+    porChave.set(chave, itens);
+  }
+  const chaves = [...porChave.keys()].sort((a, b) => {
+    if (!a) return 1;
+    if (!b) return -1;
+    if (ordem === 'ano') return a < b ? 1 : -1;
+    return normalizar(a) < normalizar(b) ? -1 : 1;
+  });
+  return chaves.map((chave) => ({ chave, rotulo: chave, itens: porChave.get(chave) ?? [] }));
 }
 
 /**

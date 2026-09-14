@@ -7,12 +7,14 @@ import type { Idioma } from '@/i18n/idiomas';
 import { textos } from '@/i18n/strings';
 import type { Article, Trilha } from '@/lib/types';
 
-import { CartaoMaterial, rotuloTrilha } from './_CartaoMaterial';
+import { Estante, rotuloTrilha } from './_Estante';
 import {
   CAMPOS_FACETADOS,
   SELECAO_VAZIA,
   alvoDeBusca,
-  ordenar,
+  ehOrdem,
+  ordensDisponiveis,
+  prateleiras,
   termosDaBusca,
   valorDoCampo,
   valoresDistintos,
@@ -98,7 +100,9 @@ export function Acervo({ idioma, materiais }: { idioma: Idioma; materiais: Artic
     }
     setSelecao(vindo);
     setBusca(parametros.get('busca') ?? '');
-    if (parametros.get('ordem') === 'titulo') setOrdem('titulo');
+    /* So entra pela URL uma ordem que o controle tambem oferece para este acervo. */
+    const ordemVinda = parametros.get('ordem') ?? '';
+    if (ehOrdem(ordemVinda) && ordensDisponiveis(materiais).includes(ordemVinda)) setOrdem(ordemVinda);
     setLido(true);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
@@ -146,19 +150,36 @@ export function Acervo({ idioma, materiais }: { idioma: Idioma; materiais: Artic
 
   const filtrados = useMemo(
     () =>
-      ordenar(
-        porBusca
-          .filter((item) =>
-            CAMPOS_FACETADOS.every(
-              (campo) =>
-                !selecao[campo] || valorDoCampo(item.material, campo) === selecao[campo],
-            ),
-          )
-          .map((item) => item.material),
-        ordem,
-      ),
-    [porBusca, selecao, ordem],
+      porBusca
+        .filter((item) =>
+          CAMPOS_FACETADOS.every(
+            (campo) => !selecao[campo] || valorDoCampo(item.material, campo) === selecao[campo],
+          ),
+        )
+        .map((item) => item.material),
+    [porBusca, selecao],
   );
+
+  /*
+   * A estante em prateleiras: uma so nas ordens planas, uma por valor nas
+   * agrupadas. Quando o recorte deixa uma prateleira so (filtro por tema e
+   * ver por tema, por exemplo), o cabecalho repetiria o filtro e a contagem
+   * logo acima: some, e a estante volta a ser plana.
+   */
+  const estante = useMemo(() => {
+    const lista = prateleiras(filtrados, ordem);
+    return lista.length === 1 ? lista.map((p) => ({ ...p, rotulo: '' })) : lista;
+  }, [filtrados, ordem]);
+
+  /* O nome de cada ordem e o mesmo do filtro correspondente: e o mesmo campo. */
+  const rotuloDaOrdem: Record<Ordem, string> = {
+    atualizacao: a.ordemAtualizacao,
+    titulo: a.ordemTitulo,
+    tema: a.filtroTema,
+    organizacao: a.filtroOrganizacao,
+    formato: a.filtroFormato,
+    ano: a.ordemAno,
+  };
 
   const grupos = useMemo<Grupo[]>(() => {
     function rotuloDoCampo(campo: CampoFacetado): string {
@@ -221,20 +242,24 @@ export function Acervo({ idioma, materiais }: { idioma: Idioma; materiais: Artic
               placeholder={a.buscaDica}
               onChange={(evento) => setBusca(evento.target.value)}
             />
+          </div>
+
+          {/*
+           * Ver por: as ordens planas e as agrupadas no mesmo controle. Um
+           * campo que nao varia (uma organizacao so, um ano so) nao vira
+           * opcao: agrupar por ele daria uma prateleira unica com tudo.
+           */}
+          <div className="bib-linha">
+            <p className="bib-linha__rotulo">{a.ordem}</p>
             <div className="bib-opcoes" role="group" aria-label={a.ordem}>
-              <span className="bib-linha__rotulo" style={{ alignSelf: 'center' }}>
-                {a.ordem}
-              </span>
-              <Pilula
-                ativo={ordem === 'atualizacao'}
-                rotulo={a.ordemAtualizacao}
-                aoClicar={() => setOrdem('atualizacao')}
-              />
-              <Pilula
-                ativo={ordem === 'titulo'}
-                rotulo={a.ordemTitulo}
-                aoClicar={() => setOrdem('titulo')}
-              />
+              {ordensDisponiveis(materiais).map((opcao) => (
+                <Pilula
+                  key={opcao}
+                  ativo={ordem === opcao}
+                  rotulo={rotuloDaOrdem[opcao]}
+                  aoClicar={() => setOrdem(opcao)}
+                />
+              ))}
             </div>
           </div>
 
@@ -294,14 +319,26 @@ export function Acervo({ idioma, materiais }: { idioma: Idioma; materiais: Artic
           }
         />
       ) : (
-        /*
-         * Coluna unica, e nao duas. O cartao ja e horizontal (capa a esquerda,
-         * ficha a direita): em duas colunas ele fica estreito, a capa perde as
-         * laterais no recorte e o titulo impresso nela some.
-         */
-        <div className="pilha">
-          {filtrados.map((material) => (
-            <CartaoMaterial key={material.slug} idioma={idioma} material={material} mostrarTrilha />
+        <div className="pilha--g">
+          {estante.map((prateleira) => (
+            <section
+              key={prateleira.chave || 'tudo'}
+              className={prateleira.rotulo ? 'bib-prateleira' : undefined}
+              aria-labelledby={prateleira.rotulo ? `prateleira-${prateleira.chave}` : undefined}
+            >
+              {prateleira.rotulo ? (
+                <div className="bib-prateleira__cabeca">
+                  <h2 className="bib-prateleira__titulo" id={`prateleira-${prateleira.chave}`}>
+                    {prateleira.rotulo}
+                  </h2>
+                  <span className="bib-prateleira__n">
+                    {prateleira.itens.length}{' '}
+                    {prateleira.itens.length === 1 ? a.contagemUm : a.contagemVarios}
+                  </span>
+                </div>
+              ) : null}
+              <Estante idioma={idioma} materiais={prateleira.itens} />
+            </section>
           ))}
         </div>
       )}

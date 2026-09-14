@@ -14,7 +14,7 @@ import { arquivoPublico } from '@/lib/format';
 import { rota } from '@/lib/rotas';
 
 import { Capa } from '../_Capa';
-import { CartaoMaterial, marcaDaTrilha, rotuloTrilha } from '../_CartaoMaterial';
+import { Estante, marcaDaTrilha, rotuloTrilha } from '../_Estante';
 import { dataLonga, ordenarArquivos, vizinhanca } from '../_regras';
 import { EstilosAcervo } from '../_estilos';
 
@@ -77,7 +77,8 @@ export default async function MaterialPage({
   const comSumario = material.secoes.length > 2;
   const ancora = (indice: number) => `secao-${indice + 1}`;
 
-  const vizinhos = vizinhanca(material, conteudo(idioma).materiais);
+  /* Ate quatro por faixa: e o que uma fileira da estante comporta na largura estreita. */
+  const vizinhos = vizinhanca(material, conteudo(idioma).materiais, 4);
   const faixas = [
     {
       chave: 'organizacao',
@@ -241,9 +242,7 @@ export default async function MaterialPage({
                 <p className="olho" style={{ margin: 0 }}>
                   {faixa.rotulo}
                 </p>
-                {faixa.lista.map((outro) => (
-                  <CartaoMaterial key={outro.slug} idioma={idioma} material={outro} mostrarTrilha />
-                ))}
+                <Estante idioma={idioma} materiais={faixa.lista} />
               </div>
             ))}
           </div>

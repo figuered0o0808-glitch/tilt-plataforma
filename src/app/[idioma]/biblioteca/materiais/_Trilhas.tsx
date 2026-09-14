@@ -4,7 +4,7 @@ import type { Idioma } from '@/i18n/idiomas';
 import { textos } from '@/i18n/strings';
 import type { Article, Trilha } from '@/lib/types';
 
-import { marcaDaTrilha } from './_CartaoMaterial';
+import { marcaDaTrilha } from './_Estante';
 
 /**
  * As duas trilhas dos materiais, com o que cada uma reune e quanto ja reune.

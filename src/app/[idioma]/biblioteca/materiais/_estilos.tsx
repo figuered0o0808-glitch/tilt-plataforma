@@ -6,20 +6,14 @@
  * do sistema, para herdar paleta, tipografia e o canto reto de 2px.
  */
 const CSS = `
-/* Barra de busca e filtros: um cartao denso, nada de painel lateral. */
+/* Barra de busca e filtros: um cartao denso em cima; a estante embaixo usa a largura toda. */
 .bib-controles {
   background: var(--branco);
   border: 1px solid var(--preto);
   border-radius: 2px;
   padding: 14px 18px 6px;
 }
-.bib-busca {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) auto;
-  gap: 14px;
-  align-items: center;
-  padding-bottom: 12px;
-}
+.bib-busca { padding-bottom: 12px; }
 .bib-busca input[type='search'] {
   padding: 10px 14px;
   font-size: 1rem;
@@ -55,7 +49,8 @@ const CSS = `
   color: var(--tinta-media);
   cursor: pointer;
 }
-.bib-pilula:hover:not(:disabled) { border-color: var(--preto); color: var(--preto); }
+/* A pilula marcada ja e preta: o hover so vale para as outras, senao o texto some. */
+.bib-pilula:hover:not(:disabled):not([aria-pressed='true']) { border-color: var(--preto); color: var(--preto); }
 .bib-pilula[aria-pressed='true'] {
   background: var(--preto);
   border-color: var(--preto);
@@ -63,6 +58,110 @@ const CSS = `
 }
 .bib-pilula:disabled { opacity: 0.3; cursor: not-allowed; }
 .bib-pilula__n { opacity: 0.58; margin-left: 6px; }
+
+/*
+ * A estante: capas em pe, tantas por fileira quantas couberem. O minimo de
+ * 156px e o menor tamanho em que o titulo impresso numa capa ainda se le;
+ * abaixo disso a capa vira mancha e o titulo de baixo faz o trabalho sozinho.
+ */
+.estante {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(156px, 1fr));
+  gap: 28px 20px;
+}
+.livro {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  min-width: 0;
+  color: var(--preto);
+  text-decoration: none;
+}
+.livro:hover { text-decoration: none; }
+.livro:hover .livro__titulo { text-decoration: underline; text-underline-offset: 3px; }
+.livro:focus-visible { outline: 2px solid var(--foco-cor); outline-offset: 4px; border-radius: 2px; }
+.livro__capa {
+  display: block;
+  aspect-ratio: 1414 / 2000;
+  overflow: hidden;
+  border-radius: 2px;
+  background: var(--areia);
+  margin-bottom: 4px;
+}
+.livro__capa .bib-capa { height: 100%; }
+.livro__capa .bib-capa-marca { height: 100%; }
+.livro__org {
+  font-family: var(--mono);
+  font-size: var(--texto-xp);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--tinta-suave);
+  line-height: 1.3;
+  min-height: 20px;
+  display: flex;
+  align-items: center;
+}
+/* Logotipo de duas linhas precisa dos 20px para a linha menor ainda se ler. */
+.livro__logo { height: 20px; max-width: 100%; width: auto; display: block; }
+.livro__titulo {
+  font-family: var(--serif);
+  font-size: 1.0625rem;
+  line-height: 1.25;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+.livro__meta,
+.livro__trilha {
+  font-family: var(--mono);
+  font-size: var(--texto-xp);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--tinta-suave);
+  line-height: 1.4;
+}
+.livro__trilha { display: flex; align-items: center; gap: 6px; }
+.livro__ponto {
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  border: 1px solid var(--preto);
+  flex: none;
+}
+
+/* Dentro de uma coluna de cor a estante aperta um pouco: seis capas cabem na fileira. */
+.coluna .estante {
+  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+  gap: 24px 16px;
+}
+
+/* Prateleira: o nome do grupo e quantos tem, sobre um fio, e a estante embaixo. */
+.bib-prateleira { display: grid; gap: 18px; }
+.bib-prateleira__cabeca {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 16px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid var(--preto);
+}
+.bib-prateleira__titulo {
+  margin: 0;
+  font-family: var(--serif);
+  font-weight: 400;
+  font-size: 1.375rem;
+  line-height: 1.2;
+}
+.bib-prateleira__n {
+  font-family: var(--mono);
+  font-size: 0.6875rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--tinta-suave);
+  white-space: nowrap;
+}
 
 /* Contagem do acervo: numeros em monoespacada, sempre visiveis. */
 .bib-contagem {
@@ -205,20 +304,13 @@ const CSS = `
   .bib-abertura { grid-template-columns: 184px minmax(0, 1fr); gap: 20px; }
 }
 
-/*
- * Capa do cartao no celular, onde a lista vira coluna unica e a capa passa a
- * ocupar a largura inteira. Uma faixa de 200px cortava a capa em pe no meio de
- * uma linha do titulo impresso nela; em 4 por 3 o titulo cabe inteiro.
- */
-@media (max-width: 760px) {
-  .publicacao .publicacao__capa { max-height: none; aspect-ratio: 4 / 3; }
-}
-
 @media (max-width: 640px) {
   .bib-abertura { grid-template-columns: minmax(0, 1fr); }
   .bib-abertura__capa { max-width: 200px; }
-  .bib-busca { grid-template-columns: minmax(0, 1fr); }
   .bib-linha { grid-template-columns: minmax(0, 1fr); gap: 8px; }
+  /* No celular cabem duas capas por fileira, e e o que se quer: ainda e uma estante. */
+  .estante,
+  .coluna .estante { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 22px 14px; }
 }
 `;
 

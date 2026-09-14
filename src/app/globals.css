@@ -754,43 +754,6 @@ select {
 
 /* ---------- Publicacoes ---------- */
 
-/* Cartao de publicacao: capa a esquerda, ficha a direita. */
-.publicacao {
-  display: grid;
-  /*
-   * A largura acompanha a proporcao da capa. Estreita demais, o `cover` come as
-   * laterais e corta o titulo impresso na propria capa, que e o que identifica
-   * o material na lista.
-   */
-  grid-template-columns: 190px minmax(0, 1fr);
-  gap: 0;
-  align-items: stretch;
-  padding: 0;
-  overflow: hidden;
-}
-.publicacao__capa {
-  /* Sem borda e sem respiro: a capa sangra ate o corte do cartao. */
-  background: var(--areia);
-  display: flex;
-  align-items: stretch;
-  overflow: hidden;
-}
-.publicacao__ficha {
-  display: flex;
-  flex-direction: column;
-  gap: var(--esp-8);
-  padding: var(--esp-16) var(--esp-24);
-  min-width: 0;
-}
-.publicacao__marca {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: var(--esp-12);
-  margin-bottom: 2px;
-}
-.publicacao__logo { height: 18px; width: auto; display: block; }
-
 .capa {
   display: block;
   width: 100%;
@@ -1059,7 +1022,7 @@ select {
 }
 .hero__acoes { display: flex; flex-direction: column; gap: var(--esp-24); align-items: flex-start; }
 
-/* Os quatro campos da coluna de cadastro sao atalhos para o formulario, e nao
+/* Os campos da coluna de cadastro sao atalhos para o formulario, e nao
    campos de verdade: parecem pilula de campo, mas sao links. */
 .campo-atalho {
   display: block;
@@ -1137,8 +1100,6 @@ select {
 }
 
 @media (max-width: 760px) {
-  .publicacao { grid-template-columns: minmax(0, 1fr); }
-  .publicacao__capa { max-height: 200px; }
   .capa { height: 200px; }
 
   .hero__corpo { grid-template-columns: minmax(0, 1fr); gap: var(--esp-24); align-items: start; }
@@ -1250,7 +1211,6 @@ select {
   .cartao,
   .registro,
   .destaque,
-  .publicacao,
   .vazio,
   .definicoes > div,
   .tabela tr { break-inside: avoid; }
@@ -1260,7 +1220,7 @@ select {
   .secao--fundo, .secao--menta, .secao--azul, .secao--amarelo, .secao--rosa,
   .cartao--menta, .cartao--azul, .cartao--amarelo, .cartao--rosa, .cartao--areia,
   .coluna--rosa, .coluna--menta, .coluna--amarelo,
-  .chip, .destaque, .aviso-papel, .avatar, .publicacao__capa {
+  .chip, .destaque, .aviso-papel, .avatar, .livro__capa {
     background: #fff !important;
     color: #000 !important;
   }

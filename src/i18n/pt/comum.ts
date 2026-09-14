@@ -49,6 +49,7 @@ export const comum = {
     'edital-organizacao': 'Chamada de organização',
   },
   rotulos: {
+    idioma: 'Idioma',
     busca: 'Buscar',
     resultado: 'Resultado',
     prazo: 'Prazo',

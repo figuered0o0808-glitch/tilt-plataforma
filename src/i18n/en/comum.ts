@@ -49,6 +49,7 @@ export const comum = {
     'edital-organizacao': 'Organization call',
   },
   rotulos: {
+    idioma: 'Language',
     busca: 'Search',
     resultado: 'Result',
     prazo: 'Deadline',

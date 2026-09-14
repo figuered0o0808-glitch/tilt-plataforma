@@ -99,9 +99,10 @@ export const aprendizado = {
     acervo: {
       busca: 'Search',
       buscaDica: 'Title, author, organization, topic or keyword',
-      ordem: 'Sort',
+      ordem: 'View by',
       ordemAtualizacao: 'Updated',
       ordemTitulo: 'Title',
+      ordemAno: 'Year',
       filtroTrilha: 'Track',
       filtroTema: 'Topic',
       filtroOrganizacao: 'Organization',

@@ -10,12 +10,15 @@ import { textos } from '@/i18n/strings';
 import { conteudo } from '@/lib/data';
 import { rota } from '@/lib/rotas';
 
-import { CartaoMaterial } from './materiais/_CartaoMaterial';
+import { Estante } from './materiais/_Estante';
 import { ordenar } from './materiais/_regras';
 import { EstilosAcervo } from './materiais/_estilos';
 
-/** Quantas publicacoes recentes cabem no indice antes de mandar para o acervo. */
-const RECENTES = 3;
+/**
+ * Quantas publicacoes recentes o indice mostra antes de mandar para o acervo:
+ * uma fileira cheia na tela larga; na estreita, duas ou tres.
+ */
+const RECENTES = 6;
 
 export async function generateMetadata({
   params,
@@ -62,16 +65,7 @@ export default async function BibliotecaPage({
                   {indice.materiaisTitulo}
                 </h2>
               </div>
-              <div className="pilha">
-                {recentes.map((material) => (
-                  <CartaoMaterial
-                    key={material.slug}
-                    idioma={idioma}
-                    material={material}
-                    mostrarTrilha
-                  />
-                ))}
-              </div>
+              <Estante idioma={idioma} materiais={recentes} />
               <div className="linha">
                 <Link href={rota(idioma, 'biblioteca/materiais')} className="link-seta">
                   {`${indice.materiaisAcao} (${materiais.length})`}

@@ -4,6 +4,7 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 
 import { IDIOMAS, NOME_DO_IDIOMA, SIGLA_DO_IDIOMA, type Idioma } from '@/i18n/idiomas';
+import { textos } from '@/i18n/strings';
 import { idiomaDoCaminho } from '@/lib/rotas';
 
 /**
@@ -22,7 +23,7 @@ export function SeletorIdioma() {
   }
 
   return (
-    <nav className="seletor-idioma" aria-label="Idioma">
+    <nav className="seletor-idioma" aria-label={textos(atual).comum.rotulos.idioma}>
       {IDIOMAS.map((idioma) => (
         <Link
           key={idioma}
