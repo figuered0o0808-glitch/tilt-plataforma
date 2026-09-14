@@ -185,6 +185,8 @@ export interface RedeDoCriador {
 export interface PerfilCadastro {
   nome: string;
   email: string;
+  /** Como a pessoa digitou, com DDD ou codigo do pais. Normaliza-se so na saida. */
+  telefone: string;
   pais: string;
   cidade: string;
   uf: string;

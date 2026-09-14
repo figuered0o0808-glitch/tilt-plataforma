@@ -25,6 +25,8 @@
  * Nada do que sai daqui pode ser tratado como confiavel na chegada.
  */
 
+import { normalizarTelefone } from '@/lib/telefone';
+
 /** Endereco da API da INDICA, sem barra no fim. Vazio desliga o canal. */
 const DESTINO = (process.env.NEXT_PUBLIC_TILT_API || '').replace(/\/+$/, '');
 
@@ -85,6 +87,7 @@ async function enviar(caminho: string, corpo: unknown): Promise<ResultadoDoEnvio
 export function enviarCadastro(perfil: {
   nome: string;
   email: string;
+  telefone: string;
   pais: string;
   cidade: string;
   uf: string;
@@ -94,6 +97,7 @@ export function enviarCadastro(perfil: {
   return enviar('/tilt/publico/cadastro', {
     nome: perfil.nome.trim(),
     email: perfil.email.trim().toLowerCase(),
+    telefone: normalizarTelefone(perfil.telefone, perfil.pais),
     pais: perfil.pais,
     cidade: perfil.cidade.trim(),
     uf: perfil.uf.trim(),

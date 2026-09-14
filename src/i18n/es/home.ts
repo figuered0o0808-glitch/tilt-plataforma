@@ -56,7 +56,7 @@ export const home = {
     cadastroOlho: 'Registro',
     cadastroTitulo: '¿Creas contenido?',
     cadastroTexto: 'Gratis, sin mínimo de seguidores.',
-    cadastroCampos: ['Nombre', 'Correo', 'País', 'Dónde publicas'],
+    cadastroCampos: ['Nombre', 'Correo', 'Teléfono', 'País', 'Dónde publicas'],
     cadastroAcao: 'Entrar a la red',
     semMaterial: 'Ningún material publicado todavía.',
   },

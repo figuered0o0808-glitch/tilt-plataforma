@@ -24,11 +24,14 @@ export const cadastro = {
   campos: {
     nome: 'Nome',
     email: 'E-mail',
+    telefone: 'Telefone',
     pais: 'País',
     cidade: 'Cidade',
     uf: 'UF',
     regiao: 'Estado ou região',
   },
+  telefoneAjuda: 'Com DDD. Fora do Brasil, comece pelo código do país.',
+  telefoneConfira: 'Confira o número.',
 
   nichos: {
     titulo: 'Nichos de atuação',

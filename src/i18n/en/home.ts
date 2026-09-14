@@ -56,7 +56,7 @@ export const home = {
     cadastroOlho: 'Sign up',
     cadastroTitulo: 'Do you create content?',
     cadastroTexto: 'Free, with no minimum follower count.',
-    cadastroCampos: ['Name', 'Email', 'Country', 'Where you publish'],
+    cadastroCampos: ['Name', 'Email', 'Phone', 'Country', 'Where you publish'],
     cadastroAcao: 'Join the network',
     semMaterial: 'No material published yet.',
   },

@@ -110,9 +110,9 @@ function ColunaCadastro({ idioma }: { idioma: Idioma }) {
       <p style={{ margin: 0, fontSize: 'var(--texto-m)', lineHeight: 1.45 }}>{tc.cadastroTexto}</p>
 
       {/*
-       * Quatro pilulas com os nomes dos campos. Nao sao o formulario: sao
-       * atalhos para ele, e por isso sao links. Duplicar o formulario aqui
-       * seria manter dois.
+       * Uma pilula por campo do cadastro. Nao sao o formulario: sao atalhos
+       * para ele, e por isso sao links. Duplicar o formulario aqui seria
+       * manter dois.
        */}
       <div className="pilha--p" style={{ gap: 14 }}>
         {tc.cadastroCampos.map((campo) => (

@@ -25,11 +25,14 @@ export const cadastro = {
   campos: {
     nome: 'Name',
     email: 'Email',
+    telefone: 'Phone',
     pais: 'Country',
     cidade: 'City',
     uf: 'State',
     regiao: 'State or region',
   },
+  telefoneAjuda: 'With area code. Outside Brazil, start with the country code.',
+  telefoneConfira: 'Check the number.',
 
   nichos: {
     titulo: 'Your niches',

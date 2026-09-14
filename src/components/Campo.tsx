@@ -1,4 +1,4 @@
-import type { ReactNode, InputHTMLAttributes, TextareaHTMLAttributes, SelectHTMLAttributes } from 'react';
+import type { ReactNode, InputHTMLAttributes, TextareaHTMLAttributes, SelectHTMLAttributes, Ref } from 'react';
 
 import type { Idioma } from '@/i18n/idiomas';
 import { textos } from '@/i18n/strings';
@@ -53,6 +53,8 @@ type PropsTexto = Omit<InputHTMLAttributes<HTMLInputElement>, 'id'> & {
   ajuda?: string;
   erro?: string;
   opcional?: boolean;
+  /** Para devolver o foco ao campo quando a validacao o recusa. */
+  ref?: Ref<HTMLInputElement>;
 };
 
 export function CampoTexto({ idioma, id, rotulo, ajuda, erro, opcional, ...resto }: PropsTexto) {

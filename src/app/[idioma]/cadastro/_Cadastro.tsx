@@ -27,6 +27,7 @@ import type { Idioma } from '@/i18n/idiomas';
 import { textos } from '@/i18n/strings';
 import { conteudo } from '@/lib/data';
 import { PAIS_PADRAO, opcoesDePais } from '@/lib/paises';
+import { telefoneCompleto } from '@/lib/telefone';
 import { rota } from '@/lib/rotas';
 import { useApp } from '@/state/AppState';
 
@@ -105,9 +106,9 @@ function Acoes({ idioma }: { idioma: Idioma }) {
  * audiencia somada aparece no pe das redes enquanto a pessoa digita: e a conta
  * que ela mesma faria.
  *
- * Ao reabrir: hoje `cadastrar` apenas guarda o nome no navegador. Antes de
- * publicar o formulario de novo, o envio precisa de destino: sem isso, os
- * outros campos se perdem quando a pessoa troca de navegador.
+ * O que se envia fica no navegador e, quando ha destino configurado, segue
+ * para a INDICA (ver src/lib/envio.ts). Sem destino, fica so no navegador, e
+ * se perde quando a pessoa troca de aparelho.
  */
 function CadastroFormulario({ idioma }: { idioma: Idioma }) {
   const { cadastrado, nome: nomeCadastrado, hidratado, cadastrar } = useApp();
@@ -124,6 +125,9 @@ function CadastroFormulario({ idioma }: { idioma: Idioma }) {
 
   const [nome, setNome] = useState('');
   const [email, setEmail] = useState('');
+  const [telefone, setTelefone] = useState('');
+  const [erroTelefone, setErroTelefone] = useState<string | undefined>(undefined);
+  const campoTelefone = useRef<HTMLInputElement>(null);
   const [pais, setPais] = useState(PAIS_PADRAO);
   const [cidade, setCidade] = useState('');
   const [uf, setUf] = useState('');
@@ -172,9 +176,20 @@ function CadastroFormulario({ idioma }: { idioma: Idioma }) {
 
   function enviar(evento: React.FormEvent) {
     evento.preventDefault();
+    /*
+     * O navegador ja exige o campo; o que ele nao confere e se o numero esta
+     * inteiro. A regra depende do pais (ver src/lib/telefone.ts): no Brasil,
+     * DDD mais o numero; fora, o codigo do pais mais o numero.
+     */
+    if (!telefoneCompleto(telefone, pais)) {
+      setErroTelefone(tc.telefoneConfira);
+      campoTelefone.current?.focus();
+      return;
+    }
     cadastrar({
       nome,
       email,
+      telefone,
       pais,
       cidade,
       uf,
@@ -246,6 +261,23 @@ function CadastroFormulario({ idioma }: { idioma: Idioma }) {
                     type="email"
                     value={email}
                     onChange={(evento) => setEmail(evento.target.value)}
+                    autoComplete="off"
+                    required
+                  />
+                  <CampoTexto
+                    idioma={idioma}
+                    id="cadastro-telefone"
+                    rotulo={tc.campos.telefone}
+                    ajuda={tc.telefoneAjuda}
+                    erro={erroTelefone}
+                    type="tel"
+                    inputMode="tel"
+                    value={telefone}
+                    onChange={(evento) => {
+                      setTelefone(evento.target.value);
+                      if (erroTelefone) setErroTelefone(undefined);
+                    }}
+                    ref={campoTelefone}
                     autoComplete="off"
                     required
                   />
