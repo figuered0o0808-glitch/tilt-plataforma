@@ -1002,6 +1002,7 @@ select {
 
 /* Carrossel da coluna: um item por vez, rolo horizontal com encaixe. As setas
    moram na cabeca da coluna, com o contador; o trilho e o que se arrasta. */
+.carrossel__caixa { display: flex; flex-direction: column; gap: var(--esp-16); flex: 1 1 auto; min-width: 0; }
 .carrossel__nav { margin-left: auto; display: flex; align-items: center; gap: var(--esp-8); }
 .carrossel__contador {
   font-family: var(--mono);
@@ -1026,8 +1027,8 @@ select {
   cursor: pointer;
   padding: 0;
 }
-.carrossel__seta:hover:not(:disabled) { background: var(--preto); color: var(--branco); }
-.carrossel__seta:disabled { opacity: 0.3; cursor: default; }
+.carrossel__seta:hover { background: var(--preto); color: var(--branco); }
+.carrossel__seta[aria-pressed='true'] { background: var(--preto); color: var(--branco); }
 .carrossel {
   display: flex;
   overflow-x: auto;

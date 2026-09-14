@@ -33,13 +33,16 @@ import { ordenar } from './biblioteca/materiais/_regras';
  * marca assentou, cada um na cor da coluna que vem embaixo.
  *
  * A coluna rosa e a amarela sao carrosseis: uma chamada ou um material por
- * vez, e passa-se para o lado. Cabe mais de um no quadrado, mas nao ao mesmo
- * tempo: a coluna e estreita, e o que se ganha em quantidade se perde em
- * leitura.
+ * vez, e passa-se para o lado, sozinho ou pela seta. Cabe mais de um no
+ * quadrado, mas nao ao mesmo tempo: a coluna e estreita, e o que se ganha em
+ * quantidade se perde em leitura.
  */
 
 /** Quantos materiais a coluna amarela percorre antes de mandar para a Biblioteca. */
 const RECENTES = 6;
+
+/** Quanto tempo cada item fica antes de a coluna passar sozinha: da para ler o titulo e as linhas. */
+const INTERVALO = 7000;
 
 /* -------------------------------------------------------------------------- */
 /* Coluna rosa: as chamadas abertas                                            */
@@ -109,6 +112,9 @@ function ColunaChamada({ idioma, chamadas }: { idioma: Idioma; chamadas: Call[] 
         anterior={tc.anterior}
         proximo={tc.proximo}
         posicao={tc.posicao}
+        automatico={INTERVALO}
+        pausar={tc.pausar}
+        continuar={tc.continuar}
         itens={chamadas.map((chamada) => (
           <SlideChamada key={chamada.slug} idioma={idioma} chamada={chamada} />
         ))}
@@ -207,6 +213,9 @@ function ColunaBiblioteca({ idioma, materiais }: { idioma: Idioma; materiais: Ar
           anterior={tc.anterior}
           proximo={tc.proximo}
           posicao={tc.posicao}
+          automatico={INTERVALO}
+          pausar={tc.pausar}
+          continuar={tc.continuar}
           itens={materiais.map((material) => (
             <SlideMaterial key={material.slug} idioma={idioma} material={material} />
           ))}

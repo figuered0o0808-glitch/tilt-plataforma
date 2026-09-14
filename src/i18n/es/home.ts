@@ -62,6 +62,8 @@ export const home = {
     anterior: 'Anterior',
     proximo: 'Siguiente',
     posicao: '{n} de {total}',
+    pausar: 'Pausar',
+    continuar: 'Continuar',
   },
 
   numeros: {
