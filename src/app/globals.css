@@ -1000,6 +1000,66 @@ select {
    Filho direto da coluna, um .btn ocupa a largura inteira sozinho (flex). */
 .coluna__pe { margin-top: auto; }
 
+/* Carrossel da coluna: um item por vez, rolo horizontal com encaixe. As setas
+   moram na cabeca da coluna, com o contador; o trilho e o que se arrasta. */
+.carrossel__nav { margin-left: auto; display: flex; align-items: center; gap: var(--esp-8); }
+.carrossel__contador {
+  font-family: var(--mono);
+  font-size: var(--texto-xp);
+  letter-spacing: 0.08em;
+  color: var(--preto);
+  margin-right: 2px;
+  font-variant-numeric: tabular-nums;
+}
+.carrossel__seta {
+  width: 32px;
+  height: 32px;
+  border: 1px solid var(--preto);
+  border-radius: var(--raio-pilula);
+  background: var(--branco);
+  color: var(--preto);
+  font-size: 15px;
+  line-height: 1;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  padding: 0;
+}
+.carrossel__seta:hover:not(:disabled) { background: var(--preto); color: var(--branco); }
+.carrossel__seta:disabled { opacity: 0.3; cursor: default; }
+.carrossel {
+  display: flex;
+  overflow-x: auto;
+  overscroll-behavior-x: contain;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: none;
+  /* O trilho e o corpo da coluna: cresce e leva o pe de cada item ao chao. */
+  flex: 1 1 auto;
+  /* Respiro para o anel de foco dos links de dentro nao ser cortado pelo rolo.
+     O encaixe desconta o mesmo respiro, e o vao entre itens o repoe: cada
+     passo do rolo mede exatamente a largura visivel, sem o vizinho aparecer. */
+  margin: -4px;
+  padding: 4px;
+  scroll-padding-inline: 4px;
+  gap: 8px;
+}
+.carrossel::-webkit-scrollbar { display: none; }
+.carrossel__item {
+  flex: 0 0 100%;
+  min-width: 0;
+  scroll-snap-align: start;
+  scroll-snap-stop: always;
+  display: flex;
+}
+.carrossel__conteudo {
+  display: flex;
+  flex-direction: column;
+  gap: var(--esp-16);
+  width: 100%;
+  min-width: 0;
+}
+
 /* Marcador de coluna: um aglomerado de pontos onde outro site poria um icone. */
 .marcador { display: block; flex: none; width: 22px; height: 22px; color: var(--preto); }
 

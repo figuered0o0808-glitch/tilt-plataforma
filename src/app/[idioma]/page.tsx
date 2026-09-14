@@ -3,6 +3,7 @@ import { notFound } from 'next/navigation';
 
 import { Botao } from '@/components/Botao';
 import { CapaMaterial } from '@/components/CapaMaterial';
+import { Carrossel } from '@/components/Carrossel';
 import { Enxame, Ponte } from '@/components/Enxame';
 import { Marcador } from '@/components/Marcador';
 import { Vagas } from '@/components/Vagas';
@@ -17,6 +18,7 @@ import type { Article, Call } from '@/lib/types';
 import { textoDoApoio, textoDoValorTotal } from '@/lib/apoio';
 
 import { Entrada } from './_Entrada';
+import { ordenar } from './biblioteca/materiais/_regras';
 
 /**
  * A home: o enxame e a porta, as colunas sao a casa.
@@ -29,42 +31,24 @@ import { Entrada } from './_Entrada';
  *
  * Tres pontos de cor entre as duas metades sao a ponte: surgem depois que a
  * marca assentou, cada um na cor da coluna que vem embaixo.
+ *
+ * A coluna rosa e a amarela sao carrosseis: uma chamada ou um material por
+ * vez, e passa-se para o lado. Cabe mais de um no quadrado, mas nao ao mesmo
+ * tempo: a coluna e estreita, e o que se ganha em quantidade se perde em
+ * leitura.
  */
 
+/** Quantos materiais a coluna amarela percorre antes de mandar para a Biblioteca. */
+const RECENTES = 6;
+
 /* -------------------------------------------------------------------------- */
-/* Coluna rosa: a chamada aberta                                               */
+/* Coluna rosa: as chamadas abertas                                            */
 /* -------------------------------------------------------------------------- */
 
-function ColunaChamada({ idioma, chamada }: { idioma: Idioma; chamada: Call | null }) {
-  const t = textos(idioma);
-  const tc = t.home.coluna;
-
-  if (!chamada) {
-    return (
-      <div className="coluna coluna--rosa">
-        <div className="coluna__cabeca">
-          <Marcador arranjo={1} />
-          <span className="rotulo">{t.home.chamadasTitulo}</span>
-        </div>
-        <p className="texto-guia" style={{ margin: 0 }}>
-          {tc.semChamada}
-        </p>
-        <div className="coluna__pe">
-          <Botao href={rota(idioma, 'oportunidades')} largo>
-            {tc.verOportunidades}
-          </Botao>
-        </div>
-      </div>
-    );
-  }
-
+function SlideChamada({ idioma, chamada }: { idioma: Idioma; chamada: Call }) {
+  const tc = textos(idioma).home.coluna;
   return (
-    <div className="coluna coluna--rosa">
-      <div className="coluna__cabeca">
-        <Marcador arranjo={1} />
-        <span className="rotulo">{t.home.chamadasTitulo}</span>
-      </div>
-
+    <div className="carrossel__conteudo">
       <h2 className="coluna__titulo">{chamada.titulo}</h2>
 
       <div className="coluna__linhas">
@@ -87,6 +71,48 @@ function ColunaChamada({ idioma, chamada }: { idioma: Idioma; chamada: Call | nu
           {tc.verChamada}
         </Botao>
       </div>
+    </div>
+  );
+}
+
+function ColunaChamada({ idioma, chamadas }: { idioma: Idioma; chamadas: Call[] }) {
+  const t = textos(idioma);
+  const tc = t.home.coluna;
+  const cabeca = (
+    <>
+      <Marcador arranjo={1} />
+      <span className="rotulo">{t.home.chamadasTitulo}</span>
+    </>
+  );
+
+  if (chamadas.length === 0) {
+    return (
+      <div className="coluna coluna--rosa">
+        <div className="coluna__cabeca">{cabeca}</div>
+        <p className="texto-guia" style={{ margin: 0 }}>
+          {tc.semChamada}
+        </p>
+        <div className="coluna__pe">
+          <Botao href={rota(idioma, 'oportunidades')} largo>
+            {tc.verOportunidades}
+          </Botao>
+        </div>
+      </div>
+    );
+  }
+
+  return (
+    <div className="coluna coluna--rosa">
+      <Carrossel
+        cabeca={cabeca}
+        rotulo={t.home.chamadasTitulo}
+        anterior={tc.anterior}
+        proximo={tc.proximo}
+        posicao={tc.posicao}
+        itens={chamadas.map((chamada) => (
+          <SlideChamada key={chamada.slug} idioma={idioma} chamada={chamada} />
+        ))}
+      />
     </div>
   );
 }
@@ -135,43 +161,63 @@ function ColunaCadastro({ idioma }: { idioma: Idioma }) {
 /* Coluna amarela: a biblioteca                                                */
 /* -------------------------------------------------------------------------- */
 
-function ColunaBiblioteca({ idioma, material }: { idioma: Idioma; material: Article | null }) {
+function SlideMaterial({ idioma, material }: { idioma: Idioma; material: Article }) {
+  const destino = rota(idioma, `biblioteca/materiais/${material.slug}`);
+  return (
+    <div className="carrossel__conteudo">
+      <div style={{ display: 'grid', gridTemplateColumns: '112px minmax(0, 1fr)', gap: 16, alignItems: 'start' }}>
+        <Link
+          href={destino}
+          style={{ display: 'block', aspectRatio: '1414 / 2000', overflow: 'hidden' }}
+          aria-hidden="true"
+          tabIndex={-1}
+        >
+          <CapaMaterial capa={material.capa} titulo={material.titulo} cor="var(--amarelo)" />
+        </Link>
+        <div>
+          <h2 className="coluna__titulo" style={{ fontSize: 'var(--titulo-p)', marginBottom: 8 }}>
+            <Link href={destino}>{material.titulo}</Link>
+          </h2>
+          <p className="texto-pequeno" style={{ margin: 0 }}>
+            {material.autoria.join(', ')}
+          </p>
+        </div>
+      </div>
+      <p style={{ margin: 0, fontSize: 'var(--texto-m)', lineHeight: 1.45 }}>{material.resumo}</p>
+    </div>
+  );
+}
+
+function ColunaBiblioteca({ idioma, materiais }: { idioma: Idioma; materiais: Article[] }) {
   const t = textos(idioma);
   const tc = t.home.coluna;
+  const cabeca = (
+    <>
+      <Marcador arranjo={3} />
+      <span className="rotulo">{t.home.recursosTitulo}</span>
+    </>
+  );
 
   return (
     <div className="coluna coluna--amarelo">
-      <div className="coluna__cabeca">
-        <Marcador arranjo={3} />
-        <span className="rotulo">{t.home.recursosTitulo}</span>
-      </div>
-
-      {material ? (
-        <>
-          <div style={{ display: 'grid', gridTemplateColumns: '112px minmax(0, 1fr)', gap: 16, alignItems: 'start' }}>
-            <Link
-              href={rota(idioma, `biblioteca/materiais/${material.slug}`)}
-              style={{ display: 'block', aspectRatio: '1414 / 2000', overflow: 'hidden' }}
-              aria-hidden="true"
-              tabIndex={-1}
-            >
-              <CapaMaterial capa={material.capa} titulo={material.titulo} cor="var(--amarelo)" />
-            </Link>
-            <div>
-              <h2 className="coluna__titulo" style={{ fontSize: 'var(--titulo-p)', marginBottom: 8 }}>
-                <Link href={rota(idioma, `biblioteca/materiais/${material.slug}`)}>{material.titulo}</Link>
-              </h2>
-              <p className="texto-pequeno" style={{ margin: 0 }}>
-                {material.autoria.join(', ')}
-              </p>
-            </div>
-          </div>
-          <p style={{ margin: 0, fontSize: 'var(--texto-m)', lineHeight: 1.45 }}>{material.resumo}</p>
-        </>
+      {materiais.length > 0 ? (
+        <Carrossel
+          cabeca={cabeca}
+          rotulo={t.home.recursosTitulo}
+          anterior={tc.anterior}
+          proximo={tc.proximo}
+          posicao={tc.posicao}
+          itens={materiais.map((material) => (
+            <SlideMaterial key={material.slug} idioma={idioma} material={material} />
+          ))}
+        />
       ) : (
-        <p className="texto-guia" style={{ margin: 0 }}>
-          {tc.semMaterial}
-        </p>
+        <>
+          <div className="coluna__cabeca">{cabeca}</div>
+          <p className="texto-guia" style={{ margin: 0 }}>
+            {tc.semMaterial}
+          </p>
+        </>
       )}
 
       <div className="coluna__pe">
@@ -194,9 +240,9 @@ export default async function Home({ params }: { params: Promise<{ idioma: strin
   const t = textos(idioma);
   const { editais, cursos, materiais } = conteudo(idioma);
 
-  /* A coluna mostra uma chamada: a aberta mais recente, ou nenhuma. */
-  const chamada = editais.find((item) => item.status === 'aberta') ?? null;
-  const material = materiais[0] ?? null;
+  /* A coluna rosa passa pelas chamadas abertas; a amarela, pelos materiais, do mais novo ao mais antigo. */
+  const chamadas = editais.filter((item) => item.status === 'aberta');
+  const recentes = ordenar(materiais, 'atualizacao').slice(0, RECENTES);
   const temConteudo = editais.length > 0 || cursos.length > 0 || materiais.length > 0;
 
   return (
@@ -226,9 +272,9 @@ export default async function Home({ params }: { params: Promise<{ idioma: strin
       </section>
 
       <section className="colunas">
-        <ColunaChamada idioma={idioma} chamada={chamada} />
+        <ColunaChamada idioma={idioma} chamadas={chamadas} />
         <ColunaCadastro idioma={idioma} />
-        <ColunaBiblioteca idioma={idioma} material={material} />
+        <ColunaBiblioteca idioma={idioma} materiais={recentes} />
       </section>
     </>
   );

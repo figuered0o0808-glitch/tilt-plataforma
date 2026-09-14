@@ -59,6 +59,9 @@ export const home = {
     cadastroCampos: ['Nome', 'E-mail', 'Telefone', 'País', 'Onde você publica'],
     cadastroAcao: 'Entrar para a rede',
     semMaterial: 'Nenhum material publicado ainda.',
+    anterior: 'Anterior',
+    proximo: 'Próxima',
+    posicao: '{n} de {total}',
   },
 
   numeros: {
