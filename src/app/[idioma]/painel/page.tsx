@@ -4,6 +4,8 @@ import { notFound } from 'next/navigation';
 
 import { ehIdioma } from '@/i18n/idiomas';
 import { textos } from '@/i18n/strings';
+import { alternativas } from '@/lib/seo';
+import { cadastroAberto, chamadasAbertas, conteudo } from '@/lib/data';
 
 import { Painel } from './_Painel';
 
@@ -18,7 +20,12 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { idioma } = await params;
   if (!ehIdioma(idioma)) return {};
-  return { title: textos(idioma).paineis.olho };
+  /* Area pessoal: o HTML exportado nao tem conteudo, e nao e pagina para buscador. */
+  return {
+    title: textos(idioma).paineis.olho,
+    robots: { index: false, follow: true },
+    alternates: alternativas(idioma, 'painel'),
+  };
 }
 
 export default async function PaginaPainel({
@@ -29,5 +36,13 @@ export default async function PaginaPainel({
   const { idioma } = await params;
   if (!ehIdioma(idioma)) notFound();
 
-  return <Painel idioma={idioma} />;
+  /* O que o painel precisa do conteudo vem daqui, do servidor: o cliente nao carrega os dados. */
+  return (
+    <Painel
+      idioma={idioma}
+      aberto={cadastroAberto(idioma)}
+      abertas={chamadasAbertas(idioma)}
+      catalogo={conteudo(idioma).cursos}
+    />
+  );
 }

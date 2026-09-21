@@ -9,7 +9,6 @@ export const editais = {
   listaTitulo: 'Opportunities',
 
   resumoTitulo: 'Cycle status',
-  resumoAbertas: 'Calls open for applications',
   resumoRecursos: 'Funding in the open calls',
   resumoApoiados: 'Projects supported in closed calls',
 
@@ -28,7 +27,7 @@ export const editais = {
 
   filtrosTitulo: 'Filters',
   filtroStatus: 'Status',
-  filtroTipo: 'Call type',
+  filtroTipo: 'Type',
   filtroPublico: 'Audience',
   todosPublicos: 'All audiences',
   todasSituacoes: 'All',
@@ -38,8 +37,8 @@ export const editais = {
   contagemVarias: 'calls',
   vazioTitulo: 'No call matches these filters',
 
-  proponente: 'Funder',
-  proponenteProprio: 'Program funds',
+  proponente: 'Run by',
+  proponenteProprio: 'Run by the program',
   numerosTitulo: 'Call figures',
   nestaPagina: 'On this page',
   voltarLista: 'See all calls',
@@ -65,7 +64,6 @@ export const editais = {
   criteriosOrdem: 'The criteria are listed in order of weight.',
   pesoRotulo: 'Weight',
   somaPesos: 'Sum of the weights',
-  perguntaRotulo: 'Question',
   bancaSemComposicao:
     'The panel brings together members of INDICA, a representative of the funder and invited creators. Its composition is published before applications close.',
   distribuicaoColunas: {

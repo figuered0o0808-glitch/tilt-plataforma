@@ -10,11 +10,15 @@ import type { Call } from '@/lib/types';
  * descricao, e sem descricao entra "A definir". Cinco telas mostravam a faixa
  * cada uma do seu jeito; agora todas perguntam aqui.
  */
+/** "R$ 8.000 a R$ 30.000", ou so "R$ 20.000" quando a faixa e um valor so (premio, bolsa). */
+export function textoDaFaixa(idioma: Idioma, faixa: { min: number; max: number }): string {
+  if (faixa.min === faixa.max) return moeda(faixa.min, idioma);
+  return `${moeda(faixa.min, idioma)} ${textos(idioma).editais.faixaSeparador} ${moeda(faixa.max, idioma)}`;
+}
+
 export function textoDoApoio(idioma: Idioma, edital: Call): string {
   const t = textos(idioma).editais;
-  if (edital.faixaApoio) {
-    return `${moeda(edital.faixaApoio.min, idioma)} ${t.faixaSeparador} ${moeda(edital.faixaApoio.max, idioma)}`;
-  }
+  if (edital.faixaApoio) return textoDaFaixa(idioma, edital.faixaApoio);
   return edital.apoioDescricao ?? t.semValor;
 }
 

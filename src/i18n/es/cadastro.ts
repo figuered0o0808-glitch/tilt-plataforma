@@ -9,7 +9,7 @@ export const cadastro = {
   olho: 'Registro',
 
   /** Acao do cabecalho do site quando o cadastro esta aberto. */
-  entrar: 'Registrarse',
+  entrar: 'Crear cuenta',
 
   fechado: {
     titulo: 'El registro abre con la primera convocatoria',
@@ -27,7 +27,7 @@ export const cadastro = {
     telefone: 'Teléfono',
     pais: 'País',
     cidade: 'Ciudad',
-    uf: 'UF',
+    uf: 'Estado',
     regiao: 'Estado o región',
   },
   telefoneAjuda: 'Con código de área. Fuera de Brasil, empieza por el código del país.',
@@ -86,10 +86,9 @@ export const cadastro = {
 
   jaCadastradoSelo: 'Cuenta activa',
   jaCadastradoTitulo: 'Ya tienes cuenta',
-  jaCadastradoTexto: 'Este navegador ya guarda una cuenta.',
   nomeRotulo: 'Nombre ingresado',
 
   irAoPainel: 'Ir al panel',
   verOportunidades: 'Ver oportunidades',
   verBiblioteca: 'Ver la biblioteca',
-};
+} as const;

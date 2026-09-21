@@ -40,7 +40,7 @@ export function Compartilhar({ idioma, endereco }: { idioma: Idioma; endereco: s
   };
 
   return (
-    <section id="compartilhar" style={{ scrollMarginTop: 96 }}>
+    <section id="compartilhar">
       <div className="cartao">
         <p className="olho" style={{ margin: 0 }}>
           {t.editais.compartilharTitulo}

@@ -1,6 +1,6 @@
 'use client';
 
-import { useMemo, useRef, useState, type FormEvent, type ReactNode } from 'react';
+import { useEffect, useMemo, useRef, useState, type FormEvent, type ReactNode } from 'react';
 
 import { Botao } from '@/components/Botao';
 import { CampoArea, CampoSelecao, CampoTexto } from '@/components/Campo';
@@ -9,6 +9,7 @@ import { Passos } from '@/components/Passos';
 import { Selo } from '@/components/Selo';
 import type { Idioma } from '@/i18n/idiomas';
 import { textos, type Strings } from '@/i18n/strings';
+import { textoDaFaixa } from '@/lib/apoio';
 import { data, moeda } from '@/lib/format';
 import { PAIS_PADRAO, nomeDoPais, opcoesDePais } from '@/lib/paises';
 import { rota } from '@/lib/rotas';
@@ -100,7 +101,6 @@ function validarProjeto(
   dados: Dados,
   faixa: { min: number; max: number } | null,
   tc: TextosCandidatura,
-  separador: string,
   /* A mensagem de faixa cita valores, e valor tem formato por idioma. */
   idioma: Idioma,
 ): Erros {
@@ -113,7 +113,7 @@ function validarProjeto(
   if (!dados.valor.trim()) erros.valor = tc.erros.obrigatorio;
   else if (!Number.isFinite(valor) || valor <= 0) erros.valor = tc.erros.valorNumero;
   else if (faixa && (valor < faixa.min || valor > faixa.max)) {
-    erros.valor = `${tc.erros.valorFaixa} ${moeda(faixa.min, idioma)} ${separador} ${moeda(faixa.max, idioma)}.`;
+    erros.valor = `${tc.erros.valorFaixa} ${textoDaFaixa(idioma, faixa)}.`;
   }
 
   if (!dados.justificativa.trim()) erros.justificativa = tc.erros.obrigatorio;
@@ -127,11 +127,10 @@ function validarPasso(
   dados: Dados,
   faixa: { min: number; max: number } | null,
   tc: TextosCandidatura,
-  separador: string,
   idioma: Idioma,
 ): Erros {
   if (passo === 0) return validarProponente(dados, tc);
-  if (passo === 1) return validarProjeto(dados, faixa, tc, separador, idioma);
+  if (passo === 1) return validarProjeto(dados, faixa, tc, idioma);
   return {};
 }
 
@@ -154,19 +153,53 @@ export function FormularioCandidatura({
 }) {
   const t = textos(idioma);
   const tc = t.fluxos.candidatura;
-  const separador = t.editais.faixaSeparador;
-  const { cadastrado, enviarCandidatura } = useApp();
+  const { cadastrado, perfil, candidaturas, enviarCandidatura } = useApp();
   const [passo, setPasso] = useState(0);
   const [dados, setDados] = useState<Dados>(VAZIO);
   const [erros, setErros] = useState<Erros>({});
   const [enviada, setEnviada] = useState<Candidatura | null>(null);
   const topo = useRef<HTMLDivElement>(null);
+  const tituloDoPasso = useRef<HTMLHeadingElement>(null);
+  const tituloDaConfirmacao = useRef<HTMLHeadingElement>(null);
+
+  /*
+   * O cadastro ja disse quem a pessoa e: nome, e-mail, pais, cidade e regiao
+   * entram preenchidos e continuam editaveis, para quem assina com razao
+   * social ou responde por outro endereco. So o que esta em branco e tocado.
+   */
+  useEffect(() => {
+    if (!perfil) return;
+    setDados((atual) => ({
+      ...atual,
+      nome: atual.nome || perfil.nome,
+      email: atual.email || perfil.email,
+      pais: atual.pais === PAIS_PADRAO && perfil.pais ? perfil.pais : atual.pais,
+      cidade: atual.cidade || perfil.cidade,
+      uf: atual.uf || perfil.uf,
+    }));
+  }, [perfil]);
+
+  /* Cada troca de passo leva o foco ao titulo do passo, e a confirmacao ao seu. */
+  const primeiraMontagem = useRef(true);
+  useEffect(() => {
+    if (primeiraMontagem.current) {
+      primeiraMontagem.current = false;
+      return;
+    }
+    tituloDoPasso.current?.focus();
+  }, [passo]);
+  useEffect(() => {
+    if (enviada) tituloDaConfirmacao.current?.focus();
+  }, [enviada]);
+
+  /* O comprovante le a candidatura viva: o protocolo da API chega depois do envio. */
+  const comprovante = enviada
+    ? (candidaturas.find((item) => item.id === enviada.id) ?? enviada)
+    : null;
 
   const faixa = edital.faixaApoio;
   /* Sem faixa nao ha o que lembrar: a ajuda do campo some. */
-  const faixaTexto = faixa
-    ? `${tc.projeto.faixaAjuda} ${moeda(faixa.min, idioma)} ${separador} ${moeda(faixa.max, idioma)}.`
-    : undefined;
+  const faixaTexto = faixa ? `${tc.projeto.faixaAjuda} ${textoDaFaixa(idioma, faixa)}.` : undefined;
 
   function irPara(destino: number) {
     setPasso(destino);
@@ -201,16 +234,26 @@ export function FormularioCandidatura({
     });
   }
 
+  /* O foco vai ao primeiro campo recusado, na ordem em que os campos aparecem. */
+  function focarPrimeiroErro(encontrados: Erros) {
+    const campo = CAMPOS_DO_PASSO.flat().find((nome) => encontrados[nome]);
+    if (!campo) return;
+    const id = campo === 'uf' && !noBrasil ? 'regiao' : campo;
+    /* O campo ja esta na tela; o foco vai agora, e a marca de erro chega em seguida. */
+    document.getElementById(id)?.focus();
+  }
+
   function avancar() {
-    const encontrados = validarPasso(passo, dados, faixa, tc, separador, idioma);
+    const encontrados = validarPasso(passo, dados, faixa, tc, idioma);
     setErros(encontrados);
     if (Object.keys(encontrados).length === 0) irPara(passo + 1);
+    else focarPrimeiroErro(encontrados);
   }
 
   function enviar() {
     const encontrados = {
       ...validarProponente(dados, tc),
-      ...validarProjeto(dados, faixa, tc, separador, idioma),
+      ...validarProjeto(dados, faixa, tc, idioma),
     };
     if (Object.keys(encontrados).length > 0) {
       setErros(encontrados);
@@ -218,6 +261,7 @@ export function FormularioCandidatura({
         campos.some((campo) => encontrados[campo]),
       );
       irPara(passoComErro === -1 ? 0 : passoComErro);
+      focarPrimeiroErro(encontrados);
       return;
     }
     const nova = enviarCandidatura({
@@ -226,6 +270,18 @@ export function FormularioCandidatura({
       projeto: dados.projeto.trim(),
       formato: dados.formato,
       valorSolicitado: Number(dados.valor),
+      descricao: dados.descricao.trim(),
+      justificativa: dados.justificativa.trim(),
+      alcance: dados.alcance.trim(),
+      distribuicao: dados.distribuicao.trim(),
+      proponente: {
+        nome: dados.nome.trim(),
+        documento: dados.documento.trim(),
+        pais: dados.pais,
+        cidade: dados.cidade.trim(),
+        uf: dados.uf.trim(),
+        email: dados.email.trim().toLowerCase(),
+      },
     });
     setEnviada(nova);
     topo.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
@@ -253,25 +309,30 @@ export function FormularioCandidatura({
     );
   }
 
-  if (enviada) {
+  if (comprovante) {
     return (
       <div ref={topo} className="pilha--g">
-        <section className="cartao" style={{ gap: 18 }}>
+        <section className="cartao" style={{ gap: 'var(--esp-16)' }}>
           <div style={{ display: 'flex', justifyContent: 'center' }}>
             <Ilustracao nome="enviado" largura={180} />
           </div>
-          <h2 style={{ textAlign: 'center', margin: 0 }}>{tc.confirmacao.titulo}</h2>
+          <h2 ref={tituloDaConfirmacao} tabIndex={-1} style={{ textAlign: 'center', margin: 0 }}>
+            {tc.confirmacao.titulo}
+          </h2>
 
-          <p className="rotulo rotulo--forte" style={{ margin: '10px 0 0' }}>
+          <p className="rotulo rotulo--forte" style={{ margin: 'var(--esp-8) 0 0' }}>
             {tc.confirmacao.resumoTitulo}
           </p>
           <div>
-            <Item rotulo={tc.confirmacao.protocolo} valor={enviada.id} />
-            <Item rotulo={tc.confirmacao.enviadaEm} valor={data(enviada.enviadaEm, idioma)} />
-            <Item rotulo={tc.confirmacao.edital} valor={enviada.editalTitulo} />
-            <Item rotulo={tc.confirmacao.projeto} valor={enviada.projeto} />
-            <Item rotulo={tc.confirmacao.valor} valor={moeda(enviada.valorSolicitado, idioma)} />
-            <Item rotulo={tc.confirmacao.situacao} valor={<Selo idioma={idioma} status={enviada.status} />} />
+            {/* O protocolo e da API, quando ela responde; o id local nao se chama protocolo. */}
+            {comprovante.protocolo ? (
+              <Item rotulo={tc.confirmacao.protocolo} valor={comprovante.protocolo} />
+            ) : null}
+            <Item rotulo={tc.confirmacao.enviadaEm} valor={data(comprovante.enviadaEm, idioma)} />
+            <Item rotulo={tc.confirmacao.edital} valor={comprovante.editalTitulo} />
+            <Item rotulo={tc.confirmacao.projeto} valor={comprovante.projeto} />
+            <Item rotulo={tc.confirmacao.valor} valor={moeda(comprovante.valorSolicitado, idioma)} />
+            <Item rotulo={tc.confirmacao.situacao} valor={<Selo idioma={idioma} status={comprovante.status} />} />
           </div>
 
           <p className="nota" style={{ marginTop: 6 }}>
@@ -297,7 +358,9 @@ export function FormularioCandidatura({
         {passo === 0 ? (
           <section className="pilha">
             <div className="pilha--p">
-              <h2 style={{ margin: 0 }}>{tc.proponente.titulo}</h2>
+              <h2 ref={tituloDoPasso} tabIndex={-1} style={{ margin: 0 }}>
+                {tc.proponente.titulo}
+              </h2>
               <p className="texto-secundario texto-pequeno" style={{ margin: 0 }}>
                 {tc.proponente.intro}
               </p>
@@ -308,7 +371,7 @@ export function FormularioCandidatura({
               rotulo={tc.proponente.nome}
               value={dados.nome}
               erro={erros.nome}
-              autoComplete="off"
+              autoComplete="name"
               onChange={(evento) => atualizar('nome', evento.target.value)}
             />
 
@@ -333,7 +396,7 @@ export function FormularioCandidatura({
                 placeholder={tc.proponente.exemplos.email}
                 value={dados.email}
                 erro={erros.email}
-                autoComplete="off"
+                autoComplete="email"
                 onChange={(evento) => atualizar('email', evento.target.value)}
               />
             </div>
@@ -343,6 +406,7 @@ export function FormularioCandidatura({
               id="pais"
               rotulo={tc.proponente.pais}
               opcoes={paises}
+              autoComplete="country"
               value={dados.pais}
               onChange={(evento) => trocarPais(evento.target.value)}
             />
@@ -354,7 +418,7 @@ export function FormularioCandidatura({
                 placeholder={tc.proponente.exemplos.cidade}
                 value={dados.cidade}
                 erro={erros.cidade}
-                autoComplete="off"
+                autoComplete="address-level2"
                 onChange={(evento) => atualizar('cidade', evento.target.value)}
               />
               {noBrasil ? (
@@ -384,7 +448,9 @@ export function FormularioCandidatura({
 
         {passo === 1 ? (
           <section className="pilha">
-            <h2 style={{ margin: 0 }}>{tc.projeto.titulo}</h2>
+            <h2 ref={tituloDoPasso} tabIndex={-1} style={{ margin: 0 }}>
+              {tc.projeto.titulo}
+            </h2>
 
             <CampoTexto idioma={idioma}
               id="projeto"
@@ -466,7 +532,9 @@ export function FormularioCandidatura({
         {passo === 2 ? (
           <section className="pilha--g">
             <div className="pilha--p">
-              <h2 style={{ margin: 0 }}>{tc.revisao.titulo}</h2>
+              <h2 ref={tituloDoPasso} tabIndex={-1} style={{ margin: 0 }}>
+                {tc.revisao.titulo}
+              </h2>
               <p className="texto-secundario texto-pequeno" style={{ margin: 0 }}>
                 {tc.revisao.descricao}
               </p>

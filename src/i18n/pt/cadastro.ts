@@ -9,7 +9,7 @@ export const cadastro = {
   olho: 'Cadastro',
 
   /** Acao do cabecalho do site quando o cadastro esta aberto. */
-  entrar: 'Cadastrar',
+  entrar: 'Criar cadastro',
 
   fechado: {
     titulo: 'O cadastro abre com a primeira chamada',
@@ -86,7 +86,6 @@ export const cadastro = {
 
   jaCadastradoSelo: 'Cadastro ativo',
   jaCadastradoTitulo: 'Você já tem cadastro',
-  jaCadastradoTexto: 'Este navegador já guarda um cadastro.',
   nomeRotulo: 'Nome informado',
 
   irAoPainel: 'Ir para o painel',

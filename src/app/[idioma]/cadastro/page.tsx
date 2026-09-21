@@ -4,6 +4,8 @@ import { notFound } from 'next/navigation';
 
 import { ehIdioma } from '@/i18n/idiomas';
 import { textos } from '@/i18n/strings';
+import { alternativas } from '@/lib/seo';
+import { cadastroAberto } from '@/lib/data';
 
 import { Cadastro } from './_Cadastro';
 
@@ -14,7 +16,7 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { idioma } = await params;
   if (!ehIdioma(idioma)) return {};
-  return { title: textos(idioma).cadastro.olho };
+  return { title: textos(idioma).cadastro.olho, alternates: alternativas(idioma, 'cadastro') };
 }
 
 /**
@@ -30,5 +32,5 @@ export default async function PaginaCadastro({
   const { idioma } = await params;
   if (!ehIdioma(idioma)) notFound();
 
-  return <Cadastro idioma={idioma} />;
+  return <Cadastro idioma={idioma} aberto={cadastroAberto(idioma)} />;
 }

@@ -116,7 +116,7 @@
       {
         "nome": "Rodrigo Tavares Quintanilha",
         "afiliacao": "INDICA",
-        "minibio": "Director de contenido de INDICA. Responde por la relación con los creadores apoyados y por el seguimiento de la producción."
+        "minibio": "Coordinador de relación con creadores de INDICA. Responde por el contacto con los creadores apoyados y por el seguimiento de la producción."
       },
       {
         "nome": "Marina Ochoa Bittencourt",
@@ -224,7 +224,13 @@
         "minibio": "Publica desde hace cuatro años sobre vivienda y ciudad desde la periferia de una capital. Participó en la residencia piloto del observatorio en 2025."
       }
     ],
-    "distribuicao": [],
+    "distribuicao": [
+      {
+        "faixa": "Ayuda de costos a acordar con cada seleccionado",
+        "quantidade": "6 plazas",
+        "observacao": "Incluye las dos semanas presenciales en la sede, con acceso al estudio de grabación, y seis semanas a distancia con mentoría semanal. El monto queda formalizado antes del inicio."
+      }
+    ],
     "valorTotal": null,
     "faixaApoio": null,
     "apoioDescricao": "Ocho semanas de residencia con mentoría, estudio y distribución. Ayuda de costos a acordar con cada seleccionado.",
@@ -309,7 +315,7 @@
         "minibio": "Psiquiatra y editor del frente de salud mental de la red. Responde por la lectura clínica de las piezas de esa categoría."
       },
       {
-        "nome": "Renata Villaça Sodré",
+        "nome": "Débora Quintela Farias",
         "afiliacao": "Aliança Democracia e Informação",
         "minibio": "Verificadora. Coordina desde 2023 el monitoreo de desinformación sobre vacunas de la alianza."
       },
@@ -321,7 +327,7 @@
       {
         "nome": "Caio Lemos Ferraz",
         "afiliacao": "INDICA",
-        "minibio": "Director de contenido de INDICA. Evalúa formato, repercusión y la relación entre alcance y tamaño del canal."
+        "minibio": "Coordinador de métricas de INDICA. Evalúa formato, repercusión y la relación entre alcance y tamaño del canal."
       }
     ],
     "distribuicao": [
@@ -358,10 +364,6 @@
       {
         "etapa": "Cierre de inscripciones",
         "data": "2026-09-30"
-      },
-      {
-        "etapa": "Publicación de la lista de piezas habilitadas",
-        "data": "2026-10-09"
       },
       {
         "etapa": "Publicación del resultado",
@@ -549,7 +551,13 @@
         "minibio": "Formó equipos de verificación en cuatro países de América Latina. Participa en redes regionales de verificación desde 2017."
       }
     ],
-    "distribuicao": [],
+    "distribuicao": [
+      {
+        "faixa": "Cofinanciamiento acordado por proyecto",
+        "quantidade": "4 a 8 alianzas",
+        "observacao": "La Alianza aporta la metodología de verificación, la capacitación y la red de verificadores; la organización asociada aporta el conocimiento del territorio, los canales de distribución y parte del costo."
+      }
+    ],
     "valorTotal": null,
     "faixaApoio": null,
     "apoioDescricao": "Cofinanciamiento acordado por proyecto. La Alianza aporta la metodología de verificación, la capacitación y la red de verificadores.",
@@ -600,7 +608,7 @@
     "apresentacao": [
       "La cuenta de luz pesa más donde el ingreso es menor. En los barrios periféricos, la conexión irregular, la tarifa social poco conocida y el techo sin placa solar son la regla, y el debate público sobre transición energética rara vez pasa por ahí.",
       "La convocatoria apoyó a creadores que viven o producen en esos territorios para tratar la energía desde la experiencia de quien paga la cuenta: cuánto cuesta, qué derechos existen y qué se puede generar en casa o en el barrio.",
-      "El Instituto Corrente Limpa financió la convocatoria. INDICA operó la selección y el contrato con cada creador, y Koko compartió la producción. Fue la convocatoria piloto del programa, y su resultado orientó el formato de las convocatorias siguientes."
+      "El Instituto Corrente Limpa financió la convocatoria. INDICA operó la selección y el contrato con cada creador, y Estúdio Paralelo compartió la producción. Fue la convocatoria piloto del programa, y su resultado orientó el formato de las convocatorias siguientes."
     ],
     "escopo": [
       "Proyectos de autoría propia sobre costo, acceso o generación de energía en barrios periféricos de cualquier ciudad brasileña.",
@@ -701,7 +709,7 @@
       }
     ],
     "resultado": {
-      "fundamentacao": "El comité recibió 61 inscripciones y evaluó cada una según los cuatro criterios de la convocatoria, en orden de peso. Veintitrés propuestas pasaron a la segunda fase por comprobar vínculo con el territorio; de esas, nueve fueron a entrevista. La decisión final privilegió proyectos con acceso directo a las personas retratadas y plan de publicación ya definido, incluso cuando la audiencia del creador era pequeña.\n\nDos proyectos recibieron un monto menor al solicitado, por ajuste de ítems de producción que Koko absorbió. La distribución final apoya cuatro proyectos en cuatro estados, con formatos distintos, para que la campaña llegue a públicos diferentes con el mismo recurso. Las propuestas no seleccionadas recibieron devolución individual por escrito.",
+      "fundamentacao": "El comité recibió 61 inscripciones y evaluó cada una según los cuatro criterios de la convocatoria, en orden de peso. Veintitrés propuestas pasaron a la segunda fase por comprobar vínculo con el territorio; de esas, nueve fueron a entrevista. La decisión final privilegió proyectos con acceso directo a las personas retratadas y plan de publicación ya definido, incluso cuando la audiencia del creador era pequeña.\n\nDos proyectos recibieron un monto menor al solicitado, por ajuste de ítems de producción que Estúdio Paralelo absorbió. La distribución final apoya cuatro proyectos en cuatro estados, con formatos distintos, para que la campaña llegue a públicos diferentes con el mismo recurso. Las propuestas no seleccionadas recibieron devolución individual por escrito.",
       "publicadoEm": "2026-03-20",
       "inscricoesRecebidas": 61,
       "apoiados": [
@@ -781,7 +789,7 @@
     ],
     "banca": [
       {
-        "nome": "Helena Sarmento Pires",
+        "nome": "Simone Carvalhaes Duarte",
         "afiliacao": "Observatório Clima Urbano, Brasil",
         "minibio": "Coordina el área de agua y ciudades del Observatorio. Geógrafa, investiga inundaciones urbanas en la región metropolitana de São Paulo."
       },

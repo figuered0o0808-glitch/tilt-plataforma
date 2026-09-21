@@ -8,21 +8,17 @@ export const comum = {
     editais: 'Oportunidades',
     biblioteca: 'Biblioteca',
     painel: 'Mi panel',
-    abrirMenu: 'Abrir navegación',
-    fecharMenu: 'Cerrar navegación',
+    pularParaConteudo: 'Ir al contenido',
   },
   acoes: {
     candidatarProjeto: 'Postular proyecto',
     verEdital: 'Ver convocatoria',
     verCurso: 'Ver curso',
-    lerMaterial: 'Leer material',
     inscreverse: 'Inscribirse',
     inscrito: 'Inscripción registrada',
     voltar: 'Volver',
     avancar: 'Avanzar',
-    revisar: 'Revisar',
     enviar: 'Enviar',
-    baixar: 'Descargar',
   },
   status: {
     aberta: 'Inscripciones abiertas',
@@ -61,10 +57,15 @@ export const comum = {
     opcional: 'opcional',
     nenhumResultado: 'Sin resultados',
   },
+  naoEncontrado: {
+    titulo: 'Página no encontrada',
+    texto: 'La dirección que abriste no existe en este sitio.',
+    acao: 'Volver al inicio',
+  },
   rodape: {
     descricao:
       'Plataforma de INDICA y TILT. Financiamiento de proyectos autorales y formación para creadores, y materiales técnicos abiertos para creadores y organizaciones.',
     programa: 'Programa',
     navegue: 'Navegación',
   },
-};
+} as const;

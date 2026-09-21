@@ -1,8 +1,8 @@
+import type { Metadata } from 'next';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 
 import { Botao } from '@/components/Botao';
-import { CapaMaterial } from '@/components/CapaMaterial';
 import { Carrossel } from '@/components/Carrossel';
 import { Enxame, Ponte } from '@/components/Enxame';
 import { Marcador } from '@/components/Marcador';
@@ -14,11 +14,19 @@ import { textos } from '@/i18n/strings';
 import { conteudo } from '@/lib/data';
 import { moeda } from '@/lib/format';
 import { rota } from '@/lib/rotas';
+import { alternativas } from '@/lib/seo';
 import type { Article, Call } from '@/lib/types';
-import { textoDoApoio, textoDoValorTotal } from '@/lib/apoio';
+import { textoDoApoio } from '@/lib/apoio';
 
 import { Entrada } from './_Entrada';
+import { Capa } from './biblioteca/materiais/_Capa';
 import { ordenar } from './biblioteca/materiais/_regras';
+
+export async function generateMetadata({ params }: { params: Promise<{ idioma: string }> }): Promise<Metadata> {
+  const { idioma } = await params;
+  if (!ehIdioma(idioma)) return {};
+  return { alternates: alternativas(idioma) };
+}
 
 /**
  * A home: o enxame e a porta, as colunas sao a casa.
@@ -55,7 +63,8 @@ function SlideChamada({ idioma, chamada }: { idioma: Idioma; chamada: Call }) {
       <h2 className="coluna__titulo">{chamada.titulo}</h2>
 
       <div className="coluna__linhas">
-        <div className="coluna__linha">
+        {/* Apoio sem faixa e uma frase: desce para a linha de baixo em vez de espremer o rotulo. */}
+        <div className={chamada.faixaApoio ? 'coluna__linha' : 'coluna__linha coluna__linha--longa'}>
           <span className="rotulo">{tc.apoio}</span>
           <span>{textoDoApoio(idioma, chamada)}</span>
         </div>
@@ -112,6 +121,7 @@ function ColunaChamada({ idioma, chamadas }: { idioma: Idioma; chamadas: Call[] 
         anterior={tc.anterior}
         proximo={tc.proximo}
         posicao={tc.posicao}
+        papel={tc.carrossel}
         automatico={INTERVALO}
         pausar={tc.pausar}
         continuar={tc.continuar}
@@ -146,7 +156,7 @@ function ColunaCadastro({ idioma }: { idioma: Idioma }) {
        * para ele, e por isso sao links. Duplicar o formulario aqui seria
        * manter dois.
        */}
-      <div className="pilha--p" style={{ gap: 14 }}>
+      <div className="pilha--p" style={{ gap: 'var(--esp-12)' }}>
         {tc.cadastroCampos.map((campo) => (
           <Link key={campo} href={destino} className="campo-atalho">
             {campo}
@@ -171,17 +181,19 @@ function SlideMaterial({ idioma, material }: { idioma: Idioma; material: Article
   const destino = rota(idioma, `biblioteca/materiais/${material.slug}`);
   return (
     <div className="carrossel__conteudo">
-      <div style={{ display: 'grid', gridTemplateColumns: '112px minmax(0, 1fr)', gap: 16, alignItems: 'start' }}>
+      {/* A capa encolhe antes do texto: numa coluna estreita e o titulo que precisa de largura. */}
+      <div style={{ display: 'grid', gridTemplateColumns: 'clamp(72px, 34%, 112px) minmax(0, 1fr)', gap: 'var(--esp-16)', alignItems: 'start' }}>
         <Link
           href={destino}
-          style={{ display: 'block', aspectRatio: '1414 / 2000', overflow: 'hidden' }}
+          style={{ display: 'block', aspectRatio: '1414 / 2000', overflow: 'hidden', background: 'var(--areia)' }}
           aria-hidden="true"
           tabIndex={-1}
         >
-          <CapaMaterial capa={material.capa} titulo={material.titulo} cor="var(--amarelo)" />
+          <Capa material={material} cor="var(--amarelo)" variante="cartao" />
         </Link>
         <div>
-          <h2 className="coluna__titulo" style={{ fontSize: 'var(--titulo-p)', marginBottom: 8 }}>
+          {/* Ao lado da capa sobra pouca largura: palavra longa quebra em vez de vazar. */}
+          <h2 className="coluna__titulo" style={{ marginBottom: 'var(--esp-8)', overflowWrap: 'anywhere', hyphens: 'auto' }}>
             <Link href={destino}>{material.titulo}</Link>
           </h2>
           <p className="texto-pequeno" style={{ margin: 0 }}>
@@ -213,6 +225,7 @@ function ColunaBiblioteca({ idioma, materiais }: { idioma: Idioma; materiais: Ar
           anterior={tc.anterior}
           proximo={tc.proximo}
           posicao={tc.posicao}
+          papel={tc.carrossel}
           automatico={INTERVALO}
           pausar={tc.pausar}
           continuar={tc.continuar}
@@ -260,7 +273,7 @@ export default async function Home({ params }: { params: Promise<{ idioma: strin
         <div className="container">
           <div className="hero__marca">
             <Enxame largura={560} />
-            <p className="olho" style={{ margin: 0 }}>
+            <p className="olho" style={{ margin: 0 }} lang="en">
               {PROGRAM_TAGLINE}
             </p>
           </div>

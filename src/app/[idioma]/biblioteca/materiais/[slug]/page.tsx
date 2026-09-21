@@ -9,13 +9,14 @@ import { Selo } from '@/components/Selo';
 import { Organizacao } from '@/components/Organizacao';
 import { IDIOMAS, ehIdioma } from '@/i18n/idiomas';
 import { textos } from '@/i18n/strings';
+import { alternativas } from '@/lib/seo';
 import { conteudo, materialPorSlug } from '@/lib/data';
-import { arquivoPublico } from '@/lib/format';
+import { arquivoPublico, data } from '@/lib/format';
 import { rota } from '@/lib/rotas';
 
 import { Capa } from '../_Capa';
 import { Estante, marcaDaTrilha, rotuloTrilha } from '../_Estante';
-import { dataLonga, ordenarArquivos, vizinhanca } from '../_regras';
+import { ordenarArquivos, vizinhanca } from '../_regras';
 import { EstilosAcervo } from '../_estilos';
 
 /** Um endereco por idioma e por material publicado naquele idioma. */
@@ -38,6 +39,7 @@ export async function generateMetadata({
   return {
     title: material?.titulo ?? r.titulo,
     description: material?.resumo ?? r.descricao,
+    alternates: alternativas(idioma, `biblioteca/materiais/${slug}`),
   };
 }
 
@@ -135,7 +137,7 @@ export default async function MaterialPage({
                   ) : null}
                   <div className="bib-ficha__linha">
                     <dt>{r.atualizadoEm}</dt>
-                    <dd>{dataLonga(material.atualizadoEm, r.dataModelo, r.meses)}</dd>
+                    <dd>{data(material.atualizadoEm, idioma)}</dd>
                   </div>
                 </dl>
 

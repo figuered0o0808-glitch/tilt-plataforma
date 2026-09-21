@@ -6,6 +6,7 @@ import { ehIdioma } from '@/i18n/idiomas';
 import { textos } from '@/i18n/strings';
 import { conteudo } from '@/lib/data';
 import { moeda, numero } from '@/lib/format';
+import { alternativas } from '@/lib/seo';
 import type { Call, StatusEdital } from '@/lib/types';
 
 import { ListaEditais } from './_ListaEditais';
@@ -18,7 +19,7 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { idioma } = await params;
   if (!ehIdioma(idioma)) return {};
-  return { title: textos(idioma).editais.listaTitulo };
+  return { title: textos(idioma).editais.listaTitulo, alternates: alternativas(idioma, 'oportunidades') };
 }
 
 const PESO_STATUS: Record<StatusEdital, number> = {
@@ -47,11 +48,14 @@ function ordenar(lista: Call[]): Call[] {
   });
 }
 
-/** Numeros do ciclo, todos derivados das chamadas publicadas. */
+/**
+ * Numeros do ciclo, derivados das chamadas publicadas. Quantas estao abertas
+ * o filtro de situacao ja diz, logo abaixo; aqui ficam os dois numeros que
+ * nao aparecem em mais nenhum lugar.
+ */
 function resumoDoCiclo(lista: Call[]) {
   const abertas = lista.filter((edital) => edital.status === 'aberta');
   return {
-    abertas: abertas.length,
     recursos: abertas.reduce((soma, edital) => soma + (edital.valorTotal ?? 0), 0),
     apoiados: lista.reduce(
       (soma, edital) => soma + (edital.resultado ? edital.resultado.apoiados.length : 0),
@@ -94,28 +98,22 @@ export default async function PaginaEditais({
     <>
       {cabecalho(false)}
 
-      {/*
-        Com uma unica chamada publicada os numeros do ciclo repetem o que o
-        cartao ja diz. O resumo entra quando ha mais de uma chamada.
-      */}
-      {lista.length > 1 ? (
-        <section className="secao secao--curta secao--branco" style={{ marginTop: 48 }}>
-          <div className="container">
-            <h2 className="sr-only">{t.editais.resumoTitulo}</h2>
+      <div className="secao">
+        <div className="container pilha--g">
+          {/*
+            Com uma unica chamada publicada os numeros do ciclo repetem o que o
+            cartao ja diz. O resumo entra quando ha mais de uma chamada, numa
+            linha so, logo acima dos filtros: a lista comeca na primeira tela.
+          */}
+          {lista.length > 1 ? (
             <dl
               className="definicoes"
               style={{
-                gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))',
+                gridTemplateColumns: 'repeat(auto-fit, minmax(150px, 1fr))',
                 margin: 0,
-                gap: 28,
+                gap: 'var(--esp-32)',
               }}
             >
-              <div>
-                <dt>{t.editais.resumoAbertas}</dt>
-                <dd>
-                  <span className="numero-grande">{numero(resumo.abertas, idioma)}</span>
-                </dd>
-              </div>
               <div>
                 <dt>{t.editais.resumoRecursos}</dt>
                 <dd>
@@ -131,12 +129,8 @@ export default async function PaginaEditais({
                 </div>
               ) : null}
             </dl>
-          </div>
-        </section>
-      ) : null}
+          ) : null}
 
-      <div className="secao">
-        <div className="container">
           <ListaEditais idioma={idioma} editais={lista} />
         </div>
       </div>

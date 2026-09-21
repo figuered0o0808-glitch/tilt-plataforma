@@ -116,7 +116,7 @@
       {
         "nome": "Rodrigo Tavares Quintanilha",
         "afiliacao": "INDICA",
-        "minibio": "Diretor de conteúdo da INDICA. Responde pela relação com os criadores apoiados e pelo acompanhamento da produção."
+        "minibio": "Coordenador de relacionamento com criadores da INDICA. Responde pelo contato com os criadores apoiados e pelo acompanhamento da produção."
       },
       {
         "nome": "Marina Ochoa Bittencourt",
@@ -224,7 +224,13 @@
         "minibio": "Publica há quatro anos sobre moradia e cidade a partir da periferia de uma capital. Participou da residência piloto do observatório em 2025."
       }
     ],
-    "distribuicao": [],
+    "distribuicao": [
+      {
+        "faixa": "Ajuda de custo a combinar com cada selecionado",
+        "quantidade": "6 vagas",
+        "observacao": "Inclui as duas semanas presenciais na sede, com acesso ao estúdio de gravação, e seis semanas à distância com mentoria semanal. O valor é formalizado antes do início."
+      }
+    ],
     "valorTotal": null,
     "faixaApoio": null,
     "apoioDescricao": "Oito semanas de residência com mentoria, estúdio e distribuição. Ajuda de custo a combinar com cada selecionado.",
@@ -309,7 +315,7 @@
         "minibio": "Psiquiatra e editor da frente de saúde mental da rede. Responde pela leitura clínica das peças dessa categoria."
       },
       {
-        "nome": "Renata Villaça Sodré",
+        "nome": "Débora Quintela Farias",
         "afiliacao": "Aliança Democracia e Informação",
         "minibio": "Checadora. Coordena desde 2023 o monitoramento de desinformação sobre vacinas da aliança."
       },
@@ -321,7 +327,7 @@
       {
         "nome": "Caio Lemos Ferraz",
         "afiliacao": "INDICA",
-        "minibio": "Diretor de conteúdo da INDICA. Avalia formato, repercussão e a relação entre alcance e tamanho do canal."
+        "minibio": "Coordenador de métricas da INDICA. Avalia formato, repercussão e a relação entre alcance e tamanho do canal."
       }
     ],
     "distribuicao": [
@@ -358,10 +364,6 @@
       {
         "etapa": "Encerramento das inscrições",
         "data": "2026-09-30"
-      },
-      {
-        "etapa": "Publicação da lista de peças habilitadas",
-        "data": "2026-10-09"
       },
       {
         "etapa": "Publicação do resultado",
@@ -549,7 +551,13 @@
         "minibio": "Formou equipes de verificação em quatro países da América Latina. Atua em redes regionais de checagem desde 2017."
       }
     ],
-    "distribuicao": [],
+    "distribuicao": [
+      {
+        "faixa": "Cofinanciamento combinado por projeto",
+        "quantidade": "4 a 8 parcerias",
+        "observacao": "A Aliança entra com a metodologia de verificação, o treinamento e a rede de checadores; a organização parceira entra com o conhecimento do território, os canais de distribuição e parte do custo."
+      }
+    ],
     "valorTotal": null,
     "faixaApoio": null,
     "apoioDescricao": "Cofinanciamento combinado por projeto. A Aliança entra com a metodologia de verificação, o treinamento e a rede de checadores.",
@@ -600,7 +608,7 @@
     "apresentacao": [
       "A conta de luz pesa mais onde a renda é menor. Em bairros periféricos, ligação irregular, tarifa social pouco conhecida e telhado sem placa solar são a regra, e o debate público sobre transição energética raramente passa por ali.",
       "A chamada apoiou criadores que vivem ou produzem nesses territórios para tratar de energia a partir da experiência de quem paga a conta: o que custa, o que existe de direito e o que dá para gerar em casa ou no bairro.",
-      "O Instituto Corrente Limpa financiou a chamada. A INDICA operou a seleção e o contrato com cada criador, e a Koko dividiu a produção. Foi a chamada piloto do programa, e o resultado orientou o formato das chamadas seguintes."
+      "O Instituto Corrente Limpa financiou a chamada. A INDICA operou a seleção e o contrato com cada criador, e o Estúdio Paralelo dividiu a produção. Foi a chamada piloto do programa, e o resultado orientou o formato das chamadas seguintes."
     ],
     "escopo": [
       "Projetos autorais sobre custo, acesso ou geração de energia em bairros periféricos de qualquer cidade brasileira.",
@@ -701,7 +709,7 @@
       }
     ],
     "resultado": {
-      "fundamentacao": "A banca recebeu 61 inscrições e avaliou cada uma pelos quatro critérios da chamada, em ordem de peso. Vinte e três propostas passaram à segunda fase por comprovarem vínculo com o território; dessas, nove foram a entrevista. A decisão final privilegiou projetos com acesso direto às pessoas retratadas e plano de publicação já definido, mesmo quando a audiência do criador era pequena.\n\nDois projetos receberam valor menor do que o solicitado, por ajuste de itens de produção que a Koko absorveu. A distribuição final apoia quatro projetos em quatro estados, com formatos distintos, para que a campanha alcance públicos diferentes com o mesmo recurso. As propostas não selecionadas receberam devolutiva individual por escrito.",
+      "fundamentacao": "A banca recebeu 61 inscrições e avaliou cada uma pelos quatro critérios da chamada, em ordem de peso. Vinte e três propostas passaram à segunda fase por comprovarem vínculo com o território; dessas, nove foram a entrevista. A decisão final privilegiou projetos com acesso direto às pessoas retratadas e plano de publicação já definido, mesmo quando a audiência do criador era pequena.\n\nDois projetos receberam valor menor do que o solicitado, por ajuste de itens de produção que o Estúdio Paralelo absorveu. A distribuição final apoia quatro projetos em quatro estados, com formatos distintos, para que a campanha alcance públicos diferentes com o mesmo recurso. As propostas não selecionadas receberam devolutiva individual por escrito.",
       "publicadoEm": "2026-03-20",
       "inscricoesRecebidas": 61,
       "apoiados": [
@@ -781,7 +789,7 @@
     ],
     "banca": [
       {
-        "nome": "Helena Sarmento Pires",
+        "nome": "Simone Carvalhaes Duarte",
         "afiliacao": "Observatório Clima Urbano, Brasil",
         "minibio": "Coordena a área de água e cidades do Observatório. Geógrafa, pesquisa enchentes urbanas na região metropolitana de São Paulo."
       },

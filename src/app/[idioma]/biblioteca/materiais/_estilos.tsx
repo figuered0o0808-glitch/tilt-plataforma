@@ -28,7 +28,7 @@ const CSS = `
 }
 .bib-linha__rotulo {
   font-family: var(--mono);
-  font-size: 0.6875rem;
+  font-size: var(--texto-xp);
   letter-spacing: 0.12em;
   text-transform: uppercase;
   color: var(--tinta-suave);
@@ -38,13 +38,13 @@ const CSS = `
 
 .bib-pilula {
   font-family: var(--mono);
-  font-size: 0.6875rem;
+  font-size: var(--texto-xp);
   letter-spacing: 0.1em;
   text-transform: uppercase;
   line-height: 1;
   padding: 7px 11px;
   border: 1px solid var(--linha);
-  border-radius: 2px;
+  border-radius: var(--raio-pilula);
   background: var(--branco);
   color: var(--tinta-media);
   cursor: pointer;
@@ -57,7 +57,8 @@ const CSS = `
   color: var(--branco);
 }
 .bib-pilula:disabled { opacity: 0.3; cursor: not-allowed; }
-.bib-pilula__n { opacity: 0.58; margin-left: 6px; }
+.bib-pilula__n { color: var(--tinta-suave); margin-left: 6px; }
+.bib-pilula[aria-pressed='true'] .bib-pilula__n { color: rgba(255, 255, 255, 0.7); }
 
 /*
  * A estante: capas em pe, tantas por fileira quantas couberem. O minimo de
@@ -105,7 +106,7 @@ const CSS = `
 .livro__logo { height: 20px; max-width: 100%; width: auto; display: block; }
 .livro__titulo {
   font-family: var(--serif);
-  font-size: 1.0625rem;
+  font-size: var(--texto-xg);
   line-height: 1.25;
   display: -webkit-box;
   -webkit-line-clamp: 3;
@@ -151,12 +152,12 @@ const CSS = `
   margin: 0;
   font-family: var(--serif);
   font-weight: 400;
-  font-size: 1.375rem;
+  font-size: var(--titulo-m);
   line-height: 1.2;
 }
 .bib-prateleira__n {
   font-family: var(--mono);
-  font-size: 0.6875rem;
+  font-size: var(--texto-xp);
   letter-spacing: 0.12em;
   text-transform: uppercase;
   color: var(--tinta-suave);
@@ -171,57 +172,12 @@ const CSS = `
   gap: 16px;
   flex-wrap: wrap;
   font-family: var(--mono);
-  font-size: 0.6875rem;
+  font-size: var(--texto-xp);
   letter-spacing: 0.12em;
   text-transform: uppercase;
   color: var(--tinta-suave);
 }
 .bib-contagem strong { color: var(--preto); font-weight: 500; }
-
-/* Capa: sem moldura e sem respiro, em qualquer tamanho. */
-.bib-capa {
-  display: block;
-  width: 100%;
-  height: 100%;
-  border: 0;
-  object-fit: cover;
-  object-position: center top;
-}
-/* Sem capa enviada: malha de pontos e a marca de quem publica, sem texto. */
-.bib-capa-marca {
-  position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 100%;
-  height: 100%;
-  padding: 16px;
-  overflow: hidden;
-}
-.bib-capa-marca__malha {
-  position: absolute;
-  inset: 0;
-  color: rgba(0, 0, 0, 0.24);
-  background-image: radial-gradient(circle, currentColor 1.2px, transparent 1.2px);
-  background-size: 16px 16px;
-}
-.bib-capa-marca__logo {
-  position: relative;
-  display: block;
-  width: auto;
-  max-width: 76%;
-  max-height: 40%;
-}
-.bib-capa-marca__sigla {
-  position: relative;
-  font-family: var(--mono);
-  font-size: 0.8125rem;
-  line-height: 1.35;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  text-align: center;
-  color: var(--preto);
-}
 
 /* Abertura da pagina de um material: capa em tamanho digno ao lado da ficha. */
 .bib-abertura {
@@ -245,7 +201,7 @@ const CSS = `
 .bib-ficha__linha:first-child { border-top: 0; padding-top: 0; }
 .bib-ficha dt {
   font-family: var(--mono);
-  font-size: 0.6875rem;
+  font-size: var(--texto-xp);
   letter-spacing: 0.11em;
   text-transform: uppercase;
   color: var(--tinta-suave);
@@ -273,7 +229,7 @@ const CSS = `
 }
 .bib-sumario__n {
   font-family: var(--mono);
-  font-size: 0.6875rem;
+  font-size: var(--texto-xp);
   letter-spacing: 0.1em;
   color: var(--tinta-suave);
   padding-top: 0.3em;
@@ -293,7 +249,7 @@ const CSS = `
 .bib-baixar__ficha {
   margin: 0;
   font-family: var(--mono);
-  font-size: 0.6875rem;
+  font-size: var(--texto-xp);
   letter-spacing: 0.11em;
   text-transform: uppercase;
   text-align: center;

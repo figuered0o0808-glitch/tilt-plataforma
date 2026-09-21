@@ -8,21 +8,17 @@ export const comum = {
     editais: 'Opportunities',
     biblioteca: 'Library',
     painel: 'My dashboard',
-    abrirMenu: 'Open navigation',
-    fecharMenu: 'Close navigation',
+    pularParaConteudo: 'Skip to content',
   },
   acoes: {
     candidatarProjeto: 'Apply with a project',
     verEdital: 'View call',
     verCurso: 'View course',
-    lerMaterial: 'Read material',
     inscreverse: 'Enroll',
     inscrito: 'Enrollment recorded',
     voltar: 'Back',
     avancar: 'Next',
-    revisar: 'Review',
     enviar: 'Submit',
-    baixar: 'Download',
   },
   status: {
     aberta: 'Applications open',
@@ -60,6 +56,11 @@ export const comum = {
     obrigatorio: 'Required field',
     opcional: 'optional',
     nenhumResultado: 'No results',
+  },
+  naoEncontrado: {
+    titulo: 'Page not found',
+    texto: 'The address you opened does not exist on this site.',
+    acao: 'Back to the home page',
   },
   rodape: {
     descricao:

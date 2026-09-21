@@ -25,6 +25,7 @@ import type { Candidatura, PerfilCadastro } from '@/lib/types';
 import {
   enviarCadastro as enviarCadastroParaIndica,
   enviarCandidatura as enviarCandidaturaParaIndica,
+  protocoloDaResposta,
 } from '@/lib/envio';
 
 interface Estado {
@@ -45,23 +46,8 @@ function estadoInicial(): Estado {
   };
 }
 
-export interface NovaCandidatura {
-  editalSlug: string;
-  editalTitulo: string;
-  projeto: string;
-  formato: string;
-  valorSolicitado: number;
-  /**
-   * Dados de quem propoe, para o envio a INDICA.
-   *
-   * Opcional porque o estado local nao precisa deles: o painel do criador mostra
-   * projeto, valor e situacao, e nao repete o que a pessoa digitou sobre si.
-   * Quem preenche este campo e o formulario de candidatura, que os tem em maos.
-   * Enquanto ele nao preencher, a candidatura chega a API sem identificacao do
-   * proponente, o que a API deve recusar.
-   */
-  proponente?: Record<string, string>;
-}
+/** Tudo que o formulario colheu: vai inteiro para a INDICA e fica no navegador para o comprovante. */
+export type NovaCandidatura = Omit<Candidatura, 'id' | 'enviadaEm' | 'status' | 'protocolo'>;
 
 interface ContextoApp extends Estado {
   hidratado: boolean;
@@ -74,11 +60,33 @@ interface ContextoApp extends Estado {
 
 const Contexto = createContext<ContextoApp | null>(null);
 
+/*
+ * O que vem do localStorage e texto que qualquer um pode ter editado. Cada
+ * campo so entra se tiver o tipo esperado; o resto e descartado, e o painel
+ * nunca quebra por um valor fora do lugar.
+ */
 function ler(): Partial<Estado> | null {
   if (typeof window === 'undefined') return null;
   try {
     const bruto = window.localStorage.getItem(STORAGE_KEY);
-    return bruto ? (JSON.parse(bruto) as Partial<Estado>) : null;
+    if (!bruto) return null;
+    const salvo: unknown = JSON.parse(bruto);
+    if (!salvo || typeof salvo !== 'object') return null;
+    const registro = salvo as Record<string, unknown>;
+    const estado: Partial<Estado> = {};
+    if (typeof registro.cadastrado === 'boolean') estado.cadastrado = registro.cadastrado;
+    if (typeof registro.nome === 'string') estado.nome = registro.nome;
+    if (registro.perfil && typeof registro.perfil === 'object') estado.perfil = registro.perfil as PerfilCadastro;
+    if (Array.isArray(registro.candidaturas)) {
+      estado.candidaturas = registro.candidaturas.filter(
+        (item): item is Candidatura =>
+          Boolean(item) && typeof item === 'object' && typeof (item as Candidatura).id === 'string',
+      );
+    }
+    if (Array.isArray(registro.cursosInscritos)) {
+      estado.cursosInscritos = registro.cursosInscritos.filter((item): item is string => typeof item === 'string');
+    }
+    return estado;
   } catch {
     return null;
   }
@@ -126,13 +134,11 @@ export function AppProvider({ children }: { children: ReactNode }) {
 
   const enviarCandidatura = useCallback(
     (dados: NovaCandidatura): Candidatura => {
+      /* O documento (CPF/CNPJ) vai so para a API: nao fica guardado no navegador. */
       const nova: Candidatura = {
+        ...dados,
+        proponente: dados.proponente ? { ...dados.proponente, documento: undefined } : undefined,
         id: proximoId('cand', estado.candidaturas),
-        editalSlug: dados.editalSlug,
-        editalTitulo: dados.editalTitulo,
-        projeto: dados.projeto,
-        formato: dados.formato,
-        valorSolicitado: dados.valorSolicitado,
         enviadaEm: DATA_REFERENCIA,
         status: 'enviada',
       };
@@ -142,12 +148,34 @@ export function AppProvider({ children }: { children: ReactNode }) {
         candidaturas: [nova, ...atual.candidaturas],
       }));
 
-      /* Mesmo desenho do cadastro: nao espera e nao bloqueia a confirmacao. */
+      /*
+       * Mesmo desenho do cadastro: nao espera e nao bloqueia a confirmacao.
+       * Quando a API responde com protocolo, ele entra na candidatura depois,
+       * e o comprovante que ainda estiver na tela passa a mostra-lo.
+       */
       void enviarCandidaturaParaIndica({
         chamadaSlug: dados.editalSlug,
-        proponente: dados.proponente ?? {},
-        projeto: { titulo: dados.projeto, formato: dados.formato },
+        proponente: Object.fromEntries(
+          Object.entries(dados.proponente ?? {}).filter((par): par is [string, string] => typeof par[1] === 'string'),
+        ),
+        projeto: {
+          titulo: dados.projeto,
+          formato: dados.formato,
+          descricao: dados.descricao ?? '',
+          justificativa: dados.justificativa ?? '',
+          alcance: dados.alcance ?? '',
+          distribuicao: dados.distribuicao ?? '',
+        },
         valorSolicitado: dados.valorSolicitado,
+      }).then((resultado) => {
+        const protocolo = protocoloDaResposta(resultado);
+        if (!protocolo) return;
+        setEstado((atual) => ({
+          ...atual,
+          candidaturas: atual.candidaturas.map((item) =>
+            item.id === nova.id ? { ...item, protocolo } : item,
+          ),
+        }));
       });
 
       return nova;

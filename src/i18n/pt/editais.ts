@@ -6,7 +6,6 @@ export const editais = {
   listaTitulo: 'Oportunidades',
 
   resumoTitulo: 'Situação do ciclo',
-  resumoAbertas: 'Chamadas com inscrições abertas',
   resumoRecursos: 'Recursos nas chamadas abertas',
   resumoApoiados: 'Projetos apoiados em chamadas encerradas',
 
@@ -25,7 +24,7 @@ export const editais = {
 
   filtrosTitulo: 'Filtros',
   filtroStatus: 'Situação',
-  filtroTipo: 'Tipo de chamada',
+  filtroTipo: 'Tipo',
   filtroPublico: 'Público',
   todosPublicos: 'Todos os públicos',
   todasSituacoes: 'Todas',
@@ -67,7 +66,6 @@ export const editais = {
   /* Vem depois do numero da posicao do criterio: 1º, 2º, 3º. */
   posicaoSufixo: 'º',
   somaPesos: 'Soma dos pesos',
-  perguntaRotulo: 'Pergunta',
   bancaSemComposicao:
     'A banca reúne integrantes da INDICA, um representante do financiador e criadores convidados. A composição é publicada antes do fim das inscrições.',
   distribuicaoColunas: {

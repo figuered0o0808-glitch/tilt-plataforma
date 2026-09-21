@@ -36,7 +36,7 @@ function ancoras(idioma: Idioma, edital: Call): { id: string; rotulo: string }[]
     /* A pagina so publica cronograma quando ha etapas. */
     ...(edital.cronograma.length > 0 ? [{ id: 'cronograma', rotulo: secoes.cronograma }] : []),
     { id: 'banca', rotulo: secoes.banca },
-    { id: 'distribuicao', rotulo: secoes.distribuicao },
+    ...(edital.distribuicao.length > 0 ? [{ id: 'distribuicao', rotulo: secoes.distribuicao }] : []),
   );
   return itens;
 }

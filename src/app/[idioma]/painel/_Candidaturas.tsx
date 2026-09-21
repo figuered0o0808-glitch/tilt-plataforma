@@ -13,7 +13,6 @@ import { EstadoVazio } from '@/components/EstadoVazio';
 import { Selo } from '@/components/Selo';
 import type { Idioma } from '@/i18n/idiomas';
 import { textos } from '@/i18n/strings';
-import { conteudo } from '@/lib/data';
 import { dataCurta, moeda } from '@/lib/format';
 import { rota } from '@/lib/rotas';
 import type { Call, Candidatura } from '@/lib/types';
@@ -106,14 +105,16 @@ function SemCandidatura({ idioma, abertas }: { idioma: Idioma; abertas: Call[] }
 export function Candidaturas({
   idioma,
   candidaturas,
+  abertas,
 }: {
   idioma: Idioma;
   candidaturas: Candidatura[];
+  /** Chamadas com inscricao aberta, entregues pela pagina (servidor). */
+  abertas: Call[];
 }) {
   const s = textos(idioma).paineis;
 
   if (candidaturas.length === 0) {
-    const abertas = conteudo(idioma).editais.filter((edital) => edital.status === 'aberta');
     return <SemCandidatura idioma={idioma} abertas={abertas} />;
   }
 
@@ -145,7 +146,11 @@ export function Candidaturas({
                 <span style={{ display: 'block', color: 'var(--preto)' }}>
                   {candidatura.projeto}
                 </span>
-                <span className="texto-mini">{candidatura.formato}</span>
+                <span className="texto-mini">
+                  {candidatura.protocolo
+                    ? `${candidatura.formato} · ${textos(idioma).fluxos.candidatura.confirmacao.protocolo} ${candidatura.protocolo}`
+                    : candidatura.formato}
+                </span>
               </td>
               <td className="num">{moeda(candidatura.valorSolicitado, idioma)}</td>
               <td>{dataCurta(candidatura.enviadaEm, idioma)}</td>

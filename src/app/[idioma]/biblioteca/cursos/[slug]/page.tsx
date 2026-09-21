@@ -7,6 +7,7 @@ import { CabecalhoPagina } from '@/components/CabecalhoPagina';
 import { Selo } from '@/components/Selo';
 import { IDIOMAS, ehIdioma } from '@/i18n/idiomas';
 import { textos } from '@/i18n/strings';
+import { alternativas } from '@/lib/seo';
 import { conteudo, cursoPorSlug } from '@/lib/data';
 import { data } from '@/lib/format';
 import { rota } from '@/lib/rotas';
@@ -38,6 +39,7 @@ export async function generateMetadata({
   return {
     title: curso?.titulo ?? c.titulo,
     description: curso?.resumo ?? c.descricao,
+    alternates: alternativas(idioma, `biblioteca/cursos/${slug}`),
   };
 }
 

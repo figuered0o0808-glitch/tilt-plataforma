@@ -49,7 +49,6 @@ export const aprendizado = {
     inscricaoCadastro: 'Enrollment requires an account on the platform.',
     inscricaoAcaoCadastro: 'Create account',
     inscricaoNota: 'Enrollment is free.',
-    inscricaoConfirmada: 'Enrollment recorded.',
     irAoPainel: 'See in the dashboard',
     voltarCatalogo: 'See the courses',
     vazioTitulo: 'No course published',

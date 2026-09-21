@@ -7,6 +7,7 @@ import { CabecalhoPagina } from '@/components/CabecalhoPagina';
 import { Marcador } from '@/components/Marcador';
 import { ehIdioma } from '@/i18n/idiomas';
 import { textos } from '@/i18n/strings';
+import { alternativas } from '@/lib/seo';
 import { conteudo } from '@/lib/data';
 import { rota } from '@/lib/rotas';
 
@@ -28,7 +29,7 @@ export async function generateMetadata({
   const { idioma } = await params;
   if (!ehIdioma(idioma)) return {};
   const { indice } = textos(idioma).aprendizado;
-  return { title: indice.titulo, description: indice.descricao };
+  return { title: indice.titulo, description: indice.descricao, alternates: alternativas(idioma, 'biblioteca') };
 }
 
 /**

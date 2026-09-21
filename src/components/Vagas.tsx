@@ -1,5 +1,6 @@
 import type { Idioma } from '@/i18n/idiomas';
 import { textos } from '@/i18n/strings';
+import { Pontos } from '@/components/Pontos';
 import { numero } from '@/lib/format';
 import type { Call } from '@/lib/types';
 
@@ -63,14 +64,7 @@ export function Vagas({
           {tc.vagas}
         </p>
       )}
-      <div className="pontos" aria-hidden="true">
-        {Array.from({ length: total }, (_, indice) => (
-          <span
-            key={indice}
-            className={indice < selecionados ? 'pontos__ponto' : 'pontos__ponto pontos__ponto--vazado'}
-          />
-        ))}
-      </div>
+      <Pontos cheios={selecionados} total={total} />
       <p className="texto-pequeno" style={{ margin: '9px 0 0' }}>
         {legenda}
       </p>

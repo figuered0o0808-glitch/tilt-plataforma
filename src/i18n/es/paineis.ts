@@ -42,4 +42,4 @@ export const paineis = {
     titulo: 'El panel es de quien tiene cuenta',
     acao: 'Crear cuenta',
   },
-};
+} as const;

@@ -505,14 +505,6 @@ const ORDEM: Record<Idioma, readonly string[]> = {
   es: ORDEM_ES,
 };
 
-/**
- * Codigos aceitos, em ordem de codigo. Serve para validar, nao para exibir.
- *
- * Nao e a lista completa das Nacoes Unidas: e onde a INDICA tem ou pode ter
- * criador, que e America, Europa ocidental e as pracas de lingua portuguesa na
- * Africa e na Asia.
- */
-export const PAISES: readonly string[] = [...ORDEM_PT].sort();
 
 /** Nome do pais no idioma pedido. Codigo desconhecido aparece como ele mesmo. */
 export function nomeDoPais(codigo: string, idioma: Idioma): string {

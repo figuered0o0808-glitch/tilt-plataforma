@@ -1,25 +1,27 @@
 import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 
+import { Botao } from '@/components/Botao';
 import { CabecalhoPagina } from '@/components/CabecalhoPagina';
 import { Chip } from '@/components/Chip';
 import { IDIOMAS, ehIdioma } from '@/i18n/idiomas';
 import { textos } from '@/i18n/strings';
 import { conteudo, editalPorSlug } from '@/lib/data';
+import { rota } from '@/lib/rotas';
+import { alternativas } from '@/lib/seo';
 
 import { prazoEmLinha } from '../../_prazo';
 
 import { FormularioCandidatura, type EditalResumo } from './_FormularioCandidatura';
 
 /**
- * Só chamadas com inscrições abertas recebem página de candidatura, e só no
- * idioma em que a chamada está publicada.
+ * Toda chamada tem endereco de candidatura, no idioma em que esta publicada:
+ * o link que alguem guardou continua valendo depois do prazo, e o que ele
+ * mostra e o aviso de que as inscricoes fecharam, nao um 404.
  */
 export function generateStaticParams() {
   return IDIOMAS.flatMap((idioma) =>
-    conteudo(idioma)
-      .editais.filter((edital) => edital.status === 'aberta')
-      .map((edital) => ({ idioma, slug: edital.slug })),
+    conteudo(idioma).editais.map((edital) => ({ idioma, slug: edital.slug })),
   );
 }
 
@@ -32,7 +34,13 @@ export async function generateMetadata({
   if (!ehIdioma(idioma)) return {};
   const tc = textos(idioma).fluxos.candidatura;
   const edital = editalPorSlug(idioma, slug);
-  return { title: edital ? `${tc.titulo}: ${edital.titulo}` : tc.titulo };
+  /* Formulario nao e pagina para buscador. */
+  return {
+    title: edital ? `${tc.titulo}: ${edital.titulo}` : tc.titulo,
+    description: edital?.resumo,
+    robots: { index: false, follow: true },
+    alternates: alternativas(idioma, `oportunidades/${slug}/candidatura`),
+  };
 }
 
 export default async function PaginaCandidatura({
@@ -44,7 +52,30 @@ export default async function PaginaCandidatura({
   if (!ehIdioma(idioma)) notFound();
 
   const edital = editalPorSlug(idioma, slug);
-  if (!edital || edital.status !== 'aberta') notFound();
+  if (!edital) notFound();
+
+  const t = textos(idioma);
+  if (edital.status !== 'aberta') {
+    return (
+      <>
+        <CabecalhoPagina estreito olho={t.fluxos.candidatura.titulo} titulo={edital.titulo} />
+        <div className="secao">
+          <div className="container-estreito">
+            <section className="cartao">
+              <p className="cartao__texto" style={{ margin: 0 }}>
+                {edital.status === 'encerrada' ? t.editais.encerradaAviso : t.editais.emAvaliacaoAviso}
+              </p>
+              <div className="linha">
+                <Botao href={rota(idioma, `oportunidades/${edital.slug}`)} variante="secundario">
+                  {t.fluxos.candidatura.voltarEdital}
+                </Botao>
+              </div>
+            </section>
+          </div>
+        </div>
+      </>
+    );
+  }
 
   const resumo: EditalResumo = {
     slug: edital.slug,

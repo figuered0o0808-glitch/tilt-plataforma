@@ -9,7 +9,7 @@ export const fluxos = {
     cadastro: {
       titulo: 'Cadastro necessário',
       texto: 'A leitura da chamada continua aberta sem cadastro.',
-      acao: 'Fazer cadastro',
+      acao: 'Criar cadastro',
     },
     proponente: {
       titulo: 'Dados do proponente',

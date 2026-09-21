@@ -43,15 +43,19 @@ export function ChamadaDestaque({
    */
   const classe =
     edital.status === 'aberta' ? 'cartao coluna--rosa coluna--solta' : 'cartao';
+  /* O cartao inteiro e o link: o nome e o titulo, o resumo e a descricao. */
+  const id = `chamada-${edital.slug}`;
 
   return (
     <Link
       href={rota(idioma, `oportunidades/${edital.slug}`)}
       className={classe}
       style={{ gap: 'var(--esp-16)' } as CSSProperties}
+      aria-labelledby={`${id}-titulo`}
+      aria-describedby={`${id}-resumo`}
     >
-      <div className="linha linha--fim" style={{ gap: 12 }}>
-        <div className="linha" style={{ gap: 10 }}>
+      <div className="linha linha--fim" style={{ gap: 'var(--esp-12)' }}>
+        <div className="linha" style={{ gap: 'var(--esp-8)' }}>
           <Marcador arranjo={1} />
           <Selo idioma={idioma} status={edital.status} />
           <Chip vazado>{t.comum.tiposEdital[edital.tipo]}</Chip>
@@ -62,7 +66,7 @@ export function ChamadaDestaque({
           // eslint-disable-next-line @next/next/no-img-element
           <img
             src={arquivoPublico(edital.logoOrganizacao)}
-            alt={edital.organizacao ?? ''}
+            alt={edital.proponente ? '' : (edital.organizacao ?? '')}
             style={{
               height: 22,
               width: 'auto',
@@ -77,6 +81,7 @@ export function ChamadaDestaque({
 
       {/* Sozinha na pagina, a chamada leva o corpo de titulo, nao o de cartao. */}
       <Titulo
+        id={`${id}-titulo`}
         style={{
           margin: 0,
           maxWidth: '38ch',
@@ -87,7 +92,7 @@ export function ChamadaDestaque({
         {edital.titulo}
       </Titulo>
 
-      <p className="cartao__texto" style={{ maxWidth: '64ch' }}>
+      <p className="cartao__texto" id={`${id}-resumo`} style={{ maxWidth: '64ch' }}>
         {edital.resumo}
       </p>
 
@@ -116,7 +121,7 @@ export function ChamadaDestaque({
             <span className="rotulo">{t.comum.rotulos.valorTotal}</span>
             <span>{textoDoValorTotal(idioma, edital)}</span>
           </div>
-          <div className="coluna__linha">
+          <div className={edital.faixaApoio ? 'coluna__linha' : 'coluna__linha coluna__linha--longa'}>
             <span className="rotulo">{t.comum.rotulos.apoio}</span>
             <span>{textoDoApoio(idioma, edital)}</span>
           </div>

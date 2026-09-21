@@ -26,8 +26,9 @@ export function Campo({ idioma, id, rotulo, ajuda, erro, opcional, children }: E
         </p>
       ) : null}
       {children}
+      {/* Sem role=alert: aria-invalid e aria-describedby ja ligam o erro ao campo; o resumo do formulario e que anuncia. */}
       {erro ? (
-        <p className="campo__erro" id={`${id}-erro`} role="alert">
+        <p className="campo__erro" id={`${id}-erro`}>
           {erro}
         </p>
       ) : null}

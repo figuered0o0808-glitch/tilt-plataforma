@@ -10,8 +10,9 @@ import { Organizacao } from '@/components/Organizacao';
 import { IDIOMAS, ehIdioma } from '@/i18n/idiomas';
 import { textos } from '@/i18n/strings';
 import { conteudo, editalPorSlug } from '@/lib/data';
-import { arquivoPublico, data, moeda } from '@/lib/format';
+import { arquivoPublico, data } from '@/lib/format';
 import { textoDoApoio, textoDoValorTotal } from '@/lib/apoio';
+import { alternativas } from '@/lib/seo';
 
 import { enderecoDaChamada } from '../_endereco';
 import { prazoDaChamada } from '../_prazo';
@@ -34,15 +35,19 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { idioma, slug } = await params;
   if (!ehIdioma(idioma)) return {};
+  const edital = editalPorSlug(idioma, slug);
+  /* O resumo da chamada e a description: e o que aparece quando o link circula. */
   return {
-    title: editalPorSlug(idioma, slug)?.titulo ?? textos(idioma).editais.listaTitulo,
+    title: edital?.titulo ?? textos(idioma).editais.listaTitulo,
+    description: edital?.resumo,
+    alternates: alternativas(idioma, `oportunidades/${slug}`),
   };
 }
 
-/** Secao ancorada da pagina da chamada. O recuo evita ficar sob o cabecalho fixo. */
+/** Secao ancorada da pagina da chamada. O recuo sob o cabecalho fixo vem da regra :target global. */
 function Secao({ id, titulo, children }: { id: string; titulo: string; children: ReactNode }) {
   return (
-    <section id={id} style={{ scrollMarginTop: 96 }}>
+    <section id={id}>
       <h2>{titulo}</h2>
       {children}
     </section>
@@ -90,7 +95,7 @@ export default async function PaginaEdital({
         titulo={edital.titulo}
         descricao={edital.resumo}
         acoes={
-          <div className="linha" style={{ gap: 18 }}>
+          <div className="linha" style={{ gap: 'var(--esp-16)' }}>
             {edital.logoOrganizacao ? (
               // eslint-disable-next-line @next/next/no-img-element
               <img
@@ -106,7 +111,7 @@ export default async function PaginaEdital({
 
       <section
         className="secao secao--curta secao--branco"
-        style={{ marginTop: 44, borderTop: '1px solid var(--linha)' }}
+        style={{ marginTop: 'var(--esp-48)', borderTop: '1px solid var(--linha)' }}
       >
         <div className="container">
           <h2 className="sr-only">{t.editais.numerosTitulo}</h2>
@@ -114,7 +119,7 @@ export default async function PaginaEdital({
             className="definicoes"
             style={{
               gridTemplateColumns: 'repeat(auto-fit, minmax(190px, 1fr))',
-              gap: 24,
+              gap: 'var(--esp-24)',
               margin: 0,
             }}
           >
@@ -212,7 +217,7 @@ export default async function PaginaEdital({
 
               <Secao id="criterios" titulo={t.editais.secoes.criterios}>
                 {comPeso ? null : (
-                  <p className="nota" style={{ marginBottom: 22 }}>
+                  <p className="nota" style={{ marginBottom: 'var(--esp-24)' }}>
                     {t.editais.criteriosOrdem}
                   </p>
                 )}
@@ -226,7 +231,7 @@ export default async function PaginaEdital({
                           : `${indice + 1}${t.editais.posicaoSufixo}`
                       }
                     >
-                      <h3 style={{ margin: '0 0 6px', fontSize: '1.08rem' }}>{criterio.titulo}</h3>
+                      <h3 style={{ margin: '0 0 var(--esp-4)', fontSize: 'var(--titulo-p)' }}>{criterio.titulo}</h3>
                       <p className="texto-pequeno" style={{ margin: 0, maxWidth: '62ch' }}>
                         {criterio.descricao}
                       </p>
@@ -258,7 +263,7 @@ export default async function PaginaEdital({
                   <div className="grade--2">
                     {edital.banca.map((membro) => (
                       <div className="cartao cartao--compacto" key={membro.nome}>
-                        <div className="linha" style={{ gap: 12, flexWrap: 'nowrap' }}>
+                        <div className="linha" style={{ gap: 'var(--esp-12)', flexWrap: 'nowrap' }}>
                           <Avatar nome={membro.nome} cor={corDoTema(membro.nome)} />
                           <div>
                             <p style={{ margin: 0 }}>{membro.nome}</p>
@@ -279,6 +284,8 @@ export default async function PaginaEdital({
                 )}
               </Secao>
 
+              {/* Distribuicao so entra quando ha faixa publicada: tabela vazia nao informa nada. */}
+              {edital.distribuicao.length > 0 ? (
               <Secao id="distribuicao" titulo={t.editais.secoes.distribuicao}>
                 <div className="tabela-rolagem">
                   <table className="tabela">
@@ -303,6 +310,7 @@ export default async function PaginaEdital({
                   </table>
                 </div>
               </Secao>
+              ) : null}
 
               <Compartilhar idioma={idioma} endereco={endereco} />
             </div>

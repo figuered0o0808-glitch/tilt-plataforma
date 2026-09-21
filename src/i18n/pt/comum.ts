@@ -8,21 +8,17 @@ export const comum = {
     editais: 'Oportunidades',
     biblioteca: 'Biblioteca',
     painel: 'Meu painel',
-    abrirMenu: 'Abrir navegação',
-    fecharMenu: 'Fechar navegação',
+    pularParaConteudo: 'Ir para o conteúdo',
   },
   acoes: {
     candidatarProjeto: 'Candidatar projeto',
     verEdital: 'Ver chamada',
     verCurso: 'Ver curso',
-    lerMaterial: 'Ler material',
     inscreverse: 'Inscrever-se',
     inscrito: 'Inscrição registrada',
     voltar: 'Voltar',
     avancar: 'Avançar',
-    revisar: 'Revisar',
     enviar: 'Enviar',
-    baixar: 'Baixar',
   },
   status: {
     aberta: 'Inscrições abertas',
@@ -60,6 +56,11 @@ export const comum = {
     obrigatorio: 'Campo obrigatório',
     opcional: 'opcional',
     nenhumResultado: 'Nenhum resultado',
+  },
+  naoEncontrado: {
+    titulo: 'Página não encontrada',
+    texto: 'O endereço que você abriu não existe neste site.',
+    acao: 'Voltar ao início',
   },
   rodape: {
     descricao:

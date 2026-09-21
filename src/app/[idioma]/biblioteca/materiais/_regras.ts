@@ -187,23 +187,6 @@ export function siglaOrganizacao(nome: string): string {
     .toUpperCase();
 }
 
-/** "2026-07-02" com o modelo do idioma: "2 de julho de 2026", "July 2, 2026". */
-export function dataLonga(iso: string, modelo: string, meses: readonly string[]): string {
-  const [ano, mes, dia] = iso.split('-');
-  if (!ano || !mes || !dia) return iso;
-  return modelo
-    .replace('{dia}', String(Number(dia)))
-    .replace('{mes}', meses[Number(mes) - 1] ?? mes)
-    .replace('{ano}', ano);
-}
-
-/** "2026-07-02" com o modelo curto do idioma: "02/07/2026", "07/02/2026". */
-export function dataCurta(iso: string, modelo: string): string {
-  const [ano, mes, dia] = iso.split('-');
-  if (!ano || !mes || !dia) return iso;
-  return modelo.replace('{dia}', dia).replace('{mes}', mes).replace('{ano}', ano);
-}
-
 /**
  * O que ler depois: primeiro o resto da mesma organizacao, depois o mesmo tema
  * e, se nada disso existir, a mesma trilha. Uma publicacao nunca aparece duas

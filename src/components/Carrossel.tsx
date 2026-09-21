@@ -23,6 +23,7 @@ export function Carrossel({
   anterior,
   proximo,
   posicao,
+  papel,
   automatico,
   pausar,
   continuar,
@@ -36,6 +37,8 @@ export function Carrossel({
   proximo: string;
   /** Modelo do contador: "{n} de {total}". */
   posicao: string;
+  /** Nome do papel para o leitor de tela ("carrossel"), no idioma da pagina. */
+  papel: string;
   /** Intervalo em milissegundos para passar sozinho; ausente, nao passa. */
   automatico?: number;
   pausar?: string;
@@ -149,13 +152,13 @@ export function Carrossel({
             <span className="carrossel__contador" aria-live={andando ? 'off' : 'polite'}>
               {contador}
             </span>
+            {/* O rotulo diz a acao que o botao faz agora; sem aria-pressed, que leria "Continuar, pressionado". */}
             {automatico ? (
               <button
                 type="button"
                 className="carrossel__seta"
                 onClick={() => setPausado((valor) => !valor)}
                 aria-label={pausado ? continuar : pausar}
-                aria-pressed={pausado}
               >
                 {pausado ? (
                   <svg width="10" height="10" viewBox="0 0 10 10" aria-hidden="true">
@@ -193,7 +196,7 @@ export function Carrossel({
         className="carrossel"
         ref={trilho}
         role="group"
-        aria-roledescription="carrossel"
+        aria-roledescription={papel}
         aria-label={rotulo}
       >
         {itens.map((item, indice) => (

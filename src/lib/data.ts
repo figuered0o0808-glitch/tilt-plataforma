@@ -4,50 +4,97 @@
  * em outro, e cada idioma mostra apenas o que existe nele.
  * Nenhuma chamada de rede: o site inteiro e estatico.
  */
-import type { Article, Call, Course, PanelData, Trilha } from '@/lib/types';
+import 'server-only';
+
+import type { Article, Call, Course } from '@/lib/types';
 import type { Idioma } from '@/i18n/idiomas';
 
 import ptCalls from '@data/pt/calls.json';
 import ptCourses from '@data/pt/courses.json';
 import ptArticles from '@data/pt/articles.json';
-import ptPanel from '@data/pt/panel-data.json';
 
 import enCalls from '@data/en/calls.json';
 import enCourses from '@data/en/courses.json';
 import enArticles from '@data/en/articles.json';
-import enPanel from '@data/en/panel-data.json';
 
 import esCalls from '@data/es/calls.json';
 import esCourses from '@data/es/courses.json';
 import esArticles from '@data/es/articles.json';
-import esPanel from '@data/es/panel-data.json';
 
 interface Conteudo {
   editais: Call[];
   cursos: Course[];
   materiais: Article[];
-  painel: PanelData;
+}
+
+/*
+ * O JSON entra convertido as cegas, e o TypeScript nao confere arquivo de
+ * dados. O que se confere aqui e o pouco que, errado, some da tela sem erro
+ * nenhum: as chaves que toda pagina le e os valores fechados (status, tipo,
+ * trilha, publico). Um deslize derruba o build, que e onde ele deve cair, e
+ * nao a coluna rosa da home num sabado.
+ *
+ * Este modulo e de servidor: nenhum componente de cliente deve importa-lo,
+ * senao os tres idiomas de conteudo entram no bundle de toda pagina.
+ */
+const STATUS_CHAMADA = ['aberta', 'em-avaliacao', 'encerrada'];
+const TIPOS_CHAMADA = ['tema-amplo', 'macrotema', 'pauta-especifica', 'edital-organizacao'];
+const PUBLICOS = ['criadores', 'organizacoes', 'ambos'];
+const TRILHAS = ['criadores', 'organizacoes'];
+const STATUS_CURSO = ['aberto', 'em-breve'];
+
+function exigir(condicao: boolean, onde: string, mensagem: string): void {
+  if (!condicao) throw new Error(`conteudo invalido em ${onde}: ${mensagem}`);
+}
+
+function conferirLista(
+  idioma: Idioma,
+  nome: string,
+  itens: unknown,
+  chaves: string[],
+  fechados: Record<string, string[]>,
+): void {
+  exigir(Array.isArray(itens), `${idioma}/${nome}`, 'esperava uma lista');
+  for (const item of itens as Record<string, unknown>[]) {
+    const onde = `${idioma}/${nome}/${String(item.slug ?? '?')}`;
+    for (const chave of chaves) exigir(chave in item, onde, `falta a chave ${chave}`);
+    for (const [chave, valores] of Object.entries(fechados)) {
+      const valor = item[chave];
+      if (valor === undefined) continue;
+      exigir(valores.includes(String(valor)), onde, `${chave} = ${String(valor)} nao e um de ${valores.join(', ')}`);
+    }
+  }
+}
+
+function conferir(idioma: Idioma, bruto: { calls: unknown; courses: unknown; articles: unknown }): Conteudo {
+  conferirLista(
+    idioma,
+    'calls',
+    bruto.calls,
+    ['slug', 'titulo', 'status', 'tipo', 'resumo', 'valorTotal', 'faixaApoio', 'inscricoesAte', 'cronograma', 'distribuicao'],
+    { status: STATUS_CHAMADA, tipo: TIPOS_CHAMADA, publico: PUBLICOS },
+  );
+  conferirLista(idioma, 'courses', bruto.courses, ['slug', 'titulo', 'status', 'resumo', 'modulos', 'proximaTurma'], {
+    status: STATUS_CURSO,
+  });
+  conferirLista(
+    idioma,
+    'articles',
+    bruto.articles,
+    ['slug', 'titulo', 'trilha', 'autoria', 'organizacao', 'tema', 'formato', 'atualizadoEm', 'secoes'],
+    { trilha: TRILHAS },
+  );
+  return {
+    editais: bruto.calls as Call[],
+    cursos: bruto.courses as Course[],
+    materiais: bruto.articles as Article[],
+  };
 }
 
 const CONTEUDO: Record<Idioma, Conteudo> = {
-  pt: {
-    editais: ptCalls as unknown as Call[],
-    cursos: ptCourses as unknown as Course[],
-    materiais: ptArticles as unknown as Article[],
-    painel: ptPanel as unknown as PanelData,
-  },
-  en: {
-    editais: enCalls as unknown as Call[],
-    cursos: enCourses as unknown as Course[],
-    materiais: enArticles as unknown as Article[],
-    painel: enPanel as unknown as PanelData,
-  },
-  es: {
-    editais: esCalls as unknown as Call[],
-    cursos: esCourses as unknown as Course[],
-    materiais: esArticles as unknown as Article[],
-    painel: esPanel as unknown as PanelData,
-  },
+  pt: conferir('pt', { calls: ptCalls, courses: ptCourses, articles: ptArticles }),
+  en: conferir('en', { calls: enCalls, courses: enCourses, articles: enArticles }),
+  es: conferir('es', { calls: esCalls, courses: esCourses, articles: esArticles }),
 };
 
 export function conteudo(idioma: Idioma): Conteudo {
@@ -66,6 +113,21 @@ export function materialPorSlug(idioma: Idioma, slug: string): Article | undefin
   return conteudo(idioma).materiais.find((m) => m.slug === slug);
 }
 
-export function materiaisDaTrilha(idioma: Idioma, trilha: Trilha): Article[] {
-  return conteudo(idioma).materiais.filter((m) => m.trilha === trilha);
+/**
+ * Condicao unica que abre o cadastro e, com ele, o painel: haver chamada
+ * aceitando inscricao ou curso com turma aberta. Sem nenhum dos dois, um
+ * formulario que so guarda o que a pessoa digitou seria pior do que nao ter
+ * formulario.
+ */
+export function cadastroAberto(idioma: Idioma): boolean {
+  const { editais, cursos } = conteudo(idioma);
+  return (
+    editais.some((edital) => edital.status === 'aberta') ||
+    cursos.some((curso) => curso.status === 'aberto')
+  );
+}
+
+/** As chamadas que aceitam inscricao agora. */
+export function chamadasAbertas(idioma: Idioma): Call[] {
+  return conteudo(idioma).editais.filter((edital) => edital.status === 'aberta');
 }

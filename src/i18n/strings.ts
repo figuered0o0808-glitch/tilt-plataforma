@@ -41,6 +41,26 @@ const pt = {
   cadastro: ptCadastro,
 };
 
+const en = {
+  comum: enComum,
+  home: enHome,
+  editais: enEditais,
+  aprendizado: enAprendizado,
+  paineis: enPaineis,
+  fluxos: enFluxos,
+  cadastro: enCadastro,
+};
+
+const es = {
+  comum: esComum,
+  home: esHome,
+  editais: esEditais,
+  aprendizado: esAprendizado,
+  paineis: esPaineis,
+  fluxos: esFluxos,
+  cadastro: esCadastro,
+};
+
 /**
  * O portugues e a referencia de estrutura. Widen troca os literais que o
  * `as const` cria por string, para que uma traducao com outro texto continue
@@ -54,26 +74,23 @@ type Widen<T> = T extends string
 
 export type Strings = Widen<typeof pt>;
 
+/**
+ * Espelho de uma traducao sobre a referencia: toda chave de T que nao existe
+ * em Ref vira `never`, em qualquer nivel. Assim o `satisfies` acusa a chave a
+ * mais na propria linha; a chave a menos ja e acusada por Strings.
+ */
+type Espelho<T, Ref> = T extends string
+  ? string
+  : T extends readonly (infer U)[]
+    ? Ref extends readonly (infer V)[]
+      ? readonly Espelho<U, V>[]
+      : never
+    : { readonly [K in keyof T]: K extends keyof Ref ? Espelho<T[K], Ref[K]> : never };
+
 const TRADUCOES: Record<Idioma, Strings> = {
   pt,
-  en: {
-    comum: enComum,
-    home: enHome,
-    editais: enEditais,
-    aprendizado: enAprendizado,
-    paineis: enPaineis,
-    fluxos: enFluxos,
-    cadastro: enCadastro,
-  } as unknown as Strings,
-  es: {
-    comum: esComum,
-    home: esHome,
-    editais: esEditais,
-    aprendizado: esAprendizado,
-    paineis: esPaineis,
-    fluxos: esFluxos,
-    cadastro: esCadastro,
-  } as unknown as Strings,
+  en: en satisfies Strings satisfies Espelho<typeof en, typeof pt>,
+  es: es satisfies Strings satisfies Espelho<typeof es, typeof pt>,
 };
 
 export function textos(idioma: Idioma): Strings {

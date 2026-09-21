@@ -29,9 +29,9 @@ export function Resultado({
   const t = textos(idioma);
 
   return (
-    <section id="resultado" className="secao secao--preto" style={{ scrollMarginTop: 84 }}>
+    <section id="resultado" className="secao secao--preto">
       <div className="container">
-        <div className="linha linha--fim" style={{ alignItems: 'flex-end', gap: 24 }}>
+        <div className="linha linha--fim" style={{ alignItems: 'flex-end', gap: 'var(--esp-24)' }}>
           <h2 style={{ margin: 0 }}>{t.editais.secoes.resultado}</h2>
           <p className="texto-pequeno" style={{ margin: 0 }}>
             {`${t.editais.publicadoEm} ${data(resultado.publicadoEm, idioma)}`}

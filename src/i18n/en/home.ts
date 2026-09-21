@@ -2,8 +2,8 @@
  * Strings da home, em ingles. Duas areas apenas: oportunidades e biblioteca.
  *
  * A home tem dois estados. Antes da primeira publicacao, valem as chaves de
- * "inicio", "areas" e "estado". Quando houver chamada, curso ou material
- * publicado, voltam a valer as chaves de numeros, chamadas e biblioteca.
+ * "inicio". Quando houver chamada, curso ou material publicado, voltam a
+ * valer as chaves de entrada, colunas, numeros, chamadas e biblioteca.
  */
 export const home = {
   frase: 'A creator lab for the public interest.',
@@ -14,38 +14,17 @@ export const home = {
   entrarPrincipal: 'Create account',
   entrarPainel: 'Go to the dashboard',
   entrarSecundario: 'See open calls',
-  entrarNota: 'The account is free and requires no minimum follower count.',
 
   /* Caminho de entrada enquanto nada foi publicado. */
   inicioAcao: 'See opportunities',
   inicioAcaoAreas: 'See the library',
   inicioNota: 'No open calls.',
 
-  areasTitulo: 'Two areas',
-  areas: [
-    {
-      titulo: 'Opportunities',
-      href: '/oportunidades',
-      desenho: 'edital',
-      texto:
-        'Funding calls. Each one sets out criteria, panel, schedule and amounts.',
-      acao: 'Open opportunities',
-    },
-    {
-      titulo: 'Library',
-      href: '/biblioteca',
-      desenho: 'material',
-      texto:
-        'Free courses and technical material under an open license, in two tracks: creators and organizations.',
-      acao: 'Open the library',
-    },
-  ],
-
   /* The new home: the swarm is the door, the columns are the house. */
   ponte: 'Open now · Sign up · Library',
   coluna: {
     apoio: 'Support per project',
-    proponente: 'Proposed by',
+    proponente: 'Run by',
     vagas: 'Places',
     vagasFaixa: '{min} to {max} projects supported.',
     vagasSelecionados: '{n} selected, {r} places open.',
@@ -57,13 +36,14 @@ export const home = {
     cadastroTitulo: 'Do you create content?',
     cadastroTexto: 'Free, with no minimum follower count.',
     cadastroCampos: ['Name', 'Email', 'Phone', 'Country', 'Where you publish'],
-    cadastroAcao: 'Join the network',
+    cadastroAcao: 'Create account',
     semMaterial: 'No material published yet.',
     anterior: 'Previous',
     proximo: 'Next',
     posicao: '{n} of {total}',
     pausar: 'Pause',
     continuar: 'Resume',
+    carrossel: 'carousel',
   },
 
   numeros: {
@@ -74,24 +54,9 @@ export const home = {
   },
 
   chamadasTitulo: 'Open now',
-  chamadasTituloSemAbertas: 'Program calls',
-
-  chamadasAcao: 'See all calls',
 
   recursosTitulo: 'Library',
-  recursosTexto:
-    'Two tracks: one for creators and one for organizations working on these topics. Reading is open; enrolling in a course requires an account.',
   recursosAcao: 'Open the library',
-  cursoOlho: 'Inaugural course',
-  cursoDuracao: 'Duration',
-  cursoTurma: 'Next class',
-  cursoModuloUm: 'module',
   cursoModulos: 'modules',
-  materiaisOlho: 'Reference materials',
-  materialContagemUm: 'material published',
-  materiaisContagem: 'materials published',
-  materiaisTexto:
-    'Guides and short technical notes. For creators, disclosure of support and checking before publishing. For organizations, briefing that respects autonomy and measuring results.',
-  materiaisLicenca: 'License',
   materiaisAcao: 'See materials',
 } as const;

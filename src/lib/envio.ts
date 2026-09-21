@@ -34,7 +34,7 @@ const DESTINO = (process.env.NEXT_PUBLIC_TILT_API || '').replace(/\/+$/, '');
 const LIMITE_MS = 8000;
 
 export type ResultadoDoEnvio =
-  | { enviado: true }
+  | { enviado: true; resposta?: unknown }
   | { enviado: false; motivo: 'sem-destino' | 'rede' | 'recusado'; detalhe?: string };
 
 /** Verdadeiro quando existe destino configurado. */
@@ -67,7 +67,9 @@ async function enviar(caminho: string, corpo: unknown): Promise<ResultadoDoEnvio
     if (!resposta.ok) {
       return { enviado: false, motivo: 'recusado', detalhe: String(resposta.status) };
     }
-    return { enviado: true };
+    /* A resposta e opcional: a API pode responder vazio, e o protocolo vem nela quando vem. */
+    const devolvido: unknown = await resposta.json().catch(() => undefined);
+    return { enviado: true, resposta: devolvido };
   } catch (erro) {
     /* Aborto por tempo cai aqui junto com falha de rede, e o efeito e o mesmo. */
     return { enviado: false, motivo: 'rede', detalhe: erro instanceof Error ? erro.name : undefined };
@@ -129,4 +131,11 @@ export function enviarCandidatura(dados: {
   valorSolicitado: number;
 }): Promise<ResultadoDoEnvio> {
   return enviar('/tilt/publico/candidatura', dados);
+}
+
+/** O protocolo que a API devolveu, se devolveu algo que se pareca com um. */
+export function protocoloDaResposta(resultado: ResultadoDoEnvio): string | undefined {
+  if (!resultado.enviado || !resultado.resposta || typeof resultado.resposta !== 'object') return undefined;
+  const valor = (resultado.resposta as { protocolo?: unknown }).protocolo;
+  return typeof valor === 'string' && valor.trim() ? valor.trim() : undefined;
 }

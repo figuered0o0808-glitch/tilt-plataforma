@@ -47,9 +47,6 @@ export function Inscricao({ idioma, slug }: { idioma: Idioma; slug: string }) {
     <div className="pilha">
       <div className="pilha--p">
         <Selo idioma={idioma} status="inscrito" rotulo={t.comum.acoes.inscrito} />
-        <p className="texto-pequeno texto-secundario" style={{ margin: 0 }}>
-          {t.aprendizado.cursos.inscricaoConfirmada}
-        </p>
       </div>
       <Botao href={rota(idioma, 'painel')} variante="secundario" largo>
         {t.aprendizado.cursos.irAoPainel}

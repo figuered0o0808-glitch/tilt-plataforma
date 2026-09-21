@@ -9,7 +9,6 @@ import { SeletorIdioma } from '@/components/SeletorIdioma';
 import { PROGRAM_NAME } from '@/config/program';
 import type { Idioma } from '@/i18n/idiomas';
 import { textos } from '@/i18n/strings';
-import { conteudo } from '@/lib/data';
 import { rota } from '@/lib/rotas';
 import { useApp } from '@/state/AppState';
 
@@ -37,9 +36,12 @@ function marcaDaHome(): Element | null {
 
 export function SiteHeader({
   idioma,
+  temConteudo,
   marcaNoCabecalho,
 }: {
   idioma: Idioma;
+  /** Ha algo publicado neste idioma; sem nada, o botao de cadastro nao aparece. */
+  temConteudo: boolean;
   /**
    * Com `false`, o logotipo do cabecalho so aparece depois que a pessoa rola
    * alem do hero: na home a marca se forma no meio da tela, e duas seriam uma
@@ -87,9 +89,6 @@ export function SiteHeader({
     observador.observe(hero);
     return () => observador.disconnect();
   }, [marcaFixa, caminho]);
-
-  const { editais, cursos, materiais } = conteudo(idioma);
-  const temConteudo = editais.length > 0 || cursos.length > 0 || materiais.length > 0;
 
   const abas = [
     { href: rota(idioma, 'oportunidades'), rotulo: t.comum.navegacao.editais },

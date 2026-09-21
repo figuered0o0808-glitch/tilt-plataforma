@@ -3,12 +3,11 @@ import Link from 'next/link';
 import type { CorChip } from '@/components/Chip';
 import type { Idioma } from '@/i18n/idiomas';
 import { textos } from '@/i18n/strings';
-import { arquivoPublico } from '@/lib/format';
+import { arquivoPublico, dataCurta } from '@/lib/format';
 import { rota } from '@/lib/rotas';
 import type { Article, Trilha } from '@/lib/types';
 
 import { Capa } from './_Capa';
-import { dataCurta } from './_regras';
 
 /** Nome da trilha em texto de interface. */
 export function rotuloTrilha(idioma: Idioma, trilha: Trilha): string {
@@ -44,7 +43,6 @@ export function marcaDaTrilha(trilha: Trilha): string {
  * de cada texto.
  */
 export function Livro({ idioma, material }: { idioma: Idioma; material: Article }) {
-  const r = textos(idioma).aprendizado.materiais;
   const id = `livro-${material.slug}`;
 
   return (
@@ -77,7 +75,7 @@ export function Livro({ idioma, material }: { idioma: Idioma; material: Article 
       </span>
 
       <span className="livro__meta" id={`${id}-meta`}>
-        {material.formato} · {dataCurta(material.atualizadoEm, r.dataCurtaModelo)}
+        {material.formato} · {dataCurta(material.atualizadoEm, idioma)}
       </span>
       <span className="livro__trilha" id={`${id}-trilha`}>
         <span

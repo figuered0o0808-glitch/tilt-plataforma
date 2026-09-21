@@ -9,7 +9,6 @@ export const editais = {
   listaTitulo: 'Oportunidades',
 
   resumoTitulo: 'Situación del ciclo',
-  resumoAbertas: 'Convocatorias con inscripciones abiertas',
   resumoRecursos: 'Recursos en las convocatorias abiertas',
   resumoApoiados: 'Proyectos apoyados en convocatorias cerradas',
 
@@ -28,7 +27,7 @@ export const editais = {
 
   filtrosTitulo: 'Filtros',
   filtroStatus: 'Situación',
-  filtroTipo: 'Tipo de convocatoria',
+  filtroTipo: 'Tipo',
   filtroPublico: 'Público',
   todosPublicos: 'Todos los públicos',
   todasSituacoes: 'Todas',
@@ -65,7 +64,6 @@ export const editais = {
   criteriosOrdem: 'Los criterios están listados en orden de peso.',
   pesoRotulo: 'Peso',
   somaPesos: 'Suma de los pesos',
-  perguntaRotulo: 'Pregunta',
   bancaSemComposicao:
     'El jurado reúne integrantes de INDICA, un representante del financiador y creadores invitados. La composición se publica antes del cierre de las inscripciones.',
   distribuicaoColunas: {
@@ -81,7 +79,7 @@ export const editais = {
     apoiado: 'Apoyado',
     projeto: 'Proyecto',
     formato: 'Formato',
-    uf: 'UF',
+    uf: 'Estado',
   },
   inscricoesRecebidas: 'Inscripciones recibidas',
   projetosApoiados: 'Proyectos apoyados',
@@ -98,4 +96,4 @@ export const editais = {
   encerradaAviso: 'Las inscripciones están cerradas.',
   emAvaliacaoAviso:
     'Las inscripciones están cerradas y las propuestas están en evaluación por el jurado.',
-};
+} as const;

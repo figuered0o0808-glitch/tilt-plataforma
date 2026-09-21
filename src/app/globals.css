@@ -30,7 +30,7 @@
   --rosa: #ffd9e9;        /* tom secundario, usado na landing page da marca */
 
   --tinta-media: rgba(0, 0, 0, 0.74);
-  --tinta-suave: rgba(0, 0, 0, 0.54);
+  --tinta-suave: rgba(0, 0, 0, 0.6);     /* 5,2:1 sobre a menta, a superficie mais clara com texto */
   --linha: rgba(0, 0, 0, 0.18);
   --destaque: #000000;
 
@@ -181,10 +181,8 @@ img, svg { max-width: 100%; }
 .secao--curta { padding: var(--secao-y-curta) 0; }
 .secao--alta { padding: var(--secao-y-alta) 0; }
 .secao--fundo { background: var(--areia); }
-.secao--menta { background: var(--menta); }
-.secao--azul { background: var(--azul); }
-.secao--amarelo { background: var(--amarelo); }
-.secao--rosa { background: var(--rosa); }
+
+
 .secao--branco { background: var(--branco); }
 .secao--preto { background: var(--preto); color: var(--branco); --foco-cor: var(--branco); }
 .secao--preto h1,
@@ -222,7 +220,7 @@ img, svg { max-width: 100%; }
   background-image: radial-gradient(circle, currentColor 1.2px, transparent 1.2px);
   background-size: 22px 22px;
 }
-.malha--densa { background-size: 14px 14px; }
+
 
 /* Regua de secao: numero e titulo alinhados por uma linha preta. */
 .secao__marca {
@@ -233,21 +231,9 @@ img, svg { max-width: 100%; }
   border-bottom: 1px solid var(--preto);
   margin-bottom: var(--esp-32);
 }
-.secao__indice {
-  font-family: var(--mono);
-  font-size: var(--texto-xp);
-  line-height: var(--entrelinha-rotulo);
-  letter-spacing: 0.14em;
-  color: var(--tinta-suave);
-  flex: none;
-}
+
 .secao__marca h2 { margin: 0; }
 
-/* Sistema visual do manual: faixas de cor em larguras diferentes. */
-.faixas { display: flex; height: 10px; width: 100%; }
-.faixas > span { display: block; height: 100%; }
-.faixas--fina { height: 6px; }
-.faixas--alta { height: 20px; }
 
 /* Linha de conteudo do manual: rotulo curto a esquerda, texto a direita. */
 .registro {
@@ -375,12 +361,7 @@ img, svg { max-width: 100%; }
   gap: var(--esp-12);
 }
 .cartao--compacto { padding: var(--esp-16); gap: var(--esp-8); }
-.cartao--liso { background: transparent; border-color: var(--linha); }
-.cartao--menta { background: var(--menta); }
-.cartao--azul { background: var(--azul); }
-.cartao--amarelo { background: var(--amarelo); }
-.cartao--rosa { background: var(--rosa); }
-.cartao--areia { background: var(--areia); }
+
 
 /* Cor entra como marca curta no alto do cartao, nao como fundo. */
 .cartao--marcado { position: relative; overflow: hidden; padding-top: var(--esp-32); }
@@ -396,9 +377,8 @@ img, svg { max-width: 100%; }
 
 a.cartao { color: inherit; text-decoration: none; }
 a.cartao:hover { background: var(--areia); }
-a.cartao--menta:hover { background: var(--menta); }
-a.cartao--azul:hover { background: var(--azul); }
-a.cartao--amarelo:hover { background: var(--amarelo); }
+
+
 a.cartao:hover .cartao__titulo { text-decoration: underline; text-underline-offset: 4px; }
 
 .cartao__titulo { margin: 0; font-size: var(--titulo-m); line-height: var(--entrelinha-m); }
@@ -470,19 +450,10 @@ a.cartao:hover .cartao__titulo { text-decoration: underline; text-underline-offs
 .selo--ativo { background: var(--preto); color: var(--branco); }
 .selo--neutro { background: var(--branco); }
 .selo--apagado { border-color: var(--linha); color: var(--tinta-suave); }
-.selo--sem-ponto::before { display: none; }
+
 
 /* ---------- Faixa de prototipo, cabecalho e rodape ---------- */
 
-.faixa-prototipo {
-  background: var(--preto);
-  color: var(--branco);
-  font-size: var(--texto-xp);
-  letter-spacing: 0.13em;
-  text-transform: uppercase;
-  text-align: center;
-  padding: var(--esp-8) var(--margem-lateral);
-}
 
 .cabecalho {
   position: sticky;
@@ -540,6 +511,7 @@ a.cartao:hover .cartao__titulo { text-decoration: underline; text-underline-offs
   align-items: center;
   justify-content: center;
   min-height: 34px;
+  border-radius: var(--raio-pilula);
   min-width: 34px;
   font-family: var(--mono);
   font-size: var(--texto-xp);
@@ -547,7 +519,6 @@ a.cartao:hover .cartao__titulo { text-decoration: underline; text-underline-offs
   color: var(--tinta-suave);
   text-decoration: none;
   padding: 0 var(--esp-4);
-  border-radius: 2px;
 }
 .seletor-idioma__opcao:hover { color: var(--preto); text-decoration: none; }
 .seletor-idioma__opcao[aria-current='true'] { color: var(--branco); background: var(--preto); }
@@ -575,17 +546,7 @@ a.cartao:hover .cartao__titulo { text-decoration: underline; text-underline-offs
 .rodape__descricao { max-width: 40ch; }
 .rodape__lista { list-style: none; padding: 0; margin: 0; }
 .rodape__lista li { margin-bottom: var(--esp-8); }
-.rodape__aviso {
-  margin-top: var(--esp-32);
-  padding-top: var(--esp-16);
-  border-top: 1px solid var(--linha);
-  font-family: var(--mono);
-  font-size: var(--texto-xp);
-  line-height: var(--entrelinha-rotulo);
-  letter-spacing: 0.09em;
-  text-transform: uppercase;
-  color: var(--tinta-suave);
-}
+
 
 /* ---------- Blocos de destaque ---------- */
 
@@ -606,11 +567,6 @@ a.cartao:hover .cartao__titulo { text-decoration: underline; text-underline-offs
 
 .nota { font-size: var(--texto-m); line-height: var(--entrelinha-corpo); color: var(--tinta-media); border-left: 2px solid var(--preto); padding-left: var(--esp-12); }
 
-.aviso-papel {
-  display: flex; gap: var(--esp-12); align-items: center; justify-content: space-between;
-  flex-wrap: wrap; padding: var(--esp-16) var(--esp-24); border-radius: var(--raio-pilula);
-  background: var(--amarelo); font-size: var(--texto-g); color: var(--preto);
-}
 
 /* ---------- Tabelas ---------- */
 
@@ -712,7 +668,7 @@ input::placeholder, textarea::placeholder {
   letter-spacing: 0.12em;
   text-transform: uppercase;
   font-style: normal;
-  color: rgba(0, 0, 0, 0.45);
+  color: var(--tinta-suave);
   opacity: 1;
 }
 input:focus, select:focus, textarea:focus { outline: 2px solid var(--foco-cor); outline-offset: 2px; }
@@ -724,62 +680,52 @@ select {
   padding-right: var(--esp-48);
 }
 
-.upload-mock {
-  border: 1px dashed var(--preto);
-  border-radius: var(--raio-g);
-  padding: var(--esp-24);
-  text-align: center;
-  color: var(--tinta-suave);
-  background: var(--branco);
-}
-
-.grupo-radio { display: flex; flex-direction: column; gap: var(--esp-8); }
-.opcao-radio {
-  display: flex; gap: var(--esp-12); align-items: flex-start;
-  padding: var(--esp-12) var(--esp-16);
-  border: 1px solid var(--preto);
-  border-radius: 2px;
-  background: var(--branco);
-  cursor: pointer;
-  font-size: var(--texto-g);
-}
-.opcao-radio:hover { background: var(--areia); }
-.opcao-radio input { margin-top: 5px; accent-color: var(--preto); }
-.opcao-radio--marcada { background: var(--menta); }
-.opcao-radio:focus-within { outline: 2px solid var(--foco-cor); outline-offset: 3px; }
-
-.caixa-selecao { display: inline-flex; gap: var(--esp-8); align-items: center; font-size: var(--texto-g); cursor: pointer; }
-.caixa-selecao input { accent-color: var(--preto); }
-.caixa-selecao:focus-within { outline: 2px solid var(--foco-cor); outline-offset: 3px; }
 
 /* ---------- Publicacoes ---------- */
 
-.capa {
+/* Capa de publicacao, em qualquer tamanho: a imagem sangra ate o corte; sem
+   imagem, a malha de pontos da marca sobre o tom da trilha com a marca de
+   quem publica. Vale na home, na estante e na pagina do material. */
+.bib-capa {
   display: block;
   width: 100%;
   height: 100%;
+  border: 0;
   object-fit: cover;
   object-position: center top;
 }
-.capa--gerada {
+.bib-capa-marca {
   position: relative;
   display: flex;
-  align-items: flex-end;
-  padding: var(--esp-12);
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  padding: var(--esp-16);
   overflow: hidden;
 }
-.capa__malha {
+.bib-capa-marca__malha {
   position: absolute;
   inset: 0;
-  color: rgba(0, 0, 0, 0.22);
+  color: rgba(0, 0, 0, 0.24);
   background-image: radial-gradient(circle, currentColor 1.2px, transparent 1.2px);
   background-size: 16px 16px;
 }
-.capa__titulo {
+.bib-capa-marca__logo {
   position: relative;
-  font-family: var(--serif);
-  font-size: var(--texto-m);
-  line-height: var(--entrelinha-m);
+  display: block;
+  width: auto;
+  max-width: 76%;
+  max-height: 40%;
+}
+.bib-capa-marca__sigla {
+  position: relative;
+  font-family: var(--mono);
+  font-size: var(--texto-p);
+  line-height: 1.35;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  text-align: center;
   color: var(--preto);
 }
 
@@ -793,7 +739,7 @@ select {
   line-height: 1;
   padding: var(--esp-8) var(--esp-12);
   border: 1px solid var(--preto);
-  border-radius: 2px;
+  border-radius: var(--raio-pilula);
   background: var(--branco);
   color: var(--preto);
   cursor: pointer;
@@ -804,15 +750,7 @@ select {
 .nicho:focus-within { outline: 2px solid var(--foco-cor); outline-offset: 3px; }
 
 /* Linha de rede no cadastro: plataforma, perfil e seguidores lado a lado. */
-.rede-linha {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(0, 1.3fr) minmax(0, 0.9fr);
-  gap: var(--esp-12);
-  align-items: start;
-  padding-bottom: var(--esp-12);
-  border-bottom: 1px solid var(--linha);
-}
-.rede-linha__remover { grid-column: 1 / -1; justify-self: start; }
+
 
 /* ---------- Passos ---------- */
 
@@ -839,20 +777,48 @@ select {
 
 /* ---------- Abas ---------- */
 
-.abas { display: flex; gap: var(--esp-8); margin-bottom: var(--esp-32); flex-wrap: wrap; }
 .aba {
   font-family: var(--mono);
   font-size: var(--texto-xp); letter-spacing: 0.13em; text-transform: uppercase;
   line-height: var(--entrelinha-rotulo);
   padding: var(--esp-12) var(--esp-16);
   border: 1px solid var(--preto);
-  border-radius: 2px;
+  border-radius: var(--raio-pilula);
   background: transparent;
   color: var(--preto);
   cursor: pointer;
 }
 .aba:hover { background: var(--branco); }
-.aba[aria-selected='true'] { background: var(--preto); color: var(--branco); }
+.aba[aria-selected='true'],
+.aba[aria-pressed='true'] { background: var(--preto); border-color: var(--preto); color: var(--branco); }
+.aba[aria-pressed='true']:hover { background: var(--preto); }
+
+/* Filtros da lista: a mesma densidade do controle da Biblioteca. Tres linhas
+   cabem numa faixa so, e a primeira chamada entra na tela sem rolar. */
+.filtros {
+  background: var(--branco);
+  border: 1px solid var(--preto);
+  border-radius: 2px;
+  padding: var(--esp-8) var(--esp-16);
+}
+.filtros__linha {
+  display: grid;
+  grid-template-columns: 108px minmax(0, 1fr);
+  gap: var(--esp-16);
+  align-items: center;
+  padding: var(--esp-8) 0;
+}
+.filtros__linha + .filtros__linha { border-top: 1px solid var(--linha); }
+.filtros__rotulo {
+  margin: 0;
+  font-family: var(--mono);
+  font-size: var(--texto-xp);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--tinta-suave);
+}
+.filtros__opcoes { display: flex; flex-wrap: wrap; gap: 6px; }
+.filtros .aba { padding: 7px 11px; line-height: 1; letter-spacing: 0.1em; }
 
 /* ---------- Avatar ---------- */
 
@@ -901,7 +867,7 @@ select {
 /* ---------- Hero ---------- */
 
 .hero { padding: var(--secao-y-alta) 0 var(--secao-y); }
-.hero__grade { display: grid; grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr); gap: var(--esp-48); align-items: center; }
+
 .hero__frase {
   font-size: var(--titulo-cartaz);
   line-height: var(--entrelinha-cartaz);
@@ -978,10 +944,10 @@ select {
 .coluna--solta:not(:last-child) { border-right: 1px solid var(--preto); }
 
 /* Pecas de dentro da coluna, para as tres falarem a mesma lingua. */
-.coluna__cabeca { display: flex; align-items: center; gap: var(--esp-12); }
+.coluna__cabeca { display: flex; align-items: center; gap: var(--esp-12); flex-wrap: wrap; }
 .coluna__titulo {
   margin: 0;
-  font-size: clamp(1.375rem, 1.2rem + 0.5vw, 1.625rem);   /* 22 a 26px */
+  font-size: var(--titulo-m);
   line-height: 1.12;
   letter-spacing: -0.01em;
 }
@@ -994,16 +960,40 @@ select {
   padding-bottom: var(--esp-8);
   border-bottom: 1px solid rgba(0, 0, 0, 0.3);
   font-size: var(--texto-m);
+  flex-wrap: wrap;
 }
-.coluna__linha .rotulo { color: var(--preto); }
+.coluna__linha .rotulo { color: var(--preto); flex: none; }
+/* O valor fica a direita enquanto cabe ao lado do rotulo; numa coluna estreita
+   desce para a linha de baixo inteiro, em vez de quebrar cifra no meio. */
+.coluna__linha > span:not(.rotulo) { flex: 1 1 120px; min-width: 0; text-align: right; }
+/* Valor que e frase (apoio sem faixa) desce sempre, alinhado a esquerda. */
+.coluna__linha--longa > span:not(.rotulo) { flex-basis: 100%; text-align: left; }
 /* O que fecha a coluna (botao, link) desce ate o pe, e as tres alinham.
    Filho direto da coluna, um .btn ocupa a largura inteira sozinho (flex). */
 .coluna__pe { margin-top: auto; }
 
+/* Link para pular o cabecalho: fora da tela ate receber foco pelo teclado. */
+.pular {
+  position: absolute;
+  top: 0;
+  left: -9999px;
+  z-index: 100;
+  padding: var(--esp-12) var(--esp-24);
+  background: var(--preto);
+  color: var(--branco);
+  font-family: var(--mono);
+  font-size: var(--texto-xp);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  text-decoration: none;
+}
+.pular:focus-visible { left: 0; outline: 2px solid var(--branco); outline-offset: -6px; }
+main:focus { outline: none; }
+
 /* Carrossel da coluna: um item por vez, rolo horizontal com encaixe. As setas
    moram na cabeca da coluna, com o contador; o trilho e o que se arrasta. */
 .carrossel__caixa { display: flex; flex-direction: column; gap: var(--esp-16); flex: 1 1 auto; min-width: 0; }
-.carrossel__nav { margin-left: auto; display: flex; align-items: center; gap: var(--esp-8); }
+.carrossel__nav { margin-left: auto; display: flex; align-items: center; gap: var(--esp-8); flex: none; }
 .carrossel__contador {
   font-family: var(--mono);
   font-size: var(--texto-xp);
@@ -1013,6 +1003,7 @@ select {
   font-variant-numeric: tabular-nums;
 }
 .carrossel__seta {
+  flex: none;
   width: 32px;
   height: 32px;
   border: 1px solid var(--preto);
@@ -1028,7 +1019,6 @@ select {
   padding: 0;
 }
 .carrossel__seta:hover { background: var(--preto); color: var(--branco); }
-.carrossel__seta[aria-pressed='true'] { background: var(--preto); color: var(--branco); }
 .carrossel {
   display: flex;
   overflow-x: auto;
@@ -1096,7 +1086,7 @@ select {
   font-size: var(--texto-xp);
   letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: rgba(0, 0, 0, 0.55);
+  color: var(--tinta-suave);
   text-decoration: none;
   background: transparent;
 }
@@ -1114,18 +1104,6 @@ select {
 }
 .pontos__ponto--vazado { background: transparent; border: 1px solid var(--preto); }
 
-/* ---------- Filtros ---------- */
-
-.filtros {
-  display: grid;
-  grid-template-columns: minmax(200px, 1.4fr) repeat(2, minmax(0, 1fr));
-  gap: var(--esp-16);
-  align-items: end;
-  padding: var(--esp-24);
-  border: 1px solid var(--preto);
-  border-radius: 2px;
-  background: var(--branco);
-}
 
 .barra-resultado {
   display: flex; align-items: center; justify-content: space-between; gap: var(--esp-16);
@@ -1138,7 +1116,7 @@ select {
 .lateral { position: sticky; top: calc(var(--cabecalho-altura) + var(--esp-24)); display: flex; flex-direction: column; gap: var(--esp-16); }
 
 .ilustracao { color: var(--preto); display: block; }
-.ilustracao--suave { opacity: 0.9; }
+
 
 /* ---------- Responsivo ---------- */
 
@@ -1146,22 +1124,23 @@ select {
   .grade--4 { grid-template-columns: repeat(2, 1fr); }
   .grade--lateral { grid-template-columns: minmax(0, 1fr); gap: var(--esp-32); }
   .lateral { position: static; }
-  .filtros { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-  .hero__grade { grid-template-columns: minmax(0, 1fr); gap: var(--esp-32); }
   .registro { grid-template-columns: minmax(0, 1fr); gap: var(--esp-8); }
 }
 
 @media (max-width: 780px) {
+  /* Os tres passos cabem em 375px com o respiro menor; o ultimo nao precisa de nenhum. */
+  .passo { padding-right: var(--esp-12); margin-right: var(--esp-12); }
+  .passo:last-child { padding-right: 0; margin-right: 0; }
   .grade--2, .grade--3, .grade--4 { grid-template-columns: minmax(0, 1fr); }
   .definicoes--2 { grid-template-columns: minmax(0, 1fr); }
   .rodape__grade { grid-template-columns: minmax(0, 1fr); gap: var(--esp-24); }
-  .filtros { grid-template-columns: minmax(0, 1fr); }
+  /* No celular o rotulo do filtro fica em cima das pilulas. */
+  .filtros__linha { grid-template-columns: minmax(0, 1fr); gap: var(--esp-8); }
   .passos { overflow-x: auto; flex-wrap: nowrap; }
   .vazio { padding: var(--esp-32) var(--esp-16); }
 }
 
 @media (max-width: 760px) {
-  .capa { height: 200px; }
 
   .hero__corpo { grid-template-columns: minmax(0, 1fr); gap: var(--esp-24); align-items: start; }
   .hero__marca { padding: var(--esp-24) 0 var(--esp-32); }
@@ -1215,8 +1194,18 @@ select {
   .seletor-idioma__opcao { min-height: var(--toque); min-width: var(--toque); }
 }
 
-@media (max-width: 640px) {
-  .rede-linha { grid-template-columns: minmax(0, 1fr); }
+/* Onde o ponteiro e o dedo, todo controle chega aos 44px, sem mudar a fonte. */
+@media (pointer: coarse) {
+  .aba, .nicho, .btn--discreto, .cabecalho__link, .cabecalho__acoes .btn--pequeno {
+    min-height: var(--toque);
+    display: inline-flex;
+    align-items: center;
+  }
+  .seletor-idioma__opcao { min-height: var(--toque); min-width: var(--toque); }
+  /* As pilulas densas (filtros da lista e do acervo) crescem menos, para o
+     controle continuar denso: 35px de altura e mais vao entre elas. */
+  .filtros .aba, .bib-pilula { min-height: 0; padding-top: 12px; padding-bottom: 12px; }
+  .filtros__opcoes, .bib-opcoes { gap: 10px; }
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -1250,10 +1239,7 @@ select {
 
   .cabecalho,
   .rodape,
-  .faixas,
-  .faixa-prototipo,
   .seletor-idioma,
-  .abas,
   .passos,
   .filtros,
   .btn,

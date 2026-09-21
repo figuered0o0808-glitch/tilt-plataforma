@@ -7,6 +7,7 @@ import { CabecalhoPagina } from '@/components/CabecalhoPagina';
 import { EstadoVazio } from '@/components/EstadoVazio';
 import { ehIdioma } from '@/i18n/idiomas';
 import { textos } from '@/i18n/strings';
+import { alternativas } from '@/lib/seo';
 import { conteudo } from '@/lib/data';
 import { rota } from '@/lib/rotas';
 
@@ -22,7 +23,7 @@ export async function generateMetadata({
   const { idioma } = await params;
   if (!ehIdioma(idioma)) return {};
   const r = textos(idioma).aprendizado.materiais;
-  return { title: r.titulo, description: r.descricao };
+  return { title: r.titulo, description: r.descricao, alternates: alternativas(idioma, 'biblioteca/materiais') };
 }
 
 /**

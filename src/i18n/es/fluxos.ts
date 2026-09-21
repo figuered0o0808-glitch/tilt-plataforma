@@ -20,7 +20,7 @@ export const fluxos = {
       pais: 'País',
       regiao: 'Estado o región',
       cidade: 'Ciudad',
-      uf: 'UF',
+      uf: 'Estado',
       email: 'Correo de contacto',
       exemplos: {
         documento: 'Solo números',
@@ -57,7 +57,7 @@ export const fluxos = {
       obrigatorio: 'Campo obligatorio.',
       email: 'Ingresa un correo válido.',
       documento: 'Ingresa un CPF con 11 dígitos o un CNPJ con 14 dígitos.',
-      uf: 'Selecciona la UF.',
+      uf: 'Selecciona el estado.',
       formato: 'Selecciona el formato.',
       valorNumero: 'Ingresa el monto solicitado solo con números.',
       valorFaixa: 'El monto debe quedar dentro del rango de apoyo de la convocatoria:',
@@ -74,7 +74,7 @@ export const fluxos = {
       'Transmisión en vivo',
     ] as readonly string[],
     selecioneFormato: 'Selecciona un formato',
-    selecioneUf: 'UF',
+    selecioneUf: 'Estado',
     ufs: [
       'AC', 'AL', 'AM', 'AP', 'BA', 'CE', 'DF', 'ES', 'GO', 'MA', 'MG', 'MS', 'MT',
       'PA', 'PB', 'PE', 'PI', 'PR', 'RJ', 'RN', 'RO', 'RR', 'RS', 'SC', 'SE', 'SP', 'TO',
@@ -93,4 +93,4 @@ export const fluxos = {
       proximoPasso: 'El resultado se publica en la página de la convocatoria.',
     },
   },
-};
+} as const;

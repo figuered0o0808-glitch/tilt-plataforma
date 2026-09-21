@@ -3,7 +3,7 @@
 /**
  * Cadastro: publico unico, criadores de conteudo.
  *
- * A pagina tem dois estados e quem decide e `cadastroAberto()`:
+ * A pagina tem dois estados e quem decide e `cadastroAberto()` (src/lib/data.ts):
  *
  * - Enquanto nao houver chamada com inscricoes abertas nem curso com turma
  *   aberta, o cadastro nao desbloqueia nada e a pagina nao pede dado nenhum.
@@ -25,7 +25,6 @@ import { Marcador } from '@/components/Marcador';
 import { Selo } from '@/components/Selo';
 import type { Idioma } from '@/i18n/idiomas';
 import { textos } from '@/i18n/strings';
-import { conteudo } from '@/lib/data';
 import { PAIS_PADRAO, opcoesDePais } from '@/lib/paises';
 import { telefoneCompleto } from '@/lib/telefone';
 import { rota } from '@/lib/rotas';
@@ -35,22 +34,6 @@ import { EstilosCadastro } from './_estilos';
 
 /** Localidade de cada idioma, para o separador de milhar da audiencia somada. */
 const LOCALIDADE: Record<Idioma, string> = { pt: 'pt-BR', en: 'en', es: 'es' };
-
-/**
- * Condicao unica que reabre o cadastro e, junto com ele, o painel.
- *
- * O cadastro existe para candidatar projeto e para se inscrever em curso.
- * Sem nenhuma das duas coisas publicadas ele nao desbloqueia nada, e um
- * formulario que so guarda o que a pessoa digitou seria pior do que nao
- * ter formulario.
- */
-export function cadastroAberto(idioma: Idioma): boolean {
-  const { editais, cursos } = conteudo(idioma);
-  return (
-    editais.some((edital) => edital.status === 'aberta') ||
-    cursos.some((curso) => curso.status === 'aberto')
-  );
-}
 
 /**
  * Estado de hoje: sem chamada aberta e sem curso com turma aberta.
@@ -97,7 +80,7 @@ function Acoes({ idioma }: { idioma: Idioma }) {
 }
 
 /**
- * Formulario de cadastro. So e montado quando `cadastroAberto()` e verdadeiro.
+ * Formulario de cadastro. So e montado quando o cadastro esta aberto.
  *
  * Dois blocos, e nao uma pilha unica de campos. O primeiro identifica a pessoa
  * e e a coluna menta da home que continuou: mesma superficie, mesmo marcador.
@@ -224,7 +207,6 @@ function CadastroFormulario({ idioma }: { idioma: Idioma }) {
               <h2 className="cartao__titulo" id="cadastro-existente-titulo">
                 {tc.jaCadastradoTitulo}
               </h2>
-              <p className="cartao__texto">{tc.jaCadastradoTexto}</p>
               {nomeCadastrado ? (
                 <div className="registro">
                   <p className="registro__rotulo">{tc.nomeRotulo}</p>
@@ -251,7 +233,7 @@ function CadastroFormulario({ idioma }: { idioma: Idioma }) {
                     rotulo={tc.campos.nome}
                     value={nome}
                     onChange={(evento) => setNome(evento.target.value)}
-                    autoComplete="off"
+                    autoComplete="name"
                     required
                   />
                   <CampoTexto
@@ -261,7 +243,7 @@ function CadastroFormulario({ idioma }: { idioma: Idioma }) {
                     type="email"
                     value={email}
                     onChange={(evento) => setEmail(evento.target.value)}
-                    autoComplete="off"
+                    autoComplete="email"
                     required
                   />
                   <CampoTexto
@@ -278,7 +260,7 @@ function CadastroFormulario({ idioma }: { idioma: Idioma }) {
                       if (erroTelefone) setErroTelefone(undefined);
                     }}
                     ref={campoTelefone}
-                    autoComplete="off"
+                    autoComplete="tel"
                     required
                   />
                   <CampoSelecao
@@ -286,6 +268,7 @@ function CadastroFormulario({ idioma }: { idioma: Idioma }) {
                     id="cadastro-pais"
                     rotulo={tc.campos.pais}
                     opcoes={paises}
+                    autoComplete="country"
                     value={pais}
                     onChange={(evento) => trocarPais(evento.target.value)}
                     required
@@ -297,7 +280,7 @@ function CadastroFormulario({ idioma }: { idioma: Idioma }) {
                       rotulo={tc.campos.cidade}
                       value={cidade}
                       onChange={(evento) => setCidade(evento.target.value)}
-                      autoComplete="off"
+                      autoComplete="address-level2"
                       required
                     />
                     {/*
@@ -473,10 +456,6 @@ function CadastroFormulario({ idioma }: { idioma: Idioma }) {
   );
 }
 
-export function Cadastro({ idioma }: { idioma: Idioma }) {
-  return cadastroAberto(idioma) ? (
-    <CadastroFormulario idioma={idioma} />
-  ) : (
-    <CadastroFechado idioma={idioma} />
-  );
+export function Cadastro({ idioma, aberto }: { idioma: Idioma; aberto: boolean }) {
+  return aberto ? <CadastroFormulario idioma={idioma} /> : <CadastroFechado idioma={idioma} />;
 }

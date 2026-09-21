@@ -1,9 +1,9 @@
 'use client';
 
 /**
- * Cursos do painel: os que ja vem registrados em /data mais os que
- * receberam inscricao neste navegador, cruzados com o catalogo de
- * @/lib/data. So e montado com o cadastro aberto.
+ * Cursos do painel: as inscricoes feitas neste navegador, cruzadas com o
+ * catalogo que a pagina entrega do servidor. So e montado com o cadastro
+ * aberto.
  */
 
 import Link from 'next/link';
@@ -13,8 +13,8 @@ import { EstadoVazio } from '@/components/EstadoVazio';
 import { Selo } from '@/components/Selo';
 import type { Idioma } from '@/i18n/idiomas';
 import { textos } from '@/i18n/strings';
-import { conteudo } from '@/lib/data';
-import type { CursoDoCriador } from '@/lib/types';
+import { rota } from '@/lib/rotas';
+import type { Course, CursoDoCriador } from '@/lib/types';
 
 import { BarraProgresso } from './_PainelUI';
 
@@ -25,20 +25,10 @@ export interface CursoDoPainel extends CursoDoCriador {
   inscricaoLocal: boolean;
 }
 
-/** Junta os cursos registrados em /data com as inscricoes deste navegador. */
-export function cursosDoPainel(idioma: Idioma, cursosInscritos: string[]): CursoDoPainel[] {
-  const { cursos, painel } = conteudo(idioma);
+/** As inscricoes deste navegador, com duracao e modulos vindos do catalogo. */
+export function cursosDoPainel(cursos: Course[], cursosInscritos: string[]): CursoDoPainel[] {
   const catalogo = new Map(cursos.map((curso) => [curso.slug, curso]));
-
-  const linhas: CursoDoPainel[] = painel.cursos.map((curso) => {
-    const doCatalogo = catalogo.get(curso.cursoSlug);
-    return {
-      ...curso,
-      duracao: doCatalogo?.duracao ?? '',
-      modulos: doCatalogo?.modulos.length ?? 0,
-      inscricaoLocal: false,
-    };
-  });
+  const linhas: CursoDoPainel[] = [];
 
   cursosInscritos.forEach((slug) => {
     const doCatalogo = catalogo.get(slug);
@@ -66,7 +56,7 @@ export function Cursos({ idioma, linhas }: { idioma: Idioma; linhas: CursoDoPain
         desenho="lista"
         titulo={s.cursosVazio}
         acao={
-          <Botao href="/biblioteca" variante="secundario" tamanho="pequeno">
+          <Botao href={rota(idioma, 'biblioteca')} variante="secundario" tamanho="pequeno">
             {s.verBiblioteca}
           </Botao>
         }
@@ -95,7 +85,7 @@ export function Cursos({ idioma, linhas }: { idioma: Idioma; linhas: CursoDoPain
                 .filter(Boolean)
                 .join(' | ')}
             </span>
-            <Link href={`/biblioteca/cursos/${linha.cursoSlug}`} className="link-seta">
+            <Link href={rota(idioma, `biblioteca/cursos/${linha.cursoSlug}`)} className="link-seta">
               {textos(idioma).comum.acoes.verCurso}
             </Link>
           </div>

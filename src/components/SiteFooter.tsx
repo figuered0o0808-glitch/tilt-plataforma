@@ -1,6 +1,5 @@
 import Link from 'next/link';
 
-import { Faixas } from '@/components/Faixas';
 import { LogoTilt } from '@/components/LogoTilt';
 import { Organizacao } from '@/components/Organizacao';
 import { PROGRAM_NAME, PROGRAM_TAGLINE, EXECUTORAS, LOGO_INDICA } from '@/config/program';
@@ -11,9 +10,8 @@ import { rota } from '@/lib/rotas';
 export function SiteFooter({ idioma }: { idioma: Idioma }) {
   const t = textos(idioma);
 
+  /* A cor do site mora nas colunas; o pe fecha com o fio preto, sem faixa. */
   return (
-    <>
-      <Faixas altura="normal" invertido />
       <footer className="rodape">
         <div className="container">
           <div className="rodape__grade">
@@ -21,7 +19,9 @@ export function SiteFooter({ idioma }: { idioma: Idioma }) {
               <p className="rodape__marca">
                 <LogoTilt altura={26} rotulo={PROGRAM_NAME} />
               </p>
-              <p className="rotulo rodape__tagline">{PROGRAM_TAGLINE}</p>
+              <p className="rotulo rodape__tagline" lang="en">
+                {PROGRAM_TAGLINE}
+              </p>
               <p className="texto-pequeno rodape__descricao">{t.comum.rodape.descricao}</p>
             </div>
             <div>
@@ -38,7 +38,7 @@ export function SiteFooter({ idioma }: { idioma: Idioma }) {
             <div>
               <p className="rodape__titulo">{t.comum.rodape.programa}</p>
               {/* As duas organizacoes pela marca, nao pelo nome. */}
-              <ul className="rodape__lista" style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
+              <ul className="rodape__lista" style={{ display: 'flex', flexDirection: 'column', gap: 'var(--esp-12)' }}>
                 <li>
                   <Organizacao nome={EXECUTORAS.indica} logo={LOGO_INDICA} altura={16} />
                 </li>
@@ -50,6 +50,5 @@ export function SiteFooter({ idioma }: { idioma: Idioma }) {
           </div>
         </div>
       </footer>
-    </>
   );
 }

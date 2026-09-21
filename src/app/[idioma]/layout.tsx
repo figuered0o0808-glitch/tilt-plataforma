@@ -3,9 +3,10 @@ import { notFound } from 'next/navigation';
 
 import { SiteFooter } from '@/components/SiteFooter';
 import { SiteHeader } from '@/components/SiteHeader';
-import { PROGRAM_NAME, PROGRAM_TAGLINE } from '@/config/program';
+import { PROGRAM_NAME } from '@/config/program';
 import { IDIOMAS, ehIdioma } from '@/i18n/idiomas';
 import { textos } from '@/i18n/strings';
+import { conteudo } from '@/lib/data';
 
 export function generateStaticParams() {
   return IDIOMAS.map((idioma) => ({ idioma }));
@@ -18,9 +19,10 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { idioma } = await params;
   if (!ehIdioma(idioma)) return { title: PROGRAM_NAME };
+  /* A description e a frase do rodape, no idioma da pagina; a tagline em ingles nao entra. */
   return {
     title: { default: PROGRAM_NAME, template: `%s | ${PROGRAM_NAME}` },
-    description: `${PROGRAM_TAGLINE}. ${textos(idioma).comum.rodape.descricao}`,
+    description: textos(idioma).comum.rodape.descricao,
   };
 }
 
@@ -34,10 +36,20 @@ export default async function LayoutIdioma({
   const { idioma } = await params;
   if (!ehIdioma(idioma)) notFound();
 
+  const { editais, cursos, materiais } = conteudo(idioma);
+  const temConteudo = editais.length > 0 || cursos.length > 0 || materiais.length > 0;
+  const t = textos(idioma);
+
   return (
     <>
-      <SiteHeader idioma={idioma} />
-      <main>{children}</main>
+      {/* Primeiro parada do teclado: pular o cabecalho fixo e cair no conteudo. */}
+      <a href="#conteudo" className="pular">
+        {t.comum.navegacao.pularParaConteudo}
+      </a>
+      <SiteHeader idioma={idioma} temConteudo={temConteudo} />
+      <main id="conteudo" tabIndex={-1}>
+        {children}
+      </main>
       <SiteFooter idioma={idioma} />
     </>
   );

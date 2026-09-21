@@ -8,6 +8,7 @@ import { EstadoVazio } from '@/components/EstadoVazio';
 import { Selo } from '@/components/Selo';
 import { ehIdioma } from '@/i18n/idiomas';
 import { textos } from '@/i18n/strings';
+import { alternativas } from '@/lib/seo';
 import { conteudo } from '@/lib/data';
 import { data } from '@/lib/format';
 import { rota } from '@/lib/rotas';
@@ -20,7 +21,7 @@ export async function generateMetadata({
   const { idioma } = await params;
   if (!ehIdioma(idioma)) return {};
   const c = textos(idioma).aprendizado.cursos;
-  return { title: c.titulo, description: c.descricao };
+  return { title: c.titulo, description: c.descricao, alternates: alternativas(idioma, 'biblioteca/cursos') };
 }
 
 /**

@@ -31,7 +31,7 @@ interface Opcao {
   total: number;
 }
 
-/** Pilula de filtro, no padrao de botao da marca. */
+/** Pilula de filtro, no padrao de botao da marca. A cor do estado vem do CSS (.aba[aria-pressed]). */
 function Pilula({
   ativo,
   aoClicar,
@@ -42,19 +42,17 @@ function Pilula({
   children: ReactNode;
 }) {
   return (
-    <button
-      type="button"
-      className="aba"
-      aria-pressed={ativo}
-      onClick={aoClicar}
-      style={ativo ? { background: 'var(--preto)', color: 'var(--branco)' } : undefined}
-    >
+    <button type="button" className="aba" aria-pressed={ativo} onClick={aoClicar}>
       {children}
     </button>
   );
 }
 
-/** Linha de filtro no padrao de composicao da marca: rotulo curto e pilulas. */
+/**
+ * Linha de filtro: rotulo curto e pilulas, na mesma densidade do controle da
+ * Biblioteca. Tres linhas cabem numa faixa so, e a primeira chamada entra na
+ * tela sem rolar.
+ */
 function LinhaFiltro({
   rotulo,
   rotuloTodos,
@@ -71,9 +69,9 @@ function LinhaFiltro({
   aoEscolher: (valor: string) => void;
 }) {
   return (
-    <div className="registro">
-      <p className="registro__rotulo">{rotulo}</p>
-      <div className="chips" role="group" aria-label={rotulo}>
+    <div className="filtros__linha">
+      <p className="filtros__rotulo">{rotulo}</p>
+      <div className="filtros__opcoes" role="group" aria-label={rotulo}>
         <Pilula ativo={valor === ''} aoClicar={() => aoEscolher('')}>
           {`${rotuloTodos} (${total})`}
         </Pilula>
@@ -160,7 +158,7 @@ export function ListaEditais({ idioma, editais }: { idioma: Idioma; editais: Cal
 
   return (
     <>
-      <section aria-label={t.editais.filtrosTitulo}>
+      <section className="filtros" aria-label={t.editais.filtrosTitulo}>
         <LinhaFiltro
           rotulo={t.editais.filtroStatus}
           rotuloTodos={t.editais.todasSituacoes}

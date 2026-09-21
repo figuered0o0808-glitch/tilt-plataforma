@@ -21,7 +21,7 @@ export const aprendizado = {
         rotulo: 'Costo',
         texto: 'Sin cuota de inscripción.',
       },
-    ] as readonly Record<string, string>[],
+    ],
   },
   cursos: {
     olho: 'Formación',
@@ -38,7 +38,7 @@ export const aprendizado = {
         texto:
           'Programa por módulos, duración, formato, número de cupos y plazo, antes de abrir las inscripciones.',
       },
-    ] as readonly Record<string, string>[],
+    ],
     modulos: 'Módulos',
     modulosTitulo: 'Programa del curso',
     duracao: 'Duración',
@@ -49,7 +49,6 @@ export const aprendizado = {
     inscricaoCadastro: 'La inscripción exige cuenta en la plataforma.',
     inscricaoAcaoCadastro: 'Crear cuenta',
     inscricaoNota: 'La inscripción es gratuita.',
-    inscricaoConfirmada: 'Inscripción registrada.',
     irAoPainel: 'Ver en el panel',
     voltarCatalogo: 'Ver los cursos',
     vazioTitulo: 'Ningún curso publicado',
@@ -114,4 +113,4 @@ export const aprendizado = {
       limpar: 'Limpiar',
     },
   },
-};
+} as const;

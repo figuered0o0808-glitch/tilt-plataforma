@@ -116,7 +116,7 @@
       {
         "nome": "Rodrigo Tavares Quintanilha",
         "afiliacao": "INDICA",
-        "minibio": "Content director at INDICA. Responsible for the relationship with supported creators and for following production."
+        "minibio": "Creator relations coordinator at INDICA. Responsible for contact with supported creators and for following production."
       },
       {
         "nome": "Marina Ochoa Bittencourt",
@@ -224,7 +224,13 @@
         "minibio": "Has published for four years about housing and the city from the outskirts of a state capital. Took part in the observatory's pilot residency in 2025."
       }
     ],
-    "distribuicao": [],
+    "distribuicao": [
+      {
+        "faixa": "Stipend agreed with each selected creator",
+        "quantidade": "6 places",
+        "observacao": "Includes the two in-person weeks at the observatory's office, with access to the recording studio, and six remote weeks with weekly mentoring. The amount is formalized before the start."
+      }
+    ],
     "valorTotal": null,
     "faixaApoio": null,
     "apoioDescricao": "Eight-week residency with mentoring, studio and distribution. Stipend agreed with each selected creator.",
@@ -309,7 +315,7 @@
         "minibio": "Psychiatrist and editor of the network's mental health desk. Responsible for the clinical reading of the pieces in that category."
       },
       {
-        "nome": "Renata Villaça Sodré",
+        "nome": "Débora Quintela Farias",
         "afiliacao": "Aliança Democracia e Informação",
         "minibio": "Fact-checker. Has coordinated the alliance's monitoring of vaccine misinformation since 2023."
       },
@@ -321,7 +327,7 @@
       {
         "nome": "Caio Lemos Ferraz",
         "afiliacao": "INDICA",
-        "minibio": "Content director at INDICA. Assesses format, response and the relation between reach and channel size."
+        "minibio": "Metrics coordinator at INDICA. Assesses format, response and the relation between reach and channel size."
       }
     ],
     "distribuicao": [
@@ -358,10 +364,6 @@
       {
         "etapa": "Entries close",
         "data": "2026-09-30"
-      },
-      {
-        "etapa": "Publication of the list of eligible pieces",
-        "data": "2026-10-09"
       },
       {
         "etapa": "Publication of the result",
@@ -549,7 +551,13 @@
         "minibio": "Trained verification teams in four Latin American countries. Active in regional fact-checking networks since 2017."
       }
     ],
-    "distribuicao": [],
+    "distribuicao": [
+      {
+        "faixa": "Co-funding agreed per project",
+        "quantidade": "4 to 8 partnerships",
+        "observacao": "The Alliance brings the verification method, the training and the network of checkers; the partner organization brings knowledge of the territory, distribution channels and part of the cost."
+      }
+    ],
     "valorTotal": null,
     "faixaApoio": null,
     "apoioDescricao": "Co-funding agreed per project. The Alliance brings the verification method, the training and the network of checkers.",
@@ -600,7 +608,7 @@
     "apresentacao": [
       "The electricity bill weighs more where income is lower. In peripheral neighborhoods, irregular connections, a social tariff few people know about and rooftops without solar panels are the rule, and the public debate on energy transition rarely passes through there.",
       "The call supported creators who live or produce in those territories to talk about energy from the experience of the person who pays the bill: what it costs, what rights exist and what can be generated at home or in the neighborhood.",
-      "Instituto Corrente Limpa funded the call. INDICA ran the selection and the contract with each creator, and Koko shared production. It was the program's pilot call, and its result shaped the format of the calls that followed."
+      "Instituto Corrente Limpa funded the call. INDICA ran the selection and the contract with each creator, and Estúdio Paralelo shared production. It was the program's pilot call, and its result shaped the format of the calls that followed."
     ],
     "escopo": [
       "Original projects about the cost, access or generation of energy in peripheral neighborhoods of any Brazilian city.",
@@ -701,7 +709,7 @@
       }
     ],
     "resultado": {
-      "fundamentacao": "The panel received 61 applications and assessed each one against the call's four criteria, in order of weight. Twenty-three proposals passed to the second stage for demonstrating ties to the territory; of those, nine went to interview. The final decision favored projects with direct access to the people portrayed and a publication plan already in place, even when the creator's audience was small.\n\nTwo projects received less than requested, after production items were adjusted and absorbed by Koko. The final distribution supports four projects in four states, in distinct formats, so that the campaign reaches different audiences with the same funds. Proposals not selected received individual written feedback.",
+      "fundamentacao": "The panel received 61 applications and assessed each one against the call's four criteria, in order of weight. Twenty-three proposals passed to the second stage for demonstrating ties to the territory; of those, nine went to interview. The final decision favored projects with direct access to the people portrayed and a publication plan already in place, even when the creator's audience was small.\n\nTwo projects received less than requested, after production items were adjusted and absorbed by Estúdio Paralelo. The final distribution supports four projects in four states, in distinct formats, so that the campaign reaches different audiences with the same funds. Proposals not selected received individual written feedback.",
       "publicadoEm": "2026-03-20",
       "inscricoesRecebidas": 61,
       "apoiados": [
@@ -781,7 +789,7 @@
     ],
     "banca": [
       {
-        "nome": "Helena Sarmento Pires",
+        "nome": "Simone Carvalhaes Duarte",
         "afiliacao": "Observatório Clima Urbano, Brazil",
         "minibio": "Leads the Observatory's water and cities area. Geographer, researches urban flooding in the São Paulo metropolitan region."
       },

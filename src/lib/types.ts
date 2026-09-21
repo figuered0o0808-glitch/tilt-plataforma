@@ -1,6 +1,5 @@
 /** Tipos do conteudo publicado em /data. Contrato unico da aplicacao. */
 
-export type Regiao = 'Norte' | 'Nordeste' | 'Centro-Oeste' | 'Sudeste' | 'Sul';
 
 export type StatusEdital = 'aberta' | 'em-avaliacao' | 'encerrada';
 
@@ -151,7 +150,10 @@ export type StatusCandidatura =
   | 'enviada';
 
 export interface Candidatura {
+  /** Identificador local, deste navegador. Nao e protocolo: quem numera e a API. */
   id: string;
+  /** Numero devolvido pela API da INDICA quando o canal esta aberto. */
+  protocolo?: string;
   editalSlug: string;
   editalTitulo: string;
   projeto: string;
@@ -159,6 +161,20 @@ export interface Candidatura {
   valorSolicitado: number;
   enviadaEm: string;
   status: StatusCandidatura;
+  /** O que a pessoa escreveu, guardado com a candidatura; o painel mostra so o resumo. */
+  descricao?: string;
+  justificativa?: string;
+  alcance?: string;
+  distribuicao?: string;
+  /** Quem assinou. O documento vai para a API e nao fica no navegador. */
+  proponente?: {
+    nome: string;
+    documento?: string;
+    pais: string;
+    cidade: string;
+    uf: string;
+    email: string;
+  };
 }
 
 export interface CursoDoCriador {
@@ -166,11 +182,6 @@ export interface CursoDoCriador {
   titulo: string;
   status: 'inscrito' | 'em-andamento' | 'concluido';
   progresso: number;
-}
-
-export interface PanelData {
-  candidaturas: Candidatura[];
-  cursos: CursoDoCriador[];
 }
 
 

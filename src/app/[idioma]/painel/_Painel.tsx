@@ -24,9 +24,9 @@ import { CabecalhoPagina } from '@/components/CabecalhoPagina';
 import type { Idioma } from '@/i18n/idiomas';
 import { textos } from '@/i18n/strings';
 import { rota } from '@/lib/rotas';
+import type { Call, Course } from '@/lib/types';
 import { useApp } from '@/state/AppState';
 
-import { cadastroAberto } from '../cadastro/_Cadastro';
 import { Candidaturas } from './_Candidaturas';
 import { Cursos, cursosDoPainel } from './_Cursos';
 import { ResumoPainel, SecaoPainel } from './_PainelUI';
@@ -56,22 +56,17 @@ function PainelFechado({ idioma }: { idioma: Idioma }) {
   );
 }
 
-/** Cadastro aberto, visitante ainda sem cadastro. */
+/** Cadastro aberto, visitante ainda sem cadastro: a mesma abertura das outras paginas. */
 function Convite({ idioma }: { idioma: Idioma }) {
   const s = textos(idioma).paineis;
 
   return (
-    <section className="secao">
-      <div className="container-estreito">
-        <div
-          className="cartao"
-          style={{ alignItems: 'center', textAlign: 'center', padding: '56px 30px', gap: 18 }}
-        >
-          <p className="olho" style={{ margin: 0 }}>
-            {s.olho}
-          </p>
-          <h1 style={{ margin: 0, maxWidth: '20ch' }}>{s.convite.titulo}</h1>
-          <div className="linha" style={{ justifyContent: 'center', marginTop: 6 }}>
+    <>
+      <CabecalhoPagina estreito olho={s.olho} titulo={s.convite.titulo} />
+
+      <div className="secao secao--curta">
+        <div className="container-estreito">
+          <div className="linha">
             <Botao href={rota(idioma, 'cadastro')}>{s.convite.acao}</Botao>
             <Botao href={rota(idioma, 'oportunidades')} variante="secundario">
               {s.verOportunidades}
@@ -79,18 +74,31 @@ function Convite({ idioma }: { idioma: Idioma }) {
           </div>
         </div>
       </div>
-    </section>
+    </>
   );
 }
 
-export function Painel({ idioma }: { idioma: Idioma }) {
+export function Painel({
+  idioma,
+  aberto,
+  abertas,
+  catalogo,
+}: {
+  idioma: Idioma;
+  /** Se o cadastro esta aberto (ha chamada ou turma aceitando inscricao). */
+  aberto: boolean;
+  /** Chamadas com inscricao aberta, para o estado vazio das candidaturas. */
+  abertas: Call[];
+  /** Catalogo de cursos, para cruzar com as inscricoes deste navegador. */
+  catalogo: Course[];
+}) {
   const { candidaturas, cadastrado, cursosInscritos, hidratado, nome } = useApp();
 
   const s = textos(idioma).paineis;
 
   const linhasCursos = useMemo(
-    () => cursosDoPainel(idioma, cursosInscritos),
-    [idioma, cursosInscritos],
+    () => cursosDoPainel(catalogo, cursosInscritos),
+    [catalogo, cursosInscritos],
   );
 
   const emAvaliacao = candidaturas.filter(
@@ -100,7 +108,7 @@ export function Painel({ idioma }: { idioma: Idioma }) {
 
   // Sem chamada aberta e sem curso com turma aberta nao ha cadastro possivel,
   // e sem cadastro nao ha o que acompanhar.
-  if (!cadastroAberto(idioma)) return <PainelFechado idioma={idioma} />;
+  if (!aberto) return <PainelFechado idioma={idioma} />;
 
   // Enquanto o estado nao foi lido do navegador, nada e desenhado: assim a
   // pagina nao pisca entre o convite e o painel.
@@ -140,7 +148,7 @@ export function Painel({ idioma }: { idioma: Idioma }) {
       ) : null}
 
       <SecaoPainel id="candidaturas" titulo={s.candidaturasTitulo}>
-        <Candidaturas idioma={idioma} candidaturas={candidaturas} />
+        <Candidaturas idioma={idioma} candidaturas={candidaturas} abertas={abertas} />
       </SecaoPainel>
 
       <SecaoPainel

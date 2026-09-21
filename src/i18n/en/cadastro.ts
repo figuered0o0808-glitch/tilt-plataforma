@@ -10,7 +10,7 @@ export const cadastro = {
   olho: 'Account',
 
   /** Acao do cabecalho do site quando o cadastro esta aberto. */
-  entrar: 'Sign up',
+  entrar: 'Create account',
 
   fechado: {
     titulo: 'Sign-up opens with the first call',
@@ -87,7 +87,6 @@ export const cadastro = {
 
   jaCadastradoSelo: 'Account active',
   jaCadastradoTitulo: 'You already have an account',
-  jaCadastradoTexto: 'This browser already holds an account.',
   nomeRotulo: 'Name provided',
 
   irAoPainel: 'Go to the dashboard',
