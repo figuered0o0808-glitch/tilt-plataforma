@@ -8,6 +8,18 @@
 export const home = {
   marca: 'Plataforma de criadores',
   frase: 'Um laboratório de criadores para o interesse público.',
+  introducao: 'Chamadas, conexões e conhecimento para quem cria.',
+  caminhos: {
+    rotulo: 'Caminhos da plataforma',
+    oportunidades: 'Explorar oportunidades',
+    oportunidadesTexto: 'Conheça as chamadas e encontre seu projeto.',
+    cadastro: 'Fazer parte da rede',
+    cadastroTexto: 'Apresente seu trabalho. O cadastro é gratuito.',
+    painel: 'Acessar meu painel',
+    painelTexto: 'Acompanhe sua participação na plataforma.',
+    biblioteca: 'Abrir a biblioteca',
+    bibliotecaTexto: 'Artigos, guias e referências para criar.',
+  },
   apresentacao:
     'O programa financia projetos de criadores de conteúdo sobre ciência, clima, meio ambiente, saúde pública e democracia. A proposta é do criador, e a decisão editorial também.',
 

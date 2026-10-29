@@ -18,4 +18,4 @@ Conteúdo em `data/`, textos em `src/i18n/` e nome em `src/config/program.ts`. C
 
 ## Motion e carinhas
 
-A entrada usa a animação original da marca em uma versão H.264 de7segundos,960×540,sem áudio, em `public/marca/indica-motion.mp4`. Ela toca uma vez, respeita movimento reduzido e permite pausar/repetir. A carinha estática permite trocar expressão por clique. As3artes originais ficam em `public/marca/rostos/`; também aparecem em buscas sem resultados e confirmação de cadastro. O tratamento preto/branco é feito em CSS; os arquivos de marca são preservados.
+A carinha faz parte dos três caminhos reais da abertura: oportunidades, cadastro/painel e biblioteca. `CarinhaIndica` separa os traços da arte original `rosto-02.png` em grupos SVG, sem redesenhar as letras. Foco e ponteiro nos links produzem transições curtas nos olhos e sobrancelhas; a navegação funciona diretamente e não depende da animação. Sem vídeo, reprodução automática ou controle de expressão. Na confirmação de cadastro há um aceno único de 540 ms. Movimento reduzido mantém a arte estática. As artes e o vídeo de referência permanecem em `public/marca/`, sem carregamento do vídeo pela interface.

@@ -4,7 +4,7 @@ import { notFound } from 'next/navigation';
 
 import { Botao } from '@/components/Botao';
 import { Carrossel } from '@/components/Carrossel';
-import { Ponte } from '@/components/Enxame';
+import { AssinaturaIndica } from '@/components/AssinaturaIndica';
 import { MascoteIndica } from '@/components/MascoteIndica';
 import { Marcador } from '@/components/Marcador';
 import { Vagas } from '@/components/Vagas';
@@ -18,7 +18,6 @@ import { alternativas } from '@/lib/seo';
 import type { Article, Call } from '@/lib/types';
 import { textoDoApoio } from '@/lib/apoio';
 
-import { Entrada } from './_Entrada';
 import { Capa } from './biblioteca/materiais/_Capa';
 import { ordenar } from './biblioteca/materiais/_regras';
 
@@ -28,23 +27,7 @@ export async function generateMetadata({ params }: { params: Promise<{ idioma: s
   return { alternates: alternativas(idioma) };
 }
 
-/**
- * A home: o enxame e a porta, as colunas sao a casa.
- *
- * Em cima, sobre branco, os 21 pontos do logotipo entram espalhados e assentam
- * na marca; a frase do programa vem depois. Embaixo, tres colunas de cor da
- * borda a borda, uma por assunto: a chamada aberta, o cadastro, a biblioteca.
- * O ponto faz tres trabalhos na mesma pagina: forma a marca, marca cada coluna
- * e mede as vagas da chamada.
- *
- * Tres pontos de cor entre as duas metades sao a ponte: surgem depois que a
- * marca assentou, cada um na cor da coluna que vem embaixo.
- *
- * A coluna rosa e a amarela sao carrosseis: uma chamada ou um material por
- * vez, e passa-se para o lado, sozinho ou pela seta. Cabe mais de um no
- * quadrado, mas nao ao mesmo tempo: a coluna e estreita, e o que se ganha em
- * quantidade se perde em leitura.
- */
+/** A abertura apresenta a plataforma e seus três caminhos; abaixo, o conteúdo. */
 
 /** Quantos materiais a coluna amarela percorre antes de mandar para a Biblioteca. */
 const RECENTES = 6;
@@ -260,24 +243,23 @@ export default async function Home({ params }: { params: Promise<{ idioma: strin
   if (!ehIdioma(idioma)) notFound();
 
   const t = textos(idioma);
-  const { editais, cursos, materiais } = conteudo(idioma);
+  const { editais, materiais } = conteudo(idioma);
 
   /* A coluna rosa passa pelas chamadas abertas; a amarela, pelos materiais, do mais novo ao mais antigo. */
   const chamadas = editais.filter((item) => item.status === 'aberta');
   const recentes = ordenar(materiais, 'atualizacao').slice(0, RECENTES);
-  const temConteudo = editais.length > 0 || cursos.length > 0 || materiais.length > 0;
 
   return (
     <>
       <section className="hero hero--criadores" data-hero>
         <div className="container hero-criadores">
           <div className="hero-criadores__texto">
-            <p className="olho">{t.home.marca}</p>
-            <h1 className="hero__frase">{t.home.frase}</h1>
-            <div className="hero__acoes">
-              <Entrada idioma={idioma} temConteudo={temConteudo} />
-              <Ponte rotulo={t.home.ponte} />
+            <div className="hero-criadores__assinatura">
+              <AssinaturaIndica tamanho={9} />
+              <p className="olho">{t.home.marca}</p>
             </div>
+            <h1 className="hero__frase">{t.home.frase}</h1>
+            <p className="hero-criadores__introducao">{t.home.introducao}</p>
           </div>
           <MascoteIndica idioma={idioma} />
         </div>

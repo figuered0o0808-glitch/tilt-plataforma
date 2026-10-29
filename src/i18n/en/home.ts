@@ -8,6 +8,18 @@
 export const home = {
   marca: 'Creator platform',
   frase: 'A creator lab for the public interest.',
+  introducao: 'Calls, connections and knowledge for people who create.',
+  caminhos: {
+    rotulo: 'Explore the platform',
+    oportunidades: 'Explore opportunities',
+    oportunidadesTexto: 'Browse open calls and find your project.',
+    cadastro: 'Join the network',
+    cadastroTexto: 'Introduce your work. Registration is free.',
+    painel: 'Open my dashboard',
+    painelTexto: 'Follow your participation on the platform.',
+    biblioteca: 'Open the library',
+    bibliotecaTexto: 'Articles, guides and references for creators.',
+  },
   apresentacao:
     'The program funds content creator projects on science, climate, environment, public health and democracy. The proposal belongs to the creator, and so does the editorial decision.',
 

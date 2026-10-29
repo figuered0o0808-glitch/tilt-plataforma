@@ -1,6 +1,6 @@
 'use client';
 
-import { RostoIndica } from '@/components/RostoIndica';
+import { CarinhaIndica } from '@/components/CarinhaIndica';
 
 /**
  * Cadastro: publico unico, criadores de conteudo.
@@ -197,7 +197,7 @@ function CadastroFormulario({ idioma }: { idioma: Idioma }) {
             <div className="cartao">
               <div className="destaque" role="status" tabIndex={-1} ref={confirmacao}>
                 <div className="confirmacao-indica">
-                  <RostoIndica expressao="01" tamanho={112} />
+                  <CarinhaIndica estado="confirmacao" />
                   <div><p className="destaque__titulo">{tc.confirmacaoTitulo}</p>
                   <p className="destaque__texto">{tc.confirmacaoTexto}</p></div>
                 </div>
