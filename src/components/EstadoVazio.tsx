@@ -1,5 +1,5 @@
 import type { ReactNode } from 'react';
-import { Ilustracao } from '@/components/Ilustracao';
+import { RostoIndica } from '@/components/RostoIndica';
 
 export function EstadoVazio({
   titulo,
@@ -14,7 +14,7 @@ export function EstadoVazio({
 }) {
   return (
     <div className="vazio">
-      <Ilustracao nome={desenho} largura={92} />
+      <RostoIndica expressao={desenho === 'busca' ? '03' : '02'} tamanho={108} />
       <p className="vazio__titulo">{titulo}</p>
       {descricao ? <p className="texto-pequeno vazio__texto">{descricao}</p> : null}
       {acao}

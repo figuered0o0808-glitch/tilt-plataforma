@@ -15,3 +15,7 @@ O caminho de hospedagem atual permanece configurado em `next.config.mjs` até a 
 ## Conteúdo e estado
 
 Conteúdo em `data/`, textos em `src/i18n/` e nome em `src/config/program.ts`. Cadastros e candidaturas continuam no navegador; registros locais anteriores são lidos por compatibilidade. A API opcional é configurada por `NEXT_PUBLIC_INDICA_API`; o contrato de rotas anterior foi preservado.
+
+## Motion e carinhas
+
+A entrada usa a animação original da marca em uma versão H.264 de7segundos,960×540,sem áudio, em `public/marca/indica-motion.mp4`. Ela toca uma vez, respeita movimento reduzido e permite pausar/repetir. A carinha estática permite trocar expressão por clique. As3artes originais ficam em `public/marca/rostos/`; também aparecem em buscas sem resultados e confirmação de cadastro. O tratamento preto/branco é feito em CSS; os arquivos de marca são preservados.

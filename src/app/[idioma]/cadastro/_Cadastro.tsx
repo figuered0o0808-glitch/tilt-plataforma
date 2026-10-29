@@ -1,5 +1,7 @@
 'use client';
 
+import { RostoIndica } from '@/components/RostoIndica';
+
 /**
  * Cadastro: publico unico, criadores de conteudo.
  *
@@ -194,8 +196,11 @@ function CadastroFormulario({ idioma }: { idioma: Idioma }) {
           {enviado ? (
             <div className="cartao">
               <div className="destaque" role="status" tabIndex={-1} ref={confirmacao}>
-                <p className="destaque__titulo">{tc.confirmacaoTitulo}</p>
-                <p className="destaque__texto">{tc.confirmacaoTexto}</p>
+                <div className="confirmacao-indica">
+                  <RostoIndica expressao="01" tamanho={112} />
+                  <div><p className="destaque__titulo">{tc.confirmacaoTitulo}</p>
+                  <p className="destaque__texto">{tc.confirmacaoTexto}</p></div>
+                </div>
               </div>
               <Acoes idioma={idioma} />
             </div>

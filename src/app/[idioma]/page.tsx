@@ -4,7 +4,8 @@ import { notFound } from 'next/navigation';
 
 import { Botao } from '@/components/Botao';
 import { Carrossel } from '@/components/Carrossel';
-import { Enxame, Ponte } from '@/components/Enxame';
+import { Ponte } from '@/components/Enxame';
+import { MascoteIndica } from '@/components/MascoteIndica';
 import { Marcador } from '@/components/Marcador';
 import { Vagas } from '@/components/Vagas';
 import { Organizacao } from '@/components/Organizacao';
@@ -268,27 +269,17 @@ export default async function Home({ params }: { params: Promise<{ idioma: strin
 
   return (
     <>
-      <section className="hero hero--enxame" data-hero>
-        <div className="container">
-          <div className="hero__marca">
-            <Enxame largura={560} />
-            <p className="olho" style={{ margin: 0 }}>
-              {t.home.marca}
-            </p>
-          </div>
-
-          <div className="hero__corpo">
-            <div>
-              {/* So o titulo. O cliente vetou qualquer frase de apoio: ela reduzia o projeto. */}
-              <h1 className="hero__frase" style={{ maxWidth: '18ch', margin: 0 }}>
-                {t.home.frase}
-              </h1>
-            </div>
+      <section className="hero hero--criadores" data-hero>
+        <div className="container hero-criadores">
+          <div className="hero-criadores__texto">
+            <p className="olho">{t.home.marca}</p>
+            <h1 className="hero__frase">{t.home.frase}</h1>
             <div className="hero__acoes">
               <Entrada idioma={idioma} temConteudo={temConteudo} />
               <Ponte rotulo={t.home.ponte} />
             </div>
           </div>
+          <MascoteIndica idioma={idioma} />
         </div>
       </section>
 
