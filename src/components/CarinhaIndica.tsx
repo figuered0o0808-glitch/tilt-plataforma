@@ -73,11 +73,21 @@ const ARTES: Record<ExpressaoCarinhaIndica, Arte> = {
   },
 };
 
-const CORES: Record<CorCarinhaIndica, string> = {
-  azul: '#2f9bff',
-  verde: '#8ace2b',
-  rosa: '#ff2e9a',
-  branco: '#f3f5f8',
+const BRANCO = '#f3f5f8';
+const GRADIENTES = {
+  azul: { cores: ['#62c2ff', '#2f6df0'], angulo: 150 },
+  verde: { cores: ['#c2ee5a', '#5cbf1f'], angulo: 150 },
+  rosa: { cores: ['#8ace2b', '#ff2e9a'], angulo: 140 },
+} as const;
+
+const PARTES_COLORIDAS: Record<ExpressaoCarinhaIndica, string[]> = {
+  '01': ['olho-esquerdo', 'boca'],
+  '02': ['olho-direito'],
+  '03': ['sobrancelha-direita', 'boca'],
+};
+
+const COR_DA_ARTE: Record<ExpressaoCarinhaIndica, Exclude<CorCarinhaIndica, 'branco'>> = {
+  '01': 'verde', '02': 'rosa', '03': 'azul',
 };
 
 function Forma({ recorte, fill }: { recorte: Recorte; fill?: string }) {
@@ -88,22 +98,44 @@ function Forma({ recorte, fill }: { recorte: Recorte; fill?: string }) {
   );
 }
 
-/** Artes originais da INDICA, com respostas discretas ao foco da navegação. */
+function eixoDoGradiente(recorte: Recorte, angulo: number) {
+  const radianos = angulo * Math.PI / 180;
+  const dx = Math.sin(radianos);
+  const dy = -Math.cos(radianos);
+  const comprimento = Math.abs(recorte.largura * dx) + Math.abs(recorte.altura * dy);
+  const cx = recorte.x + recorte.largura / 2;
+  const cy = recorte.y + recorte.altura / 2;
+  return {
+    x1: cx - dx * comprimento / 2,
+    y1: cy - dy * comprimento / 2,
+    x2: cx + dx * comprimento / 2,
+    y2: cy + dy * comprimento / 2,
+  };
+}
+
+/** Artes originais: branco predominante, acentos por parte e pivôs SVG nativos. */
 export function CarinhaIndica({
   estado = 'neutro',
   expressao = '02',
   cor = 'branco',
+  entrada = false,
   className = '',
 }: {
   estado?: EstadoCarinhaIndica;
   expressao?: ExpressaoCarinhaIndica;
   cor?: CorCarinhaIndica;
+  entrada?: boolean;
   className?: string;
 }) {
   const instancia = useId().replace(/[^a-zA-Z0-9_-]/g, '');
   const prefixo = `carinha-${instancia}-${expressao}`;
   const arte = ARTES[expressao];
   const fonte = arquivoPublico(`/marca/rostos/rosto-${expressao}.png`);
+  const [minX, minY, largura, altura] = arte.viewBox.split(' ').map(Number);
+  const [centroX, centroY] = arte.centro.split(' ').map(parseFloat);
+  const gradiente = GRADIENTES[COR_DA_ARTE[expressao]];
+  const partesColoridas = PARTES_COLORIDAS[expressao];
+  const origemZero = { '--origem': '0px 0px', '--centro-rosto': '0px 0px' } as CSSProperties;
 
   return (
     <svg
@@ -111,11 +143,11 @@ export function CarinhaIndica({
       data-estado={estado}
       data-expressao={expressao}
       data-cor={cor}
-      viewBox={arte.viewBox}
+      data-entrada={entrada ? 'ativa' : undefined}
+      viewBox={`0 0 ${largura} ${altura}`}
       width="64"
       height="64"
       preserveAspectRatio="xMidYMid meet"
-      style={{ '--centro-rosto': arte.centro } as CSSProperties}
       aria-hidden="true"
       focusable="false"
     >
@@ -138,31 +170,62 @@ export function CarinhaIndica({
             })}
           </mask>
         ))}
+        {/* A tinta branca mantém os cinzas como opacidade e elimina o fundo da imagem. */}
         <filter id={`${prefixo}-tinta`} filterUnits="userSpaceOnUse" x="0" y="0" width="1080" height="1080" colorInterpolationFilters="sRGB">
           <feColorMatrix in="SourceGraphic" type="luminanceToAlpha" result="luminancia" />
           <feComponentTransfer in="luminancia" result="negativo">
             <feFuncA type="table" tableValues="1 0" />
           </feComponentTransfer>
-          {/* O recorte original evita tingir áreas transparentes entre partes em movimento. */}
           <feComposite in="negativo" in2="SourceAlpha" operator="in" result="tintaAlpha" />
-          <feFlood floodColor={CORES[cor]} result="cor" />
-          <feComposite in="cor" in2="tintaAlpha" operator="in" />
+          <feColorMatrix in="tintaAlpha" type="matrix"
+            values="0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  0 0 0 1 0" />
         </filter>
+        <mask id={`${prefixo}-tinta-base`} maskUnits="userSpaceOnUse" x="0" y="0" width="1080" height="1080">
+          <image href={fonte} width="1080" height="1080" filter={`url(#${prefixo}-tinta)`} mask={`url(#${prefixo}-base)`} />
+        </mask>
+        {arte.recortes.map((recorte) => (
+          <mask key={recorte.nome} id={`${prefixo}-${recorte.nome}-tinta`} maskUnits="userSpaceOnUse" x="0" y="0" width="1080" height="1080">
+            <image href={fonte} width="1080" height="1080"
+              filter={`url(#${prefixo}-tinta)`}
+              clipPath={`url(#${prefixo}-${recorte.nome})`}
+              mask={recorte.excluir?.length ? `url(#${prefixo}-${recorte.nome}-separado)` : undefined} />
+          </mask>
+        ))}
+        {arte.recortes.filter((recorte) => partesColoridas.includes(recorte.nome)).map((recorte) => (
+          <linearGradient key={recorte.nome} id={`${prefixo}-${recorte.nome}-gradiente`}
+            gradientUnits="userSpaceOnUse" {...eixoDoGradiente(recorte, gradiente.angulo)}>
+            <stop offset="0" stopColor={gradiente.cores[0]} />
+            <stop offset="1" stopColor={gradiente.cores[1]} />
+          </linearGradient>
+        ))}
       </defs>
-      <g filter={`url(#${prefixo}-tinta)`}>
-        <g className={styles.rosto}>
-          <image href={fonte} width="1080" height="1080" mask={`url(#${prefixo}-base)`} />
-          {arte.recortes.map((recorte) => (
-            <g
-                key={recorte.nome}
-                className={`${styles.recorte} ${styles[recorte.classe]}`}
-                style={{ '--origem': `${recorte.x + recorte.largura / 2}px ${recorte.y + recorte.altura / 2}px` } as CSSProperties}
-            >
-              <image href={fonte} width="1080" height="1080"
-                clipPath={`url(#${prefixo}-${recorte.nome})`}
-                mask={recorte.excluir?.length ? `url(#${prefixo}-${recorte.nome}-separado)` : undefined} />
+      <g transform={`translate(${-minX} ${-minY})`}>
+        <g transform={`translate(${centroX} ${centroY})`}>
+          <g className={styles.apresentacao} style={origemZero}>
+            <g className={styles.rosto} style={origemZero}>
+              <g transform={`translate(${-centroX} ${-centroY})`}>
+                <rect width="1080" height="1080" fill={BRANCO} mask={`url(#${prefixo}-tinta-base)`} />
+                {arte.recortes.map((recorte) => {
+                  const cx = recorte.x + recorte.largura / 2;
+                  const cy = recorte.y + recorte.altura / 2;
+                  const colorido = cor !== 'branco' && partesColoridas.includes(recorte.nome);
+                  return (
+                    <g key={recorte.nome} transform={`translate(${cx} ${cy})`}>
+                      <g className={styles.entradaParte} data-parte={recorte.classe} style={origemZero}>
+                        <g className={`${styles.recorte} ${styles[recorte.classe]}`} style={origemZero}>
+                          <g transform={`translate(${-cx} ${-cy})`}>
+                            <rect width="1080" height="1080"
+                              fill={colorido ? `url(#${prefixo}-${recorte.nome}-gradiente)` : BRANCO}
+                              mask={`url(#${prefixo}-${recorte.nome}-tinta)`} />
+                          </g>
+                        </g>
+                      </g>
+                    </g>
+                  );
+                })}
+              </g>
             </g>
-          ))}
+          </g>
         </g>
       </g>
     </svg>

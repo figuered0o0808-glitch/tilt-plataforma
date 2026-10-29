@@ -9,105 +9,129 @@
   user-select: none;
 }
 
-.rosto,
-.recorte {
-  transition: transform 280ms cubic-bezier(.2, .65, .3, 1);
+/* Os pivôs são definidos no SVG. A entrada e a resposta ao link têm grupos próprios. */
+.apresentacao, .rosto, .entradaParte, .recorte {
+  transform-origin: 0 0;
   transform-box: view-box;
 }
+.rosto, .recorte { transition: transform 420ms cubic-bezier(.22,.7,.25,1); }
+.sobrancelhaEsquerda, .sobrancelhaDireita, .olhoEsquerdo, .olhoDireito,
+.orelha, .face, .nariz, .boca { transform: none; }
 
-.rosto {
-  transform-origin: var(--centro-rosto, 610px 545px);
-}
+/* Uma coreografia de entrada por personagem; todas terminam em repouso. */
+.carinha[data-entrada='ativa'][data-expressao='03'] .apresentacao { animation: descobrir 2.7s .08s cubic-bezier(.22,.7,.25,1) backwards; }
+.carinha[data-entrada='ativa'][data-expressao='01'] .apresentacao { animation: acolher 2.7s .34s cubic-bezier(.22,.7,.25,1) backwards; }
+.carinha[data-entrada='ativa'][data-expressao='02'] .apresentacao { animation: ler 2.8s .6s cubic-bezier(.22,.7,.25,1) backwards; }
+.carinha[data-entrada='ativa'] .entradaParte[data-parte='olhoEsquerdo'],
+.carinha[data-entrada='ativa'] .entradaParte[data-parte='olhoDireito'] { animation: piscar-entrada 2.7s .14s ease-in-out backwards; }
+.carinha[data-entrada='ativa'][data-expressao='01'] .entradaParte[data-parte='olhoEsquerdo'],
+.carinha[data-entrada='ativa'][data-expressao='01'] .entradaParte[data-parte='olhoDireito'] { animation-delay: .4s; }
+.carinha[data-entrada='ativa'][data-expressao='02'] .entradaParte[data-parte='olhoEsquerdo'],
+.carinha[data-entrada='ativa'][data-expressao='02'] .entradaParte[data-parte='olhoDireito'] { animation-delay: .66s; }
+.carinha[data-entrada='ativa'] .entradaParte[data-parte='sobrancelhaDireita'] { animation: perguntar 2.7s .2s ease-in-out backwards; }
+.carinha[data-entrada='ativa'][data-expressao='01'] .entradaParte[data-parte='boca'] { animation: falar 2.7s .4s ease-in-out backwards; }
+.carinha[data-entrada='ativa'][data-expressao='02'] .entradaParte[data-parte='nariz'] { animation: acompanhar 2.8s .6s ease-in-out backwards; }
 
-.recorte {
-  transform-origin: var(--origem);
-}
-
-.sobrancelhaEsquerda,
-.sobrancelhaDireita,
-.olhoEsquerdo,
-.olhoDireito,
-.orelha,
-.face,
-.nariz,
-.boca {
-  transform: none;
-}
-
-.carinha[data-estado='oportunidades'] .sobrancelhaEsquerda {
-  transform: translate(5px, -20px) rotate(-4deg);
-}
-.carinha[data-estado='oportunidades'] .sobrancelhaDireita {
-  transform: translate(5px, -12px) rotate(3deg);
-}
+/* Oportunidades: olha em volta, pisca e ergue as sobrancelhas. */
+.carinha[data-estado='oportunidades'] .rosto { animation: descobrir 1.9s ease-in-out backwards; }
+.carinha[data-estado='oportunidades'] .sobrancelhaEsquerda { transform: translate(-8px,-25px) rotate(-7deg); }
+.carinha[data-estado='oportunidades'] .sobrancelhaDireita { transform: translate(8px,-24px) rotate(7deg); }
 .carinha[data-estado='oportunidades'] .olhoEsquerdo,
-.carinha[data-estado='oportunidades'] .olhoDireito {
-  transform: translate(18px, -12px);
+.carinha[data-estado='oportunidades'] .olhoDireito { transform: translate(30px,-8px); animation: olhar-curioso 1.9s ease-in-out backwards; }
+.carinha[data-estado='oportunidades'] .nariz { transform: translate(10px,-3px); }
+.carinha[data-estado='oportunidades'] .boca { transform: rotate(-5deg) scale(1.08); }
+
+/* Cadastro: aceno e uma resposta mais aberta nas letras em u e a. */
+.carinha[data-estado='cadastro'] .rosto { animation: acolher 1.8s ease-in-out backwards; }
+.carinha[data-estado='cadastro'] .sobrancelhaEsquerda { transform: translateY(-18px) rotate(-5deg); }
+.carinha[data-estado='cadastro'] .sobrancelhaDireita { transform: translateY(-18px) rotate(5deg); }
+.carinha[data-estado='cadastro'] .olhoEsquerdo { transform: translateY(8px) rotate(-4deg); animation: cumprimentar-esquerda 1.8s ease-in-out backwards; }
+.carinha[data-estado='cadastro'] .olhoDireito { transform: translateY(8px) rotate(4deg); animation: cumprimentar-direita 1.8s ease-in-out backwards; }
+.carinha[data-estado='cadastro'] .orelha { animation: escutar 1.8s ease-in-out backwards; }
+.carinha[data-estado='cadastro'] .boca { transform: scale(1.16); }
+
+/* Biblioteca: acompanha uma linha e dá uma piscada antes de pousar o olhar. */
+.carinha[data-estado='biblioteca'] .rosto { animation: ler 2s ease-in-out backwards; }
+.carinha[data-estado='biblioteca'] .sobrancelhaEsquerda { transform: translate(4px,9px) rotate(5deg); }
+.carinha[data-estado='biblioteca'] .sobrancelhaDireita { transform: translate(4px,-12px) rotate(-5deg); }
+.carinha[data-estado='biblioteca'] .olhoEsquerdo { transform: translate(18px,25px); animation: ler-esquerda 2s ease-in-out backwards; }
+.carinha[data-estado='biblioteca'] .olhoDireito { transform: translate(18px,25px); animation: ler-direita 2s ease-in-out backwards; }
+.carinha[data-estado='biblioteca'] .nariz { transform: translate(7px,7px); }
+.carinha[data-estado='biblioteca'] .boca { transform: translateY(6px) rotate(3deg); }
+
+.carinha[data-estado='confirmacao'] .rosto { animation: acolher 1.3s ease-in-out backwards; }
+.carinha[data-estado='confirmacao'] .boca { animation: falar 1.3s ease-in-out backwards; }
+
+@keyframes descobrir {
+  0%,100% { transform: rotate(0); }
+  20% { transform: rotate(-5deg); }
+  50% { transform: rotate(4deg); }
+  75% { transform: rotate(-2deg); }
 }
-.carinha[data-estado='oportunidades'] .nariz {
-  transform: translateX(6px);
+@keyframes acolher {
+  0%,100% { transform: translateY(0) rotate(0); }
+  24% { transform: translateY(16px) rotate(-3deg); }
+  50% { transform: translateY(-10px) rotate(3deg); }
+  75% { transform: translateY(7px) rotate(-1deg); }
+}
+@keyframes ler {
+  0%,100% { transform: rotate(0); }
+  25% { transform: rotate(4deg); }
+  65% { transform: rotate(-3deg); }
+}
+@keyframes piscar-entrada {
+  0%,20%,32%,62%,74%,100% { transform: scaleY(1); }
+  25%,68% { transform: scaleY(.12); }
+}
+@keyframes perguntar {
+  0%,100% { transform: translateY(0) rotate(0); }
+  28%,50% { transform: translateY(-20px) rotate(5deg); }
+}
+@keyframes falar {
+  0%,100% { transform: scale(1); }
+  26%,64% { transform: scale(1.18,1.24); }
+  45% { transform: scale(.96,.88); }
+}
+@keyframes acompanhar {
+  0%,100% { transform: translate(0); }
+  25% { transform: translate(12px,6px); }
+  65% { transform: translate(-8px,10px); }
+}
+@keyframes olhar-curioso {
+  0% { transform: translate(0) scaleY(1); }
+  22% { transform: translate(-18px,-7px) scaleY(1); }
+  36% { transform: translate(-18px,-7px) scaleY(.12); }
+  47% { transform: translate(-18px,-7px) scaleY(1); }
+  75%,100% { transform: translate(30px,-8px) scaleY(1); }
+}
+@keyframes cumprimentar-esquerda {
+  0% { transform: translate(0) rotate(0) scaleY(1); }
+  35% { transform: translateY(8px) rotate(-4deg) scaleY(.4); }
+  60%,100% { transform: translateY(8px) rotate(-4deg) scaleY(1); }
+}
+@keyframes cumprimentar-direita {
+  0% { transform: translate(0) rotate(0) scaleY(1); }
+  35% { transform: translateY(8px) rotate(4deg) scaleY(.4); }
+  60%,100% { transform: translateY(8px) rotate(4deg) scaleY(1); }
+}
+@keyframes escutar {
+  0%,100% { transform: rotate(0); }
+  30% { transform: rotate(-6deg); }
+  60% { transform: rotate(5deg); }
+}
+@keyframes ler-esquerda {
+  0% { transform: translate(0); }
+  28% { transform: translate(-22px,15px); }
+  60%,100% { transform: translate(18px,25px); }
+}
+@keyframes ler-direita {
+  0% { transform: translate(0) scaleY(1); }
+  28% { transform: translate(-22px,15px) scaleY(1); }
+  44% { transform: translate(-8px,20px) scaleY(.1); }
+  60%,100% { transform: translate(18px,25px) scaleY(1); }
 }
 
-.carinha[data-estado='cadastro'] .sobrancelhaEsquerda {
-  transform: translateY(-10px) rotate(3deg);
-}
-.carinha[data-estado='cadastro'] .sobrancelhaDireita {
-  transform: translateY(-10px) rotate(-3deg);
-}
-.carinha[data-estado='cadastro'] .olhoEsquerdo,
-.carinha[data-estado='cadastro'] .olhoDireito {
-  transform: translate(18px, 8px);
-}
-.carinha[data-estado='cadastro'] .boca {
-  transform: translateY(2px);
-}
-
-.carinha[data-estado='biblioteca'] .sobrancelhaEsquerda {
-  transform: translate(6px, 8px) rotate(3deg);
-}
-.carinha[data-estado='biblioteca'] .sobrancelhaDireita {
-  transform: translate(6px, 8px) rotate(-3deg);
-}
-.carinha[data-estado='biblioteca'] .olhoEsquerdo,
-.carinha[data-estado='biblioteca'] .olhoDireito {
-  transform: translate(18px, 24px);
-}
-.carinha[data-estado='biblioteca'] .nariz {
-  transform: translate(6px, 3px);
-}
-
-.carinha[data-estado='confirmacao'] .rosto {
-  animation: aceno 540ms cubic-bezier(.2, .65, .3, 1) 1;
-}
-.carinha[data-estado='confirmacao'] .sobrancelhaEsquerda {
-  transform: translateY(-8px) rotate(-1deg);
-}
-.carinha[data-estado='confirmacao'] .sobrancelhaDireita {
-  transform: translateY(-8px) rotate(1deg);
-}
-.carinha[data-estado='confirmacao'] .olhoEsquerdo,
-.carinha[data-estado='confirmacao'] .olhoDireito {
-  transform: scaleY(1.025);
-}
-.carinha[data-estado='confirmacao'] .boca {
-  transform: scaleY(1.035);
-}
-
-@keyframes aceno {
-  0%, 100% { transform: translateY(0) rotate(0); }
-  35% { transform: translateY(3px) rotate(-1.6deg); }
-  70% { transform: translateY(-2px) rotate(.8deg); }
-}
-
-@media (max-width: 760px) {
-  .carinha { width: var(--carinha-tamanho, 58px); height: var(--carinha-tamanho, 58px); }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .carinha,
-  .carinha * {
-    animation: none !important;
-    transition: none !important;
-    transform: none !important;
-  }
+@media (max-width:760px) { .carinha { width:var(--carinha-tamanho,58px); height:var(--carinha-tamanho,58px); } }
+@media (prefers-reduced-motion:reduce) {
+  .apresentacao,.rosto,.entradaParte,.recorte { animation:none !important; transition:none !important; transform:none !important; }
 }
