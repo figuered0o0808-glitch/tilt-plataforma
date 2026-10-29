@@ -8,7 +8,6 @@ import { Enxame, Ponte } from '@/components/Enxame';
 import { Marcador } from '@/components/Marcador';
 import { Vagas } from '@/components/Vagas';
 import { Organizacao } from '@/components/Organizacao';
-import { PROGRAM_TAGLINE } from '@/config/program';
 import { ehIdioma, type Idioma } from '@/i18n/idiomas';
 import { textos } from '@/i18n/strings';
 import { conteudo } from '@/lib/data';
@@ -273,8 +272,8 @@ export default async function Home({ params }: { params: Promise<{ idioma: strin
         <div className="container">
           <div className="hero__marca">
             <Enxame largura={560} />
-            <p className="olho" style={{ margin: 0 }} lang="en">
-              {PROGRAM_TAGLINE}
+            <p className="olho" style={{ margin: 0 }}>
+              {t.home.marca}
             </p>
           </div>
 

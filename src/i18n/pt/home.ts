@@ -6,6 +6,7 @@
  * valer as chaves de entrada, colunas, numeros, chamadas e biblioteca.
  */
 export const home = {
+  marca: 'Plataforma de criadores',
   frase: 'Um laboratório de criadores para o interesse público.',
   apresentacao:
     'O programa financia projetos de criadores de conteúdo sobre ciência, clima, meio ambiente, saúde pública e democracia. A proposta é do criador, e a decisão editorial também.',

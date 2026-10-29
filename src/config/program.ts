@@ -3,15 +3,14 @@
  *
  * Para renomear a plataforma inteira, troque apenas estas constantes.
  */
-export const PROGRAM_NAME = 'TILT';
+export const PROGRAM_NAME = 'INDICA';
 
-/** Expansao do nome: T.I.L.T. */
-export const PROGRAM_TAGLINE = 'The influencers lab for tomorrow';
+/** Descricao da plataforma. */
+export const PROGRAM_TAGLINE = 'Plataforma de criadores para o interesse público';
 
 /** Organizacoes executoras. */
 export const EXECUTORAS = {
   indica: 'INDICA',
-  tilt: 'TILT',
 } as const;
 
 /** Marca da INDICA, para os lugares em que ela nao vem dos dados (rodape). */
@@ -24,4 +23,7 @@ export const LOGO_INDICA = '/organizacoes/indica.png';
 export const DATA_REFERENCIA = '2026-10-14';
 
 /** Chave de persistência local (opcional: nada quebra sem localStorage). */
-export const STORAGE_KEY = 'tilt:v1';
+export const STORAGE_KEY = 'indica:plataforma:v1';
+
+/** Compatibilidade com dados locais anteriores à mudança de marca. */
+export const LEGACY_STORAGE_KEY = 'tilt:v1';

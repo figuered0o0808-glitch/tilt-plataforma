@@ -6,7 +6,7 @@
  * a pessoa troca de aparelho. Este arquivo e o unico ponto por onde eles saem
  * daqui.
  *
- * DESLIGADO POR PADRAO. Sem NEXT_PUBLIC_TILT_API definido, `enviar` nao faz
+ * DESLIGADO POR PADRAO. Sem NEXT_PUBLIC_INDICA_API definido, `enviar` nao faz
  * requisicao nenhuma e devolve `{ enviado: false, motivo: 'sem-destino' }`. E
  * de proposito: o site esta no ar, a API ainda nao existe, e um site publicado
  * nao pode passar a bater num endereco inexistente a cada formulario enviado.
@@ -28,7 +28,7 @@
 import { normalizarTelefone } from '@/lib/telefone';
 
 /** Endereco da API da INDICA, sem barra no fim. Vazio desliga o canal. */
-const DESTINO = (process.env.NEXT_PUBLIC_TILT_API || '').replace(/\/+$/, '');
+const DESTINO = (process.env.NEXT_PUBLIC_INDICA_API || process.env.NEXT_PUBLIC_TILT_API || '').replace(/\/+$/, '');
 
 /** Quanto tempo esperar antes de desistir. Formulario nao pode ficar pendurado. */
 const LIMITE_MS = 8000;
@@ -81,7 +81,7 @@ async function enviar(caminho: string, corpo: unknown): Promise<ResultadoDoEnvio
 /**
  * Cadastro de criador.
  *
- * Vira uma linha em `tilt_candidato`, com `influenciador_id` nulo ate alguem da
+ * Vira uma linha em `candidato`, com `influenciador_id` nulo ate alguem da
  * equipe reconhecer a pessoa na base da INDICA. `pais` sai daqui como codigo ISO
  * de dois digitos, ja normalizado (ver src/lib/paises.ts): e o que permite
  * agrupar por pais do outro lado sem depender do idioma de quem preencheu.
@@ -120,7 +120,7 @@ export function enviarCadastro(perfil: {
 /**
  * Candidatura a uma chamada.
  *
- * Vira uma linha em `tilt_proposta`, no estado 'recebida'. O protocolo NAO e
+ * Vira uma linha em `proposta`, no estado 'recebida'. O protocolo NAO e
  * gerado aqui: quem numera e o servidor, senao dois navegadores offline geram o
  * mesmo numero e a chamada passa a ter dois C01-003.
  */

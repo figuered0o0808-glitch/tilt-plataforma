@@ -6,6 +6,7 @@
  * valer as chaves de entrada, colunas, numeros, chamadas e biblioteca.
  */
 export const home = {
+  marca: 'Creator platform',
   frase: 'A creator lab for the public interest.',
   apresentacao:
     'The program funds content creator projects on science, climate, environment, public health and democracy. The proposal belongs to the creator, and so does the editorial decision.',

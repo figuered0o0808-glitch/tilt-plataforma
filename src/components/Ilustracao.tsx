@@ -1,14 +1,14 @@
 import type { ReactElement } from 'react';
 
 /**
- * Ilustracoes na linguagem visual da TILT: traco preto fino, formas chapadas
- * nos tons pastel e a matriz de pontos como textura. Sem fotos e sem imagens
+ * Ilustrações da plataforma INDICA: traços finos e formas geométricas
+ * nos tons da marca e pontos como textura. Sem fotos e sem imagens
  * de banco.
  */
 
 export type NomeIlustracao = 'busca' | 'lista' | 'pasta' | 'enviado';
 
-/** Matriz de pontos: a textura de marca da TILT. */
+/** Textura geométrica de apoio. */
 function Pontos({
   x,
   y,

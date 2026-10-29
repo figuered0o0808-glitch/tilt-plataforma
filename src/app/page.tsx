@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
 
-import { LogoTilt } from '@/components/LogoTilt';
+import { LogoIndica } from '@/components/LogoIndica';
 import { PROGRAM_NAME } from '@/config/program';
 import { IDIOMAS, IDIOMA_PADRAO, NOME_DO_IDIOMA } from '@/i18n/idiomas';
 import { rota } from '@/lib/rotas';
@@ -25,7 +25,7 @@ export default function Raiz() {
       <main className="secao">
         <div className="container-estreito pilha">
           <p style={{ margin: 0 }}>
-            <LogoTilt altura={26} rotulo={PROGRAM_NAME} />
+            <LogoIndica altura={26} rotulo={PROGRAM_NAME} />
           </p>
           <ul className="pilha--p" style={{ listStyle: 'none', margin: 0, padding: 0 }}>
             {IDIOMAS.map((idioma) => (

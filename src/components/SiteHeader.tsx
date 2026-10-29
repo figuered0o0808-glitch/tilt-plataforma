@@ -4,7 +4,7 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useEffect, useRef, useState } from 'react';
 
-import { LogoTilt } from '@/components/LogoTilt';
+import { LogoIndica } from '@/components/LogoIndica';
 import { SeletorIdioma } from '@/components/SeletorIdioma';
 import { PROGRAM_NAME } from '@/config/program';
 import type { Idioma } from '@/i18n/idiomas';
@@ -56,7 +56,7 @@ export function SiteHeader({
 
   const inicio = rota(idioma);
   const ehHome = caminho === inicio || caminho === `${inicio}/`;
-  const marcaFixa = marcaNoCabecalho ?? !ehHome;
+  const marcaFixa = marcaNoCabecalho ?? true;
 
   /*
    * O estado inicial e o mesmo no servidor e no navegador: fixa quando a
@@ -109,7 +109,7 @@ export function SiteHeader({
           aria-hidden={marcaVisivel ? undefined : true}
           tabIndex={marcaVisivel ? undefined : -1}
         >
-          <LogoTilt altura={24} />
+          <LogoIndica altura={24} />
         </Link>
 
         <nav className="cabecalho__nav" aria-label={t.comum.navegacao.principal}>

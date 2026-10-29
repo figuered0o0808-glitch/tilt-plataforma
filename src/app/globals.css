@@ -1,38 +1,20 @@
-/* =========================================================================
-   Sistema visual TILT, conforme o Brand Manual (2023).
-
-   Paleta oficial: Sky Blue, Golden Sunbeam, Aqua Mist, Cold Sand,
-   Midnight Black e Pure Snow White. Tipografia corporativa: Tiempos.
-   Como o Tiempos e licenciado, usamos a alternativa de sistema que o
-   proprio manual indica: Times. Nenhuma fonte externa e carregada.
-
-   O sistema visual do manual e feito de faixas de cor: blocos horizontais
-   da paleta, em larguras diferentes, no lugar de um logotipo repetido.
-
-   Direcao atual: o ponto do logotipo e a unidade de tudo. Na home ele entra
-   espalhado e assenta formando a marca (.enxame); embaixo, marca cada coluna
-   (.marcador) e mede as vagas (.pontos). A cor entra so como superficie:
-   tres colunas chapadas, da borda a borda (.colunas). Controles em pilula.
-
-   Tamanho de texto e espaco saem sempre dos tokens declarados em :root.
-   Numero solto no meio da folha significa que o valor nao pertence ao
-   ritmo: e medida de um componente (largura de coluna, diametro).
-   ========================================================================= */
-
+/* Identidade INDICA: os mesmos arquivos e cores do site agenciaindica.com. */
+@font-face { font-family: 'Inter'; font-style: normal; font-weight: 400 600; font-display: swap; src: url('../../public/fonts/inter-latin.woff2') format('woff2'); }
+@font-face { font-family: 'Jost'; font-style: normal; font-weight: 200 700; font-display: swap; src: url('../../public/fonts/jost-latin.woff2') format('woff2'); }
 :root {
   /* ---------- Paleta oficial ---------- */
-  --azul: #c8e1fa;        /* Sky Blue */
-  --amarelo: #fffacf;     /* Golden Sunbeam */
-  --menta: #bee6d7;       /* Aqua Mist */
-  --areia: #f0ebe1;       /* Cold Sand */
-  --preto: #000000;       /* Midnight Black */
-  --branco: #ffffff;      /* Pure Snow White */
-  --rosa: #ffd9e9;        /* tom secundario, usado na landing page da marca */
+  --azul: #101e30;
+  --amarelo: #101e30;
+  --menta: #152210;
+  --areia: #11151c;
+  --preto: #f3f5f8;
+  --branco: #080a0e;
+  --rosa: #27111f;
 
-  --tinta-media: rgba(0, 0, 0, 0.74);
-  --tinta-suave: rgba(0, 0, 0, 0.6);     /* 5,2:1 sobre a menta, a superficie mais clara com texto */
-  --linha: rgba(0, 0, 0, 0.18);
-  --destaque: #000000;
+  --tinta-media: #c4cbd5;
+  --tinta-suave: #a5afbd;     /* 5,2:1 sobre a menta, a superficie mais clara com texto */
+  --linha: rgba(255, 255, 255, 0.14);
+  --destaque: #8ace2b;
 
   /* ---------- Escala tipografica ----------
      1rem = 16px. O corpo do texto e --texto-xg.
@@ -92,9 +74,9 @@
 
   --foco-cor: var(--preto);
 
-  --serif: 'Times New Roman', Times, Georgia, serif;
+  --serif: 'Inter', system-ui, sans-serif;
   /* Monoespacada de sistema: nenhuma fonte e baixada da rede. */
-  --mono: ui-monospace, SFMono-Regular, 'SF Mono', Menlo, Consolas, monospace;
+  --mono: 'Inter', system-ui, sans-serif;
 }
 
 *,
@@ -125,7 +107,7 @@ main {
 }
 
 h1, h2, h3, h4 {
-  font-family: var(--serif);
+  font-family: 'Jost', sans-serif;
   font-weight: 400;
   color: var(--preto);
   margin: 0 0 0.4em;
@@ -184,12 +166,12 @@ img, svg { max-width: 100%; }
 
 
 .secao--branco { background: var(--branco); }
-.secao--preto { background: var(--preto); color: var(--branco); --foco-cor: var(--branco); }
+.secao--preto { background: var(--branco); color: var(--preto); --foco-cor: var(--preto); }
 .secao--preto h1,
 .secao--preto h2,
 .secao--preto h3,
 .secao--preto h4,
-.secao--preto a { color: var(--branco); }
+.secao--preto a { color: var(--preto); }
 .secao--preto .olho,
 .secao--preto .rotulo,
 .secao--preto .registro__rotulo { color: rgba(255, 255, 255, 0.6); }
@@ -198,10 +180,10 @@ img, svg { max-width: 100%; }
 .secao--preto .texto-secundario { color: rgba(255, 255, 255, 0.82); }
 .secao--preto .registro { border-color: rgba(255, 255, 255, 0.22); }
 .secao--preto .registro:last-child { border-bottom-color: rgba(255, 255, 255, 0.22); }
-.secao--preto .btn { border-color: var(--branco); color: var(--branco); }
-.secao--preto .btn:hover:not(:disabled) { background: var(--branco); color: var(--preto); }
-.secao--preto .btn--primario { background: var(--branco); color: var(--preto); }
-.secao--preto .btn--primario:hover:not(:disabled) { background: transparent; color: var(--branco); }
+.secao--preto .btn { border-color: var(--preto); color: var(--preto); }
+.secao--preto .btn:hover:not(:disabled) { background: var(--preto); color: var(--branco); }
+.secao--preto .btn--primario { background: var(--preto); color: var(--branco); }
+.secao--preto .btn--primario:hover:not(:disabled) { background: transparent; color: var(--preto); }
 
 .pilha { display: flex; flex-direction: column; gap: var(--esp-16); }
 .pilha--g { display: flex; flex-direction: column; gap: var(--esp-32); }
@@ -707,7 +689,7 @@ select {
 .bib-capa-marca__malha {
   position: absolute;
   inset: 0;
-  color: rgba(0, 0, 0, 0.24);
+  color: rgba(255, 255, 255, 0.35);
   background-image: radial-gradient(circle, currentColor 1.2px, transparent 1.2px);
   background-size: 16px 16px;
 }
@@ -1090,7 +1072,7 @@ main:focus { outline: none; }
   text-decoration: none;
   background: transparent;
 }
-.campo-atalho:hover { color: var(--preto); background: rgba(255, 255, 255, 0.5); }
+.campo-atalho:hover { color: var(--preto); background: rgba(255, 255, 255, 0.08); }
 
 /* Pontos de medida: cada vaga e um ponto. Cheio, ocupada; vazado, aberta. */
 .pontos { display: flex; flex-wrap: wrap; gap: 7px; }
@@ -1304,3 +1286,44 @@ main:focus { outline: none; }
     word-break: break-all;
   }
 }
+
+/* Aplicação da marca INDICA em todas as áreas. */
+:root { --indica-azul: #2f9bff; --indica-verde: #8ace2b; --indica-rosa: #ff2e9a; color-scheme: dark; }
+body { background: #000; }
+::selection { background: #2f9bff66; color: #fff; }
+.cabecalho { background: #000000ed; backdrop-filter: blur(16px); border-color: var(--linha); }
+.cabecalho::before { content: ''; position: absolute; inset: 0 0 auto; height: 3px; background: linear-gradient(90deg, var(--indica-azul), var(--indica-verde), var(--indica-rosa)); }
+.cabecalho__link { text-transform: none; letter-spacing: 0; font-size: var(--texto-m); }
+.cabecalho__link[aria-current='page'] { color: var(--indica-azul); background: #2f9bff15; border-color: #2f9bff44; }
+.cabecalho__marca img { max-width: 110px; }
+.hero { background: radial-gradient(ellipse at 50% 0%, #14223466, transparent 65%); }
+.hero__marca { gap: var(--esp-16); padding-top: var(--esp-64); }
+.hero__marca .marca-indica { width: min(420px, 72vw) !important; }
+.marca-indica img { width: 100% !important; height: auto !important; }
+.hero__frase { font-family: 'Jost', sans-serif; font-weight: 300; letter-spacing: -.035em; }
+.hero__marca .olho { color: var(--tinta-suave); }
+.ponte { opacity: 1; animation: none; }
+.ponte__ponto--rosa { background: var(--indica-rosa); }
+.ponte__ponto--menta { background: var(--indica-verde); }
+.ponte__ponto--amarelo { background: var(--indica-azul); }
+.colunas { border-color: var(--linha); }
+.coluna { position: relative; border-top: 3px solid transparent; }
+.coluna--rosa { border-top-color: var(--indica-rosa); }
+.coluna--menta { border-top-color: var(--indica-verde); }
+.coluna--amarelo { border-top-color: var(--indica-azul); }
+.coluna:not(:last-child), .coluna--solta, .rodape { border-color: var(--linha); }
+.coluna--rosa .coluna__cabeca { color: var(--indica-rosa); }
+.coluna--menta .coluna__cabeca { color: var(--indica-verde); }
+.coluna--amarelo .coluna__cabeca { color: var(--indica-azul); }
+.coluna__cabeca .marcador { color: inherit; }
+.coluna__titulo { font-family: 'Jost', sans-serif; font-weight: 400; }
+.btn { border-radius: 999px; border-color: #ffffff30; }
+.btn--primario { background: var(--indica-verde); color: #091004; border-color: var(--indica-verde); }
+.btn--primario:hover:not(:disabled) { background: #a7e84d; color: #091004; border-color: #a7e84d; }
+.btn--secundario:hover:not(:disabled) { background: #ffffff12; color: var(--preto); }
+.campo-atalho, .campo__input, input, select, textarea { border-color: #ffffff30; }
+.rodape { background: #000; }
+.rodape__tagline { color: var(--tinta-suave); }
+.cartao, .coluna--solta, .destaque { border-radius: 16px; }
+@media (max-width: 760px) { .hero__marca { padding-top: var(--esp-32); } .cabecalho__interno { gap: var(--esp-12); } .cabecalho__marca img { max-width: 85px; } }
+@media print { body { background: white; color: black; } .marca-indica img, .cabecalho__marca img, .rodape__marca img { filter: invert(1); } }

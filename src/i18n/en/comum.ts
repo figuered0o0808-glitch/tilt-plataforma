@@ -64,8 +64,8 @@ export const comum = {
   },
   rodape: {
     descricao:
-      'Platform by INDICA and TILT. Funding for original projects and training for creators, and open technical materials for creators and organizations.',
-    programa: 'Program',
+      'Platform by INDICA. Funding for original projects and training for creators, and open technical materials for creators and organizations.',
+    programa: 'An initiative by',
     navegue: 'Browse',
   },
 } as const;

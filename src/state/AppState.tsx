@@ -19,7 +19,7 @@ import {
   type ReactNode,
 } from 'react';
 
-import { DATA_REFERENCIA, STORAGE_KEY } from '@/config/program';
+import { DATA_REFERENCIA, STORAGE_KEY, LEGACY_STORAGE_KEY } from '@/config/program';
 import { proximoId } from '@/lib/format';
 import type { Candidatura, PerfilCadastro } from '@/lib/types';
 import {
@@ -68,7 +68,7 @@ const Contexto = createContext<ContextoApp | null>(null);
 function ler(): Partial<Estado> | null {
   if (typeof window === 'undefined') return null;
   try {
-    const bruto = window.localStorage.getItem(STORAGE_KEY);
+    const bruto = window.localStorage.getItem(STORAGE_KEY) ?? window.localStorage.getItem(LEGACY_STORAGE_KEY);
     if (!bruto) return null;
     const salvo: unknown = JSON.parse(bruto);
     if (!salvo || typeof salvo !== 'object') return null;

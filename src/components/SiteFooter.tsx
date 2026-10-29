@@ -1,8 +1,8 @@
 import Link from 'next/link';
 
-import { LogoTilt } from '@/components/LogoTilt';
+import { LogoIndica } from '@/components/LogoIndica';
 import { Organizacao } from '@/components/Organizacao';
-import { PROGRAM_NAME, PROGRAM_TAGLINE, EXECUTORAS, LOGO_INDICA } from '@/config/program';
+import { PROGRAM_NAME, EXECUTORAS, LOGO_INDICA } from '@/config/program';
 import type { Idioma } from '@/i18n/idiomas';
 import { textos } from '@/i18n/strings';
 import { rota } from '@/lib/rotas';
@@ -17,10 +17,10 @@ export function SiteFooter({ idioma }: { idioma: Idioma }) {
           <div className="rodape__grade">
             <div>
               <p className="rodape__marca">
-                <LogoTilt altura={26} rotulo={PROGRAM_NAME} />
+                <LogoIndica altura={26} rotulo={PROGRAM_NAME} />
               </p>
-              <p className="rotulo rodape__tagline" lang="en">
-                {PROGRAM_TAGLINE}
+              <p className="rotulo rodape__tagline">
+                {t.home.marca}
               </p>
               <p className="texto-pequeno rodape__descricao">{t.comum.rodape.descricao}</p>
             </div>
@@ -37,13 +37,10 @@ export function SiteFooter({ idioma }: { idioma: Idioma }) {
             </div>
             <div>
               <p className="rodape__titulo">{t.comum.rodape.programa}</p>
-              {/* As duas organizacoes pela marca, nao pelo nome. */}
+              {/* A plataforma é uma iniciativa da INDICA. */}
               <ul className="rodape__lista" style={{ display: 'flex', flexDirection: 'column', gap: 'var(--esp-12)' }}>
                 <li>
                   <Organizacao nome={EXECUTORAS.indica} logo={LOGO_INDICA} altura={16} />
-                </li>
-                <li>
-                  <LogoTilt altura={14} rotulo={EXECUTORAS.tilt} />
                 </li>
               </ul>
             </div>
