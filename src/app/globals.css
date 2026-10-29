@@ -1336,7 +1336,7 @@ body { background: #000; }
 .mascote-indica__palco { position: relative; aspect-ratio: 1.2; overflow: hidden; isolation: isolate; }
 .mascote-indica__rosto { position: absolute; inset: 0; display: grid; place-items: center; border: 0; padding: 0; width: 100%; height: 100%; background: transparent; cursor: pointer; transition: opacity .4s ease; }
 .mascote-indica__rosto img, .indica-rosto { display: block; max-width: 100%; height: auto; filter: invert(1); mix-blend-mode: screen; }
-.mascote-indica__rosto img { width: 100%; animation: rosto-chegar .7s cubic-bezier(.2,.7,.3,1) both; }
+.mascote-indica__rosto img { width: 100%; height: 100%; object-fit: cover; animation: rosto-chegar .7s cubic-bezier(.2,.7,.3,1) both; }
 .mascote-indica__rosto:hover img { transform: translateY(-4px) rotate(-2deg); transition: transform .3s ease; }
 .mascote-indica__video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; transform: scale(1.35); filter: grayscale(1) invert(1); mix-blend-mode: screen; opacity: 0; pointer-events: none; transition: opacity .35s ease; }
 .mascote-indica[data-estado='playing'] .mascote-indica__video, .mascote-indica[data-estado='paused'] .mascote-indica__video { opacity: 1; }
