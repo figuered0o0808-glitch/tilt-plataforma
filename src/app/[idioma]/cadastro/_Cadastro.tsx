@@ -197,7 +197,7 @@ function CadastroFormulario({ idioma }: { idioma: Idioma }) {
             <div className="cartao">
               <div className="destaque" role="status" tabIndex={-1} ref={confirmacao}>
                 <div className="confirmacao-indica">
-                  <CarinhaIndica estado="confirmacao" />
+                  <CarinhaIndica expressao="01" cor="verde" estado="confirmacao" />
                   <div><p className="destaque__titulo">{tc.confirmacaoTitulo}</p>
                   <p className="destaque__texto">{tc.confirmacaoTexto}</p></div>
                 </div>

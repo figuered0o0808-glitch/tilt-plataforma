@@ -1,12 +1,10 @@
 .carinha {
   display: block;
-  width: clamp(130px, 12vw, 160px);
+  width: var(--carinha-tamanho, 64px);
   max-width: 100%;
-  height: auto;
+  height: var(--carinha-tamanho, 64px);
   overflow: visible;
   flex: none;
-  filter: invert(1);
-  mix-blend-mode: screen;
   pointer-events: none;
   user-select: none;
 }
@@ -18,7 +16,7 @@
 }
 
 .rosto {
-  transform-origin: 610px 545px;
+  transform-origin: var(--centro-rosto, 610px 545px);
 }
 
 .recorte {
@@ -30,6 +28,7 @@
 .olhoEsquerdo,
 .olhoDireito,
 .orelha,
+.face,
 .nariz,
 .boca {
   transform: none;
@@ -101,7 +100,7 @@
 }
 
 @media (max-width: 760px) {
-  .carinha { width: 90px; }
+  .carinha { width: var(--carinha-tamanho, 58px); height: var(--carinha-tamanho, 58px); }
 }
 
 @media (prefers-reduced-motion: reduce) {
