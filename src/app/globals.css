@@ -3,18 +3,18 @@
 @font-face { font-family: 'Jost'; font-style: normal; font-weight: 200 700; font-display: swap; src: url('../../public/fonts/jost-latin.woff2') format('woff2'); }
 :root {
   /* ---------- Paleta oficial ---------- */
-  --azul: #101e30;
-  --amarelo: #101e30;
-  --menta: #152210;
-  --areia: #11151c;
+  --azul: #151515;
+  --amarelo: #151515;
+  --menta: #151515;
+  --areia: #111111;
   --preto: #f3f5f8;
-  --branco: #080a0e;
-  --rosa: #27111f;
+  --branco: #080808;
+  --rosa: #151515;
 
   --tinta-media: #c4cbd5;
   --tinta-suave: #a5afbd;     /* 5,2:1 sobre a menta, a superficie mais clara com texto */
   --linha: rgba(255, 255, 255, 0.14);
-  --destaque: #8ace2b;
+  --destaque: #f3f5f8;
 
   /* ---------- Escala tipografica ----------
      1rem = 16px. O corpo do texto e --texto-xg.
@@ -880,17 +880,6 @@ select {
    marca assentou. A cor desce para o lugar dela. */
 .ponte { display: flex; align-items: center; gap: var(--esp-8); opacity: 0; animation: surgir 0.9s ease 2.3s forwards; }
 @keyframes surgir { to { opacity: 1; } }
-.ponte__ponto {
-  display: block;
-  flex: none;
-  width: 13px;
-  height: 13px;
-  border-radius: var(--raio-pilula);
-  border: 1px solid var(--preto);
-}
-.ponte__ponto--rosa { background: var(--rosa); }
-.ponte__ponto--menta { background: var(--menta); }
-.ponte__ponto--amarelo { background: var(--amarelo); }
 .ponte__rotulo {
   margin-left: var(--esp-8);
   font-family: var(--mono);
@@ -1034,7 +1023,7 @@ main:focus { outline: none; }
 }
 
 /* Marcador de coluna: um aglomerado de pontos onde outro site poria um icone. */
-.marcador { display: block; flex: none; width: 22px; height: 22px; color: var(--preto); }
+.marcador { flex: none; }
 
 /* O hero da home: a marca se forma no centro, e so depois vem a frase. */
 .hero--enxame { padding: var(--esp-24) 0 0; }
@@ -1256,7 +1245,7 @@ main:focus { outline: none; }
   /* No papel nao ha tempo: a marca sai formada e a ponte, visivel. */
   .enxame__ponto { animation: none !important; }
   .ponte { opacity: 1 !important; animation: none !important; }
-  .ponte__ponto { background: #fff !important; }
+  .assinatura-indica__ponto { print-color-adjust: exact; -webkit-print-color-adjust: exact; }
   .secao--preto {
     background: #fff !important;
     color: #000 !important;
@@ -1290,36 +1279,33 @@ main:focus { outline: none; }
 /* Aplicação da marca INDICA em todas as áreas. */
 :root { --indica-azul: #2f9bff; --indica-verde: #8ace2b; --indica-rosa: #ff2e9a; color-scheme: dark; }
 body { background: #000; }
-::selection { background: #2f9bff66; color: #fff; }
+::selection { background: #ffffff33; color: #fff; }
 .cabecalho { background: #000000ed; backdrop-filter: blur(16px); border-color: var(--linha); }
-.cabecalho::before { content: ''; position: absolute; inset: 0 0 auto; height: 3px; background: linear-gradient(90deg, var(--indica-azul), var(--indica-verde), var(--indica-rosa)); }
+.cabecalho::before { content: none; }
 .cabecalho__link { text-transform: none; letter-spacing: 0; font-size: var(--texto-m); }
-.cabecalho__link[aria-current='page'] { color: var(--indica-azul); background: #2f9bff15; border-color: #2f9bff44; }
+.cabecalho__link[aria-current='page'] { color: #fff; background: #ffffff0d; border-color: #ffffff33; }
 .cabecalho__marca img { max-width: 110px; }
-.hero { background: radial-gradient(ellipse at 50% 0%, #14223466, transparent 65%); }
+.hero { background: #000; }
 .hero__marca { gap: var(--esp-16); padding-top: var(--esp-64); }
 .hero__marca .marca-indica { width: min(420px, 72vw) !important; }
 .marca-indica img { width: 100% !important; height: auto !important; }
 .hero__frase { font-family: 'Jost', sans-serif; font-weight: 300; letter-spacing: -.035em; }
 .hero__marca .olho { color: var(--tinta-suave); }
 .ponte { opacity: 1; animation: none; }
-.ponte__ponto--rosa { background: var(--indica-rosa); }
-.ponte__ponto--menta { background: var(--indica-verde); }
-.ponte__ponto--amarelo { background: var(--indica-azul); }
 .colunas { border-color: var(--linha); }
-.coluna { position: relative; border-top: 3px solid transparent; }
-.coluna--rosa { border-top-color: var(--indica-rosa); }
-.coluna--menta { border-top-color: var(--indica-verde); }
-.coluna--amarelo { border-top-color: var(--indica-azul); }
+.coluna { position: relative; border-top: 1px solid var(--linha); }
+.coluna--rosa { border-top-color: var(--linha); }
+.coluna--menta { border-top-color: var(--linha); }
+.coluna--amarelo { border-top-color: var(--linha); }
 .coluna:not(:last-child), .coluna--solta, .rodape { border-color: var(--linha); }
-.coluna--rosa .coluna__cabeca { color: var(--indica-rosa); }
-.coluna--menta .coluna__cabeca { color: var(--indica-verde); }
-.coluna--amarelo .coluna__cabeca { color: var(--indica-azul); }
+.coluna--rosa .coluna__cabeca { color: var(--tinta-media); }
+.coluna--menta .coluna__cabeca { color: var(--tinta-media); }
+.coluna--amarelo .coluna__cabeca { color: var(--tinta-media); }
 .coluna__cabeca .marcador { color: inherit; }
 .coluna__titulo { font-family: 'Jost', sans-serif; font-weight: 400; }
 .btn { border-radius: 999px; border-color: #ffffff30; }
-.btn--primario { background: var(--indica-verde); color: #091004; border-color: var(--indica-verde); }
-.btn--primario:hover:not(:disabled) { background: #a7e84d; color: #091004; border-color: #a7e84d; }
+.btn--primario { background: #f3f5f8; color: #080808; border-color: #f3f5f8; }
+.btn--primario:hover:not(:disabled) { background: #dfe2e6; color: #080808; border-color: #dfe2e6; }
 .btn--secundario:hover:not(:disabled) { background: #ffffff12; color: var(--preto); }
 .campo-atalho, .campo__input, input, select, textarea { border-color: #ffffff30; }
 .rodape { background: #000; }
@@ -1327,3 +1313,15 @@ body { background: #000; }
 .cartao, .coluna--solta, .destaque { border-radius: 16px; }
 @media (max-width: 760px) { .hero__marca { padding-top: var(--esp-32); } .cabecalho__interno { gap: var(--esp-12); } .cabecalho__marca img { max-width: 85px; } }
 @media print { body { background: white; color: black; } .marca-indica img, .cabecalho__marca img, .rodape__marca img { filter: invert(1); } }
+
+/* Mesma assinatura cromática e ordem de agenciaindica.com. */
+:root {
+  --indica-grad-blue: linear-gradient(150deg,#62c2ff,#2f6df0);
+  --indica-grad-green: linear-gradient(150deg,#c2ee5a,#5cbf1f);
+  --indica-grad-pink: linear-gradient(140deg,#8ace2b,#ff2e9a);
+}
+.assinatura-indica { display: inline-flex; align-items: center; gap: calc(var(--ponto-tamanho, 14px) * 11 / 14); flex: none; }
+.assinatura-indica__ponto { display: block; width: var(--ponto-tamanho, 14px); height: var(--ponto-tamanho, 14px); border-radius: 50%; border: 0; box-shadow: 0 2px 10px rgba(0,0,0,.4); flex: none; }
+.assinatura-indica__ponto--azul { background: var(--indica-grad-blue); }
+.assinatura-indica__ponto--verde { background: var(--indica-grad-green); }
+.assinatura-indica__ponto--rosa { background: var(--indica-grad-pink); }

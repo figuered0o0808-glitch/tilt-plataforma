@@ -4,7 +4,7 @@ Plataforma pública da INDICA para oportunidades, formação e materiais de apoi
 
 ## Identidade
 
-Logotipo oficial em `public/marca/indica.png`, ícones e imagem de compartilhamento na mesma pasta. Fontes locais Jost e Inter em `public/fonts/`. Fundo escuro e acentos azul `#2f9bff`, verde `#8ace2b` e rosa `#ff2e9a`, seguindo agenciaindica.com. Tokens e estilos em `src/app/globals.css`.
+Logotipo oficial em `public/marca/indica.png`, ícones e imagem de compartilhamento na mesma pasta. Fontes locais Jost e Inter em `public/fonts/`. Visual predominantemente preto e branco, sem faixa em degradê no topo. As cores ficam reservadas à assinatura de três bolinhas, com os mesmos degradês e ordem azul, verde e rosa de agenciaindica.com. Tokens e estilos em `src/app/globals.css`.
 
 ## Desenvolvimento e publicação
 
