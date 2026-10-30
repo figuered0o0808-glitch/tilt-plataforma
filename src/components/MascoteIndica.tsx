@@ -22,20 +22,29 @@ export function MascoteIndica({ idioma, edital, aceitaCadastro = false }: { idio
   const t = textos(idioma).home.caminhos;
   const entrou = hidratado && cadastrado;
   useEffect(() => {
-    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    const movimentoReduzido = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     let encerrado = false;
     let visivel = false;
     let imagensProntas = false;
-    const iniciar = () => { if (!encerrado && visivel && imagensProntas) setEntrada(true); };
-    const imagens = ['01', '02', '03'].map((expressao) => {
+    let iniciado = false;
+    let espera: ReturnType<typeof setTimeout> | undefined;
+    const iniciar = () => {
+      if (encerrado || !visivel || !imagensProntas || iniciado) return;
+      iniciado = true;
+      // A marca fica legível antes de se desdobrar; não há flash da carinha no carregamento.
+      if (movimentoReduzido) setEntrada(true);
+      else espera = setTimeout(() => { if (!encerrado) setEntrada(true); }, 620);
+    };
+    const fontes = ['/marca/indica.png', ...['01', '02', '03'].map((expressao) => `/marca/rostos/rosto-${expressao}.png`)];
+    void Promise.all(fontes.map((fonte) => {
       const img = new Image();
-      img.src = arquivoPublico(`/marca/rostos/rosto-${expressao}.png`);
+      img.src = arquivoPublico(fonte);
       return img.decode().catch(() => undefined);
-    });
-    void Promise.all(imagens).then(() => { imagensProntas = true; iniciar(); });
+    })).then(() => { imagensProntas = true; iniciar(); });
     if (!area.current || typeof IntersectionObserver === 'undefined') {
       visivel = true;
-      return () => { encerrado = true; };
+      iniciar();
+      return () => { encerrado = true; clearTimeout(espera); };
     }
     const observer = new IntersectionObserver(([item]) => {
       if (!item.isIntersecting) return;
@@ -44,7 +53,7 @@ export function MascoteIndica({ idioma, edital, aceitaCadastro = false }: { idio
       iniciar();
     }, { threshold: 0.25 });
     observer.observe(area.current);
-    return () => { encerrado = true; observer.disconnect(); };
+    return () => { encerrado = true; clearTimeout(espera); observer.disconnect(); };
   }, []);
   const caminhos: { id: Caminho; titulo: string; descricao: string; destino: string; expressao: ExpressaoCarinhaIndica; cor: CorCarinhaIndica }[] = [
     { id: 'oportunidades', titulo: t.oportunidades, descricao: t.oportunidadesTexto, destino: 'oportunidades', expressao: '03', cor: 'azul' },
@@ -63,7 +72,7 @@ export function MascoteIndica({ idioma, edital, aceitaCadastro = false }: { idio
             onPointerEnter={(e) => { if (e.pointerType !== 'touch') { setPonteiro(caminho.id); setFoco(null); } }}
             onFocus={() => { setFoco(caminho.id); setPonteiro(null); }}>
             <span className="indica-caminhos__carinha">
-              <CarinhaIndica expressao={caminho.expressao} cor={caminho.cor} entrada={entrada} marca={ativo === caminho.id}
+              <CarinhaIndica expressao={caminho.expressao} cor={caminho.cor} entrada={entrada} preparando={!entrada} marca={!entrada || ativo === caminho.id}
                 estado={ativo === caminho.id ? caminho.id : 'neutro'} />
             </span>
             <span className="indica-caminhos__numero" aria-hidden="true">0{indice + 1}</span>

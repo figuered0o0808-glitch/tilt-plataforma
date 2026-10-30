@@ -7,11 +7,12 @@ import { CabecalhoPagina } from '@/components/CabecalhoPagina';
 import { corDoTema } from '@/components/Chip';
 import { Selo } from '@/components/Selo';
 import { Organizacao } from '@/components/Organizacao';
+import { NumerosChamada } from '@/components/NumerosChamada';
 import { IDIOMAS, ehIdioma } from '@/i18n/idiomas';
 import { textos } from '@/i18n/strings';
 import { conteudo, editalPorSlug } from '@/lib/data';
 import { arquivoPublico, data } from '@/lib/format';
-import { textoDoApoio, textoDoValorTotal } from '@/lib/apoio';
+import { textoDoApoio } from '@/lib/apoio';
 import { alternativas } from '@/lib/seo';
 
 import { DocumentoEdital } from '../_DocumentoEdital';
@@ -124,12 +125,13 @@ export default async function PaginaEdital({
       >
         <div className="container">
           <h2 className="sr-only">{t.editais.numerosTitulo}</h2>
+          <NumerosChamada idioma={idioma} edital={edital} />
           <dl
             className="definicoes"
             style={{
               gridTemplateColumns: 'repeat(auto-fit, minmax(190px, 1fr))',
               gap: 'var(--esp-24)',
-              margin: 0,
+              margin: 'var(--esp-24) 0 0',
             }}
           >
             <div>
@@ -141,10 +143,6 @@ export default async function PaginaEdital({
                   t.editais.proponenteProprio
                 )}
               </dd>
-            </div>
-            <div>
-              <dt>{t.comum.rotulos.valorTotal}</dt>
-              <dd>{textoDoValorTotal(idioma, edital)}</dd>
             </div>
             <div>
               <dt>{t.comum.rotulos.apoio}</dt>

@@ -3,6 +3,7 @@
  * cada chamada e bloco de resultado publicado.
  */
 export const editais = {
+  destaque: { orcamento: 'Presupuesto total', propostas: 'Propuestas previstas' },
   idiomasDocumento: { pt: 'Portugués', en: 'Inglés', es: 'Español' },
   consultaVagas: 'Previsión: de {min} a {max} propuestas.',
   consultaVagasFixas: 'Previsión: {n} propuestas.',

@@ -4,14 +4,14 @@ import type { CSSProperties } from 'react';
 import { Chip } from '@/components/Chip';
 import { Marcador } from '@/components/Marcador';
 import { Selo } from '@/components/Selo';
-import { Vagas } from '@/components/Vagas';
+import { NumerosChamada } from '@/components/NumerosChamada';
 import { Organizacao } from '@/components/Organizacao';
 import type { Idioma } from '@/i18n/idiomas';
 import { textos } from '@/i18n/strings';
-import { arquivoPublico, moeda } from '@/lib/format';
+import { arquivoPublico } from '@/lib/format';
 import { rota } from '@/lib/rotas';
 import type { Call } from '@/lib/types';
-import { textoDoApoio, textoDoValorTotal } from '@/lib/apoio';
+import { textoDoApoio } from '@/lib/apoio';
 
 import { prazoDaChamada } from './_prazo';
 
@@ -96,14 +96,14 @@ export function ChamadaDestaque({
         {edital.resumo}
       </p>
 
+      <NumerosChamada idioma={idioma} edital={edital} />
+
       <div
         style={{
           display: 'grid',
           gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))',
           gap: 'var(--esp-32)',
           alignItems: 'start',
-          borderTop: '1px solid var(--preto)',
-          paddingTop: 'var(--esp-24)',
         }}
       >
         <div className="coluna__linhas">
@@ -117,10 +117,6 @@ export function ChamadaDestaque({
               )}
             </span>
           </div>
-          <div className="coluna__linha">
-            <span className="rotulo">{t.comum.rotulos.valorTotal}</span>
-            <span>{textoDoValorTotal(idioma, edital)}</span>
-          </div>
           <div className={edital.faixaApoio ? 'coluna__linha' : 'coluna__linha coluna__linha--longa'}>
             <span className="rotulo">{t.comum.rotulos.apoio}</span>
             <span>{textoDoApoio(idioma, edital)}</span>
@@ -130,7 +126,6 @@ export function ChamadaDestaque({
             <span>{prazo.valor}</span>
           </div>
         </div>
-        <Vagas idioma={idioma} chamada={edital} />
       </div>
 
       <div className="cartao__rodape">

@@ -1,6 +1,6 @@
 'use client';
 
-import { useId, type CSSProperties } from 'react';
+import { useEffect, useId, useState, type CSSProperties } from 'react';
 
 import { arquivoPublico } from '@/lib/format';
 
@@ -195,6 +195,7 @@ export function CarinhaIndica({
   expressao = '02',
   cor = 'branco',
   entrada = false,
+  preparando = false,
   marca = false,
   className = '',
 }: {
@@ -202,10 +203,25 @@ export function CarinhaIndica({
   expressao?: ExpressaoCarinhaIndica;
   cor?: CorCarinhaIndica;
   entrada?: boolean;
+  preparando?: boolean;
   marca?: boolean;
   className?: string;
 }) {
   const instancia = useId().replace(/[^a-zA-Z0-9_-]/g, '');
+  const [apresentada, setApresentada] = useState(false);
+  const [viva, setViva] = useState(false);
+  const atrasoEntrada = expressao === '03' ? 0 : expressao === '01' ? 140 : 280;
+  useEffect(() => {
+    if (!entrada || preparando) return;
+    const fim = setTimeout(() => setApresentada(true), 1500);
+    return () => clearTimeout(fim);
+  }, [entrada, preparando]);
+  useEffect(() => {
+    setViva(false);
+    if (!entrada || preparando || marca) return;
+    const fim = setTimeout(() => setViva(true), 1420);
+    return () => clearTimeout(fim);
+  }, [entrada, preparando, marca]);
   const prefixo = `carinha-${instancia}-${expressao}`;
   const arte = ARTES[expressao];
   const fonte = arquivoPublico(`/marca/rostos/rosto-${expressao}.png`);
@@ -227,7 +243,9 @@ export function CarinhaIndica({
       data-estado={estado}
       data-expressao={expressao}
       data-cor={cor}
-      data-entrada={entrada ? 'ativa' : undefined}
+      data-abertura={preparando ? 'preparando' : entrada && !apresentada ? 'revelando' : undefined}
+      data-viva={viva && !marca && !preparando ? 'ativa' : undefined}
+      style={{ '--sequencia-atraso': `${entrada && !apresentada ? atrasoEntrada : 0}ms` } as CSSProperties}
       data-marca={marca ? 'ativa' : undefined}
       viewBox={`0 0 ${largura} ${altura}`}
       width="64"
@@ -330,8 +348,9 @@ export function CarinhaIndica({
                     '--montar-rotacao': `${montagem.rotacao}deg`,
                     '--montar-escala-x': escalaX,
                     '--montar-escala-y': escalaY,
-                    '--montar-atraso': `${indice * 24}ms`,
-                    '--montar-desaparecer': `${590 + indice * 24}ms`,
+                    '--montar-atraso': `${indice * 16}ms`,
+                    '--montar-desaparecer': `${620 + indice * 16}ms`,
+                    '--voltar-atraso': `${(arte.recortes.length - 1 - indice) * 12}ms`,
                   } as CSSProperties;
                   const colorido = cor !== 'branco' && partesColoridas.includes(recorte.nome);
                   return (
@@ -361,7 +380,7 @@ export function CarinhaIndica({
           const colorido = cor !== 'branco' && GLIFOS_COLORIDOS[expressao].includes(nome);
           return (
             <g key={nome} className={styles.glifoMarca} data-glifo={nome}
-              style={{ '--glifo-atraso': `${indice * 24}ms` } as CSSProperties}>
+              style={{ '--glifo-atraso': `${indice * 12}ms` } as CSSProperties}>
               <rect width="3228" height="968"
                 fill={colorido ? `url(#${prefixo}-marca-${nome}-gradiente)` : BRANCO}
                 mask={`url(#${prefixo}-marca-${nome}-tinta)`} />

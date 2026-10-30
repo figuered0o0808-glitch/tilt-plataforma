@@ -7,13 +7,12 @@ import { Carrossel } from '@/components/Carrossel';
 import { AssinaturaIndica } from '@/components/AssinaturaIndica';
 import { MascoteIndica } from '@/components/MascoteIndica';
 import { Marcador } from '@/components/Marcador';
-import { Vagas } from '@/components/Vagas';
+import { NumerosChamada } from '@/components/NumerosChamada';
 import { Organizacao } from '@/components/Organizacao';
 import { Selo } from '@/components/Selo';
 import { ehIdioma, type Idioma } from '@/i18n/idiomas';
 import { textos } from '@/i18n/strings';
 import { conteudo } from '@/lib/data';
-import { moeda } from '@/lib/format';
 import { rota } from '@/lib/rotas';
 import { alternativas } from '@/lib/seo';
 import type { Article, Call } from '@/lib/types';
@@ -48,6 +47,8 @@ function SlideChamada({ idioma, chamada }: { idioma: Idioma; chamada: Call }) {
       <h2 className="coluna__titulo">{chamada.titulo}</h2>
       <div><Selo idioma={idioma} status={chamada.status} /></div>
 
+      <NumerosChamada idioma={idioma} edital={chamada} compacto />
+
       <div className="coluna__linhas">
         {/* Apoio sem faixa e uma frase: desce para a linha de baixo em vez de espremer o rotulo. */}
         <div className={chamada.faixaApoio ? 'coluna__linha' : 'coluna__linha coluna__linha--longa'}>
@@ -61,8 +62,6 @@ function SlideChamada({ idioma, chamada }: { idioma: Idioma; chamada: Call }) {
           </div>
         ) : null}
       </div>
-
-      <Vagas idioma={idioma} chamada={chamada} />
 
       <div className="coluna__pe">
         <Botao href={rota(idioma, `oportunidades/${chamada.slug}`)} largo>
