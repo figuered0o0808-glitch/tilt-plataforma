@@ -36,12 +36,14 @@ function marcaDaHome(): Element | null {
 
 export function SiteHeader({
   idioma,
-  temConteudo,
+  temInscricoesAbertas = false,
   marcaNoCabecalho,
 }: {
   idioma: Idioma;
-  /** Ha algo publicado neste idioma; sem nada, o botao de cadastro nao aparece. */
-  temConteudo: boolean;
+  /** O cadastro so e oferecido quando ha uma chamada aceitando inscricoes. */
+  temInscricoesAbertas?: boolean;
+  /** Compatibilidade com a pagina 404; nao oferece cadastro por si so. */
+  temConteudo?: boolean;
   /**
    * Com `false`, o logotipo do cabecalho so aparece depois que a pessoa rola
    * alem do hero: na home a marca se forma no meio da tela, e duas seriam uma
@@ -127,15 +129,15 @@ export function SiteHeader({
 
         <div className="cabecalho__acoes">
           <SeletorIdioma />
-          {!temConteudo ? null : hidratado && cadastrado ? (
+          {hidratado && cadastrado ? (
             <Link href={rota(idioma, 'painel')} className="btn btn--secundario btn--pequeno">
               {t.comum.navegacao.painel}
             </Link>
-          ) : (
+          ) : temInscricoesAbertas ? (
             <Link href={rota(idioma, 'cadastro')} className="btn btn--primario btn--pequeno">
               {t.cadastro.entrar}
             </Link>
-          )}
+          ) : null}
         </div>
       </div>
     </header>

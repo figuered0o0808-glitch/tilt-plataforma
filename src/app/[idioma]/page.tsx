@@ -9,6 +9,7 @@ import { MascoteIndica } from '@/components/MascoteIndica';
 import { Marcador } from '@/components/Marcador';
 import { Vagas } from '@/components/Vagas';
 import { Organizacao } from '@/components/Organizacao';
+import { Selo } from '@/components/Selo';
 import { ehIdioma, type Idioma } from '@/i18n/idiomas';
 import { textos } from '@/i18n/strings';
 import { conteudo } from '@/lib/data';
@@ -20,6 +21,7 @@ import { textoDoApoio } from '@/lib/apoio';
 
 import { Capa } from './biblioteca/materiais/_Capa';
 import { ordenar } from './biblioteca/materiais/_regras';
+import { DocumentoEdital } from './oportunidades/_DocumentoEdital';
 
 export async function generateMetadata({ params }: { params: Promise<{ idioma: string }> }): Promise<Metadata> {
   const { idioma } = await params;
@@ -44,6 +46,7 @@ function SlideChamada({ idioma, chamada }: { idioma: Idioma; chamada: Call }) {
   return (
     <div className="carrossel__conteudo">
       <h2 className="coluna__titulo">{chamada.titulo}</h2>
+      <div><Selo idioma={idioma} status={chamada.status} /></div>
 
       <div className="coluna__linhas">
         {/* Apoio sem faixa e uma frase: desce para a linha de baixo em vez de espremer o rotulo. */}
@@ -94,6 +97,10 @@ function ColunaChamada({ idioma, chamadas }: { idioma: Idioma; chamadas: Call[] 
         </div>
       </div>
     );
+  }
+
+  if (chamadas.length === 1) {
+    return <div className="coluna coluna--rosa"><div className="coluna__cabeca">{cabeca}</div><SlideChamada idioma={idioma} chamada={chamadas[0]} /></div>;
   }
 
   return (
@@ -154,6 +161,17 @@ function ColunaCadastro({ idioma }: { idioma: Idioma }) {
       </div>
     </div>
   );
+}
+
+function ColunaDocumento({ idioma, edital }: { idioma: Idioma; edital: Call }) {
+  const t = textos(idioma);
+  return <div className="coluna coluna--menta">
+    <div className="coluna__cabeca"><Marcador arranjo={2} /><span className="rotulo">{t.home.documento.olho}</span></div>
+    <h2 className="coluna__titulo">{t.home.documento.titulo}</h2>
+    <p className="texto-pequeno">{t.home.documento.texto}</p>
+    {edital.status === 'consulta' ? <p className="texto-pequeno texto-secundario">{t.editais.consultaAviso}</p> : null}
+    <div className="coluna__pe"><DocumentoEdital idioma={idioma} edital={edital} /></div>
+  </div>;
 }
 
 /* -------------------------------------------------------------------------- */
@@ -246,7 +264,9 @@ export default async function Home({ params }: { params: Promise<{ idioma: strin
   const { editais, materiais } = conteudo(idioma);
 
   /* A coluna rosa passa pelas chamadas abertas; a amarela, pelos materiais, do mais novo ao mais antigo. */
-  const chamadas = editais.filter((item) => item.status === 'aberta');
+  const chamadas = editais.filter((item) => item.status === 'aberta' || item.status === 'consulta');
+  const aceitaCadastro = editais.some((item) => item.status === 'aberta');
+  const documento = editais.find((item) => item.arquivoEdital);
   const recentes = ordenar(materiais, 'atualizacao').slice(0, RECENTES);
 
   return (
@@ -261,13 +281,13 @@ export default async function Home({ params }: { params: Promise<{ idioma: strin
             <h1 className="hero__frase">{t.home.frase}</h1>
             <p className="hero-criadores__introducao">{t.home.introducao}</p>
           </div>
-          <MascoteIndica idioma={idioma} />
+          <MascoteIndica idioma={idioma} edital={documento ? { slug: documento.slug } : undefined} aceitaCadastro={aceitaCadastro} />
         </div>
       </section>
 
       <section className="colunas">
         <ColunaChamada idioma={idioma} chamadas={chamadas} />
-        <ColunaCadastro idioma={idioma} />
+        {aceitaCadastro ? <ColunaCadastro idioma={idioma} /> : documento ? <ColunaDocumento idioma={idioma} edital={documento} /> : null}
         <ColunaBiblioteca idioma={idioma} materiais={recentes} />
       </section>
     </>

@@ -12,9 +12,9 @@ export const cadastro = {
   entrar: 'Criar cadastro',
 
   fechado: {
-    titulo: 'O cadastro abre com a primeira chamada',
+    titulo: 'O cadastro abre quando houver chamadas com inscrição aberta',
     descricao:
-      'Ele serve para se candidatar às chamadas e para se inscrever nos cursos. É gratuito e não exige número mínimo de seguidores.',
+      'Ele serve para se candidatar às chamadas abertas. É gratuito e não exige número mínimo de seguidores. As publicações podem ser lidas sem cadastro.',
   },
 
   titulo: 'Criar seu cadastro',
@@ -82,7 +82,7 @@ export const cadastro = {
   acao: 'Criar cadastro',
 
   confirmacaoTitulo: 'Cadastro criado',
-  confirmacaoTexto: 'As candidaturas e as inscrições em cursos passam a aparecer no painel.',
+  confirmacaoTexto: 'Suas candidaturas às chamadas passam a aparecer no painel.',
 
   jaCadastradoSelo: 'Cadastro ativo',
   jaCadastradoTitulo: 'Você já tem cadastro',

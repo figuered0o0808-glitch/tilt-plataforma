@@ -12,7 +12,7 @@ import { CartaoEdital } from './_CartaoEdital';
 import { ChamadaDestaque } from './_ChamadaDestaque';
 
 /** Ordem canonica de exibicao dos filtros. So aparece o que existe nos dados. */
-const ORDEM_STATUS: StatusEdital[] = ['aberta', 'em-avaliacao', 'encerrada'];
+const ORDEM_STATUS: StatusEdital[] = ['aberta', 'em-avaliacao', 'encerrada', 'consulta'];
 const ORDEM_TIPO: TipoEdital[] = [
   'tema-amplo',
   'macrotema',

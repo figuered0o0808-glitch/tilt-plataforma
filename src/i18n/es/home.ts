@@ -15,10 +15,17 @@ export const home = {
     oportunidadesTexto: 'Conoce las convocatorias y encuentra tu proyecto.',
     cadastro: 'Ser parte de la red',
     cadastroTexto: 'Presenta tu trabajo. El registro es gratuito.',
+    edital: 'Consultar la convocatoria',
+    editalTexto: 'Lee los criterios, presupuesto y calendario.',
     painel: 'Acceder a mi panel',
     painelTexto: 'Sigue tu participación en la plataforma.',
     biblioteca: 'Abrir la biblioteca',
     bibliotecaTexto: 'Artículos, guías y referencias para crear.',
+  },
+  documento: {
+    olho: 'Documento original',
+    titulo: 'La convocatoria completa, en PDF.',
+    texto: 'Consulta las reglas de participación, presupuesto, criterios y briefing en el documento original de INDICA.',
   },
   apresentacao:
     'El programa financia proyectos de creadores de contenido sobre ciencia, clima, medio ambiente, salud pública y democracia. La propuesta es del creador, y la decisión editorial también.',
@@ -66,7 +73,7 @@ export const home = {
     materiais: 'Materiales publicados',
   },
 
-  chamadasTitulo: 'Abierto ahora',
+  chamadasTitulo: 'Convocatorias',
 
   recursosTitulo: 'Biblioteca',
   recursosAcao: 'Abrir la biblioteca',

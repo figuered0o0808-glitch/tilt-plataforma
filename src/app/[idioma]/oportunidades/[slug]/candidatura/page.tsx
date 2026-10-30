@@ -10,6 +10,7 @@ import { conteudo, editalPorSlug } from '@/lib/data';
 import { rota } from '@/lib/rotas';
 import { alternativas } from '@/lib/seo';
 
+import { DocumentoEdital } from '../../_DocumentoEdital';
 import { prazoEmLinha } from '../../_prazo';
 
 import { FormularioCandidatura, type EditalResumo } from './_FormularioCandidatura';
@@ -58,13 +59,14 @@ export default async function PaginaCandidatura({
   if (edital.status !== 'aberta') {
     return (
       <>
-        <CabecalhoPagina estreito olho={t.fluxos.candidatura.titulo} titulo={edital.titulo} />
+        <CabecalhoPagina estreito olho={edital.status === 'consulta' ? t.editais.consultaTitulo : t.fluxos.candidatura.titulo} titulo={edital.titulo} />
         <div className="secao">
           <div className="container-estreito">
             <section className="cartao">
               <p className="cartao__texto" style={{ margin: 0 }}>
-                {edital.status === 'encerrada' ? t.editais.encerradaAviso : t.editais.emAvaliacaoAviso}
+                {edital.status === 'consulta' ? t.editais.consultaAviso : edital.status === 'encerrada' ? t.editais.encerradaAviso : t.editais.emAvaliacaoAviso}
               </p>
+              {edital.status === 'consulta' ? <DocumentoEdital idioma={idioma} edital={edital} /> : null}
               <div className="linha">
                 <Botao href={rota(idioma, `oportunidades/${edital.slug}`)} variante="secundario">
                   {t.fluxos.candidatura.voltarEdital}

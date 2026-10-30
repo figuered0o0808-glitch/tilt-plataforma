@@ -3,8 +3,20 @@
  * cada chamada e bloco de resultado publicado.
  */
 export const editais = {
+  idiomasDocumento: { pt: 'Portugués', en: 'Inglés', es: 'Español' },
+  consultaVagas: 'Previsión: de {min} a {max} propuestas.',
+  consultaVagasFixas: 'Previsión: {n} propuestas.',
+
+  valorAte: 'Hasta',
+  consultaAviso: 'Convocatoria disponible para consulta. Se revisará el cronograma; esta página no recibe postulaciones.',
+  consultaPrazoRotulo: 'Calendario',
+  consultaPrazoValor: 'Según el documento original',
+  consultaTitulo: 'Consultar la convocatoria',
+  lerPdf: 'Leer la convocatoria completa (PDF)',
+  idiomaDocumento: 'Idioma del documento:',
+  paginasDocumento: 'págs.',
+
   termoEtapaResultado: 'resultado',
-  posicaoSufixo: '.º',
   faixaSeparador: 'a',
   listaTitulo: 'Oportunidades',
 
@@ -60,12 +72,8 @@ export const editais = {
     resultado: 'Resultado',
   },
 
-  /* Chamada que ordena os criterios em vez de atribuir peso numerico. */
-  criteriosOrdem: 'Los criterios están listados en orden de peso.',
   pesoRotulo: 'Peso',
   somaPesos: 'Suma de los pesos',
-  bancaSemComposicao:
-    'El jurado reúne integrantes de INDICA, un representante del financiador y creadores invitados. La composición se publica antes del cierre de las inscripciones.',
   distribuicaoColunas: {
     faixa: 'Rango de apoyo',
     quantidade: 'Proyectos previstos',

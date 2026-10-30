@@ -14,6 +14,9 @@ export function prazoDaChamada(
   curto = false,
 ): { rotulo: string; valor: string } {
   const t = textos(idioma);
+  if (edital.status === 'consulta') {
+    return { rotulo: t.editais.consultaPrazoRotulo, valor: t.editais.consultaPrazoValor };
+  }
   if (!edital.inscricoesAte) {
     return { rotulo: t.comum.rotulos.prazo, valor: t.editais.semPrazo };
   }
@@ -28,6 +31,7 @@ export function prazoDaChamada(
 
 /** Mesma informacao em uma linha, para rodape de cartao e para chip. */
 export function prazoEmLinha(idioma: Idioma, edital: Call, curto = false): string {
+  if (edital.status === 'consulta') return textos(idioma).comum.status.consulta;
   if (!edital.inscricoesAte) return textos(idioma).editais.prazoADefinir;
   const { rotulo, valor } = prazoDaChamada(idioma, edital, curto);
   return `${rotulo} ${valor}`;

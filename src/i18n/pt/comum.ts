@@ -21,6 +21,7 @@ export const comum = {
     enviar: 'Enviar',
   },
   status: {
+    consulta: 'Para consulta',
     aberta: 'Inscrições abertas',
     'em-avaliacao': 'Em avaliação',
     encerrada: 'Encerrada',
@@ -64,7 +65,7 @@ export const comum = {
   },
   rodape: {
     descricao:
-      'Plataforma da INDICA. Financiamento a projetos autorais e formação para criadores, e materiais técnicos abertos para criadores e organizações.',
+      'Plataforma da INDICA. Editais, publicações e materiais abertos para criadores e organizações.',
     programa: 'Uma iniciativa da',
     navegue: 'Navegue',
   },

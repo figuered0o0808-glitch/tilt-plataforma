@@ -16,12 +16,6 @@ export const EXECUTORAS = {
 /** Marca da INDICA, para os lugares em que ela nao vem dos dados (rodape). */
 export const LOGO_INDICA = '/organizacoes/indica.png';
 
-/**
- * Data de referencia usada ao registrar acoes no navegador, no lugar do
- * relogio, para que a exportacao estatica seja deterministica.
- */
-export const DATA_REFERENCIA = '2026-10-14';
-
 /** Chave de persistência local (opcional: nada quebra sem localStorage). */
 export const STORAGE_KEY = 'indica:plataforma:v1';
 

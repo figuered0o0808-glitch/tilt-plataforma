@@ -15,10 +15,17 @@ export const home = {
     oportunidadesTexto: 'Browse open calls and find your project.',
     cadastro: 'Join the network',
     cadastroTexto: 'Introduce your work. Registration is free.',
+    edital: 'Read the call',
+    editalTexto: 'See the criteria, budget and schedule.',
     painel: 'Open my dashboard',
     painelTexto: 'Follow your participation on the platform.',
     biblioteca: 'Open the library',
     bibliotecaTexto: 'Articles, guides and references for creators.',
+  },
+  documento: {
+    olho: 'Original document',
+    titulo: 'The full call, as a PDF.',
+    texto: 'Read the participation rules, budget, criteria and campaign brief in the original INDICA document.',
   },
   apresentacao:
     'The program funds content creator projects on science, climate, environment, public health and democracy. The proposal belongs to the creator, and so does the editorial decision.',
@@ -66,7 +73,7 @@ export const home = {
     materiais: 'Materials published',
   },
 
-  chamadasTitulo: 'Open now',
+  chamadasTitulo: 'Calls',
 
   recursosTitulo: 'Library',
   recursosAcao: 'Open the library',

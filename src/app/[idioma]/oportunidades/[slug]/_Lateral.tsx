@@ -10,6 +10,7 @@ import { rota } from '@/lib/rotas';
 import type { Call } from '@/lib/types';
 import { useApp } from '@/state/AppState';
 
+import { DocumentoEdital } from '../_DocumentoEdital';
 import { prazoDaChamada } from '../_prazo';
 
 /** Etapa de divulgacao do resultado, quando existe no cronograma da chamada. */
@@ -30,13 +31,14 @@ function ancoras(idioma: Idioma, edital: Call): { id: string; rotulo: string }[]
   }
   itens.push(
     { id: 'apresentacao', rotulo: secoes.apresentacao },
-    { id: 'escopo', rotulo: secoes.escopo },
+    ...(edital.escopo.length > 0 ? [{ id: 'escopo', rotulo: secoes.escopo }] : []),
     ...(edital.naoApoiado.length > 0 ? [{ id: 'nao-apoiado', rotulo: secoes.naoApoiado }] : []),
-    { id: 'criterios', rotulo: secoes.criterios },
+    ...(edital.criterios.length > 0 || edital.criteriosDescricao ? [{ id: 'criterios', rotulo: secoes.criterios }] : []),
     /* A pagina so publica cronograma quando ha etapas. */
     ...(edital.cronograma.length > 0 ? [{ id: 'cronograma', rotulo: secoes.cronograma }] : []),
-    { id: 'banca', rotulo: secoes.banca },
+    ...(edital.banca.length > 0 || edital.bancaDescricao ? [{ id: 'banca', rotulo: secoes.banca }] : []),
     ...(edital.distribuicao.length > 0 ? [{ id: 'distribuicao', rotulo: secoes.distribuicao }] : []),
+    ...(edital.secoesComplementares ?? []).map((secao) => ({ id: secao.id, rotulo: secao.titulo })),
   );
   return itens;
 }
@@ -70,7 +72,7 @@ export function Lateral({ idioma, edital }: { idioma: Idioma; edital: Call }) {
       <div className="coluna coluna--rosa coluna--solta">
         <div className="coluna__cabeca">
           <Marcador arranjo={1} />
-          <span className="rotulo">{t.editais.candidaturaTitulo}</span>
+          <span className="rotulo">{edital.status === 'consulta' ? t.editais.consultaTitulo : t.editais.candidaturaTitulo}</span>
         </div>
 
         <Vagas idioma={idioma} chamada={edital} />
@@ -87,6 +89,14 @@ export function Lateral({ idioma, edital }: { idioma: Idioma; edital: Call }) {
                 {tc.cadastro.acao}
               </Botao>
             )}
+          </>
+        ) : null}
+
+        {edital.status === 'consulta' ? (
+          <>
+            <p className="texto-pequeno texto-secundario" style={{ margin: 0 }}>{t.editais.consultaAviso}</p>
+            <DocumentoEdital idioma={idioma} edital={edital} />
+            <Botao href={rota(idioma, 'oportunidades')} variante="secundario" largo>{t.editais.voltarLista}</Botao>
           </>
         ) : null}
 

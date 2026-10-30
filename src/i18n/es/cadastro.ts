@@ -12,9 +12,9 @@ export const cadastro = {
   entrar: 'Crear cuenta',
 
   fechado: {
-    titulo: 'El registro abre con la primera convocatoria',
+    titulo: 'El registro abre cuando las convocatorias aceptan postulaciones',
     descricao:
-      'Sirve para postularse a las convocatorias y para inscribirse en los cursos. Es gratuito y no exige un número mínimo de seguidores.',
+      'Sirve para postularse a las convocatorias abiertas. Es gratuito y no exige un número mínimo de seguidores. Las publicaciones se pueden leer sin cuenta.',
   },
 
   titulo: 'Crear tu cuenta',
@@ -82,7 +82,7 @@ export const cadastro = {
   acao: 'Crear cuenta',
 
   confirmacaoTitulo: 'Cuenta creada',
-  confirmacaoTexto: 'Las postulaciones y las inscripciones en cursos pasan a aparecer en el panel.',
+  confirmacaoTexto: 'Tus postulaciones a las convocatorias pasan a aparecer en el panel.',
 
   jaCadastradoSelo: 'Cuenta activa',
   jaCadastradoTitulo: 'Ya tienes cuenta',

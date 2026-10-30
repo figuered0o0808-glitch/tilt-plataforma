@@ -18,6 +18,12 @@ import { rota } from '@/lib/rotas';
 import type { Call, Candidatura } from '@/lib/types';
 import { textoDoApoio, textoDoValorTotal } from '@/lib/apoio';
 
+/** Registros locais so aparecem enquanto a chamada existe no catalogo atual. */
+export function candidaturasDoPainel(catalogo: Call[], candidaturas: Candidatura[]): Candidatura[] {
+  const slugsPublicados = new Set(catalogo.map((chamada) => chamada.slug));
+  return candidaturas.filter((candidatura) => slugsPublicados.has(candidatura.editalSlug));
+}
+
 /**
  * Estado vazio de quem tem cadastro e ainda nao se candidatou.
  *

@@ -14,7 +14,7 @@ export const paineis = {
 
   fechado: {
     titulo: 'O painel abre junto com o cadastro',
-    descricao: 'Ele reúne as candidaturas que você enviar e os cursos em que você se inscrever.',
+    descricao: 'Ele reúne suas candidaturas às chamadas. As publicações ficam disponíveis na biblioteca, sem cadastro.',
   },
 
   resumo: {

@@ -24,5 +24,7 @@ export function textoDoApoio(idioma: Idioma, edital: Call): string {
 
 export function textoDoValorTotal(idioma: Idioma, edital: Call): string {
   const t = textos(idioma).editais;
-  return edital.valorTotal != null ? moeda(edital.valorTotal, idioma) : t.semValor;
+  if (edital.valorTotal == null) return t.semValor;
+  const valor = moeda(edital.valorTotal, idioma);
+  return edital.valorTotalAte ? `${t.valorAte} ${valor}` : valor;
 }

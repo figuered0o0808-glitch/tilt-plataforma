@@ -14,7 +14,7 @@ export const paineis = {
 
   fechado: {
     titulo: 'El panel abre junto con el registro',
-    descricao: 'Reúne las postulaciones que envíes y los cursos en los que te inscribas.',
+    descricao: 'Reúne tus postulaciones a las convocatorias. Las publicaciones están disponibles en la biblioteca, sin cuenta.',
   },
 
   resumo: {

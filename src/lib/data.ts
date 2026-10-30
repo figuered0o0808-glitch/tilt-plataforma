@@ -37,7 +37,7 @@ interface Conteudo {
  * Este modulo e de servidor: nenhum componente de cliente deve importa-lo,
  * senao os tres idiomas de conteudo entram no bundle de toda pagina.
  */
-const STATUS_CHAMADA = ['aberta', 'em-avaliacao', 'encerrada'];
+const STATUS_CHAMADA = ['aberta', 'em-avaliacao', 'encerrada', 'consulta'];
 const TIPOS_CHAMADA = ['tema-amplo', 'macrotema', 'pauta-especifica', 'edital-organizacao'];
 const PUBLICOS = ['criadores', 'organizacoes', 'ambos'];
 const TRILHAS = ['criadores', 'organizacoes'];
@@ -74,6 +74,35 @@ function conferir(idioma: Idioma, bruto: { calls: unknown; courses: unknown; art
     ['slug', 'titulo', 'status', 'tipo', 'resumo', 'valorTotal', 'faixaApoio', 'inscricoesAte', 'cronograma', 'distribuicao'],
     { status: STATUS_CHAMADA, tipo: TIPOS_CHAMADA, publico: PUBLICOS },
   );
+  for (const chamada of bruto.calls as Record<string, unknown>[]) {
+    const onde = `${idioma}/calls/${String(chamada.slug)}`;
+    if (chamada.valorTotalAte !== undefined) exigir(typeof chamada.valorTotalAte === 'boolean', onde, 'valorTotalAte deve ser booleano');
+    for (const campo of ['criteriosDescricao', 'bancaDescricao']) {
+      if (chamada[campo] !== undefined) exigir(typeof chamada[campo] === 'string', onde, `${campo} deve ser texto`);
+    }
+    if (chamada.arquivoEdital !== undefined) {
+      const arquivo = chamada.arquivoEdital as Record<string, unknown> | null;
+      exigir(Boolean(arquivo) && typeof arquivo === 'object', onde, 'arquivoEdital deve ser um objeto');
+      exigir(typeof arquivo?.arquivo === 'string' && arquivo.arquivo.startsWith('/') && arquivo.arquivo.endsWith('.pdf'), onde, 'arquivoEdital deve apontar para um PDF local');
+      exigir(typeof arquivo?.idioma === 'string' && arquivo.idioma.trim().length > 0, onde, 'arquivoEdital deve declarar o idioma');
+      if (arquivo?.paginas !== undefined) exigir(typeof arquivo.paginas === 'number' && Number.isInteger(arquivo.paginas) && arquivo.paginas > 0, onde, 'paginas deve ser um inteiro positivo');
+    }
+    if (chamada.secoesComplementares !== undefined) {
+      exigir(Array.isArray(chamada.secoesComplementares), onde, 'secoesComplementares deve ser uma lista');
+      const ids = new Set(['apresentacao', 'escopo', 'nao-apoiado', 'criterios', 'cronograma', 'banca', 'distribuicao', 'resultado']);
+      for (const secao of chamada.secoesComplementares as Record<string, unknown>[]) {
+        exigir(typeof secao.id === 'string' && /^[a-z][a-z0-9-]*$/.test(secao.id) && !ids.has(secao.id), onde, 'seção complementar precisa de id único');
+        ids.add(String(secao.id));
+        exigir(typeof secao.titulo === 'string' && secao.titulo.trim().length > 0, onde, 'seção complementar precisa de título');
+        for (const campo of ['paragrafos', 'itens']) {
+          if (secao[campo] !== undefined) exigir(Array.isArray(secao[campo]) && (secao[campo] as unknown[]).every((item) => typeof item === 'string'), onde, `${campo} deve ser uma lista de textos`);
+        }
+      }
+    }
+    for (const etapa of chamada.cronograma as Record<string, unknown>[]) {
+      if (etapa.dataFim !== undefined) exigir(typeof etapa.dataFim === 'string' && /^\d{4}-\d{2}-\d{2}$/.test(etapa.dataFim) && etapa.dataFim >= String(etapa.data), onde, 'dataFim deve ser uma data ISO posterior ou igual ao início');
+    }
+  }
   conferirLista(idioma, 'courses', bruto.courses, ['slug', 'titulo', 'status', 'resumo', 'modulos', 'proximaTurma'], {
     status: STATUS_CURSO,
   });

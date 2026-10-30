@@ -19,7 +19,7 @@ import {
   type ReactNode,
 } from 'react';
 
-import { DATA_REFERENCIA, STORAGE_KEY, LEGACY_STORAGE_KEY } from '@/config/program';
+import { STORAGE_KEY, LEGACY_STORAGE_KEY } from '@/config/program';
 import { proximoId } from '@/lib/format';
 import type { Candidatura, PerfilCadastro } from '@/lib/types';
 import {
@@ -59,6 +59,14 @@ interface ContextoApp extends Estado {
 }
 
 const Contexto = createContext<ContextoApp | null>(null);
+
+/** Dia da acao no calendario local de quem esta usando o navegador. */
+function dataDaAcao(): string {
+  const agora = new Date();
+  const mes = String(agora.getMonth() + 1).padStart(2, '0');
+  const dia = String(agora.getDate()).padStart(2, '0');
+  return `${agora.getFullYear()}-${mes}-${dia}`;
+}
 
 /*
  * O que vem do localStorage e texto que qualquer um pode ter editado. Cada
@@ -139,7 +147,7 @@ export function AppProvider({ children }: { children: ReactNode }) {
         ...dados,
         proponente: dados.proponente ? { ...dados.proponente, documento: undefined } : undefined,
         id: proximoId('cand', estado.candidaturas),
-        enviadaEm: DATA_REFERENCIA,
+        enviadaEm: dataDaAcao(),
         status: 'enviada',
       };
       setEstado((atual) => ({

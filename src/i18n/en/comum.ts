@@ -21,6 +21,7 @@ export const comum = {
     enviar: 'Submit',
   },
   status: {
+    consulta: 'For reference',
     aberta: 'Applications open',
     'em-avaliacao': 'Under review',
     encerrada: 'Closed',
@@ -64,7 +65,7 @@ export const comum = {
   },
   rodape: {
     descricao:
-      'Platform by INDICA. Funding for original projects and training for creators, and open technical materials for creators and organizations.',
+      'INDICA platform. Calls, publications and open materials for creators and organizations.',
     programa: 'An initiative by',
     navegue: 'Browse',
   },

@@ -13,9 +13,9 @@ export const cadastro = {
   entrar: 'Create account',
 
   fechado: {
-    titulo: 'Sign-up opens with the first call',
+    titulo: 'Sign-up opens when calls accept applications',
     descricao:
-      'It is what you use to apply to the calls and to enroll in the courses. It is free and requires no minimum follower count.',
+      'Use it to apply to open calls. It is free and requires no minimum follower count. Publications can be read without an account.',
   },
 
   titulo: 'Create your account',
@@ -83,7 +83,7 @@ export const cadastro = {
   acao: 'Create account',
 
   confirmacaoTitulo: 'Account created',
-  confirmacaoTexto: 'Applications and course enrollments now appear in the dashboard.',
+  confirmacaoTexto: 'Your applications to calls now appear in the dashboard.',
 
   jaCadastradoSelo: 'Account active',
   jaCadastradoTitulo: 'You already have an account',

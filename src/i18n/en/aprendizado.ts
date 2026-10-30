@@ -2,11 +2,11 @@
 export const aprendizado = {
   indice: {
     olho: 'Library',
-    titulo: 'Training and materials',
+    titulo: 'INDICA publications',
     /* So na etiqueta <meta>: a pagina nao repete o titulo em subtitulo. */
-    descricao: 'Technical materials for creators and organizations, and courses for creators.',
-    materiaisTitulo: 'Technical materials',
-    materiaisAcao: 'See the materials',
+    descricao: 'INDICA articles and analyses on the influence market, with full texts in PDF.',
+    materiaisTitulo: 'Publications',
+    materiaisAcao: 'See all publications',
     cursosTitulo: 'Courses',
     cursosVazio: 'No course published.',
     /* Sem turma publicada, o que a pagina de cursos tem sao as condicoes. */
@@ -15,18 +15,18 @@ export const aprendizado = {
     abertura: [
       {
         rotulo: 'Access',
-        texto: 'Open reading, no account. An account is only required to join a class.',
+        texto: 'Open reading, no account required.',
       },
       {
-        rotulo: 'Cost',
-        texto: 'No enrollment fee.',
+        rotulo: 'Languages',
+        texto: 'Full texts in Portuguese and English.',
       },
     ],
   },
   cursos: {
     olho: 'Training',
     titulo: 'Courses',
-    descricao: 'Free training for small creators.',
+    descricao: 'Courses published on the platform.',
     condicoesTitulo: 'Terms that apply to any class',
     condicoes: [
       {
@@ -52,20 +52,20 @@ export const aprendizado = {
     irAoPainel: 'See in the dashboard',
     voltarCatalogo: 'See the courses',
     vazioTitulo: 'No course published',
-    vazioAcao: 'See the program',
+    vazioAcao: 'See the publications',
   },
   materiais: {
     olho: 'Library',
-    titulo: 'Technical materials',
+    titulo: 'Publications',
     /* So na etiqueta <meta>. */
-    descricao: 'Technical materials for creators and organizations.',
+    descricao: 'INDICA articles and analyses on the influence market.',
     trilha: 'Track',
     trilhaCriadores: 'For creators',
     trilhaOrganizacoes: 'For organizations',
     trilhaCriadoresNota:
-      'Production, disclosure of the support in the post and preparing proposals for the calls.',
+      'Betting advertising, influencer discourse and regulation of the influence market.',
     trilhaOrganizacoesNota:
-      'Describing a need without interfering in the editing, contracting with clear rules and assessing the result.',
+      'Studies on the influence market, competition for attention and price formation.',
     autoria: 'Author',
     organizacao: 'Organization',
     tema: 'Topic',
@@ -86,7 +86,7 @@ export const aprendizado = {
     maisDaOrganizacao: 'More from',
     mesmoTema: 'Same topic',
     vazioTitulo: 'No material published',
-    vazioAcao: 'See the program',
+    vazioAcao: 'See the publications',
     /* Modelos de data: o acervo mostra a data em cada cartão e na ficha. */
     meses: [
       'January', 'February', 'March', 'April', 'May', 'June',

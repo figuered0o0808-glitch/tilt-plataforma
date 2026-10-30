@@ -26,6 +26,7 @@ const PESO_STATUS: Record<StatusEdital, number> = {
   aberta: 0,
   'em-avaliacao': 1,
   encerrada: 2,
+  consulta: 3,
 };
 
 /** Chamada sem calendario fechado nao tem data para comparar: vai para o fim. */
@@ -105,7 +106,7 @@ export default async function PaginaEditais({
             cartao ja diz. O resumo entra quando ha mais de uma chamada, numa
             linha so, logo acima dos filtros: a lista comeca na primeira tela.
           */}
-          {lista.length > 1 ? (
+          {lista.length > 1 && (resumo.recursos > 0 || resumo.apoiados > 0) ? (
             <dl
               className="definicoes"
               style={{

@@ -31,9 +31,19 @@ export function Vagas({
   /** Some o rotulo "Vagas" acima da fileira, quando o contexto ja o diz. */
   semRotulo?: boolean;
 }) {
-  const tc = textos(idioma).home.coluna;
+  const t = textos(idioma);
+  const tc = t.home.coluna;
   const max = chamada.vagas?.max ?? 0;
   if (max <= 0) return null;
+
+  // Consulta informa a previsão do documento, sem sugerir vagas ou resultados atuais.
+  if (chamada.status === 'consulta') {
+    const min = chamada.vagas?.min ?? max;
+    const legenda = min === max
+      ? preencher(t.editais.consultaVagasFixas, { n: numero(max, idioma) })
+      : preencher(t.editais.consultaVagas, { min: numero(min, idioma), max: numero(max, idioma) });
+    return <p className="texto-pequeno" style={{ margin: 0 }}>{legenda}</p>;
+  }
 
   const selecionados = chamada.resultado?.apoiados.length ?? 0;
   const abertas = Math.max(max - selecionados, 0);

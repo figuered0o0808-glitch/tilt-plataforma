@@ -3,6 +3,19 @@
  * e bloco de resultado publicado.
  */
 export const editais = {
+  idiomasDocumento: { pt: 'Português', en: 'Inglês', es: 'Espanhol' },
+  consultaVagas: 'Previsão: {min} a {max} propostas.',
+  consultaVagasFixas: 'Previsão: {n} propostas.',
+
+  valorAte: 'Até',
+  consultaAviso: 'Edital disponível para consulta. O cronograma será revisado; esta página não recebe candidaturas.',
+  consultaPrazoRotulo: 'Calendário',
+  consultaPrazoValor: 'Conforme o documento original',
+  consultaTitulo: 'Consultar edital',
+  lerPdf: 'Ler edital completo (PDF)',
+  idiomaDocumento: 'Idioma do documento:',
+  paginasDocumento: 'págs.',
+
   listaTitulo: 'Oportunidades',
 
   resumoTitulo: 'Situação do ciclo',
@@ -60,14 +73,8 @@ export const editais = {
     resultado: 'Resultado',
   },
 
-  /* Chamada que ordena os criterios em vez de atribuir peso numerico. */
-  criteriosOrdem: 'Os critérios estão listados em ordem de peso.',
   pesoRotulo: 'Peso',
-  /* Vem depois do numero da posicao do criterio: 1º, 2º, 3º. */
-  posicaoSufixo: 'º',
   somaPesos: 'Soma dos pesos',
-  bancaSemComposicao:
-    'A banca reúne integrantes da INDICA, um representante do financiador e criadores convidados. A composição é publicada antes do fim das inscrições.',
   distribuicaoColunas: {
     faixa: 'Faixa de apoio',
     quantidade: 'Projetos previstos',

@@ -42,6 +42,7 @@ export default async function PaginaPainel({
       idioma={idioma}
       aberto={cadastroAberto(idioma)}
       abertas={chamadasAbertas(idioma)}
+      catalogoEditais={conteudo(idioma).editais}
       catalogo={conteudo(idioma).cursos}
     />
   );

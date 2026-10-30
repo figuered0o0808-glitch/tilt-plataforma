@@ -12,7 +12,7 @@ import { useApp } from '@/state/AppState';
 type Caminho = 'oportunidades' | 'cadastro' | 'biblioteca';
 
 /** A expressão acompanha o caminho em foco; a navegação nunca depende dela. */
-export function MascoteIndica({ idioma }: { idioma: Idioma }) {
+export function MascoteIndica({ idioma, edital, aceitaCadastro = false }: { idioma: Idioma; edital?: { slug: string }; aceitaCadastro?: boolean }) {
   const area = useRef<HTMLElement>(null);
   const [entrada, setEntrada] = useState(false);
   const [ponteiro, setPonteiro] = useState<Caminho | null>(null);
@@ -48,7 +48,7 @@ export function MascoteIndica({ idioma }: { idioma: Idioma }) {
   }, []);
   const caminhos: { id: Caminho; titulo: string; descricao: string; destino: string; expressao: ExpressaoCarinhaIndica; cor: CorCarinhaIndica }[] = [
     { id: 'oportunidades', titulo: t.oportunidades, descricao: t.oportunidadesTexto, destino: 'oportunidades', expressao: '03', cor: 'azul' },
-    { id: 'cadastro', titulo: entrou ? t.painel : t.cadastro, descricao: entrou ? t.painelTexto : t.cadastroTexto, destino: entrou ? 'painel' : 'cadastro', expressao: '01', cor: 'verde' },
+    { id: 'cadastro', titulo: entrou ? t.painel : aceitaCadastro ? t.cadastro : t.edital, descricao: entrou ? t.painelTexto : aceitaCadastro ? t.cadastroTexto : t.editalTexto, destino: entrou ? 'painel' : aceitaCadastro ? 'cadastro' : edital ? `oportunidades/${edital.slug}` : 'oportunidades', expressao: '01', cor: 'verde' },
     { id: 'biblioteca', titulo: t.biblioteca, descricao: t.bibliotecaTexto, destino: 'biblioteca', expressao: '02', cor: 'rosa' },
   ];
 
@@ -60,10 +60,10 @@ export function MascoteIndica({ idioma }: { idioma: Idioma }) {
         {caminhos.map((caminho, indice) => (
           <Link key={caminho.id} href={rota(idioma, caminho.destino)}
             className="indica-caminhos__link" data-caminho={caminho.id}
-            onPointerEnter={(e) => { if (e.pointerType !== 'touch') setPonteiro(caminho.id); }}
-            onFocus={() => setFoco(caminho.id)}>
+            onPointerEnter={(e) => { if (e.pointerType !== 'touch') { setPonteiro(caminho.id); setFoco(null); } }}
+            onFocus={() => { setFoco(caminho.id); setPonteiro(null); }}>
             <span className="indica-caminhos__carinha">
-              <CarinhaIndica expressao={caminho.expressao} cor={caminho.cor} entrada={entrada}
+              <CarinhaIndica expressao={caminho.expressao} cor={caminho.cor} entrada={entrada} marca={ativo === caminho.id}
                 estado={ativo === caminho.id ? caminho.id : 'neutro'} />
             </span>
             <span className="indica-caminhos__numero" aria-hidden="true">0{indice + 1}</span>

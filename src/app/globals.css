@@ -1334,10 +1334,10 @@ body { background: #000; }
 .hero-criadores .hero__frase { font-size: clamp(2.4rem, 4.2vw, 3.7rem); max-width: 17ch; margin-bottom: 22px; }
 .hero-criadores__introducao { color: var(--tinta-suave); font-size: var(--texto-m); max-width: 34ch; line-height: 1.6; margin: 0; }
 .indica-caminhos { min-width: 0; }
-.indica-caminhos__carinha { display: grid; place-items: center; width: 84px; height: 84px; pointer-events: none; }
-.indica-caminhos__carinha svg { width: 100%; height: 100%; }
+.indica-caminhos__carinha { display: grid; place-items: center; width: 112px; height: 84px; pointer-events: none; }
+.indica-caminhos__carinha > svg { width: 84px; height: 84px; }
 .indica-caminhos__links { min-width: 0; }
-.indica-caminhos__link { display: grid; grid-template-columns: 84px 18px minmax(0, 1fr) 20px; align-items: center; gap: 12px; padding: 16px 0; border-bottom: 1px solid var(--linha); text-decoration: none; }
+.indica-caminhos__link { display: grid; grid-template-columns: 112px 18px minmax(0, 1fr) 20px; align-items: center; gap: 12px; padding: 16px 0; border-bottom: 1px solid var(--linha); text-decoration: none; }
 .indica-caminhos__link:first-child { border-top: 1px solid var(--linha); }
 .indica-caminhos__numero { font-size: 10px; letter-spacing: .03em; color: var(--tinta-suave); font-variant-numeric: tabular-nums; transition: color .25s ease; }
 .indica-caminhos__conteudo { display: grid; gap: 5px; }
@@ -1353,14 +1353,15 @@ body { background: #000; }
 .indica-rosto { display: block; max-width: 100%; height: auto; filter: invert(1); mix-blend-mode: screen; flex: none; }
 .confirmacao-indica { display: flex; align-items: center; gap: 22px; }
 .confirmacao-indica > svg { width: 90px; flex: none; }
-@media (min-width: 761px) and (max-width: 1040px) { .hero-criadores { gap: 32px; } .indica-caminhos__titulo { font-size: 18px; } .indica-caminhos__link { grid-template-columns: 72px 14px minmax(0, 1fr) 18px; gap: 8px; } .indica-caminhos__carinha { width: 72px; height: 76px; } }
+@media (min-width: 761px) and (max-width: 1040px) { .hero-criadores { gap: 32px; } .indica-caminhos__titulo { font-size: 18px; } .indica-caminhos__link { grid-template-columns: 104px 14px minmax(0, 1fr) 18px; gap: 8px; } .indica-caminhos__carinha { width: 104px; height: 76px; } .indica-caminhos__carinha > svg { width: 76px; height: 76px; } }
 @media (max-width: 760px) {
   .hero-criadores { grid-template-columns: minmax(0, 1fr); gap: 32px; }
   .hero-criadores .hero__frase { max-width: 20ch; font-size: clamp(2rem, 5.8vw, 2.65rem); margin-bottom: 16px; }
   .hero-criadores__assinatura { margin-bottom: 20px; }
   .hero-criadores__introducao { max-width: 40ch; }
-  .indica-caminhos__carinha { width: 76px; height: 76px; }
-  .indica-caminhos__link { padding: 15px 0; grid-template-columns: 76px 14px minmax(0, 1fr) 18px; gap: 8px; }
+  .indica-caminhos__carinha { width: 104px; height: 76px; }
+  .indica-caminhos__carinha > svg { width: 76px; height: 76px; }
+  .indica-caminhos__link { padding: 15px 0; grid-template-columns: 104px 14px minmax(0, 1fr) 18px; gap: 8px; }
   .indica-caminhos__titulo { font-size: 19px; }
   .indica-caminhos__descricao { font-size: 11px; }
   .confirmacao-indica { gap: 12px; }

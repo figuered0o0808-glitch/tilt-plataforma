@@ -14,6 +14,7 @@ import { arquivoPublico, data } from '@/lib/format';
 import { textoDoApoio, textoDoValorTotal } from '@/lib/apoio';
 import { alternativas } from '@/lib/seo';
 
+import { DocumentoEdital } from '../_DocumentoEdital';
 import { enderecoDaChamada } from '../_endereco';
 import { prazoDaChamada } from '../_prazo';
 
@@ -78,7 +79,8 @@ export default async function PaginaEdital({
 
   /*
    * Ha chamada que atribui peso numerico a cada criterio e ha chamada que so
-   * ordena os criterios por peso. Sem peso em todos, a pagina numera a ordem.
+   * apresenta critérios qualitativos. A numeração identifica o item sem
+   * atribuir ordem de importância ao que não possui peso publicado.
    */
   const pesos = edital.criterios.map((criterio) => criterio.peso);
   const comPeso = pesos.length > 0 && pesos.every((peso) => typeof peso === 'number');
@@ -105,9 +107,16 @@ export default async function PaginaEdital({
               />
             ) : null}
             <Selo idioma={idioma} status={edital.status} />
+            <DocumentoEdital idioma={idioma} edital={edital} />
           </div>
         }
       />
+
+      {edital.status === 'consulta' ? (
+        <div className="container" style={{ marginTop: 'var(--esp-24)' }}>
+          <p className="nota" style={{ maxWidth: '70ch' }}>{t.editais.consultaAviso}</p>
+        </div>
+      ) : null}
 
       <section
         className="secao secao--curta secao--branco"
@@ -190,6 +199,7 @@ export default async function PaginaEdital({
                 </div>
               </Secao>
 
+              {edital.escopo.length > 0 ? (
               <Secao id="escopo" titulo={t.editais.secoes.escopo}>
                 <div className="cartao">
                   <ul style={{ margin: 0 }}>
@@ -199,6 +209,7 @@ export default async function PaginaEdital({
                   </ul>
                 </div>
               </Secao>
+              ) : null}
 
               {edital.naoApoiado.length > 0 ? (
               <Secao id="nao-apoiado" titulo={t.editais.secoes.naoApoiado}>
@@ -215,12 +226,11 @@ export default async function PaginaEdital({
               </Secao>
               ) : null}
 
+              {edital.criterios.length > 0 || edital.criteriosDescricao ? (
               <Secao id="criterios" titulo={t.editais.secoes.criterios}>
-                {comPeso ? null : (
-                  <p className="nota" style={{ marginBottom: 'var(--esp-24)' }}>
-                    {t.editais.criteriosOrdem}
-                  </p>
-                )}
+                {edital.criteriosDescricao ? (
+                  <p className="prosa" style={{ marginBottom: 'var(--esp-24)' }}>{edital.criteriosDescricao}</p>
+                ) : null}
                 <div>
                   {edital.criterios.map((criterio, indice) => (
                     <Registro
@@ -228,7 +238,7 @@ export default async function PaginaEdital({
                       rotulo={
                         comPeso
                           ? `${t.editais.pesoRotulo} ${criterio.peso}`
-                          : `${indice + 1}${t.editais.posicaoSufixo}`
+                          : String(indice + 1).padStart(2, '0')
                       }
                     >
                       <h3 style={{ margin: '0 0 var(--esp-4)', fontSize: 'var(--titulo-p)' }}>{criterio.titulo}</h3>
@@ -244,13 +254,14 @@ export default async function PaginaEdital({
                   ) : null}
                 </div>
               </Secao>
+              ) : null}
 
-              {/* Cronograma so entra depois de fechado: sem etapas, sem secao. */}
+              {/* O cronograma reproduz as datas do documento, inclusive intervalos. */}
               {edital.cronograma.length > 0 ? (
                 <Secao id="cronograma" titulo={t.editais.secoes.cronograma}>
                   <div>
                     {edital.cronograma.map((etapa) => (
-                      <Registro key={etapa.etapa} rotulo={data(etapa.data, idioma)}>
+                      <Registro key={etapa.etapa} rotulo={etapa.dataFim ? `${data(etapa.data, idioma)} ${t.editais.faixaSeparador} ${data(etapa.dataFim, idioma)}` : data(etapa.data, idioma)}>
                         <p style={{ margin: 0 }}>{etapa.etapa}</p>
                       </Registro>
                     ))}
@@ -258,7 +269,9 @@ export default async function PaginaEdital({
                 </Secao>
               ) : null}
 
+              {edital.banca.length > 0 || edital.bancaDescricao ? (
               <Secao id="banca" titulo={t.editais.secoes.banca}>
+                {edital.bancaDescricao ? <p className="prosa">{edital.bancaDescricao}</p> : null}
                 {edital.banca.length > 0 ? (
                   <div className="grade--2">
                     {edital.banca.map((membro) => (
@@ -276,13 +289,9 @@ export default async function PaginaEdital({
                       </div>
                     ))}
                   </div>
-                ) : (
-                  /* Composicao ainda nao publicada: vale a regra, nao uma grade vazia. */
-                  <p className="nota" style={{ margin: 0, maxWidth: '62ch' }}>
-                    {t.editais.bancaSemComposicao}
-                  </p>
-                )}
+                ) : null}
               </Secao>
+              ) : null}
 
               {/* Distribuicao so entra quando ha faixa publicada: tabela vazia nao informa nada. */}
               {edital.distribuicao.length > 0 ? (
@@ -311,6 +320,17 @@ export default async function PaginaEdital({
                 </div>
               </Secao>
               ) : null}
+
+              {edital.secoesComplementares?.map((secao) => (
+                <Secao key={secao.id} id={secao.id} titulo={secao.titulo}>
+                  <div className="prosa">
+                    {secao.paragrafos?.map((paragrafo, indice) => <p key={`${secao.id}-p-${indice}`}>{paragrafo}</p>)}
+                    {secao.itens?.length ? (
+                      <ul>{secao.itens.map((item, indice) => <li key={`${secao.id}-item-${indice}`}>{item}</li>)}</ul>
+                    ) : null}
+                  </div>
+                </Secao>
+              ))}
 
               <Compartilhar idioma={idioma} endereco={endereco} />
             </div>

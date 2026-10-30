@@ -14,7 +14,7 @@ export const paineis = {
 
   fechado: {
     titulo: 'The dashboard opens together with sign-up',
-    descricao: 'It brings together the applications you submit and the courses you enroll in.',
+    descricao: 'It brings together your applications to calls. Publications are available in the library without an account.',
   },
 
   resumo: {

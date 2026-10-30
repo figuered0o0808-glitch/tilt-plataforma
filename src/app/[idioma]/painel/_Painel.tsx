@@ -27,7 +27,7 @@ import { rota } from '@/lib/rotas';
 import type { Call, Course } from '@/lib/types';
 import { useApp } from '@/state/AppState';
 
-import { Candidaturas } from './_Candidaturas';
+import { Candidaturas, candidaturasDoPainel } from './_Candidaturas';
 import { Cursos, cursosDoPainel } from './_Cursos';
 import { ResumoPainel, SecaoPainel } from './_PainelUI';
 
@@ -82,6 +82,7 @@ export function Painel({
   idioma,
   aberto,
   abertas,
+  catalogoEditais,
   catalogo,
 }: {
   idioma: Idioma;
@@ -89,6 +90,8 @@ export function Painel({
   aberto: boolean;
   /** Chamadas com inscricao aberta, para o estado vazio das candidaturas. */
   abertas: Call[];
+  /** Todas as chamadas publicadas, inclusive as que nao recebem inscricoes. */
+  catalogoEditais: Call[];
   /** Catalogo de cursos, para cruzar com as inscricoes deste navegador. */
   catalogo: Course[];
 }) {
@@ -96,15 +99,20 @@ export function Painel({
 
   const s = textos(idioma).paineis;
 
+  const candidaturasAtuais = useMemo(
+    () => candidaturasDoPainel(catalogoEditais, candidaturas),
+    [catalogoEditais, candidaturas],
+  );
+
   const linhasCursos = useMemo(
     () => cursosDoPainel(catalogo, cursosInscritos),
     [catalogo, cursosInscritos],
   );
 
-  const emAvaliacao = candidaturas.filter(
+  const emAvaliacao = candidaturasAtuais.filter(
     (candidatura) => candidatura.status === 'em-avaliacao' || candidatura.status === 'enviada',
   ).length;
-  const aprovadas = candidaturas.filter((candidatura) => candidatura.status === 'aprovada').length;
+  const aprovadas = candidaturasAtuais.filter((candidatura) => candidatura.status === 'aprovada').length;
 
   // Sem chamada aberta e sem curso com turma aberta nao ha cadastro possivel,
   // e sem cadastro nao ha o que acompanhar.
@@ -118,7 +126,7 @@ export function Painel({
 
   // A faixa de indicadores so aparece quando ha algo para contar: quatro
   // zeros lado a lado nao informam nada.
-  const temRegistro = candidaturas.length > 0 || linhasCursos.length > 0;
+  const temRegistro = candidaturasAtuais.length > 0 || linhasCursos.length > 0;
 
   return (
     <>
@@ -137,10 +145,12 @@ export function Painel({
           <div className="container">
             <ResumoPainel
               itens={[
-                { rotulo: s.resumo.enviadas, valor: String(candidaturas.length) },
+                { rotulo: s.resumo.enviadas, valor: String(candidaturasAtuais.length) },
                 { rotulo: s.resumo.emAvaliacao, valor: String(emAvaliacao) },
                 { rotulo: s.resumo.aprovadas, valor: String(aprovadas) },
-                { rotulo: s.resumo.cursos, valor: String(linhasCursos.length) },
+                ...(catalogo.length > 0
+                  ? [{ rotulo: s.resumo.cursos, valor: String(linhasCursos.length) }]
+                  : []),
               ]}
             />
           </div>
@@ -148,24 +158,26 @@ export function Painel({
       ) : null}
 
       <SecaoPainel id="candidaturas" titulo={s.candidaturasTitulo}>
-        <Candidaturas idioma={idioma} candidaturas={candidaturas} abertas={abertas} />
+        <Candidaturas idioma={idioma} candidaturas={candidaturasAtuais} abertas={abertas} />
       </SecaoPainel>
 
-      <SecaoPainel
-        id="cursos"
-        titulo={s.cursosTitulo}
-        marcador={3}
-        fundo
-        acoes={
-          linhasCursos.length > 0 ? (
-            <Botao href={rota(idioma, 'biblioteca')} variante="secundario" tamanho="pequeno">
-              {s.verBiblioteca}
-            </Botao>
-          ) : null
-        }
-      >
-        <Cursos idioma={idioma} linhas={linhasCursos} />
-      </SecaoPainel>
+      {catalogo.length > 0 ? (
+        <SecaoPainel
+          id="cursos"
+          titulo={s.cursosTitulo}
+          marcador={3}
+          fundo
+          acoes={
+            linhasCursos.length > 0 ? (
+              <Botao href={rota(idioma, 'biblioteca')} variante="secundario" tamanho="pequeno">
+                {s.verBiblioteca}
+              </Botao>
+            ) : null
+          }
+        >
+          <Cursos idioma={idioma} linhas={linhasCursos} />
+        </SecaoPainel>
+      ) : null}
     </>
   );
 }

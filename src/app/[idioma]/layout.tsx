@@ -36,8 +36,8 @@ export default async function LayoutIdioma({
   const { idioma } = await params;
   if (!ehIdioma(idioma)) notFound();
 
-  const { editais, cursos, materiais } = conteudo(idioma);
-  const temConteudo = editais.length > 0 || cursos.length > 0 || materiais.length > 0;
+  const { editais } = conteudo(idioma);
+  const temInscricoesAbertas = editais.some((edital) => edital.status === 'aberta');
   const t = textos(idioma);
 
   return (
@@ -46,7 +46,7 @@ export default async function LayoutIdioma({
       <a href="#conteudo" className="pular">
         {t.comum.navegacao.pularParaConteudo}
       </a>
-      <SiteHeader idioma={idioma} temConteudo={temConteudo} />
+      <SiteHeader idioma={idioma} temInscricoesAbertas={temInscricoesAbertas} />
       <main id="conteudo" tabIndex={-1}>
         {children}
       </main>

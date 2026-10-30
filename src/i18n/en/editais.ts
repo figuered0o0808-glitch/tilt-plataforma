@@ -3,8 +3,20 @@
  * cada chamada e bloco de resultado publicado.
  */
 export const editais = {
+  idiomasDocumento: { pt: 'Portuguese', en: 'English', es: 'Spanish' },
+  consultaVagas: 'Expected: {min} to {max} proposals.',
+  consultaVagasFixas: 'Expected: {n} proposals.',
+
+  valorAte: 'Up to',
+  consultaAviso: 'This call is available for reference. Its schedule will be reviewed; this page does not accept applications.',
+  consultaPrazoRotulo: 'Schedule',
+  consultaPrazoValor: 'As stated in the original document',
+  consultaTitulo: 'Read the call',
+  lerPdf: 'Read the full call (PDF)',
+  idiomaDocumento: 'Document language:',
+  paginasDocumento: 'pages',
+
   termoEtapaResultado: 'result',
-  posicaoSufixo: '.',
   faixaSeparador: 'to',
   listaTitulo: 'Opportunities',
 
@@ -60,12 +72,8 @@ export const editais = {
     resultado: 'Result',
   },
 
-  /* Chamada que ordena os criterios em vez de atribuir peso numerico. */
-  criteriosOrdem: 'The criteria are listed in order of weight.',
   pesoRotulo: 'Weight',
   somaPesos: 'Sum of the weights',
-  bancaSemComposicao:
-    'The panel brings together members of INDICA, a representative of the funder and invited creators. Its composition is published before applications close.',
   distribuicaoColunas: {
     faixa: 'Support range',
     quantidade: 'Projects expected',

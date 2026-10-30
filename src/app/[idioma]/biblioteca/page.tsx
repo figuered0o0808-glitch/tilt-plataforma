@@ -35,7 +35,7 @@ export async function generateMetadata({
 /**
  * Indice da Biblioteca: as publicacoes atualizadas mais recentemente abrem a
  * pagina e o acervo inteiro fica a um clique, com a contagem no proprio link.
- * Os cursos ficam numa linha so enquanto nao ha turma.
+ * A area de cursos so aparece quando ha uma turma publicada.
  */
 export default async function BibliotecaPage({
   params,
@@ -75,27 +75,26 @@ export default async function BibliotecaPage({
             </div>
           ) : null}
 
-          <div
-            className="cartao cartao--compacto"
-            style={{
-              flexDirection: 'row',
-              alignItems: 'center',
-              justifyContent: 'space-between',
-              gap: 16,
-            }}
-          >
-            <div className="pilha--p">
-              <h2 className="rotulo rotulo--forte" style={{ margin: 0 }}>
-                {indice.cursosTitulo}
-              </h2>
-              {cursos.length === 0 ? (
-                <p style={{ margin: 0 }}>{indice.cursosVazio}</p>
-              ) : null}
+          {cursos.some((curso) => curso.status === 'aberto') ? (
+            <div
+              className="cartao cartao--compacto"
+              style={{
+                flexDirection: 'row',
+                alignItems: 'center',
+                justifyContent: 'space-between',
+                gap: 16,
+              }}
+            >
+              <div className="pilha--p">
+                <h2 className="rotulo rotulo--forte" style={{ margin: 0 }}>
+                  {indice.cursosTitulo}
+                </h2>
+              </div>
+              <Link href={rota(idioma, 'biblioteca/cursos')} className="link-seta">
+                {indice.cursosAcao}
+              </Link>
             </div>
-            <Link href={rota(idioma, 'biblioteca/cursos')} className="link-seta">
-              {cursos.length === 0 ? indice.cursosAcaoVazio : indice.cursosAcao}
-            </Link>
-          </div>
+          ) : null}
         </div>
       </section>
 

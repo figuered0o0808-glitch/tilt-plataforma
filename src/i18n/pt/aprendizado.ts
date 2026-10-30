@@ -2,11 +2,11 @@
 export const aprendizado = {
   indice: {
     olho: 'Biblioteca',
-    titulo: 'Formação e materiais',
+    titulo: 'Publicações da INDICA',
     /* So na etiqueta <meta>: a pagina nao repete o titulo em subtitulo. */
-    descricao: 'Materiais técnicos para criadores e organizações, e cursos para criadores.',
-    materiaisTitulo: 'Materiais técnicos',
-    materiaisAcao: 'Ver os materiais',
+    descricao: 'Artigos e análises da INDICA sobre o mercado de influência, com textos completos em PDF.',
+    materiaisTitulo: 'Publicações',
+    materiaisAcao: 'Ver todas as publicações',
     cursosTitulo: 'Cursos',
     cursosVazio: 'Nenhum curso publicado.',
     /* Sem turma publicada, o que a pagina de cursos tem sao as condicoes. */
@@ -15,18 +15,18 @@ export const aprendizado = {
     abertura: [
       {
         rotulo: 'Acesso',
-        texto: 'Leitura livre, sem cadastro. O cadastro só é pedido para entrar em uma turma.',
+        texto: 'Leitura livre, sem cadastro.',
       },
       {
-        rotulo: 'Custo',
-        texto: 'Sem taxa de inscrição.',
+        rotulo: 'Idiomas',
+        texto: 'Textos completos em português e inglês.',
       },
     ],
   },
   cursos: {
     olho: 'Formação',
     titulo: 'Cursos',
-    descricao: 'Formação gratuita para criadores de pequeno porte.',
+    descricao: 'Cursos publicados na plataforma.',
     condicoesTitulo: 'Condições que valem para qualquer turma',
     condicoes: [
       {
@@ -52,20 +52,20 @@ export const aprendizado = {
     irAoPainel: 'Ver no painel',
     voltarCatalogo: 'Ver os cursos',
     vazioTitulo: 'Nenhum curso publicado',
-    vazioAcao: 'Conhecer o programa',
+    vazioAcao: 'Ver as publicações',
   },
   materiais: {
     olho: 'Biblioteca',
-    titulo: 'Materiais técnicos',
+    titulo: 'Publicações',
     /* So na etiqueta <meta>. */
-    descricao: 'Materiais técnicos para criadores e organizações.',
+    descricao: 'Artigos e análises da INDICA sobre o mercado de influência.',
     trilha: 'Trilha',
     trilhaCriadores: 'Para criadores',
     trilhaOrganizacoes: 'Para organizações',
     trilhaCriadoresNota:
-      'Produção, sinalização do apoio na publicação e preparo de propostas para as chamadas.',
+      'Publicidade de bets, discursos de influenciadores e regulação do mercado de influência.',
     trilhaOrganizacoesNota:
-      'Descrever uma demanda sem interferir na edição, contratar com regras claras e avaliar o resultado.',
+      'Estudos sobre o mercado de influência, a disputa por atenção e a formação de preços.',
     autoria: 'Autoria',
     organizacao: 'Organização',
     tema: 'Tema',
@@ -86,7 +86,7 @@ export const aprendizado = {
     maisDaOrganizacao: 'Mais de',
     mesmoTema: 'Mesmo tema',
     vazioTitulo: 'Nenhum material publicado',
-    vazioAcao: 'Conhecer o programa',
+    vazioAcao: 'Ver as publicações',
     /* Modelos de data: o acervo mostra a data em cada cartão e na ficha. */
     meses: [
       'janeiro', 'fevereiro', 'março', 'abril', 'maio', 'junho',

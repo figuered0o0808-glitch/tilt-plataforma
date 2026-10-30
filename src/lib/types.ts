@@ -1,7 +1,7 @@
 /** Tipos do conteudo publicado em /data. Contrato unico da aplicacao. */
 
 
-export type StatusEdital = 'aberta' | 'em-avaliacao' | 'encerrada';
+export type StatusEdital = 'aberta' | 'em-avaliacao' | 'encerrada' | 'consulta';
 
 export type TipoEdital =
   | 'tema-amplo'
@@ -31,6 +31,8 @@ export interface FaixaDistribuicao {
 export interface EtapaCronograma {
   etapa: string;
   data: string;
+  /** Fim do intervalo, quando o documento publica um período. */
+  dataFim?: string;
 }
 
 export interface Apoiado {
@@ -62,7 +64,9 @@ export interface Call {
   escopo: string[];
   naoApoiado: string[];
   criterios: CriterioSelecao[];
+  criteriosDescricao?: string;
   banca: MembroBanca[];
+  bancaDescricao?: string;
   distribuicao: FaixaDistribuicao[];
   /**
    * Nulo quando a chamada nao tem valor definido: em negociacao com o
@@ -70,6 +74,8 @@ export interface Call {
    * Nesses casos `apoioDescricao` diz o que se oferece.
    */
   valorTotal: number | null;
+  /** O valor publicado é um teto, não uma quantia garantida. */
+  valorTotalAte?: boolean;
   faixaApoio: { min: number; max: number } | null;
   /** O que a chamada oferece quando nao e (so) dinheiro, ou quando o valor ainda nao esta definido. */
   apoioDescricao?: string;
@@ -85,6 +91,8 @@ export interface Call {
   /** Nulo enquanto o calendario da chamada nao esta fechado. */
   inscricoesAte: string | null;
   cronograma: EtapaCronograma[];
+  arquivoEdital?: { arquivo: string; idioma: string; paginas?: number };
+  secoesComplementares?: { id: string; titulo: string; paragrafos?: string[]; itens?: string[] }[];
   resultado: ResultadoEdital | null;
 }
 
