@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useId, useState, type CSSProperties } from 'react';
+import { useEffect, useId, useState, type CSSProperties, type Ref } from 'react';
 
 import { arquivoPublico } from '@/lib/format';
 
@@ -196,7 +196,10 @@ export function CarinhaIndica({
   cor = 'branco',
   entrada = false,
   preparando = false,
+  pausada = false,
   marca = false,
+  elementoRef,
+  ciclo,
   className = '',
 }: {
   estado?: EstadoCarinhaIndica;
@@ -204,7 +207,10 @@ export function CarinhaIndica({
   cor?: CorCarinhaIndica;
   entrada?: boolean;
   preparando?: boolean;
+  pausada?: boolean;
   marca?: boolean;
+  elementoRef?: Ref<SVGSVGElement>;
+  ciclo?: string;
   className?: string;
 }) {
   const instancia = useId().replace(/[^a-zA-Z0-9_-]/g, '');
@@ -212,16 +218,16 @@ export function CarinhaIndica({
   const [viva, setViva] = useState(false);
   const atrasoEntrada = expressao === '03' ? 0 : expressao === '01' ? 140 : 280;
   useEffect(() => {
-    if (!entrada || preparando) return;
+    if (!entrada || preparando || pausada) return;
     const fim = setTimeout(() => setApresentada(true), 1500);
     return () => clearTimeout(fim);
-  }, [entrada, preparando]);
+  }, [entrada, preparando, pausada]);
   useEffect(() => {
-    setViva(false);
-    if (!entrada || preparando || marca) return;
+    if (!entrada || preparando || marca) { setViva(false); return; }
+    if (pausada) return;
     const fim = setTimeout(() => setViva(true), 1420);
     return () => clearTimeout(fim);
-  }, [entrada, preparando, marca]);
+  }, [entrada, preparando, marca, pausada]);
   const prefixo = `carinha-${instancia}-${expressao}`;
   const arte = ARTES[expressao];
   const fonte = arquivoPublico(`/marca/rostos/rosto-${expressao}.png`);
@@ -239,6 +245,9 @@ export function CarinhaIndica({
 
   return (
     <svg
+      ref={elementoRef}
+      data-ciclo={ciclo}
+      data-pausada={pausada ? 'ativa' : undefined}
       className={`${styles.carinha} ${className}`}
       data-estado={estado}
       data-expressao={expressao}

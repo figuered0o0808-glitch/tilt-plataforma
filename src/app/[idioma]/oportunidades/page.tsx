@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 
 import { CabecalhoPagina } from '@/components/CabecalhoPagina';
+import { MarcaVivaIndica } from '@/components/MarcaVivaIndica';
 import { ehIdioma } from '@/i18n/idiomas';
 import { textos } from '@/i18n/strings';
 import { conteudo } from '@/lib/data';
@@ -80,6 +81,7 @@ export default async function PaginaEditais({
     <CabecalhoPagina
       estreito={estreito}
       titulo={t.editais.listaTitulo}
+      ilustracao={<MarcaVivaIndica expressao="03" cor="azul" />}
     />
   );
 

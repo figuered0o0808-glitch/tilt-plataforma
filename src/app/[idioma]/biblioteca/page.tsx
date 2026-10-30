@@ -5,6 +5,7 @@ import { notFound } from 'next/navigation';
 
 import { CabecalhoPagina } from '@/components/CabecalhoPagina';
 import { Marcador } from '@/components/Marcador';
+import { MarcaVivaIndica } from '@/components/MarcaVivaIndica';
 import { ehIdioma } from '@/i18n/idiomas';
 import { textos } from '@/i18n/strings';
 import { alternativas } from '@/lib/seo';
@@ -53,7 +54,8 @@ export default async function BibliotecaPage({
   return (
     <>
       <EstilosAcervo />
-      <CabecalhoPagina olho={indice.olho} titulo={indice.titulo} />
+      <CabecalhoPagina olho={indice.olho} titulo={indice.titulo}
+        ilustracao={<MarcaVivaIndica expressao="02" cor="rosa" />} />
 
       <section className="secao">
         <div className="container pilha--g">

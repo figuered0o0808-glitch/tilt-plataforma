@@ -280,7 +280,7 @@ export default async function Home({ params }: { params: Promise<{ idioma: strin
             <h1 className="hero__frase">{t.home.frase}</h1>
             <p className="hero-criadores__introducao">{t.home.introducao}</p>
           </div>
-          <MascoteIndica idioma={idioma} edital={documento ? { slug: documento.slug } : undefined} aceitaCadastro={aceitaCadastro} />
+          <MascoteIndica idioma={idioma} />
         </div>
       </section>
 

@@ -139,6 +139,11 @@
   71%,82% { transform: translate(-5px,4px); }
 }
 
+.carinha[data-pausada='ativa'] .apresentacao,
+.carinha[data-pausada='ativa'] .rosto,
+.carinha[data-pausada='ativa'] .entradaParte,
+.carinha[data-pausada='ativa'] .recorte { animation-play-state: paused !important; }
+
 /* Oportunidades: olha em volta, pisca e ergue as sobrancelhas. */
 .carinha[data-estado='oportunidades'] .rosto { animation: descobrir 1.9s ease-in-out backwards; }
 .carinha[data-estado='oportunidades'] .sobrancelhaEsquerda { transform: translate(-8px,-25px) rotate(-7deg); }
