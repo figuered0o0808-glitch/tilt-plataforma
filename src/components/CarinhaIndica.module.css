@@ -9,45 +9,46 @@
   user-select: none;
 }
 
-/* A geometria e a tinta seguem juntas. A marca exata assume só no fim do percurso. */
+/* As carinhas ativas mudam o próprio contorno; os grupos mantêm os pivôs da arte. */
 .apresentacao, .rosto, .entradaParte, .recorte {
   transform-origin: 0 0;
   transform-box: view-box;
 }
 .rosto, .recorte { transition: transform 420ms cubic-bezier(.22,.7,.25,1); }
+.pecaVetorial { transform-origin: 0 0; transform-box: view-box; }
 .pecaMontagem {
   transform-origin: 0 0;
   transform-box: view-box;
   transform: translate(0,0) rotate(0) scale(1,1);
-  opacity: 1;
+  visibility: visible;
   transition:
     transform 940ms cubic-bezier(.2,.72,.18,1) calc(var(--voltar-atraso,0ms) + var(--sequencia-atraso,0ms)),
-    opacity 240ms ease calc(70ms + var(--voltar-atraso,0ms) + var(--sequencia-atraso,0ms));
+    visibility 0s linear calc(var(--voltar-atraso,0ms) + var(--sequencia-atraso,0ms));
 }
 .restante {
-  opacity: 1;
-  transition: opacity 220ms ease calc(550ms + var(--sequencia-atraso,0ms));
+  visibility: visible;
+  transition: visibility 0s linear calc(940ms + var(--sequencia-atraso,0ms));
 }
 .marcaFinal { overflow: visible; pointer-events: none; }
 .glifoMarca {
-  opacity: 0;
-  transition: opacity 220ms ease var(--sequencia-atraso,0ms);
+  visibility: hidden;
+  transition: visibility 0s linear calc(var(--glifo-partida,0ms) + var(--sequencia-atraso,0ms));
 }
 .carinha[data-marca='ativa'][data-expressao] .apresentacao,
 .carinha[data-marca='ativa'][data-expressao] .rosto,
 .carinha[data-marca='ativa'][data-expressao] .entradaParte,
 .carinha[data-marca='ativa'][data-expressao] .recorte { animation: none; transform: none; }
-.carinha[data-marca='ativa'] .restante { opacity: 0; transition-delay: 0ms; }
+.carinha[data-marca='ativa'] .restante { visibility: hidden; transition-delay: 0ms; }
 .carinha[data-marca='ativa'] .pecaMontagem {
   transform: translate(var(--montar-x),var(--montar-y)) rotate(var(--montar-rotacao)) scale(var(--montar-escala-x),var(--montar-escala-y));
-  opacity: 0;
+  visibility: hidden;
   transition:
     transform 840ms cubic-bezier(.22,.76,.16,1) var(--montar-atraso,0ms),
-    opacity 220ms ease var(--montar-desaparecer,620ms);
+    visibility 0s linear var(--montar-chegada,840ms);
 }
 .carinha[data-marca='ativa'] .glifoMarca {
-  opacity: 1;
-  transition: opacity 260ms ease calc(620ms + var(--glifo-atraso,0ms));
+  visibility: visible;
+  transition: visibility 0s linear var(--glifo-chegada,840ms);
 }
 /* O HTML inicial já contém a logo pronta, sem executar uma montagem durante a hidratação. */
 .carinha[data-abertura='preparando'] .pecaMontagem,
